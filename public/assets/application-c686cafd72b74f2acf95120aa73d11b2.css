@@ -78,7 +78,7 @@
 ================================================== */
 	h1, h2, h3, h4, h5, h6 {
 		color: #181818;
-		font-family: "HelveticaNeue", "Arial" "Georgia", sans-serif;
+		font-family: "HelveticaNeue", "Arial", "Georgia", sans-serif;
 		font-weight: normal; }
 	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
 	h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}
@@ -178,7 +178,7 @@
 	input[type="button"]:active {
 		background: #ccc; /* Old browsers */
 
-	.button.full-width,
+	/*.button.full-width,
 	button.full-width,
 	input[type="submit"].full-width,
 	input[type="reset"].full-width,
@@ -187,6 +187,7 @@
 		padding-left: 0 !important;
 		padding-right: 0 !important;
 		text-align: center; }
+	*/
 
 	/* Fix for odd Mozilla border & padding issues */
 	button::-moz-focus-inner,
@@ -547,8 +548,9 @@
     .clearfix:after {
       clear: both; }
     .row,
-    .clearfix {
+    /*.clearfix {
       zoom: 1; }
+		*/
 
     /* You can also use a <br class="clear" /> to clear columns */
     .clear {
