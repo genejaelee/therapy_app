@@ -25,7 +25,7 @@ group :test do
   gem 'factory_girl_rails', '4.2.1'
 end
 
-group :production do
+group :production, :staging do
   gem 'rails_12factor'
 end
 
