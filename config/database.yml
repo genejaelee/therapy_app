@@ -9,7 +9,6 @@ development:
   database: db/therapy_app_development
   pool: 5
   timeout: 5000
-  username: jaelee
   password:
 
 # Warning: The database defined as "test" will be erased and
@@ -27,5 +26,4 @@ production:
   database: db/therapy_app_production
   pool: 5
   timeout: 5000
-  username: jaelee
   password:
