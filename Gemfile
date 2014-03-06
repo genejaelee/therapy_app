@@ -6,14 +6,12 @@ ruby '2.0.0'
 gem 'rails', '4.0.3'
 gem 'pg', '0.15.1'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+group :assets do
+  gem 'sass-rails', '~> 4.0.1'
+  gem 'uglifier', '>= 1.3.0'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'bootstrap-sass', '2.3.2.0'
+end
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
