@@ -11,10 +11,8 @@
 			<h1>Porn addiction is too difficult and confusing to struggle with alone.</h1>
 			<h5>We'll find you a therapist who understands</h5>
 		</div>
-		<div class="sixteen columns" id="cta-button1">
-			<a href="https://therapy.typeform.com/to/sPaoRM"><div class="button">start here
-			</div>
-		</a>
+		<div class="sixteen columns" id="cta-form">
+			<%= form_tag({controller: "signup", action: "input"}, method: "post", class="signup-form") %>
 		</div>
 	</div>
 </div>
