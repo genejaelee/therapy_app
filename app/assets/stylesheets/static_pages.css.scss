@@ -46,7 +46,7 @@ $max-width: 1320px;
 		
 		#cta-form {
 			margin-top: 3px;
-			padding-top: 15px;
+			padding-top: 30px;
 			text-align: center;
 			
 			#error_explanation {
@@ -71,7 +71,7 @@ $max-width: 1320px;
 			#new_user {
 				text-align: center;
 				margin: auto;
-				width: 300px;
+				width: 260px;
 				
 				input {
 					height: 20px;
@@ -99,6 +99,10 @@ $max-width: 1320px;
 						margin-bottom: 10px;
 						border: 0px;
 					}
+				}
+				
+				.alert-success {
+					color: #fff;
 				}
 			}
 			
