@@ -1,0 +1,134 @@
+<div id="panel1" class="panel">
+	<div class="container">
+		<div class="sixteen columns" id="logo-banner">
+			<div class="image"></div>
+		</div>
+		<div class="sixteen columns" id="copy-container">
+			<h1>Porn addiction is too difficult and confusing to struggle with alone.</h1>
+			<h5>We'll find you a therapist who understands</h5>
+		</div>
+		<div class="sixteen columns" id="cta-form">
+			<%= render 'shared/error_messages' %>
+			<%= render 'users/create' %>
+			<% flash.each do |key, value| %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div id="panel2" class="panel">
+	<div class="bg-container">
+		<div class="container">
+			<div class="eight columns">
+				<h2>Everyone is different, so don't risk making things worse.</h2>
+			</div>
+			<div class="twelve columns">
+				<h2>For some, a reboot is easy and does the job.</h2>
+				<p>For most, it's complicated. Months without PMO including flatlines, relapses, anxiety, embarrassment--even depression. And as much as you hope, you don't actually know if this is right for you. You could be creating new problems or making things worse.
+			</div>
+			<div class="twelve columns">
+				<p>Rather than relying on unchecked advice, let us find an expert therapist who will work with you to figure out what's right.
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="panel3" class="panel">
+	<div class="bg-container">
+		<div class="container">
+			<div class="sixteen columns" id="how-header">
+				<h2>How it works</h2>
+			</div>
+			<div class="full-span">
+				<div class="three columns">
+					<div class="image" id="form-icon"></div>
+				</div>
+				<div class="six columns">
+					<h3>Answer a few questions.</h2>
+					<p>It's free and confidential, and you don't have to give us your full name.</p>
+				</div>
+			</div>
+			<div class="full-span">
+				<div class="three columns">
+					<div class="image" id="clock-icon"></div>
+				</div>
+				<div class="six columns">
+					<h3>Sit back for a week.</h2>
+					<p>Based on your answers, we'll find a therapist that will be a good fit for you. Still free, and you're not obligated to schedule a conversation.</p>
+				</div>
+			</div>
+			<div class="full-span">
+				<div class="three columns">
+					<div class="image" id="cal-icon"></div>
+				</div>
+				<div class="six columns">
+					<h3>Schedule a conversation.</h2>
+					<p>Connect over videochat or telephone at a mutually agreeable date and time. If you're satisfied, schedule follow up conversations as necessary.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="panel4" class="panel">
+	<div class="bg-container">
+		<div class="container">
+			<div class="ten columns">
+				<h2>There's no obligation, and we keep your info confidential.</h2>
+				<h2>Give it a try. Sign up.
+			</div>
+			<div class="six columns" id="cta-button2">
+				<a href="https://therapy.typeform.com/to/sPaoRM"><div class="button">start here
+				</div>
+			</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="panel5" class="panel">
+	<div class="bg-container">
+		<div class="container">
+			<h2>Frequently Asked Questions</h2>
+            <div id="accordion">
+              <h3>This is a beta. What does that mean?</h3>
+              <div>
+              	<p>
+					Answer
+                </p>
+              </div>
+              <h3>Who are you? Why are you doing this?</h3>
+              <div>
+                <p>
+                  Answer
+                </p>
+              </div>
+              <h3>What constitutes a therapist?</h3>
+              <div>
+                <p>
+                  Answer
+                </p>
+              </div>
+              <h3>How much does this cost?</h3>
+              <div>
+                <p>
+                  Answer
+                </p>
+              </div>
+              <h3>How is my information kept confidential?</h3>
+              <div>
+                <p>
+                  Answer
+                </p>
+              </div>
+			  <h3>Do you accept insurance?</h3>
+			  <div>
+				  <p>
+					  Not at the moment, but you can always file a claim with your insurance company.
+				  </p>
+            </div>
+          </div>
+		</div>
+	</div>
+</div>
