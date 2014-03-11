@@ -8,12 +8,25 @@ $max-width: 1320px;
 	background-color: #eee;
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #ccc;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #ccc;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #ccc;
+}
+
 #panel1 {
 	background-image: image-url("mousehand5.jpg");
 	background-size: $max-width auto;
-	background-position: center;
+	background-position: top;
 	background-repeat: no-repeat;
-	height: 650px;
+	height: 700px;
 	
 	.container {
 		padding-bottom: 80px;
@@ -178,7 +191,7 @@ $max-width: 1320px;
 		max-width: $max-width;
 		margin: auto;
 		background-color: $scouter-orange;
-		background-image: image-url('dashed-line.png');
+		//background-image: image-url('dashed-line.png');
 		background-size: auto 100%;
 		background-position: right;
 		background-attachment: fixed;
