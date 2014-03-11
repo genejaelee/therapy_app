@@ -275,8 +275,13 @@
       
 	          .ui-accordion-header {
 	            background: #fff;
-	            margin-bottom: 20px;
+	            margin-bottom: 10px;
 	          }
+						
+						.ui-accordion-content {
+							margin-top: 0px;
+							margin-bottom: 0px;
+						}
       
 	          h3 {
 	            font-size: 20px;
