@@ -1,0 +1,63 @@
+@import "variables.css.scss";
+
+.footer {
+	.bg-container {
+		padding-top: 80px;
+		padding-bottom: 20px;
+		max-width: $max-width;
+		margin: auto;
+		background-color: #323232;
+		background-size: 100% auto;
+		
+		.container {
+			.one-third.column {
+				h3 {
+					color: #eee;
+					font-weight: 600;
+				}
+				
+				p {
+					color: #ddd;
+				}
+				
+				#suicide-line {
+					padding-top: 15px;
+				}
+				
+				#contact-us {
+					padding-top: 15px;
+					
+					li {
+						padding-top: 0;
+						color: #ccc;
+						font-size: 16px;
+					}
+				}
+				
+				ul li {
+					padding-top: 15px;
+				}
+				
+				ul li a {
+					font-size: 16px;
+					color: #ccc;
+					text-decoration: none;
+				}
+				
+				ul li a:hover {
+					color: #fff;
+					text-decoration: underline;
+				}
+			}
+		}
+		
+		#footer-line {
+			text-align: center;
+			padding-top: 30px;
+			small {
+				color: #828282;
+				font-size: 12px;
+			}
+		}
+	}
+}

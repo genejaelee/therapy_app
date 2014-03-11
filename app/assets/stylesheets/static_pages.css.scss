@@ -1,12 +1,4 @@
-$scouter-blue: #7fc4d7;
-$scouter-orange: #f1ac5a;
-$scouter-green: #90bc64;
-$scouter-green-light: #a0d071;
-$max-width: 1320px;
-
-.panel {
-	background-color: #eee;
-}
+@import "variables.css.scss";
 
 ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #ccc;
@@ -249,51 +241,7 @@ $max-width: 1320px;
 	}
 }
 
-#panel4 {
-	.bg-container {
-		max-width: $max-width;
-		margin: auto;
-		background-color: $scouter-green;
-		background-size: 100% auto;
-		background-repeat: no-repeat;
-		
-		.container {
-			padding-top: 80px;
-			padding-bottom: 80px;
-			
-			.ten.columns {
-				h2:nth-child(1) {
-					font-weight: 300;
-				}
-				h2 {
-					color: transparentize(#fff, 0.1);
-					font-weight: 600;
-				}
-			}
-			
-			#cta-button2 {
-				margin-top: 0px;
-				padding-top: 15px;
-				text-align: center;
-			
-				.button {
-					padding-left: 60px;
-					padding-right: 60px;
-					padding-top: 10px;
-					padding-bottom: 10px;
-					font-size: 24px;
-					text-align: center;
-					color: $scouter-green;
-					background-color: transparentize(#fff, 0.1);
-				}
-				
-				.button:hover {
-					background-color: transparentize(#fff, 0.3);
-				}
-			}
-		}
-	}
-}
+//cta styling
 
 #panel5 {
 	
@@ -352,6 +300,46 @@ $max-width: 1320px;
 		}
 	}
 }
+
+//***** Privacy Styling *****//
+
+.white-panel {
+	.bg-container {
+		max-width: $max-width;
+		margin: auto;
+		background-color: #fff;
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		
+		.container {
+			padding: 80px 0px;
+			
+			.columns {
+								
+				h5 {
+					font-size: 18px;
+					color: #424242;
+					font-weight: 600;
+					margin-bottom: 10px;
+				}
+				
+				p {
+					font-size: 16px;
+					line-height: 26px;
+					color: #424242;
+				}
+				
+				hr {
+					margin-bottom: 10px;
+					border-style: dotted;
+					color: #212121;
+				}
+			}
+		}
+	}
+}
+
+//***** Responsive *****//
 
 @media only screen and (max-width: 1140px) {
 	#panel2 {

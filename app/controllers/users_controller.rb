@@ -10,13 +10,13 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    session[:user] = user_params
     if @user.save
       flash[:success] = "Thanks for signing up!"
       redirect_to homepage_path
     else
       flash[:failure] = @user.errors.full_messages.to_sentence
-      redirect_to homepage_path
+      session[:user] = user_params
+      render "static_pages/home"
     end
   end
   

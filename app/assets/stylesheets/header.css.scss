@@ -1,0 +1,39 @@
+@import "variables.css.scss";
+
+#gen-header {
+	.bg-container {
+		padding-bottom: 80px;
+		max-width: $max-width;
+		background-color: $scouter-blue;
+		background-repeat: no-repeat;
+		margin: auto;
+		
+		.container {
+			
+			#logo-banner {
+				padding-top: 20px;
+				padding-bottom: 20px;
+				
+				.image {
+					margin: auto;
+					height: 70px;
+					background-image: image-url("cuplogo2.png");
+					background-size: 70px auto;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+			}
+		
+			.columns {
+			
+				h1 {
+					color: #fff;
+				}
+				
+				h5 {
+					color: #fff;
+				}
+			}
+		}
+	}
+}
