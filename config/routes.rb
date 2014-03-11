@@ -1,7 +1,7 @@
 TherapyApp::Application.routes.draw do
   root 'static_pages#home'
-  match '/user/create' => 'users#create', :as => :create_user, via: 'post'
-  match '/homepage' => 'static_pages#home', :as => :homepage, via: 'get'
+  match '/signup' => 'users#create', :as => :create_user, via: 'post'
+  match '/' => 'static_pages#home', :as => :homepage, via: 'get'
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
