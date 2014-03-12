@@ -441,18 +441,28 @@
 		}
 	}
 	
-	#panel4 {
+	.cta {
+		text-align: center;
+		
 		.bg-container {
 			.container {
-				h2 {
-					text-align: center;
-				}
-				
-				#cta-button2 {
-					margin-top: 20px;
+				.columns {
+					
+					h2 {
+						line-height: 36px;
+						font-size: 28px !important;
+					}
 				}
 			}
 		}
+	}
+	
+	.ui-accordion-header {
+		font-size: 18px !important;
+	}
+	
+	.ui-accordion-content {
+		font-size: 18px !important;
 	}
 }
 
@@ -469,9 +479,5 @@
 				}
 			}
 		}
-	}
-	
-	.cta {
-		text-align: center;
 	}
 }
