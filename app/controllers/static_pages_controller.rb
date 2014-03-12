@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
     else
       @user = User.new
     end
+    reset_session
   end
   
   def about
