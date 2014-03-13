@@ -10,13 +10,11 @@ module TherapyApp
   class Application < Rails::Application
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.serve_static_assets = true
-    if :ssl_configured?
+    
+    if !Rails.env.development?
       config.force_ssl = true
     end
-
-    def ssl_configured?
-      !Rails.env.development?
-    end
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

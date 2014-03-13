@@ -14,8 +14,6 @@ class UsersController < ApplicationController
       flash[:success] = "Thanks for signing up! We will contact you shortly."
       redirect_to homepage_path
     else
-      #flash[:failure] = @user.errors.full_messages.to_sentence
-      session[:user] = user_params
       render "static_pages/home"
     end
   end

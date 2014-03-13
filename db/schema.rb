@@ -17,9 +17,15 @@ ActiveRecord::Schema.define(version: 20140307194958) do
   enable_extension "plpgsql"
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "zipcode"
+    t.string   "encrypted_name"
+    t.string   "encrypted_name_salt"
+    t.string   "encrypted_name_iv"
+    t.string   "encrypted_email"
+    t.string   "encrypted_email_salt"
+    t.string   "encrypted_email_iv"
+    t.string   "encrypted_zipcode"
+    t.string   "encrypted_zipcode_salt"
+    t.string   "encrypted_zipcode_iv"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
