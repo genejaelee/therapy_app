@@ -12,7 +12,7 @@ module TherapyApp
     config.serve_static_assets = true
     
     if !Rails.env.development?
-      config.force_ssl = false
+      config.force_ssl = true
     end
     
     # Settings in config/environments/* take precedence over those specified here.
