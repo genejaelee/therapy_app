@@ -35,26 +35,22 @@ var ready = function() {
 	
 	if(!is_touch_device()) {
 		$('#PMO-def').mouseover(function(){
-			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
-			});
+			fadeThis(this);
 			show_element('#PMO-pop-over');
 		});
 	
 		$('#PMO-def').mouseleave(function(){
-			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
-			});
+			fadeThisIn(this);
 			hide_element('#PMO-pop-over');
 		});
 	
 		$('#reboot-def').mouseover(function(){
-			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
-			});
+			fadeThis(this);
 			show_element('#reboot-pop-over');
 		});
 	
 		$('#reboot-def').mouseleave(function(){
-			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
-			});
+			fadeThisIn(this);
 			hide_element('#reboot-pop-over');
 		});
 	}
@@ -65,26 +61,22 @@ var ready = function() {
 		
 		$('#PMO-def').on( 'click', function(){
 			if (PMO.is(':hidden')) {
-				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
-				});
+				fadeThis(this);
 				show_element(PMO);
 			}
 			else {
-				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
-				});
+				fadeThisIn(this);
 				hide_element(PMO);
 			}
 		});
 		
 		$('#reboot-def').on( 'click', function(){
 			if (reboot.is(':hidden')) {
-				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
-				});
+				fadeThis(this);
 				show_element(reboot);
 			}
 			else {
-				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
-				});
+				fadeThisIn(this);
 				hide_element(reboot);
 			}
 		});
