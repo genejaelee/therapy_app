@@ -43,6 +43,9 @@ var ready = function() {
 			$('.definition').animate( {opacity: 1.0}), 300, function(){};
 		}
 		else {
+			$('.pop-over').animate( {opacity: 1}, 300, function(){});
+			$('.pop-over').css( 'visibility', 'visibile');
+			$('.definition').animate( {opacity: 0.5}), 300, function(){};
 		}
 	});
 };
