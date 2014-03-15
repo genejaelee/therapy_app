@@ -35,6 +35,16 @@ var ready = function() {
 		$('#reboot-pop-over').stop().animate( {opacity : 0 }, 300, function(){
 		});
 	});
+	
+	$('.definition').click(function(){
+		if($('.pop-over').is(":visible")) {
+			$('.pop-over').animate( {opacity: 0}, 300, function(){});
+			$('.pop-over').css( 'visibility', 'hidden');
+			$('.definition').animate( {opacity: 1.0}), 300, function(){};
+		}
+		else {
+		}
+	});
 };
 
 $( document ).ready(ready);
