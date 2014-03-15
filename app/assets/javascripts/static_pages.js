@@ -53,10 +53,10 @@ var ready = function() {
 	if (is_touch_device()) {
 		var PMO = $('#PMO-pop-over');
 		$('.definition').on( 'click', function(){
-			alert('clicked!');
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
 			if (this == '#PMO-def' && PMO.css( 'visibility', 'hidden')) {
+				alert('fuck');
 				show_element(PMO);
 			}
 			else if (this == '#PMO-def' && PMO.css( 'visibility', 'visible')) {
