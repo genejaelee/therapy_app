@@ -54,12 +54,13 @@ var ready = function() {
 		var PMO = $('#PMO-pop-over');
 		$('#PMO-def').on( 'click', function(){
 			if (PMO.css('visibility', 'hidden')) {
-				alert('hi');
+				alert('was hidden!');
 				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 				});
 				show_element(PMO);
 			}
 			else if (PMO.css('visibility', 'visible')) {
+				alert('was visible!');
 				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
 				});
 				hide_element(PMO);
