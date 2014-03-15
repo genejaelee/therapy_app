@@ -1,3 +1,15 @@
+var hide_element = function(element) {
+	$( element ).stop().animate( {opacity : 0 }, 300, function(){
+		$( element ).css('visibility', 'hidden');
+	});
+}
+
+var show_element = function(element) {
+	$( element ).stop().animate( {opacity : 1 }, 300, function(){
+	});
+	$( element ).css('visibility', 'visible');
+}
+
 var ready = function() {
 	$('.cta-button2').click(function(){
 	  $('html, body').animate({scrollTop:0}, 1000, 'easeOutCubic');
@@ -10,42 +22,33 @@ var ready = function() {
 	$('#PMO-def').mouseover(function(){
 		$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 		});
-		$('#PMO-pop-over').stop().animate( {opacity : 1 },  300, function(){
-		});
-		$('#PMO-pop-over').css('visibility', 'visible');
+		show_element('#PMO-pop-over');
 	});
 	
 	$('#PMO-def').mouseleave(function(){
 		$(this).stop().animate({ opacity: 1.0 }, 300, function(){
 		});
-		$('#PMO-pop-over').stop().animate( {opacity : 0 }, 300, function(){
-			$('#PMO-pop-over').css('visibility', 'hidden');
-		});
+		hide_element('#PMO-pop-over');
 	});
+	
 	$('#reboot-def').mouseover(function(){
 		$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 		});
-		$('#reboot-pop-over').stop().animate( {opacity : 1 }, 300, function(){
-		});
+		show_element('#reboot-pop-over');
 	});
 	
 	$('#reboot-def').mouseleave(function(){
 		$(this).stop().animate({ opacity: 1.0 }, 300, function(){
 		});
-		$('#reboot-pop-over').stop().animate( {opacity : 0 }, 300, function(){
-		});
+		hide_element('#reboot-pop-over');
 	});
 	
 	$('.definition').click(function(){
-		if($('.pop-over').is(":visible")) {
-			$('.pop-over').animate( {opacity: 0}, 300, function(){});
-			$('.pop-over').css( 'visibility', 'hidden');
-			$('.definition').animate( {opacity: 1.0}), 300, function(){};
+		if(('#PMO-def').css('visibility', 'visible')){
+			hide_element('#PMO-def');
 		}
-		else {
-			$('.pop-over').animate( {opacity: 1}, 300, function(){});
-			$('.pop-over').css( 'visibility', 'visibile');
-			$('.definition').animate( {opacity: 0.5}), 300, function(){};
+		else if (('#reboot-def').css('visibility', 'visible')){
+			hide_element('#reboot-def');
 		}
 	});
 };
