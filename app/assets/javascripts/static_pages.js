@@ -5,14 +5,14 @@ function is_touch_device() {
 
 var hide_element = function(element) {
 	$( element ).stop().animate( {opacity : 0 }, 300, function(){
-		$( element ).css('visibility', 'hidden');
+		$( element ).css('display', 'none');
 	});
 }
 
 var show_element = function(element) {
 	$( element ).stop().animate( {opacity : 1 }, 300, function(){
 	});
-	$( element ).css('visibility', 'visible');
+	$( element ).css('display', 'default');
 }
 
 var ready = function() {
