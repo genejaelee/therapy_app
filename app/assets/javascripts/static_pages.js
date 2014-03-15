@@ -38,7 +38,9 @@ var ready = function() {
 	
 	$('.definition').click(function(){
 		if($('.pop-over').is(":visible")) {
-			$('.pop-over').animate( {opacity: 0}, 300, function(){})
+			$('.pop-over').animate( {opacity: 0}, 300, function(){});
+			$('.pop-over').css( 'visibility', 'hidden');
+			$('.definition').animate( {opacity: 1.0}), 300, function(){};
 		}
 		else {
 		}
