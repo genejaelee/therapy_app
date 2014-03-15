@@ -53,12 +53,15 @@ var ready = function() {
 	if (is_touch_device()) {
 		var PMO = $('#PMO-pop-over');
 		$('.definition').on( 'click', function(){
-			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
-			});
 			if (this == '#PMO-def' && PMO.css( 'visibility', 'hidden')) {
+				alert('hi');
+				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
+				});
 				show_element(PMO);
 			}
 			else if (this == '#PMO-def' && PMO.css( 'visibility', 'visible')) {
+				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+				});
 				hide_element(PMO);
 			}
 		});
