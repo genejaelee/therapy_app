@@ -70,14 +70,14 @@ var ready = function() {
 			}
 		});
 		
-		$('.definition').on( 'click', function(){
-			if (PMO.is(':visible') || reboot.is(':visible')) {
+		if (PMO.is(':visible') || reboot.is(':visible')) {
+			$('.definition').on( 'click', function(){
 				$(this).animate({ opacity: 1.0}, 300, function(){
 				});
 				hide_element(reboot);
 				hide_element(PMO);
-			}
-		});
+			});
+		}
 	}
 };
 
