@@ -51,13 +51,28 @@ var ready = function() {
 	}
 	
 	if (is_touch_device()) {
-		$('.definition').click(function(){
-			if(('#PMO-def').css('visibility', 'visible')){
-				hide_element('#PMO-def');
-			}
-			else if (('#reboot-def').css('visibility', 'visible')){
-				hide_element('#reboot-def');
-			}
+		$('#PMO-def').click(function(){
+			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
+			});
+			show_element('#PMO-pop-over');
+		});
+	
+		$('#PMO-def').click(function(){
+			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+			});
+			hide_element('#PMO-pop-over');
+		});
+	
+		$('#reboot-def').click(function(){
+			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
+			});
+			show_element('#reboot-pop-over');
+		});
+	
+		$('#reboot-def').click(function(){
+			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+			});
+			hide_element('#reboot-pop-over');
 		});
 	}
 };
