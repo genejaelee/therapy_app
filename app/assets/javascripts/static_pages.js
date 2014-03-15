@@ -51,7 +51,7 @@ var ready = function() {
 	}
 	
 	if (is_touch_device()) {
-		$('#PMO-def').click(function(){
+		$('#PMO-def').on(isMobile ? 'touchend' : 'click',function(){
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
 			show_element('#PMO-pop-over');
