@@ -53,9 +53,9 @@ var ready = function() {
 	if (is_touch_device()) {
 		var PMO = $('#PMO-pop-over');
 		var reboot = $('#reboot-pop-over');
+		
 		$('#PMO-def').on( 'click', function(){
 			if (PMO.css('visibility', 'hidden')) {
-				alert('was hidden!');
 				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 				});
 				show_element(PMO);
@@ -63,18 +63,19 @@ var ready = function() {
 		});
 		
 		$('#reboot-def').on( 'click', function(){
-			if (PMO.css('visibility', 'hidden')) {
-				alert('was hidden!');
+			if (reboot.css('visibility', 'hidden')) {
 				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 				});
 				show_element(reboot);
 			}
 		});
 		
-		if (PMO.is(':visible') || reboot.is(':visible')) {
-			hide_element(reboot);
-			hide_element(PMO);
-		}
+		$(document).on( 'click', function(){
+			if (PMO.is(':visible') || reboot.is(':visible')) {
+				hide_element(reboot);
+				hide_element(PMO);
+			}
+		});
 	}
 };
 
