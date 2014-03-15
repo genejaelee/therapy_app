@@ -25,6 +25,7 @@ var ready = function() {
   });
 	
 	if(!is_touch_device()) {
+		alert('fucked');
 		$('#PMO-def').mouseover(function(){
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
