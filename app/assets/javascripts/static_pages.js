@@ -70,8 +70,10 @@ var ready = function() {
 			}
 		});
 		
-		$(document).on( 'click', function(){
+		$('.definition').on( 'click', function(){
 			if (PMO.is(':visible') || reboot.is(':visible')) {
+				$(this).animate({ opacity: 1.0}, 300, function(){
+				});
 				hide_element(reboot);
 				hide_element(PMO);
 			}
