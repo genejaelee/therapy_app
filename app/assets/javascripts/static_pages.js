@@ -55,10 +55,10 @@ var ready = function() {
 		$('.definition').on( 'click', function(){
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
-			if (this == '#PMO-def' && ('#PMO-pop-over').css( 'visibility', 'hidden')) {
+			if ($(this) == $('#PMO-def') && $('#PMO-pop-over').css( 'visibility', 'hidden')) {
 				show_element('#PMO-pop-over');
 			}
-			else if (this == '#PMO-def' && ('#PMO-pop-over').css( 'visibility', 'visible')) {
+			else if ($(this) == $('#PMO-def') && $('#PMO-pop-over').css( 'visibility', 'visible')) {
 				hide_element('#PMO-pop-over');
 			}
 		});
