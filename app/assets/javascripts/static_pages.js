@@ -60,7 +60,7 @@ var ready = function() {
 				});
 				show_element(PMO);
 			}
-			else if (PMO.is(':visible')) {
+			else if (PMO.css('visibility', 'visible')) {
 				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
 				});
 				hide_element(PMO);
