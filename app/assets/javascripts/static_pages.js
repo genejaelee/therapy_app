@@ -25,7 +25,6 @@ var ready = function() {
   });
 	
 	if(!is_touch_device()) {
-		alert('fucked');
 		$('#PMO-def').mouseover(function(){
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
@@ -61,7 +60,7 @@ var ready = function() {
 				});
 				show_element(PMO);
 			}
-			else if (PMO.css('opacity', '1.0')) {
+			else {
 				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
 				});
 				hide_element(PMO);
