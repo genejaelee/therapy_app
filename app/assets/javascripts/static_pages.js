@@ -52,13 +52,13 @@ var ready = function() {
 	
 	if (is_touch_device()) {
 		alert('is touch device');
-		$('#PMO-def').click(function(){
+		$('#PMO-def').on( 'click', function(){
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
 			show_element('#PMO-pop-over');
 		});
 	
-		$('#PMO-def').click(function(){
+		$('#PMO-def').on( 'click', function(){
 			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
 			});
 			hide_element('#PMO-pop-over');
