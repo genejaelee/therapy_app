@@ -51,15 +51,16 @@ var ready = function() {
 	}
 	
 	if (is_touch_device()) {
-		alert('is touch device');
+		var PMO = $('#PMO-pop-over');
 		$('.definition').on( 'click', function(){
+			alert('clicked!');
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
-			if ($(this) == $('#PMO-def') && $('#PMO-pop-over').css( 'visibility', 'hidden')) {
-				show_element('#PMO-pop-over');
+			if (this == '#PMO-def' && PMO.css( 'visibility', 'hidden')) {
+				show_element(PMO);
 			}
-			else if ($(this) == $('#PMO-def') && $('#PMO-pop-over').css( 'visibility', 'visible')) {
-				hide_element('#PMO-pop-over');
+			else if (this == '#PMO-def' && PMO.css( 'visibility', 'visible')) {
+				hide_element(PMO);
 			}
 		});
 	
