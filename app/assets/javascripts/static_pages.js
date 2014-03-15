@@ -12,7 +12,7 @@ var hide_element = function(element) {
 var show_element = function(element) {
 	$( element ).stop().animate( {opacity : 1 }, 300, function(){
 	});
-	$( element ).css('display', 'default');
+	$( element ).css('display', 'inline');
 }
 
 var ready = function() {
