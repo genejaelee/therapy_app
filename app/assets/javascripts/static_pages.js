@@ -60,6 +60,11 @@ var ready = function() {
 				});
 				show_element(PMO);
 			}
+			else if (PMO.is(':visible')) {
+				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+				});
+				hide_element(PMO);
+			}
 		});
 		
 		$('#reboot-def').on( 'click', function(){
@@ -69,15 +74,6 @@ var ready = function() {
 				show_element(reboot);
 			}
 		});
-		
-		if (PMO.is(':visible') || reboot.is(':visible')) {
-			$('.definition').on( 'click', function(){
-				$(this).animate({ opacity: 1.0}, 300, function(){
-				});
-				hide_element(reboot);
-				hide_element(PMO);
-			});
-		}
 	}
 };
 
