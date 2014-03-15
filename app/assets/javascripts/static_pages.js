@@ -15,6 +15,15 @@ var show_element = function(element) {
 	$( element ).css('display', 'inline');
 }
 
+var fadeThis = function(element) {
+	$(element).stop().animate({ opacity: 0.5 }, 300, function(){
+	});
+}
+var fadeThisIn = function(element) {
+	$(element).stop().animate({ opacity: 1.0 }, 300, function(){
+	});
+}
+
 var ready = function() {
 	$('.cta-button2').click(function(){
 	  $('html, body').animate({scrollTop:0}, 1000, 'easeOutCubic');
@@ -68,10 +77,15 @@ var ready = function() {
 		});
 		
 		$('#reboot-def').on( 'click', function(){
-			if (reboot.css('visibility', 'hidden')) {
+			if (reboot.is(':hidden')) {
 				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 				});
 				show_element(reboot);
+			}
+			else {
+				$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+				});
+				hide_element(reboot);
 			}
 		});
 	}
