@@ -1,3 +1,8 @@
+function is_touch_device() {
+  return 'ontouchstart' in window // works on most browsers 
+      || 'onmsgesturechange' in window; // works on ie10
+};
+
 var hide_element = function(element) {
 	$( element ).stop().animate( {opacity : 0 }, 300, function(){
 		$( element ).css('visibility', 'hidden');
@@ -19,38 +24,42 @@ var ready = function() {
 	  $( "#accordion" ).accordion({header: "h3", collapsible: true, active: false, heightStyle: "content"});
   });
 	
-	$('#PMO-def').mouseover(function(){
-		$(this).stop().animate({ opacity: 0.5 }, 300, function(){
+	if(!is_touch_device()) {
+		$('#PMO-def').mouseover(function(){
+			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
+			});
+			show_element('#PMO-pop-over');
 		});
-		show_element('#PMO-pop-over');
-	});
 	
-	$('#PMO-def').mouseleave(function(){
-		$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+		$('#PMO-def').mouseleave(function(){
+			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+			});
+			hide_element('#PMO-pop-over');
 		});
-		hide_element('#PMO-pop-over');
-	});
 	
-	$('#reboot-def').mouseover(function(){
-		$(this).stop().animate({ opacity: 0.5 }, 300, function(){
+		$('#reboot-def').mouseover(function(){
+			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
+			});
+			show_element('#reboot-pop-over');
 		});
-		show_element('#reboot-pop-over');
-	});
 	
-	$('#reboot-def').mouseleave(function(){
-		$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+		$('#reboot-def').mouseleave(function(){
+			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
+			});
+			hide_element('#reboot-pop-over');
 		});
-		hide_element('#reboot-pop-over');
-	});
+	}
 	
-	$('.definition').click(function(){
-		if(('#PMO-def').css('visibility', 'visible')){
-			hide_element('#PMO-def');
-		}
-		else if (('#reboot-def').css('visibility', 'visible')){
-			hide_element('#reboot-def');
-		}
-	});
+	if (is_touch_device()) {
+		$('.definition').click(function(){
+			if(('#PMO-def').css('visibility', 'visible')){
+				hide_element('#PMO-def');
+			}
+			else if (('#reboot-def').css('visibility', 'visible')){
+				hide_element('#reboot-def');
+			}
+		});
+	}
 };
 
 $( document ).ready(ready);
