@@ -52,10 +52,15 @@ var ready = function() {
 	
 	if (is_touch_device()) {
 		alert('is touch device');
-		$('#PMO-def').on( 'click', function(){
+		$('.definition').on( 'click', function(){
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
-			show_element('#PMO-pop-over');
+			if (this == '#PMO-def' && ('#PMO-def').css( 'visibility', 'hidden')) {
+				show_element('#PMO-pop-over');
+			}
+			else if (this == '#PMO-def' && ('#PMO-def').css( 'visibility', 'visible')) {
+				hide_element('#PMO-pop-over');
+			}
 		});
 	
 		$('#PMO-def').on( 'click', function(){
