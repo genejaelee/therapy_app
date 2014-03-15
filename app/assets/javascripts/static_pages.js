@@ -56,18 +56,11 @@ var ready = function() {
 			$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 			});
 			if (this == '#PMO-def' && PMO.css( 'visibility', 'hidden')) {
-				alert('fuck');
 				show_element(PMO);
 			}
 			else if (this == '#PMO-def' && PMO.css( 'visibility', 'visible')) {
 				hide_element(PMO);
 			}
-		});
-	
-		$('#PMO-def').on( 'click', function(){
-			$(this).stop().animate({ opacity: 1.0 }, 300, function(){
-			});
-			hide_element('#PMO-pop-over');
 		});
 	
 		$('#reboot-def').click(function(){
