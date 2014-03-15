@@ -55,7 +55,7 @@ var ready = function() {
 		var reboot = $('#reboot-pop-over');
 		
 		$('#PMO-def').on( 'click', function(){
-			if (PMO.css('visibility', 'hidden')) {
+			if (PMO.is(':hidden')) {
 				$(this).stop().animate({ opacity: 0.5 }, 300, function(){
 				});
 				show_element(PMO);
