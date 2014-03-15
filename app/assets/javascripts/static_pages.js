@@ -59,7 +59,7 @@ var ready = function() {
 		var PMO = $('#PMO-pop-over');
 		var reboot = $('#reboot-pop-over');
 		
-		$('#PMO-def').on( 'click', function(){
+		$('#PMO-def').on( 'touchend', function(){
 			if (PMO.is(':hidden')) {
 				fadeThis(this);
 				show_element(PMO);
@@ -70,7 +70,7 @@ var ready = function() {
 			}
 		});
 		
-		$('#reboot-def').on( 'click', function(){
+		$('#reboot-def').on( 'touchend', function(){
 			if (reboot.is(':hidden')) {
 				fadeThis(this);
 				show_element(reboot);
