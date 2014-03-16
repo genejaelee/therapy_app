@@ -10,3 +10,12 @@ class User < ActiveRecord::Base
   validates_format_of :zipcode, :with => /^\d{5}(?:[-\s]\d{4})?$/, multiline: true, :message => "should be in the form 12345 or 12345-1234"
   
 end
+
+class User
+  def self.list
+    puts "ID, Name, Email, and Zipcode"
+    self.all.each do |user|
+      puts "#{user.id} / #{user.name} / #{user.email} / #{user.zipcode}"
+    end
+  end
+end
