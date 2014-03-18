@@ -23,13 +23,14 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       redirect_to homepage_path
     else
-      render "users/edit"
+      render "users/create"
+      flash[:fail]
     end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :zipcode, :description, :gender_pref)
+    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :description, :gender_pref)
   end
 end

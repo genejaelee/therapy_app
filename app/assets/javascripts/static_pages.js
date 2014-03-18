@@ -3,6 +3,12 @@ function is_touch_device() {
       || 'onmsgesturechange' in window; // works on ie10
 };
 
+function updateCountdown() {
+    // 500 is the max message length
+    var remaining = 500 - jQuery('#explanation-text').val().length;
+    jQuery('.countdown').text(remaining + ' characters remaining.');
+}
+
 var hide_element = function(element) {
 	$( element ).stop().animate( {opacity : 0 }, 300, function(){
 		$( element ).css('display', 'none');
@@ -32,6 +38,11 @@ var ready = function() {
   $(function() {
 	  $( "#accordion" ).accordion({header: "h3", collapsible: true, active: false, heightStyle: "content"});
   });
+	
+	//updating countdown on explanation for therapist
+	updateCountdown();
+	    $('#explanation-text').change(updateCountdown);
+	    $('#explanation-text').keyup(updateCountdown);
 	
 	if(!is_touch_device()) {
 		$('#PMO-def').mouseover(function(){

@@ -362,12 +362,20 @@
 		background-repeat: no-repeat;
 		
 		.container {
-			padding-top: 50px;
-			padding-bottom: 40px;
+			padding-top: 80px;
+			padding-bottom: 60px;
 			
 			textarea {
 				width: 300px;
 				height: 120px;
+				margin-bottom: 0px;
+			}
+			
+			.countdown {
+				display: inline-block;
+				margin-bottom: 15px;
+				font-size: 12px;
+				color: #bbb;
 			}
 			
 			label {
@@ -376,9 +384,13 @@
 			}
 			
 			select {
-				height: 40px;
+				height: 30px;
 				width: 200px;
 				padding-left: 10px;
+			}
+			
+			#user_insurance {
+				margin-bottom: 30px;
 			}
 			
 			.submit_button {
