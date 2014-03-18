@@ -15,7 +15,7 @@ class User
   def self.list
     puts "ID, Name, Email, Zipcode, and Description"
     self.all.each do |user|
-      puts "#{user.id} / #{user.name} / #{user.email} / #{user.zipcode} / #{user.description}"
+      puts "#{user.id} / #{user.name} / #{user.email} / #{user.zipcode} / #{user.description} / #{user.gender_pref}"
     end
   end
 end
