@@ -1,0 +1,23 @@
+<% content_for :title do %>
+  Get Started Here!
+<% end %>
+
+<% content_for :body do %>
+  <p>We want to assure you that the privacy and security of your information is our number one priority. With that, we need a little more information to get you the best match possible.</p>
+<% end %>
+
+<%= render 'layouts/header' %>
+
+<div class="panel" id="signup-panel">
+	<div class="bg-container">
+		<div class="container">
+			<%= form_for @user, url: { controller: "users", action: "update" } do |f| %>
+				<%= label_tag "Write briefly about the issue you are struggling with or why you want to see a therapist." %>
+				<%= f.text_area :description, :placeholder => "Write here..." %>
+				<%= label_tag "Do you have a gender preference for the therapist we match you with?"%>
+				<%= f.select(:gender_pref, [['Male', 1], ['Female', 2], ['No Preference', 3]])%>
+				<%= f.submit "Submit", :class => "submit_button button" %>
+			<% end %>
+		</div>	
+	</div>
+</div>

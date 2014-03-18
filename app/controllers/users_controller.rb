@@ -12,15 +12,24 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Thanks for signing up! We will contact you shortly."
-      redirect_to homepage_path
+      session[:current_user_id] = @user.id
     else
       render "static_pages/home"
+    end
+  end
+  
+  def update
+    @user = User.find(session[:current_user_id])
+    if @user.update_attributes(user_params)
+      redirect_to homepage_path
+    else
+      render "users/edit"
     end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :zipcode)
+    params.require(:user).permit(:name, :email, :zipcode, :description, :gender_pref)
   end
 end

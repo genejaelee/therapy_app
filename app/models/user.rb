@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Encryption
   
-  attr_encrypted :name, :email, :zipcode, :key => :encryption_key
+  attr_encrypted :name, :email, :zipcode, :description, :key => :encryption_key
   
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -13,9 +13,9 @@ end
 
 class User
   def self.list
-    puts "ID, Name, Email, and Zipcode"
+    puts "ID, Name, Email, Zipcode, and Description"
     self.all.each do |user|
-      puts "#{user.id} / #{user.name} / #{user.email} / #{user.zipcode}"
+      puts "#{user.id} / #{user.name} / #{user.email} / #{user.zipcode} / #{user.description} / #{user.gender_pref}"
     end
   end
 end

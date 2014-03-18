@@ -353,6 +353,49 @@
 	}
 }
 
+#signup-panel {
+	.bg-container {
+		max-width: $max-width;
+		margin: auto;
+		background-color: #fff;
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		
+		.container {
+			padding-top: 50px;
+			padding-bottom: 40px;
+			
+			textarea {
+				width: 300px;
+				height: 120px;
+			}
+			
+			label {
+				margin-bottom: 5px;
+				color: #525252;
+			}
+			
+			select {
+				height: 40px;
+				width: 200px;
+				padding-left: 10px;
+			}
+			
+			.submit_button {
+				height: 40px;
+				width: 200px;
+				color: $scouter-green;
+				font-size: 16px;
+				font-weight: 200;
+				background-color: #fff;
+				border-width: 1px;
+				border-style: solid;
+				border-color: $scouter-green;
+			}
+		}
+	}
+}
+
 //***** Privacy Styling *****//
 
 .white-panel {

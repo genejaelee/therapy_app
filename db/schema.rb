@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(version: 20140307194958) do
     t.string   "encrypted_zipcode"
     t.string   "encrypted_zipcode_salt"
     t.string   "encrypted_zipcode_iv"
+    t.string   "encrypted_description"
+    t.string   "encrypted_description_salt"
+    t.string   "encrypted_description_iv"
+    t.string   "gender_pref"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
