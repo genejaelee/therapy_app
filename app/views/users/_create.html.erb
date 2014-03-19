@@ -1,6 +1,5 @@
 	<%= form_for @user, url: { controller: "users", action: "create" } do |f| %>
 	
-		<%#= f.text_field :name, :placeholder => "First name" %>
 		<%= f.text_field :email, :placeholder => "john@example.com" %>
 		<%= f.text_field :zipcode, :placeholder => "Your zipcode" %>
 		<%= f.submit "Get Started", :class => "submit_button_white button" %>
