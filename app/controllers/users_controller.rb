@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   
   def finish
     @user = User.find(session[:current_user_id])
+    @user.assign_attributes(user_params)
     if @user.valid?
       @user.save
       flash[:success] = "Thanks for sharing, we will contact you shortly."
