@@ -15,7 +15,7 @@
 <div class="panel signup-panel">
 	<div class="bg-container">
 		<div class="container">
-			<%= form_for @user, onSubmit: "return false", url: { controller: "users", action: "finish" } do |f| %>
+			<%= form_for @user, url: { controller: "users", action: "finish" } do |f| %>
 				
 				<%= label_tag :name, "What's your name?"%>
 				<%= f.text_field :name, :autofocus => "true", :placeholder => "First name (optional)" %>
@@ -24,7 +24,7 @@
 				<%= f.select(:gender, [['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']]) %>
 				
 				<%= label_tag :age, "How old are you?" %>
-				<%= f.text_field :age, :placeholder => "ex. 19" %>
+				<%= f.text_field :age, :type => "number", :placeholder => "ex. 19" %>
 				
 				<%= label_tag :insurance, "If you have an insurance provider let us know who. If not, enter 'don't know'" %>
 				<%= f.text_field(:insurance, :placeholder => "ex. Blue Cross")%>
