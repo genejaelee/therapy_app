@@ -109,6 +109,8 @@
 				input {
 					height: 38px;
 					width: 100%;
+					font-size: 15px;
+					color: #525252;
 					text-align: center;
 					margin-bottom: 10px;
 					border: 0px;
@@ -266,7 +268,7 @@
 					}
 					
 					#cal-icon {
-						background-image: image-url('cal-icon.png');
+						background-image: image-url('contact-icon.png');
 					}
 				
 					.image {

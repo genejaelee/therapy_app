@@ -6,7 +6,7 @@ function is_touch_device() {
 // text area functions
 function updateCountdown() {
     // 500 is the max message length
-		var limit = 121;
+		var limit = 141;
 		var remainingWords = limit - $('#explanation-text').val().trim().split(" ").length;
     $('#counter-text').text(remainingWords + ' words remaining.');
 }

@@ -1,9 +1,9 @@
 <% content_for :title do %>
-  Get Started Here.
+  What's on your mind?
 <% end %>
 
 <% content_for :body do %>
-  <p>We want to assure you that the privacy and security of your information is our number one priority. With that, we need a little more information to get you the best match possible.</p>
+  <p>We want to assure you that the privacy and security of your information is our number one priority. With that in mind, please share a bit about what's been bugging you or what you would ask a therapist.</p>
 <% end %>
 
 <%= render 'layouts/header' %>
@@ -13,12 +13,11 @@
 		<div class="container">
 			<%= form_for @user, url: { controller: "users", action: "update" } do |f| %>
 			
-				<%= label_tag :description, "Tell us a little bit about what's on your mind." %>
 				<%= f.text_area :description, 
 												:onkeyup => "textAreaAdjust(this)",
 												:autofocus => "true",
 												:id => "explanation-text", 
-												:placeholder => "..." %>
+												:placeholder => "Write here..." %>
 				<span class="sixteen columns" id="counter-text"></span>
 				
 				<%= render 'shared/error_messages' %>

@@ -25,14 +25,13 @@
 			
 			textarea {
 				overflow: hidden;
-				margin-top: 40px;
-				min-height: 300px;
+				min-height: 400px;
 				width: 100%;
 				border: none;
-				height: auto;
 				margin-bottom: 0px;
 				color: $scouter-teal-fade;
 				font-size: 36px;
+				line-height: 44px;
 				resize: none;
 			}
 			
@@ -45,7 +44,7 @@
 				display: inline-block;
 				margin-bottom: 15px;
 				margin-left: 0px;
-				font-size: 12px;
+				font-size: 14px;
 				color: #bbb;
 			}
 			
