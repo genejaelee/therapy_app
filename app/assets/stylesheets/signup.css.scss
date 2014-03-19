@@ -92,6 +92,10 @@
 	.signup-panel {
 		.bg-container{
 			.container {
+				input {
+					-webkit-appearance: none;
+				}
+				
 				textarea {
 					font-size: 26px;
 					line-height: 32px;
