@@ -50,6 +50,14 @@
 }
 
 @media only screen and (max-width: 480px) {
+	#gen-header {
+		.bg-container {
+			.container {
+				text-align: center;
+			}
+		}
+	}
+	
 	#arrow-down {
 		position: relative;
 		background-image: image-url('arrow-down-icon.png');
