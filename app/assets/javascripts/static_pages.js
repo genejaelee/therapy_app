@@ -3,12 +3,20 @@ function is_touch_device() {
       || 'onmsgesturechange' in window; // works on ie10
 };
 
+// text area functions
 function updateCountdown() {
     // 500 is the max message length
-    var remaining = 500 - jQuery('#explanation-text').val().length;
-    jQuery('.countdown').text(remaining + ' characters remaining.');
+		var limit = 121;
+		var remainingWords = limit - $('#explanation-text').val().trim().split(" ").length;
+    $('#counter-text').text(remainingWords + ' words remaining.');
 }
 
+function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (25+o.scrollHeight)+"px";
+}
+
+//legacy functions to hide and show things
 var hide_element = function(element) {
 	$( element ).stop().animate( {opacity : 0 }, 300, function(){
 		$( element ).css('display', 'none');

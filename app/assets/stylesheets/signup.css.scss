@@ -1,0 +1,70 @@
+@import "variables.css.scss";
+
+#signup-panel {
+	.bg-container {
+		max-width: $max-width;
+		margin: auto;
+		background-color: #fff;
+		background-size: 100% auto;
+		background-repeat: no-repeat;
+		
+		.container {
+			padding-top: 80px;
+			padding-bottom: 60px;
+			
+			textarea {
+				overflow: hidden;
+				margin-top: 40px;
+				min-height: 300px;
+				width: 100%;
+				border: none;
+				height: auto;
+				margin-bottom: 0px;
+				color: $scouter-teal-fade;
+				font-size: 36px;
+				resize: none;
+			}
+			
+			textarea:focus {
+				outline: none;
+				box-shadow: none;
+			}
+			
+			#counter-text {
+				display: inline-block;
+				margin-bottom: 15px;
+				font-size: 12px;
+				color: #bbb;
+			}
+			
+			label {
+				margin-bottom: 5px;
+				color: #aaa;
+				font-size: 16px;
+				font-weight: 200;
+			}
+			
+			select {
+				height: 30px;
+				width: 200px;
+				padding-left: 10px;
+			}
+			
+			#user_insurance {
+				margin-bottom: 30px;
+			}
+			
+			.submit_button_white {
+				height: 40px;
+				width: 200px;
+				color: $scouter-green;
+				font-size: 16px;
+				font-weight: 200;
+				background-color: #fff;
+				border-width: 1px;
+				border-style: solid;
+				border-color: $scouter-green;
+			}
+		}
+	}
+}

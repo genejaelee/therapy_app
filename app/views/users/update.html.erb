@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  Get Started Here.
+  Almost done!
 <% end %>
 
 <% content_for :body do %>
@@ -19,6 +19,9 @@
 												:id => "explanation-text", 
 												:placeholder => "..." %>
 				<span class="sixteen columns" id="counter-text"></span>
+				
+				<%= label_tag :gender, "What is your gender?"%>
+				<%= select(:gender, [["Male", "Male"], ["Female", "Female"], ["Other", "Other"]])%>
 				
 				<%= f.submit "Submit", :class => "submit_button_white button sixteen columns" %>
 			<% end %>

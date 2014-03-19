@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :insurance, :key => :encryption_key
   
-  validates :name, presence: true, length: { maximum: 50 }
+  #validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :zipcode, presence: true, length: { minimum: 5 }

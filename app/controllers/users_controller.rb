@@ -21,6 +21,15 @@ class UsersController < ApplicationController
   def update
     @user = User.find(session[:current_user_id])
     if @user.update_attributes(user_params)
+    else
+      render "users/create"
+      flash[:fail]
+    end
+  end
+  
+  def finish
+    @user = User.find(session[:current_user_id])
+    if @user.update_attributes(user_params)
       redirect_to homepage_path
     else
       render "users/create"
