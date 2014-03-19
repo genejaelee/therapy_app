@@ -107,7 +107,7 @@
 				width: 260px;
 				
 				input {
-					height: 38px;
+					height: 38px !important;
 					width: 100%;
 					font-size: 15px;
 					color: #525252;
@@ -116,6 +116,10 @@
 					border: 0px;
 					padding-left: 0px;
 					padding-right: 0px;
+				}
+				
+				.field_with_errors {
+					@extend input;
 				}
 				
 				.submit_button_white {
