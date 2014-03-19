@@ -2,13 +2,14 @@
 
 #gen-header {
 	.bg-container {
-		padding-bottom: 80px;
+		padding-bottom: 90px;
 		max-width: $max-width;
 		background-color: $scouter-blue;
 		background-repeat: no-repeat;
 		margin: auto;
 		
 		.container {
+			text-align: center;
 			
 			#logo-banner {
 				padding-top: 20px;
@@ -43,6 +44,8 @@
 					color: #fff;
 					font-size: 17px;
 					line-height: 24px;
+					max-width: 650px;
+					margin: auto;
 				}
 			}
 		}
