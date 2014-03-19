@@ -86,3 +86,26 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 480px) {
+	.signup-panel {
+		.bg-container{
+			.container {
+				textarea {
+					font-size: 26px;
+					line-height: 32px;
+				}
+				
+				#counter-text {
+					text-align: center;
+				}
+				
+				.submit_button_white {
+					width: 100%;
+					text-align: center;
+					margin: auto;
+				}
+			}
+		}
+	}
+}
