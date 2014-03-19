@@ -12,6 +12,7 @@
 	<div class="bg-container">
 		<div class="container">
 			<%= form_for @user, url: { controller: "users", action: "update" } do |f| %>
+			
 				<%= label_tag :description, "Tell us a little bit about what's on your mind." %>
 				<%= f.text_area :description, 
 												:onkeyup => "textAreaAdjust(this)",
@@ -20,7 +21,9 @@
 												:placeholder => "..." %>
 				<span class="sixteen columns" id="counter-text"></span>
 				
-				<%= f.submit "Submit", :class => "submit_button_white button sixteen columns" %>
+				<%= render 'shared/error_messages' %>
+				
+				<%= f.submit "Almost done", :class => "submit_button_white button sixteen columns" %>
 			<% end %>
 				
 

@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Thanks for signing up! We will contact you shortly."
       session[:current_user_id] = @user.id
     else
       render "static_pages/home"
@@ -21,25 +20,27 @@ class UsersController < ApplicationController
   def update
     @user = User.find(session[:current_user_id])
     if @user.update_attributes(user_params)
+      session[:current_user_id] = @user.id
     else
       render "users/create"
-      flash[:fail]
     end
   end
   
   def finish
     @user = User.find(session[:current_user_id])
-    if @user.update_attributes(user_params)
-      redirect_to homepage_path
+    if @user.valid?
+      @user.save
+      flash[:success] = "Thanks for sharing, we will contact you shortly."
+      reset_session
     else
-      render "users/create"
-      flash[:fail]
+      render "users/update"
+      flash[:fail] = "Sorry there was an error processing your entries."
     end
   end
   
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :description, :gender_pref)
+    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :description)
   end
 end

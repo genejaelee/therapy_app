@@ -22,8 +22,10 @@
 				<%= label_tag :age, "How old are you?" %>
 				<%= f.text_field :age, :placeholder => "ex. 19" %>
 				
-				<%= label_tag :insurance, "If you have an insurance provider let us know who. If not, enter 'none'" %>
+				<%= label_tag :insurance, "If you have an insurance provider let us know who. If not, enter 'don't know'" %>
 				<%= f.text_field(:insurance, :placeholder => "ex. Blue Cross")%>
+				
+				<%= render 'shared/error_messages' %>
 				
 				<%= f.submit "Submit", :class => "submit_button_white button sixteen columns" %>
 			<% end %>

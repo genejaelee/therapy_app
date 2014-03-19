@@ -10,17 +10,17 @@
 		
 		.container {
 			padding-top: 80px;
-			padding-bottom: 60px;
+			padding-bottom: 80px;
 			
 			input {
 				color: $scouter-teal-fade;
 				font-size: 20px;
 				padding: 12px 10px;
 				width: 300px;
-				
-				:focus {
-					box-shadow: none;
-				}
+			}
+			
+			input:focus {
+				box-shadow: none;
 			}
 			
 			textarea {
@@ -58,20 +58,23 @@
 			}
 			
 			select {
-				height: 30px;
-				width: 200px;
 				padding-left: 10px;
-			}
-			
-			#user_insurance {
-				margin-bottom: 30px;
 				-webkit-appearance: none;
 				@extend input;
 			}
 			
+			select:hover {
+				cursor: pointer;
+			}
+			
+			#user_insurance {
+				margin-bottom: 30px;
+			}
+			
 			.submit_button_white {
+				margin-top: 20px;
 				margin-left: 0px;
-				height: 40px;
+				height: 44px;
 				width: 200px;
 				color: $scouter-green;
 				font-size: 16px;
