@@ -28,10 +28,9 @@ class UsersController < ApplicationController
   
   def finish
     @user = User.find(session[:current_user_id])
-    @user.assign_attributes(user_params)
-    if @user.valid?
+    @user.should_validate_age = true
+    if @user.update_attributes(user_params)
       @user.save
-      flash[:success] = "Thanks for sharing, we will contact you shortly."
       reset_session
     else
       render "users/update"

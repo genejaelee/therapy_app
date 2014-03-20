@@ -62,13 +62,26 @@
 				-webkit-appearance: none;
 				@extend input;
 			}
-			
 			select:hover {
 				cursor: pointer;
 			}
 			
 			#user_insurance {
 				margin-bottom: 30px;
+			}
+			
+			.error_explanation {
+				color: $scouter-red;
+				margin-bottom: 0px;
+				
+				ul {
+					margin-bottom: 10px;
+					li {
+						font-size: 13px;
+						font-weight: 600;
+						margin-bottom: 2px;
+					}
+				}
 			}
 			
 			.submit_button_white {

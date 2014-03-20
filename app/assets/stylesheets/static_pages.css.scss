@@ -82,17 +82,12 @@
 				opacity: 0.9;
 			}
 			
-			#error_explanation {
+			.error_explanation {
 				color: #fff;
 				font-weight: 600;
 				
-				.alert {
-					
-				}
-				
 				ul {
 					margin-bottom: 10px;
-					
 					li {
 						font-size: 13px;
 						font-weight: 200;
@@ -151,10 +146,9 @@
 				color: #fff;
 			}
 			
-			.alert-failure {
+			.alert-fail {
 				margin: auto;
 				color: #fff;
-				max-width: 300px;
 			}
 			
 			.button {
