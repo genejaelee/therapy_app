@@ -92,7 +92,9 @@
 	.signup-panel {
 		.bg-container{
 			.container {
+				padding-top: 50px;
 				textarea {
+					min-height: 320px;
 					font-size: 26px;
 					line-height: 32px;
 				}
