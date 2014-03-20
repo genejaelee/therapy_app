@@ -353,7 +353,7 @@ p {
 					padding-bottom: 60px;
 				}
 				
-				@media only screen and (max-width: 768px) {
+				@media only screen and (max-width: 767px) {
 					.ui-accordion-content {
 						padding: 30px 5px;
 					}
@@ -465,8 +465,9 @@ p {
 	#panel2 {
 		.bg-container {
 			height: auto;
+			background-image: image-url('trackpad-tablet.jpg');
 			background-size: 1140px auto;
-			background-position: left;
+			background-position: top;
 			.container {
 				padding-top: 60px;
 				padding-bottom: 80px;
