@@ -7,8 +7,17 @@ function is_touch_device() {
 function updateCountdown() {
     // 500 is the max message length
 		var limit = 141;
+		var wordCount = $('#explanation-text').val().trim().split(" ").length;
 		var remainingWords = limit - $('#explanation-text').val().trim().split(" ").length;
     $('#counter-text').text(remainingWords + ' words remaining.');
+		
+		$('#explanation-text').keypress(function(e) {
+			if (wordCount > limit) {
+				e.preventDefault();
+			} else if (wordCount < limit) {
+				$('#explanation-text').unbind('keypress');
+			}
+		});
 }
 
 function textAreaAdjust(o) {
@@ -64,7 +73,7 @@ var ready = function() {
 	updateCountdown();
 	$('#explanation-text').change(updateCountdown);
 	$('#explanation-text').keyup(updateCountdown);
-};
+}
 
 $( document ).ready(ready);
 $( document ).on('page:load', ready);
