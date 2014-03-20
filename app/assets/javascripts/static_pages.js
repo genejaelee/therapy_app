@@ -53,18 +53,17 @@ var ready = function() {
 	  $( "#accordion" ).accordion({header: "h3", collapsible: true, active: false, heightStyle: "content"});
   });
 	
-	//updating countdown on explanation for therapist
-	updateCountdown();
-	    $('#explanation-text').change(updateCountdown);
-	    $('#explanation-text').keyup(updateCountdown);
-			
 	if (is_touch_device()) {
 		var arrowDown = $('.arrow-down')
 		arrowDown.on( 'touchend', function(){
 			goToByScroll(".signup-panel");
 		});
-		
 	}
+	
+	//updating countdown on explanation for therapist
+	updateCountdown();
+	$('#explanation-text').change(updateCountdown);
+	$('#explanation-text').keyup(updateCountdown);
 };
 
 $( document ).ready(ready);
