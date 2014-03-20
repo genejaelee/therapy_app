@@ -564,6 +564,16 @@
 }
 
 @media only screen and (max-width: 480px) {
+	#panel1 {
+		.container {
+			#copy-container {
+				h1 {
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+	
 	.footer {
 		
 		.bg-container {
