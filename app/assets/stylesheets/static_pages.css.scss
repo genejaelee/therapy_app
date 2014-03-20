@@ -31,6 +31,33 @@
 	cursor: pointer;
 };
 
+h1 {
+	font-family: $light-font;
+}
+
+h2 {
+	font-family: $light-font;
+	font-size: 40px;
+	line-height: 46px;
+}
+
+h3 {
+	font-family: $light-font;
+}
+
+p {
+	font-size: 16px;
+}
+
+.bold-font {
+	font-weight: 600;
+}
+
+.medium-font {
+	font-weight: 400;
+	font-family: $medium-font;
+}
+
 #panel1 {
 	background-image: image-url("mousehand5.jpg");
 	background-size: $max-width auto;
@@ -178,30 +205,7 @@
 			padding-bottom: 90px;
 		
 			h2 {
-				color: #525252;
-				font-weight: 600;
-			}
-			
-			.pop-over {
-				position: absolute;
-				background-color: #eee;
-				padding: 15px 15px;
-				font-size: 20px;
-				font-weight: 600;
-				border-radius: 10px;
 				color: #626262;
-				box-shadow: 4px 5px 2px rgba(0,0,0,0.15);
-				max-width: 600px;
-				line-height: 30px;
-				display: none;
-				opacity: 0;
-			}
-			
-			@media only screen and (max-width: 480px) {
-				.pop-over {
-					left: 0;
-					width: 100%;
-				}
 			}
 		
 			.eight.columns {
@@ -214,12 +218,12 @@
 			
 				h2 {
 					margin-top: 60px;
-					color: #525252;
+					color: #626262;
 					max-width: 600px;
 				}
 			
 				p {
-					color: #626262;
+					color: #525252;
 					font-size: 16px;
 				}
 			}
@@ -243,10 +247,9 @@
 			padding-top: 80px;
 			padding-bottom: 60px;
 			
-			h2 {
+			h1 {
 				text-align: center;
 				color: #fff;
-				font-weight: 600;
 				margin-bottom: 50px;
 			}
 			
@@ -280,6 +283,7 @@
 					}
 			
 					h3 {
+						font-weight: 600;
 						margin-top: -5px;
 						color: #fff;
 					}
@@ -311,7 +315,6 @@
 			h2 {
 				color: #525252;
 				text-align: center;
-				font-weight: 600;
 				margin-bottom: 40px;
 			}
 			
@@ -337,16 +340,41 @@
 					}
         }
 				
+				.ui-accordion-header:hover {
+					color: #aaa;
+				}
+				
 				.ui-accordion-content {
 					box-shadow: inset 0px 5px 2px rgba(220, 220, 220, 0.15);
 					margin-top: 0px;
 					margin-bottom: 0px;
 					padding-left: 45px;
-					padding-top: 30px;
-					padding-bottom: 30px;
+					padding-top: 60px;
+					padding-bottom: 60px;
+				}
+				
+				@media only screen and (max-width: 768px) {
+					.ui-accordion-content {
+						padding: 30px 5px;
+					}
+					
+					.ui-accordion-header {
+						font-size: 18px;
+					}
+	
+					.ui-accordion-content p {
+						font-family: $medium-font;
+						font-size: 16px;
+						line-height: 22px;
+					}
+	
+					.ui-accordion-content li a {
+						font-size: 15px;
+					}
 				}
   
         h3 {
+					font-family: $medium-font;
           font-size: 20px;
           border: none;
           color: #626262;
@@ -364,8 +392,10 @@
           border: none;
       
           p {
+						font-family: $light-font;
             color: $scouter-blue-fade; 
-		  			font-size: 18px;
+		  			font-size: 30px;
+						line-height: 36px;
 						margin: 0px 0px;
           }
 					
@@ -374,9 +404,17 @@
 					}
 					
 					li a {
+						@extend p;
 						color: #aaa;
-						font-size: 18px;
-						line-height: 22px;
+						text-decoration: none;
+					}
+					
+					li a:hover {
+						color: #ccc;
+					}
+					
+					span {
+						@extend p;
 					}
         }
       }
@@ -402,7 +440,6 @@
 				h5 {
 					font-size: 18px;
 					color: #424242;
-					font-weight: 600;
 					margin-bottom: 10px;
 				}
 				
@@ -428,12 +465,13 @@
 	#panel2 {
 		.bg-container {
 			height: auto;
-			background-size: 1200px auto;
+			background-size: 1140px auto;
+			background-position: left;
 			.container {
 				padding-top: 60px;
 				padding-bottom: 80px;
 				h2 {
-					padding-right: 100px;
+					padding-right: 0px;
 				}
 			}
 		}
@@ -448,16 +486,19 @@
 
 @media only screen and (max-width: 767px) {
 	h1 {
+		font-family: $medium-font;
 		font-size: 34px;
 		line-height: 38px;
 	}
 	
 	h2 {
+		font-family: $medium-font;
 		font-size: 28px;
 		line-height: 32px;
 	}
 	
 	h3 {
+		font-family: $medium-font;
 		font-size: 22px;
 		line-height: 26px;
 	}
@@ -488,7 +529,6 @@
 			background-color: #fff;
 			
 			.container {
-				text-align: center;
 				padding-top: 50px;
 				padding-bottom: 70px;
 				
@@ -508,7 +548,7 @@
 				.full-span {
 					.columns {
 						padding-top: 5px;
-						padding-bottom: 5px;
+						padding-bottom: 0px;
 						.image {
 							margin-bottom: 15px;
 						}
@@ -543,21 +583,14 @@
 			}
 		}
 	}
-	
-	.ui-accordion-header {
-		font-size: 18px !important;
-	}
-	
-	.ui-accordion-content p {
-		font-size: 15px !important;
-	}
-	
-	.ui-accordion-content li a {
-		font-size: 15px !important;
-	}
 }
 
 @media only screen and (max-width: 480px) {
+	.columns {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+	
 	#panel1 {
 		.container {
 			#copy-container {
