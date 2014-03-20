@@ -16,9 +16,9 @@ function textAreaAdjust(o) {
     o.style.height = (25+o.scrollHeight)+"px";
 }
 
-function goToByScroll(id){
+function goToByScroll(element){
 	$('html,body').animate({
-		scrollTop: $("."+id).offset().top},
+		scrollTop: $(element).offset().top},
 		'slow');
 }
 
@@ -61,7 +61,7 @@ var ready = function() {
 	if (is_touch_device()) {
 		var arrowDown = $('.arrow-down')
 		arrowDown.on( 'touchend', function(){
-			goToByScroll("signup-panel");
+			goToByScroll(".signup-panel");
 		});
 		
 	}
