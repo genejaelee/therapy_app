@@ -28,6 +28,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
