@@ -16,6 +16,12 @@ function textAreaAdjust(o) {
     o.style.height = (25+o.scrollHeight)+"px";
 }
 
+function goToByScroll(id){
+	$('html,body').animate({
+		scrollTop: $("."+id).offset().top},
+		'slow');
+}
+
 //legacy functions to hide and show things
 var hide_element = function(element) {
 	$( element ).stop().animate( {opacity : 0 }, 300, function(){
@@ -51,6 +57,15 @@ var ready = function() {
 	updateCountdown();
 	    $('#explanation-text').change(updateCountdown);
 	    $('#explanation-text').keyup(updateCountdown);
+			
+	if (is_touch_device()) {
+		var arrowDown = $('#arrow-down')
+
+		arrowDown.on( 'touchend', function(){
+			goToByScroll("signup-panel");
+		});
+		
+	}
 };
 
 $( document ).ready(ready);
