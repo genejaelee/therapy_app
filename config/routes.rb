@@ -1,4 +1,5 @@
 TherapyApp::Application.routes.draw do
+  resources :charges
   root 'static_pages#home'
   match '/signup' => 'users#create', :as => :create_user, via: 'post'
   match '/update' => 'users#update', :as => :update_user, via: 'patch'

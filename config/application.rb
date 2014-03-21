@@ -10,6 +10,7 @@ module TherapyApp
   class Application < Rails::Application
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.serve_static_assets = true
+    config.autoload_paths += %W[#{config.root}/lib/validators/]
     
     if !Rails.env.development?
       config.force_ssl = true

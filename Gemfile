@@ -28,6 +28,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+#zipcode validation
+gem 'zip-code-info'
+
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # Use jquery as the JavaScript library
