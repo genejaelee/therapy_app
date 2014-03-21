@@ -12,13 +12,25 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:current_user_id] = @user.id
+      render :action => :charge
     else
       render "static_pages/home"
     end
   end
   
+  def charge  
+    @user = @_current_user
+    @user.stripe_token = params[:stripeToken]
+    @user.charge_user
+    
+    render "users/create"
+    
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+  end
+  
   def update
-    @user = User.find(session[:current_user_id])
+    @user = @_current_user
     if @user.update_attributes(user_params)
       session[:current_user_id] = @user.id
     else

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include Encryption
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :insurance, :key => :encryption_key
+  attr_accessor :should_validate_age, :stripe_token
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -11,8 +12,6 @@ class User < ActiveRecord::Base
   
   validates :age, presence: true, numericality: true, :on => :finish, :if => :should_validate_age?
   
-  attr_accessor :should_validate_age
-  
   def zipcode_validator
     if ((ZipCodeInfo.instance.scf_city_for self.zipcode) == false)
       errors.add(:zipcode, "error. Sorry, we're only in the USA right now.")
@@ -20,6 +19,26 @@ class User < ActiveRecord::Base
     else
       return true
     end
+  end
+  
+  def charge_user
+    @amount = 400
+    
+    customer = Stripe::Customer.create(
+      :email => self.email,
+      :card => self.stripe_token
+    )
+    
+    charge = Stripe::Charge.create(
+      :customer => customer.id,
+      :amount => @amount,
+      :description => 'Rails Stripe customer',
+      :currency => 'usd'
+    )
+    
+    #get customer to charge
+    #customer_id = get_stripe_customer_id(user)
+  
   end
   
 end   
