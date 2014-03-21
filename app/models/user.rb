@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_format_of :zipcode, :with => /^\d{5}(?:[-\s]\d{4})?$/, multiline: true, :message => "should be in the form 12345 or 12345-1234"
   validates :description, presence: true, :on => :update
   
-  validates :age, presence: true, numericality: true, :on => :update, :if => :should_validate_age?
+  validates :age, presence: true, numericality: true, :on => :finish, :if => :should_validate_age?
   
   attr_accessor :should_validate_age
   

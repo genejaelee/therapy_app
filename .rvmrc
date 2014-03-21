@@ -1,4 +1,0 @@
-export TEST_PUBLISHABLE_KEY="pk_test_7HnXBXvr9j0itLOrAby5Bf5x"
-export TEST_SECRET_KEY="sk_test_AOWatY5dPWmjfPNQFsDjjf1A"
-export PUBLISHABLE_KEY="pk_live_965jJm5tcUZoN9LVZHC4CCJo"
-export SECRET_KEY="sk_live_1u6c5PXIyx6sdTRW4LXeD3Zs"

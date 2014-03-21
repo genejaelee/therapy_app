@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
     @amount = 500
     
     customer = Stripe::Customer.create(
-      :email => 'example@stripe.com',
+      :email => @_current_user.email,
       :card => token
     )
     
@@ -20,9 +20,15 @@ class ChargesController < ApplicationController
       :currency => 'usd'
     )
     
+    #get customer to charge
+    #customer_id = get_stripe_customer_id(user)
+    redirect_to update_user_path
+    
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to charges_path
   end
+  
+  private
   
 end
