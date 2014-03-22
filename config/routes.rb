@@ -3,14 +3,13 @@ TherapyApp::Application.routes.draw do
   
   root 'static_pages#home'
   match '/signup' => 'users#create', :as => :create_user, via: 'post'
+  match '/charge' => 'users#charge', :as => :charge_user, via: 'post'
   match '/update' => 'users#update', :as => :update_user, via: 'patch'
   match '/finish' => 'users#finish', :as => :finish_user, via: 'patch'
   match '/' => 'static_pages#home', :as => :homepage, via: 'get'
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
-  
-  match '/charge' => 'users#charge', :as => :charge_create_path, via: 'post'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

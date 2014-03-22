@@ -1,19 +1,21 @@
 <div id="panel1" class="panel">
-	<div class="container">
-		<div class="sixteen columns" id="logo-banner">
-			<%= link_to image_tag("cuplogo2.png", height: "70px", class: "top-logo"), homepage_path %>
-		</div>
-		<div class="sixteen columns" id="copy-container">
-			<h1>Ask therapists questions, anonymously.</h1>
-			<h5>There's no need to struggle alone. We'll help you ask for help.</h5>
-		</div>
-		<div class="sixteen columns" id="cta-form">
-			<%= render 'users/create' %>
-			<span id="secure-notice">Remain anonymous. Your email is stored securely and never shared.</span>
-			<%= render 'shared/error_messages' %>
-			<% flash.each do |key, value| %>
-				<div class="alert alert-<%= key %>"><%= value %></div>
-			<% end %>
+	<div class="bg-container">
+		<div class="container">
+			<div class="sixteen columns" id="logo-banner">
+				<%= link_to image_tag("cuplogo2.png", height: "70px", class: "top-logo"), homepage_path %>
+			</div>
+			<div class="sixteen columns" id="copy-container">
+				<h1>Ask therapists questions, anonymously.</h1>
+				<h5>There's no need to struggle alone. Just $4 to ask anything you want.</h5>
+			</div>
+			<div class="sixteen columns" id="cta-form">
+				<%= render 'users/create' %>
+				<span id="secure-notice">Remain anonymous. Your email is stored securely and never shared.</span>
+				<%= render 'shared/error_messages' %>
+				<% flash.each do |key, value| %>
+					<div class="alert alert-<%= key %>"><%= value %></div>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>

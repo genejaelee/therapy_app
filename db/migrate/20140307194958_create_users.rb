@@ -30,6 +30,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :encrypted_insurance_iv
       
       t.string :gender_pref
+      
+      t.string :paid
 
       t.timestamps
     end

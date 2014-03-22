@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include Encryption
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :insurance, :key => :encryption_key
-  attr_accessor :should_validate_age, :stripe_token
+  attr_accessor :should_validate_age, :stripe_token, :paid
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -35,10 +35,6 @@ class User < ActiveRecord::Base
       :description => 'Rails Stripe customer',
       :currency => 'usd'
     )
-    
-    #get customer to charge
-    #customer_id = get_stripe_customer_id(user)
-  
   end
   
 end   

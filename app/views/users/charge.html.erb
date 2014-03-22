@@ -10,14 +10,16 @@
 
 <%= render 'layouts/header' %>
 
-<div class="panel">
+<div id="charge-panel" class="panel">
 	<div class="bg-container">
 		<div class="container">
 
 <%= render 'layouts/charge_form' %>
 
+	<% flash.each do |key, value| %>
+		<div class="alert alert-<%= key %>"><%= value %></div>
+	<% end %>
+
 		</div>
 	</div>
 </div>
-
-<%= render 'layouts/footer' %>

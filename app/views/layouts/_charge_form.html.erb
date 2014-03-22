@@ -1,14 +1,18 @@
 <%= form_tag("/charge") do %>
 	<article>
 		<label class="amount">
-			<span>Amount: $4.00</span>
+			<h2>Get advice from a therapist for just $4.</h2>
+			<h3>Pay securely and confidentially with Stripe.</h3>
 		</label>
 	</article>
 	
+	<hr></hr>
+	
 	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 	          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-	          data-description="A month's subscription"
+	          data-description="Get advice from therapists"
 	          data-amount="400"
 						data-email=<%= @user.email %>>
 	</script>
+	
 <% end %>
