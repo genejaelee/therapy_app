@@ -21,9 +21,17 @@ class User < ActiveRecord::Base
     end
   end
   
-  def charge_user
-    @amount = 400
-    
+  def apply_promo
+    if self.promo_code == "WHISPER033"
+      self.price = "0"
+    elsif self.promo_code == "WHISPER016"
+      self.price = "200"
+    else
+      self.price = "400"
+    end
+  end
+  
+  def charge_user(price)
     customer = Stripe::Customer.create(
       :email => self.email,
       :card => self.stripe_token
@@ -31,7 +39,7 @@ class User < ActiveRecord::Base
     
     charge = Stripe::Charge.create(
       :customer => customer.id,
-      :amount => @amount,
+      :amount => price,
       :description => 'Rails Stripe customer',
       :currency => 'usd'
     )
@@ -43,7 +51,7 @@ class User
   def self.list
     puts "All attributes of users"
     self.all.each do |user|
-      puts "#{user.id} / #{user.name} / #{user.gender} / #{user.age} / #{user.email} / #{user.zipcode} / #{user.insurance} / #{user.description} / #{user.created_at} \n \n"
+      puts "#{user.id} / #{user.name} / #{user.gender} / #{user.age} / #{user.email} / #{user.zipcode} / #{user.insurance} / #{user.description} / #{user.created_at} / #{user.promo_code} \n \n"
     end
   end
 end

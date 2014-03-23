@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20140307194958) do
     t.string   "encrypted_insurance"
     t.string   "encrypted_insurance_salt"
     t.string   "encrypted_insurance_iv"
-    t.string   "gender_pref"
-    t.string   "paid"
+    t.string   "price"
+    t.string   "promo_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
