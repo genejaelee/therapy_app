@@ -29,6 +29,8 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'nokogiri', '1.6.1'
+
 #zipcode validation
 gem 'zip-code-info'
 
