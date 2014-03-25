@@ -13,11 +13,11 @@ class UsersController < ApplicationController
     if @user.save
       @user.apply_promo
       session[:current_user_id] = @user.id
-      if @user.promo_code == "WHISPER033"
+      #if @user.promo_code == "WHISPER033"
         render "users/create"
-      else
-        render :action => :charge
-      end
+        #else
+        #render :action => :charge
+        #end
     else
       render "static_pages/home"
     end
