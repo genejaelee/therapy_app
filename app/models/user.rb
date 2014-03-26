@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include Encryption
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :insurance, :key => :encryption_key
-  attr_accessor :should_validate_age, :stripe_token, :paid, :responses, :add_responses
+  attr_accessor :should_validate_age, :stripe_token, :paid, :add_responses
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
