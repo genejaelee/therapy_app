@@ -71,6 +71,7 @@ class User
     elsif self.responses.length > 0
       self.responses = self.responses + response_array
     end
+    self.save
     puts (self.responses.to_sentence)
   end
 end
