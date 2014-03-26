@@ -65,7 +65,7 @@ class User
   end
   
   def add_responses(a)
-    response_array = a.split("/").to_sentence
+    response_array = a.map { |f| f.gsub("\n", " ") }
     if self.responses.nil?
       self.responses = response_array
     elsif self.responses.present?
