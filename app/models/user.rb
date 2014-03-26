@@ -65,7 +65,7 @@ class User
   end
   
   def add_responses(a)
-    response_array = a.split("/")
+    response_array = a.split("/").to_sentence
     if self.responses.nil?
       self.responses = response_array
     elsif self.responses.length > 0
