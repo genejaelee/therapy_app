@@ -64,7 +64,7 @@ class User
     User.create(id:a[0].strip, name:a[1].strip, gender:a[2].strip, age:a[3].strip, email:a[4].strip, zipcode:a[5].strip, insurance:a[6].strip, description:a[7].strip)
   end
   
-  def print_responses(id)
+  def self.print_responses(id)
     puts self.find_by(id:id).responses.join("\n \n")
   end
   
