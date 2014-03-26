@@ -68,7 +68,7 @@ class User
     response_array = a.split("/").to_sentence
     if self.responses.nil?
       self.responses = response_array
-    elsif self.responses.length > 0
+    elsif self.responses.present?
       self.responses = self.responses + response_array
     end
     self.save
