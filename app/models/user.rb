@@ -72,6 +72,6 @@ class User
       self.responses = self.responses + response_array
     end
     self.save
-    puts (self.responses.to_sentence)
+    puts (self.responses)
   end
 end
