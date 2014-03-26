@@ -59,6 +59,11 @@ class User
     @sample = User.create(name:'sample name', email:'genejaelee@gmail.com', gender:'Male', age:'23', description:'sample description', zipcode:'60615')
   end
   
+  def self.create_with(attributes)
+    a = attributes.split("/")
+    User.create(id:a[0].strip, name:a[1].strip, gender:a[2].strip, age:a[3].strip, email:a[4].strip, zipcode:a[5].strip, insurance:a[6].strip, description:a[7].strip)
+  end
+  
   def add_responses(a)
     response_array = a.split("/")
     if self.responses.nil?
