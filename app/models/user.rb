@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include Encryption
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :insurance, :key => :encryption_key
-  attr_accessor :should_validate_age, :stripe_token, :paid
+  attr_accessor :should_validate_age, :stripe_token, :paid, :responses, :add_responses
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -53,5 +53,19 @@ class User
     self.all.each do |user|
       puts "#{user.id} / #{user.name} / #{user.gender} / #{user.age} / #{user.email} / #{user.zipcode} / #{user.insurance} / #{user.description} / #{user.created_at} / #{user.promo_code} \n \n"
     end
+  end
+  
+  def self.create_sample
+    @sample = User.create(name:'sample name', email:'genejaelee@gmail.com', gender:'Male', age:'23', description:'sample description', zipcode:'60615')
+  end
+  
+  def add_responses(a)
+    response_array = a.split("/")
+    if self.responses.nil?
+      self.responses = response_array
+    elsif self.responses.length > 0
+      self.responses = self.responses + response_array
+    end
+    puts (self.responses.to_sentence)
   end
 end

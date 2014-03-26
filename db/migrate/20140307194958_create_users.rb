@@ -31,6 +31,7 @@ class CreateUsers < ActiveRecord::Migration
       
       t.string :price
       t.string :promo_code
+      t.string :responses, :array => true
 
       t.timestamps
     end

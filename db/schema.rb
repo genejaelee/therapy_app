@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140307194958) do
     t.string   "encrypted_insurance_iv"
     t.string   "price"
     t.string   "promo_code"
+    t.string   "responses",                  array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
