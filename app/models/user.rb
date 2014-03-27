@@ -51,7 +51,7 @@ class User
   def self.list
     puts "All attributes of users"
     self.all.each do |user|
-      puts "#{user.id} / #{user.name} / #{user.gender} / #{user.age} / #{user.email} / #{user.zipcode} / #{user.insurance} / #{user.description} / #{user.created_at} / #{user.promo_code} \n \n"
+      puts "#{user.id} / #{user.name} / #{user.gender} / #{user.age} / #{user.email} / #{user.zipcode} / #{user.insurance} / #{user.description} / #{user.created_at} \n \n"
     end
   end
   
@@ -65,6 +65,7 @@ class User
   end
   
   def self.print_responses(id)
+    puts self.name
     puts self.find_by(id:id).responses.join("\n \n")
   end
   
