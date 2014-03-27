@@ -93,8 +93,8 @@ p {
 				text-align: center;
 				.image {
 					margin: auto;
-					height: 70px;
-					background-image: image-url("cuplogo2.png");
+					height: 500px;
+					background-image: image-url("couch-logo.png");
 					background-size: 70px auto;
 					background-repeat: no-repeat;
 					background-position: center;
@@ -413,6 +413,12 @@ p {
 					
 					li {
 						margin: 0px;
+					}
+					
+					a {
+						@extend p;
+						color: #aaa;
+						text-decoration: none;
 					}
 					
 					li a {
