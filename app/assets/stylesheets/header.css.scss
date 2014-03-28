@@ -1,8 +1,12 @@
 @import "variables.css.scss";
 
+.top-logo:hover {
+	opacity: 0.8;
+}
+
 #gen-header {
 	.bg-container {
-		padding-bottom: 70px;
+		padding-bottom: 80px;
 		max-width: $max-width;
 		background-color: $scouter-blue;
 		background-repeat: no-repeat;
@@ -11,21 +15,12 @@
 		.container {
 			
 			#logo-banner {
-				padding-top: 20px;
-				padding-bottom: 20px;
+				padding-top: 40px;
+				padding-bottom: 40px;
 				text-align: center;
 				
 				a {
 					margin: auto;
-				}
-				
-				.image {
-					margin: auto;
-					height: 70px;
-					background-image: image-url("cuplogo2.png");
-					background-size: 70px auto;
-					background-repeat: no-repeat;
-					background-position: center;
 				}
 			}
 		

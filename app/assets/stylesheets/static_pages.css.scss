@@ -89,13 +89,10 @@ p {
 		.container {
 			padding-bottom: 80px;
 			#logo-banner {
-				padding-top: 20px;
+				padding-top: 40px;
 				text-align: center;
-				.image {
+				.top-logo {
 					margin: auto;
-					height: 500px;
-					background-image: image-url("couch-logo.png");
-					background-size: 70px auto;
 					background-repeat: no-repeat;
 					background-position: center;
 				}
@@ -607,10 +604,15 @@ p {
 	}
 	
 	#panel1 {
-		.container {
-			#copy-container {
-				h1 {
-					margin-top: 10px;
+		.bg-container {
+			background-position: bottom;
+			background-size: auto 100%;
+			background-image: image-url("mousehand-mobile.jpg");
+			.container {
+				#copy-container {
+					h1 {
+						margin-top: 10px;
+					}
 				}
 			}
 		}

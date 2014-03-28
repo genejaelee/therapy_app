@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :body do %>
-  <p>We want to assure you that the privacy and security of your information is our number one priority. With that in mind, please write what you want to ask or share with a therapist. Keep in mind that by providing a detailed picture of both your internal feelings and life circumstances, therapists will be able to give more helpful and specific advice.</p>
+  <p>We want to assure you that the privacy and security of your information is our number one priority. With that in mind, please write what you want to share with a therapist and any questions you might have. Don't worry about writing too much. Providing a detailed picture of what you're experiencing can only result in more helpful responses.</p>
 <% end %>
 
 <% content_for :arrow_down_option do %>
@@ -21,7 +21,7 @@
 												:onkeyup => "textAreaAdjust(this)",
 												:autofocus => "true",
 												:id => "explanation-text", 
-												:placeholder => "Write here..." %>
+												:placeholder => "Hello doctor..." %>
 				<span class="sixteen columns" id="counter-text"></span>
 				
 				<%= render 'shared/error_messages' %>
