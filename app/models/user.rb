@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Encryption
   
-  attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :insurance, :key => :encryption_key
+  attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :gender_pref, :insurance, :key => :encryption_key
   attr_accessor :should_validate_age, :stripe_token, :paid, :add_responses
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -51,7 +51,7 @@ class User
   def self.list
     puts "All attributes of users"
     self.all.each do |user|
-      puts "#{user.id} / #{user.name} / #{user.gender} / #{user.age} / #{user.email} / #{user.zipcode} / #{user.insurance} / #{user.description} / #{user.created_at} \n \n"
+      puts "#{user.id} / #{user.name} / #{user.gender} / #{user.gender_pref} / #{user.age} / #{user.email} / #{user.zipcode} / #{user.insurance} / #{user.description} / #{user.created_at} \n \n"
     end
   end
   
