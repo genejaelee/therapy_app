@@ -61,7 +61,7 @@ class User
   
   def self.create_with(attributes)
     a = attributes.split("/")
-    User.create(id:a[0].strip, name:a[1].strip, gender:a[2].strip, age:a[3].strip, email:a[4].strip, zipcode:a[5].strip, insurance:a[6].strip, description:a[7].strip)
+    User.create(id:a[0].strip, name:a[1].strip, gender:a[2].strip, gender_pref:a[3].strip, age:a[4].strip, email:a[5].strip, zipcode:a[6].strip, insurance:a[7].strip, description:a[8].strip)
   end
   
   def self.print_responses(id)

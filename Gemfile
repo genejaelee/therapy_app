@@ -29,7 +29,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+# For scraping
 gem 'nokogiri', '1.6.1'
+gem 'mechanize', '~> 2.7.2'
 
 #zipcode validation
 gem 'zip-code-info'
