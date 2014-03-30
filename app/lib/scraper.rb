@@ -6,7 +6,7 @@ require "open-uri"
 DATA_DIR = "data-hold/therapists"
 Dir.mkdir(DATA_DIR) unless File.exists?(DATA_DIR)
 
-url = http://therapists.psychologytoday.com/rms/county/CA/Los+Angeles.html
+url = "http://therapists.psychologytoday.com/rms/county/CA/Los+Angeles.html"
 BASE_URL = "http://therapists.psychologytoday.com"
 
 HEADERS_HASH = {"User-Agent" => "Ruby/#{RUBY_VERSION}"}
