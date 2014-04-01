@@ -30,7 +30,10 @@
 				<%= f.select(:gender_pref, [['Male', 'Male'], ['Female', 'Female'], ['No Preference', 'None']])%>
 				
 				<%= label_tag :current_therapist, "Are you currently seeing a therapist?"%>
-				<%= f.select(:current_therapist, [['Yes', 'Yes'], ['No', 'No']])%>
+				<%= f.select(:current_therapist, [['--', ''], ['Yes', 'Yes'], ['No', 'No']], :id => "current_therapist")%>
+				
+				<%= label_tag :current_therapist_name, "If yes, what is his/her name? (This is only needed if you do not want us to contact your current therapist)", :class => "current_therapist_name" %>
+				<%= f.text_field(:current_therapist_name, :placeholder => "ex. John Doe (optional)", :class => "current_therapist_name")%>
 				
 				<%= label_tag :insurance, "If you have an insurance provider let us know who. If not, enter 'don't know'" %>
 				<%= f.text_field(:insurance, :placeholder => "ex. Anthem Blue Cross")%>

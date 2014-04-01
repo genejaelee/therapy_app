@@ -71,9 +71,21 @@ var ready = function() {
 	}
 	
 	//updating countdown on explanation for therapist
-	updateCountdown();
 	$('#explanation-text').change(updateCountdown);
 	$('#explanation-text').keyup(updateCountdown);
+	
+	$('.current_therapist_name').css('display', 'none');
+	$('#user_current_therapist').change(function(){
+		if ($(this).val() == "Yes") {
+			$('.current_therapist_name').css('display', 'block');
+			$('.current_therapist_name').css('opacity', '0');
+			$('.current_therapist_name').stop().animate({ opacity: 1.0 }, 400, function(){
+	});
+		}
+		else {
+			$('.current_therapist_name').css('display', 'none');
+		}
+	});
 }
 
 $( document ).ready(ready);
