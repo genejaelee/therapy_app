@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.apply_promo
       session[:current_user_id] = @user.id
       #if @user.promo_code == "WHISPER033"
         render "users/create"
@@ -25,7 +24,6 @@ class UsersController < ApplicationController
   
   def charge 
     @user = @_current_user
-    @user.apply_promo
     @user.stripe_token = params[:stripeToken]
     @user.charge_user(@user.price)
     
@@ -59,6 +57,6 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :price)
+    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :price)
   end
 end

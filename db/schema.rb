@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328045034) do
+ActiveRecord::Schema.define(version: 20140401013550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,13 @@ ActiveRecord::Schema.define(version: 20140328045034) do
     t.string   "encrypted_insurance"
     t.string   "encrypted_insurance_salt"
     t.string   "encrypted_insurance_iv"
-    t.string   "price"
-    t.string   "promo_code"
     t.text     "responses",                  array: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "encrypted_gender_pref"
     t.string   "encrypted_gender_pref_salt"
     t.string   "encrypted_gender_pref_iv"
+    t.string   "current_therapist"
   end
 
 end
