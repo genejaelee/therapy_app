@@ -32,6 +32,7 @@ end
 # For scraping
 gem 'nokogiri', '1.6.1'
 gem 'mechanize', '~> 2.7.2'
+gem 'socksify'
 
 #zipcode validation
 gem 'zip-code-info'

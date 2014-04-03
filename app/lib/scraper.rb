@@ -3,6 +3,13 @@ require "mechanize"
 require "nokogiri"
 require "open-uri"
 require "csv"
+require 'socksify/http'
+uri = URI.parse('http://therapists.psychologytoday.com')
+proxy_addr = '127.0.0.1'
+proxy_port = 9050
+Net::HTTP.SOCKSProxy(proxy_addr, proxy_port).start(uri.host, uri.port) do |http|
+  puts http.get(uri.path).body
+end
 
 @state = "IL"
 
