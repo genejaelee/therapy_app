@@ -1,7 +1,19 @@
 TherapyApp::Application.routes.draw do
-  resources :charges
+  devise_for :therapists, :controllers => { :registrations => "registrations" }
+  resources :charges, :therapists
   
-  root 'static_pages#home'
+  devise_scope :therapist do
+    match '/signup' => 'devise/registrations#new', :constraints => { :subdomain => 'therapy' }, via: 'get'
+    match '/edit' => 'devise/registrations#edit', :constraints => { :subdomain => 'therapy' }, :as => :therapist_edit, via: 'get'
+  end
+  
+  match '/update' => 'therapists#signup', :as => :update_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/create' => 'therapists#create', :constraints => { :subdomain => 'therapy' }, via: 'post'
+  match '/' => 'therapists#home', :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/update' => 'therapists#update', :constraints => { :subdomain => 'therapy' }, via: 'patch'
+  match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/:id' => 'therapists#show', :constraints => { :subdomain => 'therapy' }, via: 'get'
+  
   match '/signup' => 'users#create', :as => :create_user, via: 'post'
   match '/charge' => 'users#charge', :as => :charge_user, via: 'post'
   match '/update' => 'users#update', :as => :update_user, via: 'patch'
@@ -11,6 +23,7 @@ TherapyApp::Application.routes.draw do
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
   
+  root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,123 @@
+@import "variables.css.scss";
+#profile-header {
+	.bg-container {
+		.container {
+			padding-top: 120px;
+			h1 {
+				color: rgba(255,255,255,0.9);
+				margin-bottom: 5px;
+			}
+			hr {
+				margin: 20px 0px;
+				border-top: 1px dashed rgba(255,255,255,0.5);
+			}
+			h3 {
+				font-size: 24px;
+				line-height: 34px;
+				margin-bottom: 3px;
+				color: rgba(255,255,255,1.0);
+			}
+			.profile-image-icon {
+				display: block;
+				height: 50px;
+				width: 100%;
+				
+				div {
+					float: left;
+					width: 40px;
+					height: 40px;
+					margin-right: 10px;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+				.email-icon {
+					background-size: 95% auto;
+					background-image: image-url('profile-icon-email.png');
+				}
+				.phone-icon {
+					background-size: 100% auto;
+					background-image: image-url('profile-icon-phone.png');
+				}
+				.location-icon {
+					background-size: 110% auto;
+					background-image: image-url('profile-icon-location.png');
+				}
+				h3 {
+					float: left;
+				}
+			}
+			
+			.issues-container {
+				border: 1px dashed rgba(255,255,255,0.5);
+				padding: 30px 30px;
+				margin-top: 40px;
+				
+				h1 {
+				}
+				
+				ul {
+					
+					li {
+						color: #fff;
+						font-family: "HelveticaNeue-Light";
+						font-weight: 200;
+						margin-top: 15px;
+						font-size: 24px;
+					}
+				}
+			}
+		}	
+	}
+}
+
+.profile-panel {
+	.bg-container {
+		.container {
+			padding-top: 60px;
+			padding-bottom: 80px;
+			
+			h1 {
+				color: #ccc;
+			}
+			
+			h3 {
+				color: #525252;
+				line-height: 34px;
+			}
+			
+			p {
+				color: #525252;
+				font-size: 20px;
+				line-height: 28px;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	#profile-header {
+		.bg-container {
+			.container {
+				.profile-image-icon {
+					margin-bottom: 20px;
+					div {
+						width: 100%;
+					}
+					.email-icon {
+						background-size: 38px auto;
+					}
+					.phone-icon {
+						background-size: 40px auto;
+					}
+					.location-icon {
+						background-size: 42px auto;
+					}
+					h3 {
+						width: 100%;
+						font-size: 18px;
+					}
+				}
+			}
+		}
+	}
+}

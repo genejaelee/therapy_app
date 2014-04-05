@@ -1,0 +1,51 @@
+			<%= form_for @therapist, url: { controller: "therapists", action: "update" }, :html => { :multipart => true } do |f| %>
+			
+			
+				<%= retina_image_tag(@therapist, :avatar, :small, :default => [100,100]) %>
+				<%= f.label :avatar, "Upload a photo of yourself." %>
+			  <%= f.file_field :avatar %>
+				
+				<%= f.label :permalink, "Your unique URL" %>
+				<%= f.text_field :permalink %>
+	
+				<%= f.label :first_name, "*First name" %>
+				<%= f.text_field :first_name, :placeholder => "ex. John" %>
+		
+				<%= f.label :last_name, "*Last name" %>
+				<%= f.text_field :last_name, :placeholder => "ex. Smith"%>
+				
+				<%= f.label :title, "What is your title?" %>
+				<%= f.text_field :title, :placeholder => "Psychologist" %>
+				
+				<%= f.label :degree, "Specify initials to be included after your title (PhD, MA, LCSW, etc.)" %>
+				<%= f.text_field :degree, :placeholder => "PsyD, MA"%>
+				
+				<%= f.label :license_number, "What is your therapy license number?" %>
+				<%= f.text_field :license_number, :placeholder => "ex. PT 19318"%>
+		
+				<%= label_tag :gender, "What is your gender?" %>
+				<%= f.select(:gender, [['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']]) %>
+		
+				<%= f.label :state, "*What is your location?" %>
+				<%= f.text_field :city, :placeholder => "City" %>
+				<%= f.text_field :state, :placeholder => "State" %>
+				<%= f.text_field :zipcode, :placeholder => "Your zipcode" %>
+				
+				<%= f.label :phone, "Provide your phone number for clients to reach you at." %>
+				<i>We will never call or share your number.</i>
+				<%= f.text_field :phone, :class => "phone-field", :placeholder => "(213) 493-1588" %>
+				
+				<%= f.label :bio, "Write a little about yourself."%>
+				<%= f.text_area :bio, 
+												:onkeyup => "textAreaAdjust(this)",
+												:id => "therapist-bio", 
+												:placeholder => "Your bio..." %>
+												
+				<%= f.label :issues, "List up to twenty issues you specialize in, separated with commas."%>
+				<%= f.text_area :issues, :id => "issues-text-area", :placeholder => "Anxiety, PTSD, Depression, Eating Disorders"%>
+				<span class="sixteen columns" id="counter-text"></span>
+				
+				<%= render 'shared/therapist_error_messages' %>
+		
+				<%= f.submit "Update Profile", :class => "submit_button_white button" %>
+			<% end %>

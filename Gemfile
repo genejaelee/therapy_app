@@ -6,6 +6,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.3'
 gem 'pg', '0.15.1'
 gem 'figaro'
+gem 'retina_rails', '~> 2.0.0'
 
 group :assets do
   gem 'sass', require: 'sass'
@@ -17,12 +18,12 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
+  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
-  gem 'factory_girl_rails', '4.2.1'
 end
 
 group :production do
@@ -48,9 +49,13 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'paperclip', '~> 3.5.1'
+
 gem 'sprockets', '~> 2.11.0'
 
 gem 'attr_encryptor'
+
+gem 'devise', '>= 2.1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

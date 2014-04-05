@@ -1,0 +1,27 @@
+<%= render 'layouts/header' %>
+
+<div class="panel signup-panel">
+	<div class="bg-container">
+		<div class="container">
+
+			<h2>Sign in</h2>
+
+			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			  <%= f.label :email %>
+			  <%= f.email_field :email, autofocus: true %>
+
+			  <%= f.label :password %>
+			  <%= f.password_field :password, autocomplete: "off" %>
+
+			  <div><%= f.submit "Sign in", :class => "submit_button_white button" %></div>
+				
+			  <% if devise_mapping.rememberable? -%>
+			  <div class="check_box"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+			  <% end -%>
+			<% end %>
+
+			<div class="shared-links"><%= render "devise/shared/links" %></div>
+
+		</div>
+	</div>
+</div>
