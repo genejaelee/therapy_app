@@ -23,5 +23,6 @@
 # Ignore application configuration
 /config/application.yml
 
-# Ignore scraper
-/app/lib/scraper.rb
+# Ignore scraper and data
+/app/lib/scrapers
+/data-hold

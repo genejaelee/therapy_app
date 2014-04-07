@@ -1,0 +1,14 @@
+<div class="gen-header header-tall">
+	<div class="bg-container">
+		<div class="container">
+			<div class="sixteen columns" id="logo-banner">
+				<%= link_to image_tag("couch-logo5.png", height: "60px", class: "top-logo"), homepage_path %>
+			</div>
+			<div class="sixteen columns" id="copy-container">
+				<h1><%= yield :title %></h1>
+				<%= yield :body %>
+			</div>
+			<%= yield :arrow_down_option %>
+		</div>
+	</div>
+</div>

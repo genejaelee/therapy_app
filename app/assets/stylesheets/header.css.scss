@@ -4,7 +4,19 @@
 	opacity: 0.8;
 }
 
-#gen-header {
+.header-tall {
+	background-color: #eee;
+	.bg-container {
+		.container {
+			#logo-banner {
+				padding-top: 80px !important;
+			}
+		}
+	}
+}
+
+.gen-header {
+	background-color: #eee;
 	.bg-container {
 		padding-bottom: 80px;
 		max-width: $max-width;
@@ -45,7 +57,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-	#gen-header {
+	.gen-header {
 		.bg-container {
 			.container {
 				text-align: center;

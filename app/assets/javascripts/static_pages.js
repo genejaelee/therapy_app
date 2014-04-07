@@ -54,6 +54,8 @@ var fadeThisIn = function(element) {
 }
 
 var ready = function() {
+	$('.phone-field').mask('(000) 000-0000');
+	
 	$('.cta-button2').click(function(){
 	  $('html, body').animate({scrollTop:0}, 1000, 'easeOutCubic');
 	  $('#user_email').focus();
