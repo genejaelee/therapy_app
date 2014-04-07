@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :which_edit_page
   before_action :current_user
+  before_filter :ensure_no_SSL_for_therapists
+  
+  SUBDOMAIN = 'therapy.scouterapp.com'
+  def ensure_no_SSL_for_therapists
+    if request.env['HTTP_HOST'] == SUBDOMAIN
+      redirect_to "http://#{SUBDOMAIN}"
+    end
+  end
   
   def after_sign_in_path_for(resource)
     @therapist = current_therapist
