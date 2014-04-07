@@ -22,23 +22,6 @@
 					<h3><%= @therapist.city %>, <%= @therapist.state %>, <%= @therapist.zipcode%></h3>
 				</div>
 			</div>
-			<div class="sixteen columns container issues-container">
-				<h1>Issues</h1>
-				<div class="seven columns">
-					<ul>
-						<% for i in 0..6 %>
-							<li><%= @therapist.issues.split(",")[i].to_s %></li>
-						<% end %>
-					</ul>
-				</div>
-				<div class="seven columns">
-					<ul>
-						<% for i in 7..13 %>
-							<li><%= @therapist.issues.split(",")[i].to_s %></li>
-						<% end %>
-					</ul>
-				</div>
-			</div>
 			<div class="sixteen columns" id="copy-container">
 				<h1><%= yield :title %></h1>
 				<%= yield :body %>

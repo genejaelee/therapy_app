@@ -1,10 +1,29 @@
-<%= render 'layouts/navbar' %>
+<% if current_therapist %>
+	<%= render 'layouts/navbar' %>
+<% end %>
 
 <%= render 'layouts/profile_header' %>
 
 <div class="panel profile-panel">
 	<div class="bg-container">
 		<div class="container">
+			<div class="sixteen columns container issues-container">
+				<h1>Issues I can work with</h1>
+				<div class="seven columns">
+					<ul>
+						<% for i in 0..6 %>
+							<li><%= @therapist.issues.split(",")[i].to_s %></li>
+						<% end %>
+					</ul>
+				</div>
+				<div class="seven columns">
+					<ul>
+						<% for i in 7..13 %>
+							<li><%= @therapist.issues.split(",")[i].to_s %></li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
 			<div class="sixteen columns">
 				<h1>About</h1>
 
