@@ -3,16 +3,16 @@ TherapyApp::Application.routes.draw do
   resources :charges, :therapists
   
   devise_scope :therapist do
-    match '/signup' => 'devise/registrations#new', :constraints => { :protocol => "http", :subdomain => 'therapy' }, via: 'get'
-    match '/edit' => 'devise/registrations#edit', :constraints => { :protocol => "http", :subdomain => 'therapy' }, :as => :therapist_edit, via: 'get'
+    match '/signup' => 'devise/registrations#new', :constraints => { :subdomain => 'therapy' }, via: 'get'
+    match '/edit' => 'devise/registrations#edit', :constraints => { :subdomain => 'therapy' }, :as => :therapist_edit, via: 'get'
   end
   
-  match '/update' => 'therapists#signup', :as => :update_therapist, :constraints => { :protocol => "http", :subdomain => 'therapy' }, via: 'get'
-  match '/create' => 'therapists#create', :constraints => { :protocol => "http", :subdomain => 'therapy' }, via: 'post'
-  match '/' => 'therapists#home', :constraints => { :protocol => "http", :subdomain => 'therapy' }, via: 'get'
-  match '/update' => 'therapists#update', :constraints => { :protocol => "http", :subdomain => 'therapy' }, via: 'patch'
-  match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, :constraints => { :protocol => "http", :subdomain => 'therapy' }, via: 'get'
-  match '/:id' => 'therapists#show', :constraints => { :protocol => "http", :subdomain => 'therapy' }, via: 'get'
+  match '/update' => 'therapists#signup', :as => :update_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/create' => 'therapists#create', :constraints => { :subdomain => 'therapy' }, via: 'post'
+  match '/' => 'therapists#home', :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/update' => 'therapists#update', :constraints => { :subdomain => 'therapy' }, via: 'patch'
+  match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/:id' => 'therapists#show', :constraints => { :subdomain => 'therapy' }, via: 'get'
   
   match '/signup' => 'users#create', :as => :create_user, via: 'post'
   match '/charge' => 'users#charge', :as => :charge_user, via: 'post'
