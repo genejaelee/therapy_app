@@ -2,7 +2,7 @@
 #profile-header {
 	.bg-container {
 		.container {
-			padding-top: 120px;
+			padding-top: 80px;
 			h1 {
 				color: rgba(255,255,255,0.9);
 				margin-bottom: 5px;
@@ -46,26 +46,6 @@
 					float: left;
 				}
 			}
-			
-			.issues-container {
-				border: 1px dashed rgba(255,255,255,0.5);
-				padding: 30px 30px;
-				margin-top: 40px;
-				
-				h1 {
-				}
-				
-				ul {
-					
-					li {
-						color: #fff;
-						font-family: "HelveticaNeue-Light";
-						font-weight: 200;
-						margin-top: 15px;
-						font-size: 24px;
-					}
-				}
-			}
 		}	
 	}
 }
@@ -73,8 +53,16 @@
 .profile-panel {
 	.bg-container {
 		.container {
-			padding-top: 60px;
-			padding-bottom: 80px;
+			padding-top: 100px;
+			padding-bottom: 100px;
+			
+			hr {
+				height: 1px;
+				width: 100%;
+				display: inline-block;
+				margin: 40px 0px;
+				border-top: 1px dashed rgba(0,0,0,0.2);
+			}
 			
 			h1 {
 				color: #ccc;
@@ -85,10 +73,27 @@
 				line-height: 34px;
 			}
 			
-			p {
-				color: #525252;
-				font-size: 20px;
-				line-height: 28px;
+			.about-container {
+			
+				p {
+					padding-top: 20px;
+					color: #525252;
+					font-size: 20px;
+					line-height: 28px;
+				}
+			}
+			
+			.issues-container {
+
+				ul {
+					padding-top: 20px;
+					
+					li {
+						color: #525252;
+						margin-top: 15px;
+						font-size: 20px;
+					}
+				}
 			}
 		}
 	}
