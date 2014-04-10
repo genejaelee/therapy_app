@@ -1,7 +1,14 @@
 <% @therapist.each do |therapist| %>
-	<tr>
-		<td>
-			<%= link_to 'Show', show_therapist_path(:subdomain => 'therapy', :id => therapist.permalink) %>
-		</td>
-	</tr>
+	<div class="panel">
+		<div class="bg-container">
+			<div class="container">
+				<tr>
+					<td>
+						<%= link_to retina_image_tag(therapist, :avatar, :small, :default => [200,200]), show_therapist_path(:subdomain => 'therapy', :id => therapist.permalink) %>
+						<%= link_to 'Show', show_therapist_path(:subdomain => 'therapy', :id => therapist.permalink) %>
+					</td>
+				</tr>
+			</div>
+		</div>
+	</div>
 <% end %>
