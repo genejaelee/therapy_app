@@ -90,7 +90,7 @@
 			}
 			
 			textarea {
-				overflow: hidden;
+				overflow-x: hidden;
 				min-height: 400px;
 				width: 100%;
 				border: none;
@@ -111,6 +111,45 @@
 				line-height: 34px;
 				font-size: 20px;
 				padding: 10px 15px
+			}
+			
+			#welcome-text-area {
+				@extend #therapist-bio;
+			}
+			
+			#add-subsection-container {
+				margin-top: 40px;
+				display: inline-block;
+				
+				.add-subsection {
+					height: 60px;
+					border: 1px dashed #ccc;
+					margin-top: 10px;
+					margin-bottom: 10px;
+					div {
+						padding: 15px;
+					
+						p {
+							font-size: 20px;
+							line-height: 30px;
+							color: $scouter-teal-fade;
+						}
+					}
+				}
+				
+				.add-subsection:hover {
+					cursor: pointer;
+					background-color: #eee;
+				}
+			}
+			
+			#approach-text-area {
+				@extend #therapist-bio;
+			}
+			
+			.approach-sub-text-area {
+				@extend #therapist-bio;
+				min-height: 200px;
 			}
 			
 			#issues-text-area {

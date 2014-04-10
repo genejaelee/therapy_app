@@ -4,35 +4,87 @@
 
 <%= render 'layouts/profile_header' %>
 
-<div class="panel profile-panel">
+<div class="panel profile-panel welcome-panel">
 	<div class="bg-container">
 		<div class="container">
-			<div class="sixteen columns issues-container">
-				<h1>Issues I can work with</h1>
-				<div class="seven columns">
-					<ul>
-						<% for i in 0..6 %>
-							<li><%= @therapist.issues.split(",")[i].to_s %></li>
-						<% end %>
-					</ul>
+			<div class="sixteen columns">
+				<h1>Welcome</h1>
+				<%= simple_format @therapist.welcome %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel image-panel" id="image-panel1">
+	<div class="bg-container">
+		<div></div>
+	</div>
+</div>
+
+<div class="panel profile-panel" id="approach-panel">
+	<div class="bg-container">
+		<div class="container">
+			<div class="sixteen columns">
+				<h1>My Approach</h1>
+				<%= simple_format @therapist.approach %>
+				<h2>
+					<% if !@therapist.approach_sub1_title.nil? %>
+						<%=@therapist.approach_sub1_title.upcase %>
+					<% end %>
+				</h2>
+				<%= simple_format @therapist.approach_sub1 %>
+				<h2>
+					<% if !@therapist.approach_sub2_title.nil? %>
+						<%=@therapist.approach_sub2_title.upcase %>
+					<% end %>
+				</h2>
+				<%= simple_format @therapist.approach_sub2 %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel image-panel" id="image-panel1">
+	<div class="bg-container">
+		<div></div>
+	</div>
+</div>
+
+<div class="panel profile-panel therapist-about-panel">
+	<div class="bg-container">
+		<div class="container">
+			<div class="six columns">
+				<%= retina_image_tag(@therapist, :avatar, :medium, :default => [280,280]) %>
+			</div>
+			<div class="ten columns about-container">
+				<h1>About Me</h1>
+				<%= simple_format @therapist.bio %>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div class="panel" id="therapist-contact">
+	<div class="bg-container">
+		<div class="container">
+			<div class="ten columns">
+				<div class="profile-image-icon">
+					<div class="email-icon"></div>
+					<h3><%= @therapist.email %></h3>
 				</div>
-				<div class="seven columns">
-					<ul>
-						<% for i in 7..13 %>
-							<li><%= @therapist.issues.split(",")[i].to_s %></li>
-						<% end %>
-					</ul>
+				<div class="profile-image-icon">
+					<div class="phone-icon"></div>
+					<h3><%= @therapist.phone %></h3>
+				</div>
+				<div class="profile-image-icon">
+					<div class="location-icon"></div>
+					<h3><%= @therapist.city %>, <%= @therapist.state %>, <%= @therapist.zipcode%></h3>
 				</div>
 			</div>
-			<hr>
-			<div class="sixteen columns about-container">
-				<h1>About</h1>
-
-				<p>
-					<%= @therapist.bio %>
-				</p>
+			<div class="six columns" id="calendar">
 			</div>
-
+			<div class="sixteen columns">
+			</div>
 		</div>
 	</div>
 </div>

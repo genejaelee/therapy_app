@@ -1,4 +1,7 @@
 class Therapist < ActiveRecord::Base
+  has_many :events
+  has_many :users, through: :events
+  
   retina!
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

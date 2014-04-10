@@ -38,6 +38,9 @@ gem 'socksify'
 # SSL
 gem 'rack-ssl-enforcer'
 
+#calendar
+gem 'fullcalendar-rails'
+
 #zipcode validation
 gem 'zip-code-info'
 

@@ -1,0 +1,7 @@
+<% @therapist.each do |therapist| %>
+	<tr>
+		<td>
+			<%= link_to 'Show', show_therapist_path(:subdomain => 'therapy', :id => therapist.permalink) %>
+		</td>
+	</tr>
+<% end %>

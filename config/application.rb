@@ -12,7 +12,9 @@ module TherapyApp
     config.serve_static_assets = true
     config.autoload_paths += %W[#{config.root}/lib/validators/]
     
-    config.middleware.use Rack::SslEnforcer, :except_hosts => 'therapy.scouterapp.com', :strict => true
+    if !Rails.env.development?
+      config.middleware.use Rack::SslEnforcer, :except_hosts => 'therapy.scouterapp.com', :strict => true
+    end
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

@@ -1,31 +1,156 @@
 @import "variables.css.scss";
 #profile-header {
 	.bg-container {
+		padding: 150px 0px;
 		.container {
-			padding-top: 80px;
+			text-align: center;
 			h1 {
 				color: rgba(255,255,255,0.9);
 				margin-bottom: 5px;
 			}
+			h3 {
+				color: rgba(255,255,255,0.9);
+			}
 			hr {
-				margin: 20px 0px;
+				margin: 25px 0px;
 				border-top: 1px dashed rgba(255,255,255,0.5);
 			}
+			.eight {
+				text-align: center;
+				padding: 0px;
+				ul {
+					display: block;
+					margin: 10px 0px;
+					li {
+						color: #fff;
+						display: inline-block;
+						margin: 0px 10px;
+						line-height: 24px;
+					}
+					li:hover {
+						opacity: 0.7;
+						cursor: pointer;
+						text-decoration: underline;
+					}
+				}
+			}
+		}	
+	}
+}
+
+.image-panel {
+	.bg-container {
+		background-image: image-url('hiking.JPG');
+		background-size: 100% auto;
+		height: 300px;
+		background-attachment: fixed;
+		div {
+			height: 100%;
+			width: 100%;
+			background-color: rgba(0,0,0,0.1);
+		}
+	}
+}
+
+.welcome-panel {
+	.bg-container {
+		.container {
+			h1 {
+				text-align: center;
+			}
+		}
+	}
+}
+
+#approach-panel {
+	.bg-container {
+		background-color: #f9f9f9;
+		.container {
+			h1 {
+			}
+			h2 {
+				color: $scouter-teal-fade;
+				font-size: 20px;
+				margin-bottom: 0px;
+			}
+			p {
+				padding-top: 0px;
+			}
+		}
+	}
+}
+
+.profile-panel {
+	.bg-container {
+		.container {
+			padding-top: 80px;
+			padding-bottom: 80px;
+			
+			hr {
+				height: 1px;
+				width: 100%;
+				display: inline-block;
+				margin: 40px 0px;
+				border-top: 1px dashed rgba(0,0,0,0.2);
+			}
+			
+			h1 {
+				color: #ccc;
+				font-size: 34px;
+			}
+			
 			h3 {
-				font-size: 24px;
+				color: #525252;
+				line-height: 28px;
+				font-size: 14px;
+			}
+			
+			p {
+				padding-top: 15px;
+				color: #525252;
+				font-size: 16px;
+				line-height: 28px;
+			}
+			
+			.about-container {
+			}
+			
+			.issues-container {
+
+				ul {
+					padding-top: 15px;
+					
+					li {
+						color: #525252;
+						margin-top: 5px;
+						font-size: 16px;
+					}
+				}
+			}
+		}
+	}
+}
+
+#therapist-contact {
+	.bg-container {
+		padding: 80px 0px;
+		background-color: $scouter-green-light;
+		.container {
+			h3 {
+				font-size: 20px;
 				line-height: 34px;
 				margin-bottom: 3px;
 				color: rgba(255,255,255,1.0);
 			}
 			.profile-image-icon {
 				display: block;
-				height: 50px;
+				height: 40px;
 				width: 100%;
 				
 				div {
 					float: left;
-					width: 40px;
-					height: 40px;
+					width: 35px;
+					height: 35px;
 					margin-right: 10px;
 					background-repeat: no-repeat;
 					background-position: center;
@@ -44,55 +169,6 @@
 				}
 				h3 {
 					float: left;
-				}
-			}
-		}	
-	}
-}
-
-.profile-panel {
-	.bg-container {
-		.container {
-			padding-top: 100px;
-			padding-bottom: 100px;
-			
-			hr {
-				height: 1px;
-				width: 100%;
-				display: inline-block;
-				margin: 40px 0px;
-				border-top: 1px dashed rgba(0,0,0,0.2);
-			}
-			
-			h1 {
-				color: #ccc;
-			}
-			
-			h3 {
-				color: #525252;
-				line-height: 34px;
-			}
-			
-			.about-container {
-			
-				p {
-					padding-top: 20px;
-					color: #525252;
-					font-size: 20px;
-					line-height: 28px;
-				}
-			}
-			
-			.issues-container {
-
-				ul {
-					padding-top: 20px;
-					
-					li {
-						color: #525252;
-						margin-top: 15px;
-						font-size: 20px;
-					}
 				}
 			}
 		}

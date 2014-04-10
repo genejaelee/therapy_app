@@ -13,7 +13,8 @@ class UsersController < ApplicationController
     if @user.save
       session[:current_user_id] = @user.id
       #if @user.promo_code == "WHISPER033"
-        render "users/create"
+        #render "users/create"
+        redirect_to :controller => 'therapists', :action => 'index'
         #else
         #render :action => :charge
         #end

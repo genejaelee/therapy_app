@@ -35,12 +35,18 @@ class TherapistsController < ApplicationController
     end
   end
   
+  def index
+    @therapist = Therapist.all
+  end
+  
   def new
   end
   
   private
   
   def therapist_params
-    params.require(:therapist).permit(:email, :password, :first_name, :title, :degree, :last_name, :gender, :state, :license_number, :city, :zipcode, :phone, :bio, :issues, :avatar, :permalink)
+    params.require(:therapist).permit(:email, :password, :first_name, :title, :degree, :last_name, :gender, :state, :license_number, :city, :zipcode, :phone, 
+    :welcome, :bio, :approach, :approach_sub1, :approach_sub1_title, :approach_sub2, :approach_sub2_title, :issues, :avatar, 
+    :permalink)
   end
 end

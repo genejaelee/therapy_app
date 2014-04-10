@@ -35,15 +35,48 @@
 				<i>We will never call or share your number.</i>
 				<%= f.text_field :phone, :class => "phone-field", :placeholder => "(213) 493-1588" %>
 				
+				<%= f.label :welcome, "Write a welcome message to your visitor." %>
+				<%= f.text_area :welcome, :id => "welcome-text-area", :placeholder => "Hello, I'm here to..." %>
+				
 				<%= f.label :bio, "Write a little about yourself."%>
 				<%= f.text_area :bio, 
 												:onkeyup => "textAreaAdjust(this)",
 												:id => "therapist-bio", 
 												:placeholder => "Your bio..." %>
 												
+				<%= f.label :approach, "Write about your general therapeutic approach." %>
+				<i>You can add up to two subsections for your therapeutic approach</i>
+				<%= f.text_area :approach, :id => "approach-text-area", :placeholder => "The counseling I provide is..." %>
+				
+				<% check_if_subsections_exist %>
+
+				<div id="add-subsection-container">
+					<div class="sixteen columns add-subsection" id="add-subsection-one" style="display:<%= @approach1_title_style %>">
+						<div>
+							<p><span>+</span> Subsection to detail a specific aspect of your practice</p>
+						</div>
+					</div>
+					<div class="sixteen columns add-subsection" id="add-subsection-two" style="display:<%= @approach2_title_style %>">
+						<div>
+							<p><span>+</span> Subsection to detail a specific aspect of your practice</p>
+						</div>
+					</div>
+				</div>
+				
+				<div id="approach-subsection-one" style="display:<%= @approach1_style %>">
+				<%= f.label :approach_sub1, "Write about a specific therapeutic approach." %>
+				<%= f.text_field :approach_sub1_title, :placeholder => "i.e. Individual Therapy" %>
+				<%= f.text_area :approach_sub1, :class => "approach-sub-text-area", :placeholder => "The counseling I provide is..." %>
+				</div>
+				
+				<div id="approach-subsection-two" style="display:<%= @approach2_style %>">
+				<%= f.label :approach_sub2, "Write about a specific therapeutic approach." %>
+				<%= f.text_field :approach_sub2_title, :placeholder => "i.e. Couples Therapy" %>
+				<%= f.text_area :approach_sub2, :class => "approach-sub-text-area", :placeholder => "The counseling I provide is..." %>
+				</div>
+												
 				<%= f.label :issues, "List up to twenty issues you specialize in, separated with commas."%>
 				<%= f.text_area :issues, :id => "issues-text-area", :placeholder => "Anxiety, PTSD, Depression, Eating Disorders"%>
-				<span class="sixteen columns" id="counter-text"></span>
 				
 				<%= render 'shared/therapist_error_messages' %>
 		

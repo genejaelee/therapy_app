@@ -1,18 +1,22 @@
 TherapyApp::Application.routes.draw do
+  get "events/index"
   devise_for :therapists, :controllers => { :registrations => "registrations" }
-  resources :charges, :therapists
+  resources :charges, :therapists, :events
   
   devise_scope :therapist do
     match '/signup' => 'devise/registrations#new', :constraints => { :subdomain => 'therapy' }, via: 'get'
     match '/edit' => 'devise/registrations#edit', :constraints => { :subdomain => 'therapy' }, :as => :therapist_edit, via: 'get'
   end
   
+  match '/schedule' => 'events#create', :as => :create_appointment, :constraints => { :subdomain => 'therapy' }, via: 'get'
+  
   match '/update' => 'therapists#signup', :as => :update_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/create' => 'therapists#create', :constraints => { :subdomain => 'therapy' }, via: 'post'
   match '/' => 'therapists#home', :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/update' => 'therapists#update', :constraints => { :subdomain => 'therapy' }, via: 'patch'
+  match '/index' => 'therapists#index', :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, :constraints => { :subdomain => 'therapy' }, via: 'get'
-  match '/:id' => 'therapists#show', :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/therapists/:id' => 'therapists#show', :as => :show_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
   
   match '/signup' => 'users#create', :as => :create_user, via: 'post'
   match '/charge' => 'users#charge', :as => :charge_user, via: 'post'

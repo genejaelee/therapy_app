@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140405203921) do
+ActiveRecord::Schema.define(version: 20140409203358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "start"
+    t.string   "end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "therapist_id"
+    t.integer  "user_id"
+  end
 
   create_table "therapists", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -47,6 +58,12 @@ ActiveRecord::Schema.define(version: 20140405203921) do
     t.text     "retina_dimensions"
     t.text     "issues"
     t.string   "title"
+    t.text     "approach"
+    t.text     "welcome"
+    t.text     "approach_sub1"
+    t.text     "approach_sub2"
+    t.string   "approach_sub1_title"
+    t.string   "approach_sub2_title"
   end
 
   add_index "therapists", ["email"], name: "index_therapists_on_email", unique: true, using: :btree

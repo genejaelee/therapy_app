@@ -76,6 +76,9 @@ var ready = function() {
 	$('#explanation-text').change(updateCountdown);
 	$('#explanation-text').keyup(updateCountdown);
 	
+	//therapist profile stuff
+	addSubsection()
+	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){
 		if ($(this).val() == "Yes") {
@@ -88,6 +91,27 @@ var ready = function() {
 			$('.current_therapist_name').css('display', 'none');
 		}
 	});
+	
+	$('#welcome-nav-item').click(function(){
+		goToByScroll('.welcome-panel')
+	});
+	$('#about-therapy-nav-item').click(function(){
+		goToByScroll('#approach-panel')
+	});
+	$('#about-nav-item').click(function(){
+		goToByScroll('.therapist-about-panel')
+	});
+	$('#contact-nav-item').click(function(){
+		goToByScroll('#therapist-contact')
+	});
+	
+	// calendar
+	$('#calendar').fullCalendar({
+	  // put your options and callbacks here
+		editable: true,
+		slotMinutes: 30,
+		dragOpacity: "0.5"
+	})
 }
 
 $( document ).ready(ready);

@@ -1,0 +1,12 @@
+<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	
+	<%= f.label :start %>
+	<%= f.datetime_select :start %>
+	
+	<%= f.label :end %>
+	<%= f.datetime_select :end %>
+	
+	<%= f.submit %>
+<% end %>
