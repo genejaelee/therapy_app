@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   include Encryption
+  has_many :events
+  has_many :therapists, through: :events
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :gender_pref, :insurance, :key => :encryption_key
   attr_accessor :should_validate_age, :stripe_token, :paid, :add_responses
@@ -31,18 +33,14 @@ class User < ActiveRecord::Base
     end
   end
   
-  def charge_user(price)
+  def save_user_card
     customer = Stripe::Customer.create(
       :email => self.email,
       :card => self.stripe_token
     )
     
-    charge = Stripe::Charge.create(
-      :customer => customer.id,
-      :amount => price,
-      :description => 'Rails Stripe customer',
-      :currency => 'usd'
-    )
+    cu = Stripe::Customer.retrieve(customer.id)
+    cu.save
   end
   
 end   

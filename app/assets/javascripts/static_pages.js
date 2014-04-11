@@ -26,9 +26,9 @@ function textAreaAdjust(o) {
 }
 
 function goToByScroll(element){
-	$('html,body').animate({
+	$('html,body').stop().animate({
 		scrollTop: $(element).offset().top},
-		'slow');
+		500, "easeOutCubic");
 }
 
 //legacy functions to hide and show things
@@ -55,10 +55,15 @@ var fadeThisIn = function(element) {
 
 var ready = function() {
 	$('.phone-field').mask('(000) 000-0000');
+	$('.date-field').mask('00/00/0000');
+	$('.time-field').mask('00:00 AA')
 	
 	$('.cta-button2').click(function(){
-	  $('html, body').animate({scrollTop:0}, 1000, 'easeOutCubic');
-	  $('#user_email').focus();
+	  $('html,body').stop().animate({
+			scrollTop: 0}, 
+			1000, "easeOutCubic", function(){
+				$('#user_email').focus();
+			});
 	});
 	
   $(function() {
@@ -105,13 +110,21 @@ var ready = function() {
 		goToByScroll('#therapist-contact')
 	});
 	
+	$('.profile-open-button').click(function(){
+		var thisProfile = $(this).parent().parent().parent().parent().parent();
+		var thisButton = $(this).children('.button');
+		renderEitherCalendarOrProfile(thisButton);
+		openCloseOnClick(thisProfile, thisButton, 355, 770);
+		goToByScroll(thisProfile);
+	});
+	
 	// calendar
 	$('#calendar').fullCalendar({
 	  // put your options and callbacks here
 		editable: true,
 		slotMinutes: 30,
 		dragOpacity: "0.5"
-	})
+	});
 }
 
 $( document ).ready(ready);

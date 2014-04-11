@@ -1,4 +1,6 @@
 TherapyApp::Application.routes.draw do
+  get "appointments/new"
+  get "appointments/index"
   get "events/index"
   devise_for :therapists, :controllers => { :registrations => "registrations" }
   resources :charges, :therapists, :events
@@ -8,7 +10,7 @@ TherapyApp::Application.routes.draw do
     match '/edit' => 'devise/registrations#edit', :constraints => { :subdomain => 'therapy' }, :as => :therapist_edit, via: 'get'
   end
   
-  match '/schedule' => 'events#create', :as => :create_appointment, :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
   
   match '/update' => 'therapists#signup', :as => :update_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/create' => 'therapists#create', :constraints => { :subdomain => 'therapy' }, via: 'post'

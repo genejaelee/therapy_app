@@ -1,7 +1,13 @@
 class EventsController < ApplicationController
   def create
-    @therapist = current_user
-    @event = @therapist.events.build(params[:event])
+    @user = @_current_user
+    @event = Event.create(event_params)
+    @event.user_id = @user.id
+    if @event.save
+      render 'users/charge'
+    else
+      redirect_to :controller => 'therapists', :action => 'index', :messages => "error"
+    end
   end
   
   def new
@@ -24,6 +30,6 @@ class EventsController < ApplicationController
   private
   
   def event_params
-    params.require(:event).permit(:therapist_id, :title, :description, :start, :end)
+    params.require(:event).permit(:therapist_id, :user_id, :title, :description, :start_time, :start_date, :end)
   end
 end

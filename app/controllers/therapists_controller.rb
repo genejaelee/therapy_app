@@ -36,6 +36,7 @@ class TherapistsController < ApplicationController
   end
   
   def index
+    @event = Event.new
     @therapist = Therapist.all
   end
   

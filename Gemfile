@@ -41,6 +41,8 @@ gem 'rack-ssl-enforcer'
 #calendar
 gem 'fullcalendar-rails'
 
+gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
+
 #zipcode validation
 gem 'zip-code-info'
 

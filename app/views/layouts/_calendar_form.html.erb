@@ -1,12 +1,24 @@
-<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
+<div class="calendar-form-container">	
+	<div class="sixteen columns">
+		<h1>Talk to this therapist</h1>
+	</div>
+	<div class="four columns">&nbsp;</div>
+	<div class="eight columns">
+		<hr>
+	</div>
+	<div class="sixteen columns form-container">
+		<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
 	
-	<%= f.label :start %>
-	<%= f.datetime_select :start %>
+			<%= f.label :start_time, "Choose a date" %>
+			<%= f.text_field :start, :class => "date-field", :placeholder => "MM/DD/YYYY" %>
 	
-	<%= f.label :end %>
-	<%= f.datetime_select :end %>
+			<%= f.label :start_date, "Choose a time" %>
+			<%= f.text_field :start, :class => "time-field", :placeholder => "HH:MM PM" %>
 	
-	<%= f.submit %>
-<% end %>
+			<%= f.hidden_field :therapist_id, :value => @therapist_id %>
+			<%= f.hidden_field :user_id, :value => @_current_user.id %>
+	
+			<%= f.submit "Request Appointment", :class => "submit_button_white button" %>
+		<% end %>
+	</div>
+</div>
