@@ -56,7 +56,7 @@ var fadeThisIn = function(element) {
 var ready = function() {
 	$('.phone-field').mask('(000) 000-0000');
 	$('.date-field').mask('00/00/0000');
-	$('.time-field').mask('00:00 AA')
+	$('.time-field').mask('00:00AA')
 	
 	$('.cta-button2').click(function(){
 	  $('html,body').stop().animate({
@@ -72,6 +72,10 @@ var ready = function() {
 	
   $(function() {
     $( ".date-field" ).datepicker({ dateFormat: 'mm/dd/yy' });
+  });
+	
+  $(function() {
+    $( ".time-field" ).timepicker();
   });
 	
 	

@@ -12,7 +12,8 @@
 			</div>
 			<div class="sixteen columns" id="cta-form">
 				<%= render 'users/create' %>
-				<%= button_to "Browse Therapists", therapists_path, :class => "button browse-therapist-button", :method => 'get' %>
+				<!--<%= button_to "Browse Therapists", therapists_path, :class => "button browse-therapist-button", :method => 'get' %>
+					-->
 				<span id="secure-notice">This is confidential. Your identity will not be revealed.</span>
 				<%= render 'shared/error_messages' %>
 				<% flash.each do |key, value| %>
@@ -41,43 +42,89 @@
 	</div>
 </div>
 
-<div id="panel3" class="panel">
+<div id="how-it-works" class="panel panel3">
 	<div class="bg-container">
 		<div class="container">
 			<div class="sixteen columns" id="how-header">
 				<h1>How it works</h1>
 				<hr class="dashed-hr">
 				<h2>$40 for a half-hour session.</h2>
-				<h2>Charged afterwards, only if you have a positive experience</h2>
+				<h5>Charged afterwards, only if you have a positive experience</h5>
 			</div>
-			<div class="how-container sixteen columns">
-				<div class="full-span">
-					<div class="three columns">
-						<div class="image" id="form-icon"></div>
-					</div>
-					<div class="nine columns">
-						<h3>Sign up and choose a time.</h2>
-						<p>Pick a therapist to work with, and choose a time to be called for a half-hour session. Give a few simple background details as well as your payment information. <span style="font-weight:600">This is just for our records, you will not be charged until after your session.</span></p>
-					</div>
-				</div>
-				<div class="full-span">
-					<div class="three columns">
-						<div class="image" id="clock-icon"></div>
-					</div>
-					<div class="eleven columns">
-						<h3>Answer your phone.</h2>
-						<p>Have a private, half-hour conversation about what’s on your mind. That’s all you have to do.</p>
-					</div>
-				</div>
-				<div class="full-span">
-					<div class="three columns">
-						<div class="image" id="cal-icon"></div>
-					</div>
-					<div class="nine columns">
-						<h3>We'll follow up.</h2>
-						<p>We’ll check in over email and ask how things went. If it was a positive experience, we can schedule you another session. If you disliked the session, we will pay the therapist $40 on your behalf. You will not be charged a dime. It’s as simple as that.</p>
-					</div>
-				</div>
+		</div>
+	</div>
+</div>
+
+<div class='image-panel panel' id="how-panel1">
+	<div class="bg-container">
+		<div class="container">
+			<h1 style="font-size: 48px; font-weight: 600;">Step One</h1>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel3">
+	<div class="bg-container">
+		<div class="container">
+			<!--
+			<div class="three columns">
+				<div class="image" id="form-icon"></div>
+			</div>
+				-->
+			<div class="ten columns">
+				<h3>Sign up and choose a time.</h2>
+					<br>
+				<p>Pick a therapist to work with, and choose a time to be called for a half-hour session. Give a few simple background details as well as your payment information. <span style="font-weight:600">This is just for our records, you will not be charged until after your session.</span></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='image-panel panel' id="how-panel2">
+	<div class="bg-container">
+		<div class="container">
+			<h1 style="font-size: 48px; font-weight: 600;">Step Two</h1>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel3">
+	<div class="bg-container">
+		<div class="container">
+			<!--
+			<div class="three columns">
+				<div class="image" id="clock-icon"></div>
+			</div>
+				-->
+			<div class="ten columns">
+				<h3>Answer your phone.</h2>
+					<br>
+				<p>Have a private, half-hour conversation about what’s on your mind. That’s all you have to do.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='image-panel panel' id="how-panel3">
+	<div class="bg-container">
+		<div class="container">
+			<h1 style="font-size: 48px; font-weight: 600;">Step Three</h1>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel3">
+	<div class="bg-container">
+		<div class="container">
+			<!--
+			<div class="three columns">
+				<div class="image" id="cal-icon"></div>
+			</div>
+				-->
+			<div class="ten columns">
+				<h3>We'll follow up.</h2>
+					<br>
+				<p>We’ll check in over email and ask how things went. If it was a positive experience, we can schedule you another session. If you disliked the session, we will pay the therapist $40 on your behalf. You will not be charged a dime. It’s as simple as that.</p>
 			</div>
 		</div>
 	</div>

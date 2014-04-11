@@ -42,7 +42,7 @@
 	margin: 20px auto;
 	width: 100%;
 	max-width: 480px;
-	border-top: 1px dashed rgba(255,255,255,0);
+	border-top: 1px dashed rgba(255,255,255,0.8);
 }
 
 .ui-datepicker-week-end {
@@ -244,14 +244,15 @@ p {
 				.browse-therapist-button {
 					margin-bottom: 0px;
 					width: 260px;
+					height: 44px !important;
 					-webkit-appearance: none;
 					border: 1px solid #fff;
 					background-color: #fff;
-					color: $scouter-blue;
+					color: $scouter-blue !important;
 					text-shadow: none;
 					font-family: $light-font;
 					font-weight: 200;
-					font-size: 20px;
+					font-size: 18px !important;
 				}
 				
 				.button:hover {
@@ -376,29 +377,96 @@ p {
 	}
 }
 
+#how-panel1 {
+	.bg-container {
+		background-image: image-url('bike.jpg');
+		
+		.container {
+			background-color: rgba(0,0,0,0.2);
+		}
+	}
+	h1 {
+		text-align: left;
+		margin-left: 14%;
+	}
+}
+
+#how-panel2 {
+	.bg-container {
+		background-image: image-url('phone-hand.jpg');
+		.container {
+			background-color: rgba(0,0,0,0.2);
+		}
+	}
+	h1 {
+		text-align: left;
+		margin-left: 14%;
+	}
+}
+
+#how-panel3 {
+	.bg-container {
+		background-image: image-url('biking_lsd.jpg');
+		
+	}
+	h1 {
+		text-align: left;
+		margin-left: 14%;
+	}
+}
+
+#how-it-works {
+	.bg-container {
+		background-color: $scouter-orange;
+		
+		.container {
+			text-align: center;
+			padding-top: 80px;
+			
+			#how-header {
+				h1 {
+					color: #fff !important;
+				}
+	
+				h2 {
+					color: #fff !important;
+				}
+				h5 {
+					color: #fff;
+				}
+			}
+		}
+	}
+	
+	hr {
+		border-top: 1px dashed rgba(255,255,255,0.8);
+		margin: 30px auto;
+		height: 1px;
+		display: block;
+	}
+}
+
 .panel3 {
 	
 	.bg-container {
-		background-color: $scouter-orange;
+		background-color: #fff;
 		//background-image: image-url('dashed-line.png');
 		background-size: auto 100%;
 		background-position: right;
 		background-attachment: fixed;
 	
 		.container {
-			padding-top: 80px;
-			padding-bottom: 80px;
+			padding-top: 120px;
+			padding-bottom: 120px;
 			
 			#how-header {
 				h1 {
-					text-align: center;
-					color: #fff;
+					color: #525252;
 					margin-bottom: 15px;
 				}
 			
 				h2 {
-					text-align: center;
-					color: #fff;
+					color: #525252;
 					font-size: 30px;
 					line-height: 34px;
 					margin-bottom: 0px;
@@ -409,48 +477,40 @@ p {
 				}
 			}
 			
-			.how-container {
-				padding-top: 50px;
+			.columns {
+				color: #fff;
+				padding-bottom: 15px;
+				padding-top: 25px;
 			
-				.full-span {
-					width: 100%;
-					display: inline-block;
+				#form-icon {
+					background-image: image-url('form-icon.png');
+				}
+			
+				#clock-icon {
+					background-image: image-url('clock-icon.png');
+				}
+			
+				#cal-icon {
+					background-image: image-url('contact-icon.png');
+				}
 		
-					.columns {
-						color: #fff;
-						padding-bottom: 15px;
-						padding-top: 25px;
-					
-						#form-icon {
-							background-image: image-url('form-icon.png');
-						}
-					
-						#clock-icon {
-							background-image: image-url('clock-icon.png');
-						}
-					
-						#cal-icon {
-							background-image: image-url('contact-icon.png');
-						}
-				
-						.image {
-							margin: auto;
-							height: 120px;
-							width: 120px;
-							background-size: 100%;
-							margin-bottom: 40px;
-						}
-			
-						h3 {
-							font-weight: 600;
-							margin-top: -5px;
-							color: #fff;
-						}
-				
-						p {
-							font-size: 16px;
-						}
-					}
+				.image {
+					margin: auto;
+					height: 120px;
+					width: 120px;
+					background-size: 100%;
+					margin-bottom: 40px;
+				}
+	
+				h3 {
+					font-weight: 600;
+					margin-top: -5px;
+					color: $scouter-teal-fade;
+				}
+		
+				p {
+					font-size: 16px;
+					color: #525252;
 				}
 			}
 		}

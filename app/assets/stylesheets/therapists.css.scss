@@ -48,15 +48,15 @@
 	.bg-container {
 		background-image: image-url('hiking.JPG');
 		background-size: cover;
-		height: 200px;
+		height: 150px;
 		background-attachment: fixed;
 		.container {
 			text-align: center;
 			h1 {
-				line-height: 200px;
+				line-height: 150px;
 				font-weight: 200;
-				color: rgba(255,255,255,0.8);
-				font-size: 80px;
+				color: rgba(255,255,255,0.9);
+				font-size: 60px;
 				margin: auto;
 			}
 		}
