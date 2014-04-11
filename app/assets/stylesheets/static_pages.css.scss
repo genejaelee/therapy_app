@@ -36,6 +36,114 @@
 	cursor: pointer;
 };
 
+.dashed-hr {
+	display: inline-block;
+	height: 1px;
+	margin: 20px auto;
+	width: 100%;
+	max-width: 480px;
+	border-top: 1px dashed rgba(255,255,255,0);
+}
+
+.ui-datepicker-week-end {
+	tr {
+		th {
+			display: block;
+			width: 30%;
+		}
+	}
+}
+
+#ui-datepicker-div {
+	box-shadow: 0px 4px 4px rgba(0,0,0,0.15);
+	padding: 8px;
+	width: 300px;
+	position: absolute !important;
+	left: 50% !important;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: -150px !important;
+	border: 1px solid $scouter-blue;
+	background: none;
+	background-color: #fff;
+	
+	.ui-datepicker-header {
+		border: 1px solid $scouter-blue;
+		background: none;
+		background-color: #fff;
+		
+		.ui-datepicker-prev {
+			left: 3px;
+			top: 3px;
+		}
+		
+		.ui-datepicker-next {
+			right: 3px;
+			top: 3px;
+		}
+		
+		.ui-state-hover {
+			background: none;
+			border: 1px solid $scouter-blue;
+		}
+		
+		.ui-datepicker-title {
+			span {
+				color: $scouter-blue;
+				font-family: $light-font;
+				font-weight: 200;
+				font-size: 18px;
+			}
+		}
+	}
+	
+	.ui-datepicker-calendar {
+		background-color: #fff;
+		color: $scouter-blue;
+		font-family: $light-font;
+		font-weight: 200;
+		
+		.thead {
+		}
+		
+		tbody {
+			tr {
+				td {
+					border: 1px solid $scouter-blue;
+					margin: 2px;
+					padding: 2px;
+					width: 14%;
+					text-align: center;
+					a {
+						font-size: 14px;
+						line-height: 28px;
+						width: 100%;
+						text-align: center;
+						background: none;
+						background-color: #fff;
+						color: $scouter-blue;
+						font-weight: 400;
+						border: none;
+						margin: auto;
+					}
+				}
+				
+				td:hover {
+					border: 1px solid $scouter-blue;
+					background-color: #eee;
+					a {
+						background-color: #eee;
+					}
+				}
+			}
+		}
+		
+		span {
+			@extend .ui-datepicker-calendar;
+		}
+	}
+}
+
 h1 {
 	font-family: $light-font;
 }
@@ -82,12 +190,13 @@ p {
 	.bg-container {
 		background-image: image-url("mousehand5.jpg");
 		background-size: $max-width auto;
-		background-position: center top;
+		background-position: center;
 		background-repeat: no-repeat;
-		height: 700px;
+		height: 650px;
 	
 		.container {
 			padding-bottom: 80px;
+			
 			#logo-banner {
 				padding-top: 40px;
 				text-align: center;
@@ -96,6 +205,10 @@ p {
 					background-repeat: no-repeat;
 					background-position: center;
 				}
+			}
+			
+			.columns {
+				margin: auto;
 			}
 		
 			#copy-container {
@@ -106,7 +219,7 @@ p {
 					color: #fff;
 					margin: auto;
 					margin-top: 40px;
-					margin-bottom: 5px;
+					margin-bottom: 10px;
 					max-width: 600px;
 				}
 			
@@ -118,8 +231,32 @@ p {
 		
 			#cta-form {
 				margin-top: 3px;
-				padding-top: 40px;
 				text-align: center;
+				
+				form {
+					margin-bottom: 5px;
+				}
+				
+				.button {
+					padding: 10px 40px;
+				}
+				
+				.browse-therapist-button {
+					margin-bottom: 0px;
+					width: 260px;
+					-webkit-appearance: none;
+					border: 1px solid #fff;
+					background-color: #fff;
+					color: $scouter-blue;
+					text-shadow: none;
+					font-family: $light-font;
+					font-weight: 200;
+					font-size: 20px;
+				}
+				
+				.button:hover {
+					background-color: rgba(255,255,255,0.8);
+				}
 			
 				#secure-notice {
 					font-size: 12px;
@@ -195,14 +332,6 @@ p {
 					margin: auto;
 					color: #fff;
 				}
-			
-				.button {
-					padding-left: 80px;
-					padding-right: 80px;
-					font-size: 18px;
-					text-align: center;
-					color: #ABCD7B;
-				}
 			}
 		}
 	}
@@ -247,7 +376,7 @@ p {
 	}
 }
 
-#panel3 {
+.panel3 {
 	
 	.bg-container {
 		background-color: $scouter-orange;
@@ -258,51 +387,69 @@ p {
 	
 		.container {
 			padding-top: 80px;
-			padding-bottom: 60px;
+			padding-bottom: 80px;
 			
-			h1 {
-				text-align: center;
-				color: #fff;
-				margin-bottom: 50px;
+			#how-header {
+				h1 {
+					text-align: center;
+					color: #fff;
+					margin-bottom: 15px;
+				}
+			
+				h2 {
+					text-align: center;
+					color: #fff;
+					font-size: 30px;
+					line-height: 34px;
+					margin-bottom: 0px;
+				}
+				
+				h2:nth-child(2) {
+					font-weight: 600 !important;
+				}
 			}
 			
-			.full-span {
-				width: 100%;
-				display: inline-block;
-		
-				.columns {
-					color: #fff;
-					padding-bottom: 15px;
-					padding-top: 25px;
-					
-					#form-icon {
-						background-image: image-url('form-icon.png');
-					}
-					
-					#clock-icon {
-						background-image: image-url('clock-icon.png');
-					}
-					
-					#cal-icon {
-						background-image: image-url('contact-icon.png');
-					}
-				
-					.image {
-						margin: auto;
-						height: 120px;
-						width: 120px;
-						background-size: 100%;
-						margin-bottom: 40px;
-					}
+			.how-container {
+				padding-top: 50px;
 			
-					h3 {
-						font-weight: 600;
-						margin-top: -5px;
+				.full-span {
+					width: 100%;
+					display: inline-block;
+		
+					.columns {
 						color: #fff;
-					}
+						padding-bottom: 15px;
+						padding-top: 25px;
+					
+						#form-icon {
+							background-image: image-url('form-icon.png');
+						}
+					
+						#clock-icon {
+							background-image: image-url('clock-icon.png');
+						}
+					
+						#cal-icon {
+							background-image: image-url('contact-icon.png');
+						}
 				
-					p {
-						font-size: 16px;
+						.image {
+							margin: auto;
+							height: 120px;
+							width: 120px;
+							background-size: 100%;
+							margin-bottom: 40px;
+						}
+			
+						h3 {
+							font-weight: 600;
+							margin-top: -5px;
+							color: #fff;
+						}
+				
+						p {
+							font-size: 16px;
+						}
 					}
 				}
 			}
@@ -401,9 +548,9 @@ p {
           border: none;
       
           p {
-						font-family: $light-font;
+						font-family: $medium-font;
             color: $scouter-blue-fade; 
-		  			font-size: 30px;
+		  			font-size: 24px;
 						line-height: 36px;
 						margin: 0px 0px;
           }
@@ -606,7 +753,8 @@ p {
 	#panel1 {
 		.bg-container {
 			background-position: bottom;
-			background-size: auto 100%;
+			height: 580px;
+			background-size: cover;
 			background-image: image-url("mousehand-mobile.jpg");
 			.container {
 				#copy-container {

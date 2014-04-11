@@ -70,6 +70,11 @@ var ready = function() {
 	  $( "#accordion" ).accordion({header: "h3", collapsible: true, active: false, heightStyle: "content"});
   });
 	
+  $(function() {
+    $( ".date-field" ).datepicker({ dateFormat: 'mm/dd/yy' });
+  });
+	
+	
 	if (is_touch_device()) {
 		var arrowDown = $('.arrow-down')
 		arrowDown.on( 'touchend', function(){

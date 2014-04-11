@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
-  validates :zipcode, presence: true, length: { minimum: 5 }, :with => :zipcode_validator
-  validates_format_of :zipcode, :with => /^\d{5}(?:[-\s]\d{4})?$/, multiline: true, :message => "should be in the form 12345 or 12345-1234"
-  validates :description, presence: true, :on => :update
+  #validates :zipcode, presence: true, length: { minimum: 5 }, :with => :zipcode_validator
+  #validates_format_of :zipcode, :with => /^\d{5}(?:[-\s]\d{4})?$/, multiline: true, :message => "should be in the form 12345 or 12345-1234"
+  #validates :description, presence: true, :on => :update
   
   validates :age, presence: true, numericality: true, :on => :finish, :if => :should_validate_age?
   

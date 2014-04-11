@@ -10,10 +10,10 @@
 		<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
 	
 			<%= f.label :start_time, "Choose a date" %>
-			<%= f.text_field :start, :class => "date-field", :placeholder => "MM/DD/YYYY" %>
+			<%= f.text_field :start_date, :class => "date-field", :placeholder => "MM/DD/YYYY" %>
 	
 			<%= f.label :start_date, "Choose a time" %>
-			<%= f.text_field :start, :class => "time-field", :placeholder => "HH:MM PM" %>
+			<%= f.text_field :start_time, :class => "time-field", :placeholder => "HH:MM PM" %>
 	
 			<%= f.hidden_field :therapist_id, :value => @therapist_id %>
 			<%= f.hidden_field :user_id, :value => @_current_user.id %>

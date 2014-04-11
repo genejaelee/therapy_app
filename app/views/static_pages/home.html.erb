@@ -8,9 +8,12 @@
 				<h1>Get a therapist to call you.</h1>
 				<h5>Try therapy the simplest way — by taking a phonecall.</h5>
 			</div>
+			<div class="spacer sixteen columns">
+			</div>
 			<div class="sixteen columns" id="cta-form">
 				<%= render 'users/create' %>
-				<span id="secure-notice">This is confidential. Your email is stored securely and never shared.</span>
+				<%= button_to "Browse Therapists", therapists_path, :class => "button browse-therapist-button", :method => 'get' %>
+				<span id="secure-notice">This is confidential. Your identity will not be revealed.</span>
 				<%= render 'shared/error_messages' %>
 				<% flash.each do |key, value| %>
 					<div class="alert alert-<%= key %>"><%= value %></div>
@@ -43,38 +46,37 @@
 		<div class="container">
 			<div class="sixteen columns" id="how-header">
 				<h1>How it works</h1>
+				<hr class="dashed-hr">
+				<h2>$40 for a half-hour session.</h2>
+				<h2>Charged afterwards, only if you have a positive experience</h2>
 			</div>
-			<div class="sixteen columns" id="how-header">
-				<h1>$40</h1>
-				<h2>for a half-hour session.</h2>
-				<h1>Charged afterwards, only if you have a positive experience</h1>
-			</div>
-			<div class="full-span">
-				<div class="three columns">
-					<div class="image" id="form-icon"></div>
+			<div class="how-container sixteen columns">
+				<div class="full-span">
+					<div class="three columns">
+						<div class="image" id="form-icon"></div>
+					</div>
+					<div class="nine columns">
+						<h3>Sign up and choose a time.</h2>
+						<p>Pick a therapist to work with, and choose a time to be called for a half-hour session. Give a few simple background details as well as your payment information. <span style="font-weight:600">This is just for our records, you will not be charged until after your session.</span></p>
+					</div>
 				</div>
-				<div class="nine columns">
-					<h3>Sign up and choose a time.</h2>
-					<p>Pick a therapist to work with, and choose a time to be called for a half-hour session. Give a few simple background details as well as your payment information. <b>This is just for our records, you will not be charged until after your session.</b></p>
-//how do I make the last sentence bold up above?
+				<div class="full-span">
+					<div class="three columns">
+						<div class="image" id="clock-icon"></div>
+					</div>
+					<div class="eleven columns">
+						<h3>Answer your phone.</h2>
+						<p>Have a private, half-hour conversation about what’s on your mind. That’s all you have to do.</p>
+					</div>
 				</div>
-			</div>
-			<div class="full-span">
-				<div class="three columns">
-					<div class="image" id="clock-icon"></div>
-				</div>
-				<div class="eleven columns">
-					<h3>Answer your phone.</h2>
-					<p>Have a private, half-hour conversation about what’s on your mind. That’s all you have to do.</p>
-				</div>
-			</div>
-			<div class="full-span">
-				<div class="three columns">
-					<div class="image" id="cal-icon"></div>
-				</div>
-				<div class="nine columns">
-					<h3>We'll follow up.</h2>
-					<p>We’ll check in over email and ask how things went. If it was a positive experience, we can schedule you another session. If you disliked the session, we will pay the therapist $40 on your behalf. You will not be charged a dime. It’s as simple as that.</p>
+				<div class="full-span">
+					<div class="three columns">
+						<div class="image" id="cal-icon"></div>
+					</div>
+					<div class="nine columns">
+						<h3>We'll follow up.</h2>
+						<p>We’ll check in over email and ask how things went. If it was a positive experience, we can schedule you another session. If you disliked the session, we will pay the therapist $40 on your behalf. You will not be charged a dime. It’s as simple as that.</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -96,14 +98,18 @@
         <div>
           <p>
 			University of Cambridge psychologists performed a research study with ~4,000 patients across ~190,000 therapy sessions in order to compare ‘over-the-telephone’ and ‘face-to-face’ therapy. Their findings were positive:</p>
+			<br>
 
-			<p>“We demonstrated that over-the-telephone and face-to-face showed equivalent effectiveness for anxiety symptoms, depression symptoms, and work and social functioning in all but the most severely affected patients”</p>
+			<p style="font-weight: 600;">“We demonstrated that over-the-telephone and face-to-face showed equivalent effectiveness for anxiety symptoms, depression symptoms, and work and social functioning in all but the most severely affected patients”</p>
+			<br>
 
 			<p>So according to this study (as well as others), it can be just as effective for mild/moderate depression, stress, anxiety, and insecurity. If you’re struggling with severe or extreme feelings though, you likely need more intensive, face-to-face resources for help. </p>
+			<br>
 
 			<p>If you’re skeptical, we suggest just giving it a try. At the least, you can see what a session of therapy is like, and decide after if you’d prefer to see someone in-person.</p>
+			<br>
 
-			<p>If you’d like to read the quoted study, please click here: http://www.plosone.org/article/fetchObject.action?uri=info%3Adoi%2F10.1371%2Fjournal.pone.0042916&representation=PDF</p>
+			<p>If you’d like to read the quoted study, please click <a style="font-weight: 600" href="http://www.plosone.org/article/fetchObject.action?uri=info%3Adoi%2F10.1371%2Fjournal.pone.0042916&representation=PDF">here</a>.</p>
             
           </p>
         </div>
@@ -111,13 +117,13 @@
         <div>
           <p>
 			We want to make sure you and the therapist are as comfortable as possible in your conversation. A lot of therapists offer a short ‘free trial’ consultation, but we’ve found these can be uncomfortable—prospective clients can feel guilty taking the therapist’s time without him/her getting paid, and the therapist might feel like he/she needs to make a sales pitch. Those thoughts aren’t helpful or authentic for either person. We think if the therapist is definitely getting paid, both parties will feel more comfortable going into the conversation. </p>
+			<br>
 			<p>That way, you’re more likely to have a positive experience—and if you don’t, it’s motivation for us to figure out how to make the experience right.</p>
-            
-          </p>
         </div>
         <h3>Is this appropriate for severe mental illness?</h3>
         <div>
           <p>No, it’s not. If you or the therapist you contact think you need more intensive help, then please consider working with a therapist face-to-face, or even seeking inpatient care. </p>
+					<br>
 
 			<p>If you feel you might hurt yourself or others, this service cannot help you. If you are a resident of the U.S., please contact the suicide prevention hotline at 1.800.784.2433 for immediate help.</p>
             
@@ -126,6 +132,7 @@
         <div>
           <p>
 			We will only share your phone number with your chosen therapist, and we will never share your email address. You can also delete all your information permanently from our systems.</p>
+			<br>
 
 			<p>On the technical side, all incoming and outgoing transmissions through scouterapp.com are secured through the SSL (Secure Sockets Layer) protocol. Further, all data provided to us is encrypted before it is stored."</p>
         </div>
@@ -139,19 +146,18 @@
         <div>
           <p>
             "We're Matthew Krisiloff and Gene Lee, two recent graduates of University of Chicago who believe it should be easier and more comfortable to access qualified mental health support.</p>
+						<br>
 
 <p>Matthew: I struggled with being gay from high school until mid-college—until I worked with a therapist.</p>
+<br>
 <p>This ended up being one of the best decisions I ever made, but it took way too long.
 I wanted to see someone for years, but I was scared and didn’t know how to go about it. There were also many days where I just didn’t think it was necessary…it seemed like I could just shoulder things myself. It’s a shame, because it wasn’t true. If I had worked with a therapist sooner, I know I could have worked through things and been happier much sooner.</p>
+<br>
 
 <p>That’s why I’m building this—getting started with a therapist should be much easier.</p>
+<br>
 
-
-<p>Gene: I studied psychology in college, specializing in mental illness and psychiatry. (…)</p>
-
-
-"
-          </p>
+<p>Gene: In college I studied psychology, specializing in mental illness and psychiatry. </p>
         </div>
     	</div>
 		</div>

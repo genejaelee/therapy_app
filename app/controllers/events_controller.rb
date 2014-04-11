@@ -4,7 +4,7 @@ class EventsController < ApplicationController
     @event = Event.create(event_params)
     @event.user_id = @user.id
     if @event.save
-      render 'users/charge'
+      render 'users/save_c'
     else
       redirect_to :controller => 'therapists', :action => 'index', :messages => "error"
     end

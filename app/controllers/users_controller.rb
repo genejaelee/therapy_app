@@ -23,12 +23,12 @@ class UsersController < ApplicationController
     end
   end
   
-  def charge 
+  def save_c
     @user = @_current_user
     @user.stripe_token = params[:stripeToken]
     @user.save_user_card
     
-    redirect_to update_user_path
+    render "users/update"
     
   rescue Stripe::CardError => e
     flash[:error] = e.message
