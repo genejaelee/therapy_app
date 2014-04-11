@@ -35,7 +35,6 @@ class User < ActiveRecord::Base
   
   def save_user_card
     customer = Stripe::Customer.create(
-      :email => self.email,
       :card => self.stripe_token
     )
     

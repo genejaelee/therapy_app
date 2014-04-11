@@ -15,7 +15,7 @@
 <div class="panel signup-panel">
 	<div class="bg-container">
 		<div class="container">
-			<%= form_for @user, url: { controller: "users", action: "finish" } do |f| %>
+			<%= form_for @user, url: { controller: "users", action: "update" } do |f| %>
 				
 				<%= label_tag :name, "What's your name?"%>
 				<%= f.text_field :name, :autofocus => "true", :placeholder => "First name (optional)" %>
