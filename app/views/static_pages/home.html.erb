@@ -5,12 +5,12 @@
 				<%= link_to image_tag("couch-logo5.png", height: "60px", class: "top-logo"), homepage_path %>
 			</div>
 			<div class="sixteen columns" id="copy-container">
-				<h1>Try your local therapist, anonymously.</h1>
-				<h5>Personalized response, contact info, no obligation. We'll help you get help.</h5>
+				<h1>Get a therapist to call you.</h1>
+				<h5>Try therapy the simplest way — by taking a phonecall.</h5>
 			</div>
 			<div class="sixteen columns" id="cta-form">
 				<%= render 'users/create' %>
-				<span id="secure-notice">Remain anonymous. Your email is stored securely and never shared.</span>
+				<span id="secure-notice">This is confidential. Your email is stored securely and never shared.</span>
 				<%= render 'shared/error_messages' %>
 				<% flash.each do |key, value| %>
 					<div class="alert alert-<%= key %>"><%= value %></div>
@@ -24,13 +24,15 @@
 	<div class="bg-container">
 		<div class="container">
 			<div class="eight columns">
-				<h2>It's <span class="medium-font">hard</span> to reach out.</h2>
+				<h2>It's <span class="medium-font">too hard</span> to try therapy.</h2>
 			</div>
 			<div class="twelve columns">
-				<p>You may worry that loved ones or peers will judge you. There are too many different answers on the Web and you just want to know what is right for you. You don't even know how to begin finding the right person.</p>
-				<p>We've been exactly there. And that's why we want to help.</p>
-				<h2>Our software will get you help.</h2>
-				<p>We've built a system that sends messages to therapists on your behalf without revealing your identity. Send in what's on your mind, and it forwards it along to a few therapists in your local area. Their responses are then sent your way. Helpful advice. Contact information. Guaranteed.
+				<p>The idea itself may scare you. You might wrestle with thinking it could help, yet wonder if it's just a sham. And how do you choose a therapist? When you're feeling crappy, you probably don't want to dig in.</p>
+				<p>We’ve been exactly there. So we want to make it effortless. </p>
+				
+				<h2>Now, just answer your phone.</h2>
+				<p>We've made it quite simple to try therapy. Choose a therapist, and schedule a 30 minute phonecall. At the set time, pick up. That's it.
+					
 			</div>
 		</div>
 	</div>
@@ -40,15 +42,21 @@
 	<div class="bg-container">
 		<div class="container">
 			<div class="sixteen columns" id="how-header">
-				<h1>How to get help</h1>
+				<h1>How it works</h1>
+			</div>
+			<div class="sixteen columns" id="how-header">
+				<h1>$40</h1>
+				<h2>for a half-hour session.</h2>
+				<h1>Charged afterwards, only if you have a positive experience</h1>
 			</div>
 			<div class="full-span">
 				<div class="three columns">
 					<div class="image" id="form-icon"></div>
 				</div>
 				<div class="nine columns">
-					<h3>Fill out our short form.</h2>
-					<p>Explain as best you can what's on your mind, and ask any questions you might have - this is your space. Give a few simple background details, and you're done.</p>
+					<h3>Sign up and choose a time.</h2>
+					<p>Pick a therapist to work with, and choose a time to be called for a half-hour session. Give a few simple background details as well as your payment information. <b>This is just for our records, you will not be charged until after your session.</b></p>
+//how do I make the last sentence bold up above?
 				</div>
 			</div>
 			<div class="full-span">
@@ -56,8 +64,8 @@
 					<div class="image" id="clock-icon"></div>
 				</div>
 				<div class="eleven columns">
-					<h3>Sit back, therapists will respond.</h2>
-					<p>Based on what you share--and without revealing your identity--our system messages local therapists on your behalf. Based on their expert knowledge, therapists are asked to share helpful advice, such as free community resources, and how they can help</p>
+					<h3>Answer your phone.</h2>
+					<p>Have a private, half-hour conversation about what’s on your mind. That’s all you have to do.</p>
 				</div>
 			</div>
 			<div class="full-span">
@@ -65,8 +73,8 @@
 					<div class="image" id="cal-icon"></div>
 				</div>
 				<div class="nine columns">
-					<h3>Help delivered.</h2>
-					<p>The system forwards their personalized responses to you, how they can help, and provides you with their contact information. No obligation to follow up. </p>
+					<h3>We'll follow up.</h2>
+					<p>We’ll check in over email and ask how things went. If it was a positive experience, we can schedule you another session. If you disliked the session, we will pay the therapist $40 on your behalf. You will not be charged a dime. It’s as simple as that.</p>
 				</div>
 			</div>
 		</div>
@@ -84,40 +92,65 @@
 		<div class="container">
 			<h2>Frequently Asked Questions</h2>
       <div id="accordion">
-        <h3>Who are you? Why are you doing this?</h3>
+        <h3>Is talking over the phone as effective as seeing a therapist face to face?</h3>
         <div>
           <p>
-            "We are two people who understand how difficult it can be to speak openly and find help while struggling with life hardships. We are doing this because we want to make it as easy as possible for people struggling with issues to get professional help."
+			University of Cambridge psychologists performed a research study with ~4,000 patients across ~190,000 therapy sessions in order to compare ‘over-the-telephone’ and ‘face-to-face’ therapy. Their findings were positive:</p>
+
+			<p>“We demonstrated that over-the-telephone and face-to-face showed equivalent effectiveness for anxiety symptoms, depression symptoms, and work and social functioning in all but the most severely affected patients”</p>
+
+			<p>So according to this study (as well as others), it can be just as effective for mild/moderate depression, stress, anxiety, and insecurity. If you’re struggling with severe or extreme feelings though, you likely need more intensive, face-to-face resources for help. </p>
+
+			<p>If you’re skeptical, we suggest just giving it a try. At the least, you can see what a session of therapy is like, and decide after if you’d prefer to see someone in-person.</p>
+
+			<p>If you’d like to read the quoted study, please click here: http://www.plosone.org/article/fetchObject.action?uri=info%3Adoi%2F10.1371%2Fjournal.pone.0042916&representation=PDF</p>
+            
           </p>
         </div>
-        <h3>Who's going to read what I write?</h3>
+        <h3>So if I dislike my session, you’ll pay the therapist for me? Why would you do that?</h3>
         <div>
           <p>
-            "Based on the zipcode you provide us with, our system will reach out to therapists within your area with the question you provide. No one will see your questions and information besides us and the therapists we contact. And your identity will never be revealed. You can read more in our <%= link_to "Privacy Policy", privacy_path %><span>"</span>
+			We want to make sure you and the therapist are as comfortable as possible in your conversation. A lot of therapists offer a short ‘free trial’ consultation, but we’ve found these can be uncomfortable—prospective clients can feel guilty taking the therapist’s time without him/her getting paid, and the therapist might feel like he/she needs to make a sales pitch. Those thoughts aren’t helpful or authentic for either person. We think if the therapist is definitely getting paid, both parties will feel more comfortable going into the conversation. </p>
+			<p>That way, you’re more likely to have a positive experience—and if you don’t, it’s motivation for us to figure out how to make the experience right.</p>
+            
           </p>
         </div>
-        <h3>How long will it be before I hear back?</h3>
+        <h3>Is this appropriate for severe mental illness?</h3>
         <div>
-          <p>
-            "The amount of time it will take can vary, but we will get back to you with therapists' advice, how they can help, and contact information as soon as possible. Give us a few days and feel free to shoot us an email at any time: <li><a href="mailto:scouterapp@gmail.com">scouterapp@gmail.com</a><span>"</span></li>
-          </p>
-        </div>
-        <h3>What constitutes a therapist?</h3>
-        <div>
-          <p>
-            "A person who is qualified to treat someone with a mental disorder by helping them understand their illness. A therapist teaches people strategies and gives them tools to deal with stress, unhealthy thoughts, and behaviors. <span style="font-style: italic">--National Institute of Mental Health"</span>
-          </p>
-        </div>
-        <h3>Is this service free?</h3>
-        <div>
-          <p>
-            "Yes, this service is provided to you at no cost."
-          </p>
+          <p>No, it’s not. If you or the therapist you contact think you need more intensive help, then please consider working with a therapist face-to-face, or even seeking inpatient care. </p>
+
+			<p>If you feel you might hurt yourself or others, this service cannot help you. If you are a resident of the U.S., please contact the suicide prevention hotline at 1.800.784.2433 for immediate help.</p>
+            
         </div>
         <h3>How is my information kept confidential?</h3>
         <div>
           <p>
-            "All incoming and outgoing transmissions through scouterapp.com are secure through the SSL (Secure Sockets Layer) protocol, evidenced by https://. Furthermore, any data provided to us is encrypted before it is stored ensuring that even in the case that the database is hijacked, no personal information can be taken from it."
+			We will only share your phone number with your chosen therapist, and we will never share your email address. You can also delete all your information permanently from our systems.</p>
+
+			<p>On the technical side, all incoming and outgoing transmissions through scouterapp.com are secured through the SSL (Secure Sockets Layer) protocol. Further, all data provided to us is encrypted before it is stored."</p>
+        </div>
+        <h3>Can I use medical insurance?</h3>
+        <div>
+          <p>
+            Sorry, no. We hope to offer that someday, but we’re just starting this and aren’t in a position to work with insurance companies. We’ve tried to keep the cost down though (talking over the phone is cheaper for therapists than operating out of an office), and it should be close to the range of a typical outpatient co-payment.
+          </p>
+        </div>
+        <h3>Who are you? Why are you doing this?</h3>
+        <div>
+          <p>
+            "We're Matthew Krisiloff and Gene Lee, two recent graduates of University of Chicago who believe it should be easier and more comfortable to access qualified mental health support.</p>
+
+<p>Matthew: I struggled with being gay from high school until mid-college—until I worked with a therapist.</p>
+<p>This ended up being one of the best decisions I ever made, but it took way too long.
+I wanted to see someone for years, but I was scared and didn’t know how to go about it. There were also many days where I just didn’t think it was necessary…it seemed like I could just shoulder things myself. It’s a shame, because it wasn’t true. If I had worked with a therapist sooner, I know I could have worked through things and been happier much sooner.</p>
+
+<p>That’s why I’m building this—getting started with a therapist should be much easier.</p>
+
+
+<p>Gene: I studied psychology in college, specializing in mental illness and psychiatry. (…)</p>
+
+
+"
           </p>
         </div>
     	</div>
