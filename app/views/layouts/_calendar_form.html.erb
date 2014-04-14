@@ -20,6 +20,7 @@
 	
 			<%= f.hidden_field :therapist_id, :value => @therapist_id %>
 			<%= f.hidden_field :user_id, :value => @_current_user.id %>
+			<%= f.hidden_field :user_id, :value => @_current_user.time_zone %>
 	
 			<%= f.submit "Request a Call", :class => "submit_button_white button" %>
 		<% end %>

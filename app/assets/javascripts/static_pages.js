@@ -58,6 +58,9 @@ var ready = function() {
 	$('.date-field').mask('00/00/0000');
 	$('.time-field').mask('00:00AA')
 	
+	var timeZone = jstz.determine();
+	document.cookie = 'jstz_time_zone='+timeZone.name()+';';
+	
 	$('.cta-button2').click(function(){
 	  $('html,body').stop().animate({
 			scrollTop: 0}, 

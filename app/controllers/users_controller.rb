@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.update_attributes(:time_zone => cookies["jstz_time_zone"])
       session[:current_user_id] = @user.id
       #if @user.promo_code == "WHISPER033"
         #render "users/create"
@@ -62,7 +63,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :phone, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
+    params.require(:user).permit(:name, :phone, :email, :zipcode, :time_zone, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
     :stripe_token,
     :flag_therapist)
   end
