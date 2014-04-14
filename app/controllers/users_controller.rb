@@ -10,8 +10,8 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    @user.update_attributes(:time_zone => cookies["jstz_time_zone"])
     if @user.save
-      @user.update_attributes(:time_zone => cookies["jstz_time_zone"])
       session[:current_user_id] = @user.id
       #if @user.promo_code == "WHISPER033"
         #render "users/create"
