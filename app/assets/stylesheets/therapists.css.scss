@@ -80,13 +80,15 @@
 
 .profile-link-panel {
 	height: 335px;
+	position: relative;
+	overflow: hidden;
 	
 	.bg-container {
 		box-shadow: 0px 4px 4px rgba(0,0,0,0.08);
 		height: $profile-index-height;
+		overflow: hidden;
 		padding: 0px;
 		height: 100%;
-		overflow: hidden;
 		
 		.inner-container:hover {
 			cursor: pointer;
@@ -95,7 +97,11 @@
 		}
 
 		.inner-container {
-			position: relative;
+			max-width: $max-width;
+			position: absolute;
+			box-shadow: 0px 2px 1px rgba(0,0,0,0.08);
+			z-index: 2;
+			top: 0px;
 			padding: 50px 0px;
 			background-color: #fff;
 			width: 100%;
@@ -179,7 +185,10 @@
 		}
 		
 		.gen-header {
-			box-shadow: inset 0px 4px 2px rgba(0,0,0,0.07);
+			max-width: $max-width;
+			z-index: 1;
+			position: absolute;
+			bottom: 0px;
 			//overflow-y: scroll;
 			padding: 30px 0px;
 			width: 100%;
