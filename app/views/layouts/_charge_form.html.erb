@@ -1,8 +1,8 @@
 <%= form_tag("/save_c") do %>
 	<article>
 		<label class="amount">
-			<h2>Get advice from a therapist for just <%= "$" + (@user.price.to_f / 100).ceil.to_s %>.</h2>
-			<h3>Pay securely and confidentially with Stripe.</h3>
+			<h2><%= "$" + (@user.price.to_f / 100).ceil.to_s %>.</h2>
+			<h3>Pay securely via Stripe -- We will not receive your card information.</h3>
 		</label>
 	</article>
 	
