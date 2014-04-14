@@ -715,4 +715,27 @@ p {
 			}
 		}
 	}
+	
+	#how-it-works {
+		.bg-container {
+		
+			.container {
+			
+				#how-header {
+					h1 {
+						font-size: 34px;
+					}
+	
+					h2 {
+						font-size: 24px !important;
+						line-height: 28px;
+					}
+					h5 {
+						font-size: 20px !important;
+						line-height: 20px;
+					}
+				}
+			}
+		}
+	}
 }

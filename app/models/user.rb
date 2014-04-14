@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :therapists, through: :events
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :gender_pref, :insurance, :key => :encryption_key
-  attr_accessor :should_validate_age, :stripe_token, :paid, :add_responses
+  attr_accessor :should_validate_age, :paid, :add_responses
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   #validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }

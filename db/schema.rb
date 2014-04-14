@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414183647) do
+ActiveRecord::Schema.define(version: 20140414195549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20140414183647) do
     t.string   "current_therapist_name"
     t.string   "price"
     t.boolean  "flag_therapist"
+    t.string   "stripe_token"
   end
 
 end

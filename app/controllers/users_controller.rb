@@ -27,19 +27,14 @@ class UsersController < ApplicationController
     @user = @_current_user
     @user.stripe_token = params[:stripeToken]
     @user.email = params[:stripeEmail]
+    @user.save
     @user.save_user_card
+    
     render "users/finish"
     
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    
-    if @user.update_attributes(user_params)
-      @user.save
-      reset_session
-    else
-      render "users/save_c"
-      flash[:fail] = "Sorry there was an error processing your entries."
-    end
+    render "users/save_c"
   end
   
   def update

@@ -102,7 +102,7 @@
 }
 
 .profile-link-panel {
-	height: 335px;
+	height: 345px;
 	position: relative;
 	overflow: hidden;
 	
@@ -168,14 +168,13 @@
 	
 			.twelve {
 				h3 {
-					margin-bottom: 10px;
+					margin-bottom: 5px;
 					font-size: 24px;
 					font-weight: 600;
 					color: $scouter-teal-fade;
 					opacity: 0.8;
 					line-height: 24px;
 					font-family: "HelveticaNeue-Light";
-					margin-bottom: 10px;
 					
 					span {
 						list-style: none;
@@ -184,7 +183,7 @@
 						font-size: 18px;
 						line-height: 20px;
 						color: #aaa;
-						margin-bottom: 10px;
+						margin-bottom: 5px;
 					}
 				}
 		
@@ -200,8 +199,9 @@
 					color: #aaa;
 					line-height: 18px;
 					font-size: 14px;
-					max-height: 90px;
+					max-height: 180px;
 					overflow: hidden;
+					margin-bottom: 0px;
 				}
 			}
 		}
@@ -431,7 +431,7 @@
 		.bg-container {
 			height: auto;
 			.inner-container {
-				height: 600px;
+				height: 650px;
 				
 				.image-container {
 					text-align: center;
@@ -444,12 +444,20 @@
 				.columns {
 					
 					h3 {
-						font-size: 22px;
+						text-align: center;
+						margin-bottom: 0px;
+						font-size: 20px;
 						span {
 							display: block;
-							font-size: 18px;
+							font-size: 16px;
+							color: #828282;
 							width: 100%;
+							margin-bottom: 0px;
 						}
+					}
+					
+					p {
+						margin-top: 5px;
 					}
 					
 					.profile-link-container {

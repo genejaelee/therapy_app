@@ -6,16 +6,16 @@ function is_touch_device() {
 // text area functions
 function updateCountdown() {
     // 500 is the max message length
-		var limit = 241;
-		var wordCount = $('#explanation-text').val().trim().split(" ").length;
-		var remainingWords = limit - $('#explanation-text').val().trim().split(" ").length;
+		var limit = 141;
+		var wordCount = $(this).val().trim().split(" ").length;
+		var remainingWords = limit - $(this).val().trim().split(" ").length;
     $('#counter-text').text(remainingWords + ' words remaining.');
 		
-		$('#explanation-text').keypress(function(e) {
+		$(this).keypress(function(e) {
 			if (wordCount > limit) {
 				e.preventDefault();
 			} else if (wordCount < limit) {
-				$('#explanation-text').unbind('keypress');
+				$(this).unbind('keypress');
 			}
 		});
 }
@@ -82,6 +82,9 @@ var ready = function() {
 	$('#explanation-text').change(updateCountdown);
 	$('#explanation-text').keyup(updateCountdown);
 	
+	$('#therapist-bio').change(updateCountdown);
+	$('#therapist-bio').keyup(updateCountdown);
+	
 	//therapist profile stuff
 	addSubsection()
 	
@@ -127,7 +130,7 @@ var ready = function() {
 	$('.profile-link-panel .bg-container .inner-container').click(function(){
 		var windowWidth = $(window).width()
 		if(windowWidth < 480) {
-			var maxHeight = '1300';
+			var maxHeight = '1350';
 		}
 		else if(480 < windowWidth && windowWidth < 767) {
 			var maxHeight = '1200';
