@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :therapists, through: :events
   
   attr_encrypted :name, :email, :zipcode, :description, :gender, :age, :gender_pref, :insurance, :key => :encryption_key
-  attr_accessor :should_validate_age, :paid, :add_responses
+  attr_accessor :should_validate, :paid, :add_responses
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   #validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -12,8 +12,9 @@ class User < ActiveRecord::Base
   #validates_format_of :zipcode, :with => /^\d{5}(?:[-\s]\d{4})?$/, multiline: true, :message => "should be in the form 12345 or 12345-1234"
   #validates :description, presence: true, :on => :update
   
-  #validates :age, presence: true, numericality: true, :on => :update
-  #validates :phone, presence: true, :on => :update
+  validates :name, presence: true, :on => :update, :if => :should_validate
+  validates :age, presence: true, numericality: true, :on => :update, :if => :should_validate
+  validates :phone, presence: true, :on => :update, :if => :should_validate
   
   def zipcode_validator
     if ((ZipCodeInfo.instance.scf_city_for self.zipcode) == false)

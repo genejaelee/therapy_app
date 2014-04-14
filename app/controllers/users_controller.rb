@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     @user.save_user_card
     
     render "users/finish"
+    reset_session
     
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
   
   def update
     @user = @_current_user
+    @user.should_validate = true
     if @user.update_attributes(user_params)
       session[:current_user_id] = @user.id
       render 'users/save_c'
