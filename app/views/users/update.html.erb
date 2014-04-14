@@ -38,6 +38,9 @@
 				
 					<%= label_tag :insurance, "If you have an insurance provider let us know who. If not, enter 'don't know'" %>
 					<%= f.text_field(:insurance, :placeholder => "ex. Anthem Blue Cross")%>
+					
+					<%= label_tag :phone, "What is the best number your selected therapist can contact you at?"%>
+					<%= f.text_field(:phone, :class => "phone-field", :placeholder => "(213) 493-1588")%>
 				
 					<%= render 'shared/error_messages' %>
 				

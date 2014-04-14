@@ -1,9 +1,14 @@
 <% content_for :title do %>
-  Thanks for sharing.
+  You're done
 <% end %>
 
 <% content_for :body do %>
-  <p>We will contact you shortly.</p>
+	<% @user = @_current_user %>
+  <p>Thanks for signing up and requesting a session. On <%= @user.start_date %> at <%= @user.start_time %>, <%= @user.therapists.first_name %> <%= @user.therapists.last_name %> will call you at <%= @user.phone %>. </p>
+	
+	<p>Please make sure to answer the call. If you need to change your scheduled time, please email us at Scouterapp@gmail.com, preferably 24 hours in advance.</p>
+	
+	<p>After your call, we will follow up with you at <%= @user.email %> to see how things went. Remember, your card will not be charged until this time.</p>
 <% end %>
 
 <%= render 'layouts/header' %>

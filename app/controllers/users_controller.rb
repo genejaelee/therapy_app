@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       session[:current_user_id] = @user.id
       render 'users/save_c'
     else
-      render "users/create"
+      render "users/update"
     end
   end
   
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
+    params.require(:user).permit(:name, :phone, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
     :stripe_token,
     :flag_therapist)
   end
