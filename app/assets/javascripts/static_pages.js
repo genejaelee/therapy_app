@@ -111,8 +111,19 @@ var ready = function() {
 		goToByScroll('#therapist-contact')
 	});
 	
-	var currentHeightPixels = $('.profile-link-panel').css('height');
-	var currentHeight = currentHeightPixels.slice(0, 3)
+	//therapist index stuff
+	$('#open-email-dropbox').click(function(){
+		$('.email-dropbox').css({'display' : 'block',
+														'margin-top' : '-151px',
+														'opacity' : '0'});
+		$('.email-dropbox').stop().animate({opacity: 1.0, 'margin-top' : '0px'}, 350, "easeOutCubic")
+	});
+	
+	if($('body').is('#therapist-index')) {
+		var currentHeightPixels = $('.profile-link-panel').css('height');
+		var currentHeight = currentHeightPixels.slice(0, 3);
+	}
+	
 	$('.profile-link-panel .bg-container .inner-container').click(function(){
 		var windowWidth = $(window).width()
 		if(windowWidth < 480) {
@@ -152,6 +163,19 @@ var ready = function() {
 			var thisProfile = $(this).parent().parent();
 			openCloseOnClick(thisProfile, currentHeight, maxHeight);
 		});
+	}
+	
+	//handle unbeforeunload method for pages x y z
+	$('.button').click(function() {
+		window.onbeforeunload = null;
+	});
+	$('button').click(function() {
+		window.onbeforeunload = null;
+	});
+	if($('body').is('#form-page')) {
+		window.onbeforeunload = function() {
+			return("Your changes may not be saved.");
+		}
 	}
 }
 

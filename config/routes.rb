@@ -16,7 +16,7 @@ TherapyApp::Application.routes.draw do
   match '/create' => 'therapists#create', :constraints => { :subdomain => 'therapy' }, via: 'post'
   match '/' => 'therapists#home', :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/update' => 'therapists#update', :constraints => { :subdomain => 'therapy' }, via: 'patch'
-  match '/browse' => 'therapists#index', via: 'get'
+  match '/browse' => 'therapists#index', :as => :therapists_index, via: 'get'
   match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/:id' => 'therapists#show', :as => :show_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
   

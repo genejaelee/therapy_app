@@ -37,6 +37,15 @@
 			}
 
 			.columns {
+				
+				a {
+					color: #fff;
+				}
+				a:hover {
+					opacity: 0.8;
+					border-bottom: 1px dashed #fff;
+					cursor: pointer;
+				}
 
 				h1 {
 					color: #fff;

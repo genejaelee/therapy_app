@@ -1,25 +1,27 @@
-<% content_for :title do %>
-  Payment information, the final step.
-<% end %>
-
-<% content_for :body do %>
-  <p>Remember, you are not currently being charged. You will not be charged until after your session, and only if you confirm it was a positive experience.</p>
-	
-	<p></p>
-<% end %>
-
-<%= render 'layouts/header' %>
-
-<div id="charge-panel" class="panel">
-	<div class="bg-container">
-		<div class="container">
-
-<%= render 'layouts/charge_form' %>
-
-	<% flash.each do |key, value| %>
-		<div class="alert alert-<%= key %>"><%= value %></div>
+<body id="form-page">
+	<% content_for :title do %>
+	  Payment information, the final step.
 	<% end %>
 
+	<% content_for :body do %>
+	  <p>Remember, you are not currently being charged. You will not be charged until after your session, and only if you confirm it was a positive experience.</p>
+	
+		<p></p>
+	<% end %>
+
+	<%= render 'layouts/header' %>
+
+	<div id="charge-panel" class="panel">
+		<div class="bg-container">
+			<div class="container">
+
+	<%= render 'layouts/charge_form' %>
+
+		<% flash.each do |key, value| %>
+			<div class="alert alert-<%= key %>"><%= value %></div>
+		<% end %>
+
+			</div>
 		</div>
 	</div>
-</div>
+</body>

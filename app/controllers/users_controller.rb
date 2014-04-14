@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
   
   def finish
-    @user = User.find(session[:current_user_id])
+    @user = @_current_user
     @user.should_validate_age = true
     if @user.update_attributes(user_params)
       @user.save
@@ -68,6 +68,7 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
-    :stripe_token)
+    :stripe_token,
+    :flag_therapist)
   end
 end

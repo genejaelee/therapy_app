@@ -1,2 +1,17 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<body>
+	<% content_for :title do %>
+	  Oops, looks like there was a mistake.
+	<% end %>
+
+	<% content_for :body do %>
+	  <p>Sorry for the inconvenience. Try going back and setting up the appointment again <%= link_to 'here', therapists_index_path %></p>
+	<% end %>
+	
+	<%= render 'layouts/header' %>
+	<div class="panel">
+		<div class="bg-container">
+			<div class="container">
+			</div>
+		</div>
+	</div>
+</body>
