@@ -1,6 +1,6 @@
 <div class="calendar-form-container">	
 	<div class="sixteen columns">
-		<h1>Get a call from <%= therapist.first_name %></h1>
+		<h1>Get <%= therapist.first_name %> to call you.</h1>
 	</div>
 	<div class="four columns spacer">&nbsp;</div>
 	<div class="eight columns">
@@ -21,7 +21,7 @@
 			<%= f.hidden_field :therapist_id, :value => @therapist_id %>
 			<%= f.hidden_field :user_id, :value => @_current_user.id %>
 	
-			<%= f.submit "Request Appointment", :class => "submit_button_white button" %>
+			<%= f.submit "Request a Call", :class => "submit_button_white button" %>
 		<% end %>
 	</div>
 </div>
