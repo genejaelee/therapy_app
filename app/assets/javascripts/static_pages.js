@@ -148,14 +148,6 @@ var ready = function() {
 		openCloseOnClick(thisProfile, currentHeight, maxHeight);
 	});
 	
-	// calendar
-	$('#calendar').fullCalendar({
-	  // put your options and callbacks here
-		editable: true,
-		slotMinutes: 30,
-		dragOpacity: "0.5"
-	});
-	
 	if (is_touch_device()) {
 		var arrowDown = $('.arrow-down')
 		arrowDown.on( 'touchend', function(){
