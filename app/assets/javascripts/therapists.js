@@ -46,6 +46,7 @@ function renderEitherCalendarOrProfile(thisButton) {
 
 function openCloseOnClick(element, min, max) {
 	if ($(element).hasClass("closed")) {
+		goToByScroll(element);
 		$(element).stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
 			$(element).removeClass("closed");
 			$(element).addClass("opened");

@@ -129,7 +129,6 @@ var ready = function() {
 		}
 		var thisProfile = $(this).parent().parent();
 		openCloseOnClick(thisProfile, currentHeight, maxHeight);
-		goToByScroll(thisProfile);
 	});
 	
 	// calendar
@@ -152,7 +151,6 @@ var ready = function() {
 			}
 			var thisProfile = $(this).parent().parent();
 			openCloseOnClick(thisProfile, currentHeight, maxHeight);
-			goToByScroll(thisProfile);
 		});
 	}
 }
