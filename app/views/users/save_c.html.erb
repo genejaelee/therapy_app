@@ -5,8 +5,10 @@
 
 	<% content_for :body do %>
 	  <p>Remember, you are not currently being charged. You will not be charged until after your session, and only if you confirm it was a positive experience.</p>
+	<% end %>
 	
-		<p></p>
+	<% content_for :arrow_down_option do %>
+	<% render 'layouts/arrow_down' %>
 	<% end %>
 
 	<%= render 'layouts/header' %>
