@@ -37,7 +37,12 @@ class TherapistsController < ApplicationController
   
   def index
     @event = Event.new
-    @user = @_current_user
+    if @_current_user.nil?
+      @_current_user = User.new(params[:user])
+      @user = @_current_user
+    else
+      @user = @_current_user
+    end
     @therapist = Therapist.all
   end
   
