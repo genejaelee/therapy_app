@@ -1,0 +1,109 @@
+@import 'variables.css.scss';
+
+.ui-datepicker-week-end {
+	tr {
+		th {
+			display: block;
+			width: 30%;
+		}
+	}
+}
+
+.ui-datepicker-inline {
+	margin: auto;
+	padding: 8px;
+	width: 300px;
+	border: 1px solid $scouter-blue;
+	background: none;
+	background-color: #fff;
+	
+	.ui-datepicker-header {
+		border: 1px solid $scouter-blue;
+		background: none;
+		background-color: #fff;
+		
+		.ui-datepicker-prev {
+			left: 3px;
+			top: 3px;
+		}
+		
+		.ui-datepicker-next {
+			right: 3px;
+			top: 3px;
+		}
+		
+		.ui-state-hover {
+			background: none;
+			border: 1px solid $scouter-blue;
+		}
+		
+		.ui-datepicker-title {
+			span {
+				color: $scouter-blue;
+				font-family: $light-font;
+				font-weight: 200;
+				font-size: 18px;
+			}
+		}
+	}
+	
+	.ui-datepicker-calendar {
+		background-color: #fff;
+		color: $scouter-blue;
+		font-family: $light-font;
+		font-weight: 200;
+		
+		.thead {
+		}
+		
+		tbody {
+			tr {
+				.ui-datepicker-current-day {
+					background-color: #eee;
+					
+					a {
+						background-color: #eee;
+					}
+				}
+				td {
+					
+					border: 1px solid $scouter-blue;
+					margin: 2px;
+					padding: 2px;
+					width: 14%;
+					text-align: center;
+					a {
+						font-size: 14px;
+						line-height: 28px;
+						width: 100%;
+						text-align: center;
+						background: none;
+						background-color: #fff;
+						color: $scouter-blue;
+						font-weight: 400;
+						border: none;
+						margin: auto;
+					}
+				}
+				
+				td:hover {
+					border: 1px solid $scouter-blue;
+					background-color: #eee;
+					a {
+						background-color: #eee;
+					}
+				}
+			}
+		}
+		
+		span {
+			@extend .ui-datepicker-calendar;
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.ui-datepicker-inline {
+		width: 280px;
+	}
+}

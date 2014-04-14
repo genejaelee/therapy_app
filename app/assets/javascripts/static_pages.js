@@ -71,20 +71,12 @@ var ready = function() {
   });
 	
   $(function() {
-    $( ".date-field" ).datepicker({ dateFormat: 'mm/dd/yy' });
+    $( ".datepicker-container" ).datepicker({ dateFormat: 'mm/dd/yy', inline: true, altField: '.date-field' });
   });
 	
   $(function() {
     $( ".time-field" ).timepicker();
   });
-	
-	
-	if (is_touch_device()) {
-		var arrowDown = $('.arrow-down')
-		arrowDown.on( 'touchend', function(){
-			goToByScroll(".signup-panel");
-		});
-	}
 	
 	//updating countdown on explanation for therapist
 	$('#explanation-text').change(updateCountdown);
@@ -119,11 +111,23 @@ var ready = function() {
 		goToByScroll('#therapist-contact')
 	});
 	
-	$('.profile-open-button').click(function(){
-		var thisProfile = $(this).parent().parent().parent().parent().parent();
-		var thisButton = $(this).children('.button');
-		renderEitherCalendarOrProfile(thisButton);
-		openCloseOnClick(thisProfile, thisButton, 355, 770);
+	var currentHeight = $('.profile-link-panel').css('height');
+	$('.profile-link-panel .bg-container .inner-container').click(function(){
+		var windowWidth = $(window).width()
+		if(windowWidth < 480) {
+			var maxHeight = '1300px';
+		}
+		else if(480 < windowWidth && windowWidth < 767) {
+			var maxHeight = '1200px';
+		}
+		else if(767 < windowWidth && windowWidth < 960) {
+			var maxHeight = '850px';
+		}
+		else if(960 < windowWidth) {
+			var maxHeight = '775px';
+		}
+		var thisProfile = $(this).parent().parent();
+		openCloseOnClick(thisProfile, currentHeight, maxHeight);
 		goToByScroll(thisProfile);
 	});
 	
@@ -134,6 +138,22 @@ var ready = function() {
 		slotMinutes: 30,
 		dragOpacity: "0.5"
 	});
+	
+	if (is_touch_device()) {
+		var arrowDown = $('.arrow-down')
+		arrowDown.on( 'touchend', function(){
+			goToByScroll(".signup-panel");
+		});
+		
+		$('.profile-link-panel .bg-container .inner-container').on( 'touchend', function(){
+			if(windowWidth < 480) {
+				var maxHeight = '1300px';
+			}
+			var thisProfile = $(this).parent().parent();
+			openCloseOnClick(thisProfile, currentHeight, maxHeight);
+			goToByScroll(thisProfile);
+		});
+	}
 }
 
 $( document ).ready(ready);

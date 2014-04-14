@@ -45,105 +45,6 @@
 	border-top: 1px dashed rgba(255,255,255,0.8);
 }
 
-.ui-datepicker-week-end {
-	tr {
-		th {
-			display: block;
-			width: 30%;
-		}
-	}
-}
-
-#ui-datepicker-div {
-	box-shadow: 0px 4px 4px rgba(0,0,0,0.15);
-	padding: 8px;
-	width: 300px;
-	position: absolute !important;
-	left: 50% !important;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	margin-left: -150px !important;
-	border: 1px solid $scouter-blue;
-	background: none;
-	background-color: #fff;
-	
-	.ui-datepicker-header {
-		border: 1px solid $scouter-blue;
-		background: none;
-		background-color: #fff;
-		
-		.ui-datepicker-prev {
-			left: 3px;
-			top: 3px;
-		}
-		
-		.ui-datepicker-next {
-			right: 3px;
-			top: 3px;
-		}
-		
-		.ui-state-hover {
-			background: none;
-			border: 1px solid $scouter-blue;
-		}
-		
-		.ui-datepicker-title {
-			span {
-				color: $scouter-blue;
-				font-family: $light-font;
-				font-weight: 200;
-				font-size: 18px;
-			}
-		}
-	}
-	
-	.ui-datepicker-calendar {
-		background-color: #fff;
-		color: $scouter-blue;
-		font-family: $light-font;
-		font-weight: 200;
-		
-		.thead {
-		}
-		
-		tbody {
-			tr {
-				td {
-					border: 1px solid $scouter-blue;
-					margin: 2px;
-					padding: 2px;
-					width: 14%;
-					text-align: center;
-					a {
-						font-size: 14px;
-						line-height: 28px;
-						width: 100%;
-						text-align: center;
-						background: none;
-						background-color: #fff;
-						color: $scouter-blue;
-						font-weight: 400;
-						border: none;
-						margin: auto;
-					}
-				}
-				
-				td:hover {
-					border: 1px solid $scouter-blue;
-					background-color: #eee;
-					a {
-						background-color: #eee;
-					}
-				}
-			}
-		}
-		
-		span {
-			@extend .ui-datepicker-calendar;
-		}
-	}
-}
-
 h1 {
 	font-family: $light-font;
 }
@@ -190,9 +91,9 @@ p {
 	.bg-container {
 		background-image: image-url("mousehand5.jpg");
 		background-size: $max-width auto;
-		background-position: center;
+		background-position: center bottom;
 		background-repeat: no-repeat;
-		height: 650px;
+		height: 600px;
 	
 		.container {
 			padding-bottom: 80px;
@@ -342,9 +243,9 @@ p {
 	
 	.bg-container {
 		height: 680px;
-		background-image: image-url('trackpad.jpg');
+		background-image: image-url('phone-hand.jpg');
 		background-size: $max-width auto;
-		background-position: right;
+		background-position: center;
 	
 		.container {
 			padding-top: 110px;
@@ -354,64 +255,17 @@ p {
 				color: #626262;
 			}
 		
-			.eight.columns {
+			.ten.columns {
 				h2 {
 					padding-top: 50px;
 				}
-			}
-		
-			.twelve.columns {
-			
-				h2 {
-					margin-top: 60px;
-					color: #626262;
-					max-width: 600px;
-				}
-			
+				
 				p {
 					color: #525252;
 					font-size: 16px;
 				}
 			}
 		}
-	}
-}
-
-#how-panel1 {
-	.bg-container {
-		background-image: image-url('bike.jpg');
-		
-		.container {
-			background-color: rgba(0,0,0,0.2);
-		}
-	}
-	h1 {
-		text-align: left;
-		margin-left: 14%;
-	}
-}
-
-#how-panel2 {
-	.bg-container {
-		background-image: image-url('phone-hand.jpg');
-		.container {
-			background-color: rgba(0,0,0,0.2);
-		}
-	}
-	h1 {
-		text-align: left;
-		margin-left: 14%;
-	}
-}
-
-#how-panel3 {
-	.bg-container {
-		background-image: image-url('biking_lsd.jpg');
-		
-	}
-	h1 {
-		text-align: left;
-		margin-left: 14%;
 	}
 }
 
@@ -429,6 +283,8 @@ p {
 				}
 	
 				h2 {
+					font-weight: 600;
+					margin-bottom: 5px;
 					color: #fff !important;
 				}
 				h5 {
@@ -446,23 +302,31 @@ p {
 	}
 }
 
+#how-panel {
+	.bg-container {
+		background-image: image-url('trackpad.jpg');
+		background-position: right bottom;
+		background-size: $max-width auto;
+		
+		.container {
+		}
+	}
+}
+
 .panel3 {
 	
 	.bg-container {
 		background-color: #fff;
-		//background-image: image-url('dashed-line.png');
 		background-size: auto 100%;
-		background-position: right;
-		background-attachment: fixed;
 	
 		.container {
 			padding-top: 120px;
-			padding-bottom: 120px;
+			padding-bottom: 80px;
 			
 			#how-header {
 				h1 {
 					color: #525252;
-					margin-bottom: 15px;
+					margin-bottom: 10px;
 				}
 			
 				h2 {
@@ -480,7 +344,7 @@ p {
 			.columns {
 				color: #fff;
 				padding-bottom: 15px;
-				padding-top: 25px;
+				padding-top: 15px;
 			
 				#form-icon {
 					background-image: image-url('form-icon.png');
@@ -610,7 +474,7 @@ p {
           p {
 						font-family: $medium-font;
             color: $scouter-blue-fade; 
-		  			font-size: 24px;
+		  			font-size: 20px;
 						line-height: 36px;
 						margin: 0px 0px;
           }
@@ -683,15 +547,19 @@ p {
 	#panel2 {
 		.bg-container {
 			height: auto;
-			background-image: image-url('trackpad-tablet.jpg');
+			background-image: image-url('phone-hand.jpg');
 			background-size: 1140px auto;
-			background-position: right top;
+			background-position: right;
 			.container {
-				padding-top: 60px;
-				padding-bottom: 80px;
 				h2 {
-					padding-right: 0px;
 				}
+			}
+		}
+	}
+	
+	#how-panel {
+		.bg-container {
+			.container {
 			}
 		}
 	}
@@ -699,6 +567,20 @@ p {
 	#cta-white {
 		.bg-container {
 			background-image: none;
+		}
+	}
+}
+
+@media only screen and (max-width: 960px) {
+	#panel2 {
+		.bg-container {
+			background-image: image-url('phone-hand-tablet.jpg');
+			
+			.container {
+				.columns {
+					padding-right: 30px;
+				}
+			}
 		}
 	}
 }
@@ -743,13 +625,16 @@ p {
 	#panel2 {
 		
 		.bg-container {
+			background-image: image-url('phone-hand-mobile.jpg');
+			background-size: 767px auto;
+			background-position: bottom center;
 			height: auto;
-			background-image: none;
 			background-color: #fff;
 			
 			.container {
+				padding-right: 0px;
 				padding-top: 50px;
-				padding-bottom: 70px;
+				padding-bottom: 550px;
 				
 				h2 {
 					padding-right: 0;
@@ -760,29 +645,10 @@ p {
 		}
 	}
 	
-	#panel3 {
+	#how-panel {
 		.bg-container {
+			background-image: none;
 			.container {
-				
-				.full-span {
-					.columns {
-						padding-top: 5px;
-						padding-bottom: 0px;
-						.image {
-							margin-bottom: 15px;
-						}
-						
-						h3 {
-							margin-top: 0;
-							text-align: center;
-						}
-						
-						p {
-							margin-bottom: 50px;
-							text-align: center;
-						}
-					}
-				}
 			}
 		}
 	}
@@ -822,6 +688,16 @@ p {
 						margin-top: 10px;
 					}
 				}
+			}
+		}
+	}
+	
+	#panel2 {
+		.bg-container {
+			background-size: 480px auto;
+			
+			.container {
+				padding-bottom: 350px;
 			}
 		}
 	}

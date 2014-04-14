@@ -26,18 +26,27 @@ class UsersController < ApplicationController
   def save_c
     @user = @_current_user
     @user.stripe_token = params[:stripeToken]
+    @user.email = params[:stripeEmail]
     @user.save_user_card
-    
-    render "users/update"
+    render "users/finish"
     
   rescue Stripe::CardError => e
     flash[:error] = e.message
+    
+    if @user.update_attributes(user_params)
+      @user.save
+      reset_session
+    else
+      render "users/save_c"
+      flash[:fail] = "Sorry there was an error processing your entries."
+    end
   end
   
   def update
     @user = @_current_user
     if @user.update_attributes(user_params)
       session[:current_user_id] = @user.id
+      render 'users/save_c'
     else
       render "users/create"
     end
@@ -58,6 +67,7 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price)
+    params.require(:user).permit(:name, :email, :zipcode, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
+    :stripe_token)
   end
 end

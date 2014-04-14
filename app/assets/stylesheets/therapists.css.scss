@@ -38,22 +38,16 @@
 	}
 }
 
-.spacer {
-	display: block;
-	width: 100%;
-	height: 40px;
-}
-
 .image-panel {
 	.bg-container {
 		background-image: image-url('hiking.JPG');
 		background-size: cover;
-		height: 150px;
+		height: 120px;
 		background-attachment: fixed;
 		.container {
 			text-align: center;
 			h1 {
-				line-height: 150px;
+				line-height: 120px;
 				font-weight: 200;
 				color: rgba(255,255,255,0.9);
 				font-size: 60px;
@@ -79,89 +73,118 @@
 }
 
 .profile-link-panel {
-	height: $profile-index-height;
+	position: relative;
+	height: 335px;
+	
+	.spacer {
+		display: block;
+		width: 100%;
+		height: 40px;
+	}
+	
 	.bg-container {
-		box-shadow: 0px 4px 4px rgba(0,0,0,0.1);
+		box-shadow: 0px 4px 4px rgba(0,0,0,0.08);
 		height: $profile-index-height;
 		padding: 0px;
 		height: 100%;
 		overflow: hidden;
+		
+		.inner-container:hover {
+			cursor: pointer;
+			background-color: #f9f9f9;
+			border: 1px solid $scouter-green;
+		}
 
 		.inner-container {
-			padding: 70px 0px;
+			padding: 50px 0px;
 			background-color: #fff;
 			width: 100%;
 			height: $profile-index-height;
 			
-			.container {
-				max-width: 960px;
-				margin: auto;
-				
-				.four {
-					.cta-button-white {
-						margin: auto;
+			.tap-message {
+				visibility: hidden;
+				position: absolute;
+				font-size: 12px;
+				color: #ccc;
+				left: 10px;
+				top: 5px;
+			}
+
+			.four {
+				.cta-button-white {
+					margin: auto;
+					text-align: center;
+					
+					.button {
+						margin-bottom: 12px;
+						background-color: #fff;
+						font-family: $light-font;
+						border-radius: 5px;
+						width: 180px;
+						font-weight: 200;
+						padding-left: 30px;
+						padding-right: 30px;
+						padding-top: 10px;
+						padding-bottom: 10px;
+						font-size: 18px;
 						text-align: center;
-						
-						.button {
-							margin-bottom: 12px;
-							background-color: #fff;
-							font-family: $light-font;
-							border-radius: 5px;
-							width: 180px;
-							font-weight: 200;
-							padding-left: 30px;
-							padding-right: 30px;
-							padding-top: 10px;
-							padding-bottom: 10px;
-							font-size: 18px;
-							text-align: center;
-							border: 1px solid $scouter-green;
-							text-shadow: none;
-							color: $scouter-green;
-						}
-				
-						.button:hover {
-							background-color: #eee;
-						}
-					}
-				}
-		
-				.eight {
-					h3 {
-						margin-bottom: 10px;
-						a {
-							font-size: 28px;
-							font-weight: 600;
-							color: $scouter-teal-fade;
-							opacity: 0.8;
-							font-family: "HelveticaNeue-Light";
-							margin-bottom: 0px;
-						}
+						border: 1px solid $scouter-green;
+						text-shadow: none;
+						color: $scouter-green;
 					}
 			
-					li {
+					.button:hover {
+						background-color: #eee;
+					}
+				}
+			}
+	
+			.twelve {
+				h3 {
+					margin-bottom: 10px;
+					font-size: 24px;
+					font-weight: 600;
+					color: $scouter-teal-fade;
+					opacity: 0.8;
+					line-height: 24px;
+					font-family: "HelveticaNeue-Light";
+					margin-bottom: 10px;
+					
+					span {
 						list-style: none;
+						font-family: $medium-font;
+						font-weight: 400;
 						font-size: 18px;
 						line-height: 20px;
 						color: #aaa;
 						margin-bottom: 10px;
 					}
-			
-					.card-bio {
-						color: #aaa;
-						line-height: 18px;
-						font-size: 14px;
-						max-height: 90px;
-						overflow: hidden;
-					}
+				}
+		
+				li {
+					list-style: none;
+					font-size: 18px;
+					line-height: 20px;
+					color: #aaa;
+					margin-bottom: 10px;
+				}
+		
+				.card-bio {
+					color: #aaa;
+					line-height: 18px;
+					font-size: 14px;
+					max-height: 90px;
+					overflow: hidden;
 				}
 			}
 		}
 		
 		.gen-header {
-			padding: 40px 0px;
+			box-shadow: inset 0px 4px 2px rgba(0,0,0,0.07);
+			//overflow-y: scroll;
+			padding: 30px 0px;
 			width: 100%;
-			height: 415px;
+			height: 460px;
 			background-color: $scouter-blue;
 			.columns {
 				text-align: center;
@@ -173,78 +196,228 @@
 			.container {
 				text-align: center;
 				
-				.form-container {
-					padding: 20px 0px;
-					form {
-						label {
-							color: #fff;
-						}
-						input {
-							border: none;
-							width: 200px;
-							height: 35px;
-							text-align: center;
-							margin: auto;
-							margin-bottom: 5px;
-						}
-						
-						.submit_button_white {
-							margin-top: 10px;
-							margin-left: 0px;
-							height: 44px;
-							width: 202px;
-							color: $scouter-green;
-							font-size: 16px;
-							font-weight: 200;
-							background-color: #fff;
-							border-width: 1px;
-							border-style: solid;
-							border-color: $scouter-green;
-						}
-					}
-				}
-
-				#logo-banner {
-					padding-top: 40px;
-					padding-bottom: 40px;
-					text-align: center;
-	
-					a {
-						margin: auto;
-					}
-				}
-
-				h1 {
-					color: rgba(255,255,255,0.9);
-					margin-bottom: 5px;
-					font-size: 32px;
-				}
-				h3 {
-					color: rgba(255,255,255,0.9);
-				}
 				hr {
 					margin: 10px 0px;
 					border-top: 1px dashed rgba(255,255,255,0.5);
 				}
-				.eight {
-					text-align: center;
-					padding: 0px;
-					ul {
-						display: block;
-						margin: 10px 0px;
-						li {
+				
+				.calendar-form-container {
+					.sixteen {
+						h1 {
+							margin: 5px auto;
+							font-size: 28px;
 							color: #fff;
-							display: inline-block;
-							margin: 0px 10px;
-							line-height: 24px;
+							line-height: 28px;
 						}
-						li:hover {
-							opacity: 0.7;
-							cursor: pointer;
-							text-decoration: underline;
+					}
+					
+					.datepicker-container {
+						padding: 20px 0px;
+					}
+				
+					.form-container {
+						padding: 20px 0px;
+						form {
+							label {
+								color: #fff;
+							}
+							input {
+								border: none;
+								width: 200px;
+								height: 35px;
+								text-align: center;
+								margin: auto;
+								margin-bottom: 5px;
+							}
+						
+							.submit_button_white {
+								margin-top: 10px;
+								margin-left: 0px;
+								height: 44px;
+								width: 202px;
+								color: $scouter-green;
+								font-size: 16px;
+								font-weight: 200;
+								background-color: #fff;
+								border-width: 1px;
+								border-style: solid;
+								border-color: $scouter-green;
+							}
 						}
 					}
 				}
+				
+				.profile-more-container {
+					hr {
+						margin: 5px 0px;
+					}
+					
+					h1 {
+						margin-bottom: 0px;
+						text-align: left;
+					}
+					
+					p {
+						text-align: left;
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 960px) {
+	
+	.profile-link-panel {
+		overflow: hidden;
+		.bg-container {
+			height: auto;
+			.inner-container {
+				height: 350px;
+				
+				.tap-message {
+					visibility: visible;
+				}
+				
+				.image-container {
+					text-align: center;
+					img {
+						margin: auto;
+						height: 170px;
+						width: 170px;
+					}
+				}
+				.columns {
+					
+					h3 {
+						font-size: 22px;
+						span {
+							display: block;
+							font-size: 18px;
+							width: 100%;
+						}
+					}
+					
+					.profile-link-container {
+						.card-bio {
+							max-height: none;
+						}
+					}
+				}
+			}
+			
+			.gen-header {
+				height: 500px;
+			}
+		}
+	}
+	
+	.datepicker-container {
+		div {
+			margin: auto;
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.image-panel {
+		.bg-container {
+			background-image: none;
+			background-color: #ddd;
+			height: 80px;
+			.container {
+				h1 {
+					line-height: 80px;
+					font-size: 48px;
+				}
+			}
+		}
+	}
+	
+	.profile-link-panel {
+		overflow: hidden;
+		.bg-container {
+			height: auto;
+			.inner-container {
+				height: 500px;
+				
+				.image-container {
+					text-align: center;
+					img {
+						margin: auto;
+						height: 100px;
+						width: 100px;
+					}
+				}
+				.columns {
+					
+					h3 {
+						font-size: 22px;
+						span {
+							display: block;
+							font-size: 18px;
+							width: 100%;
+						}
+					}
+					
+					.profile-link-container {
+						.card-bio {
+							max-height: none;
+						}
+					}
+				}
+			}
+			
+			.gen-header {
+				height: 700px;
+			}
+		}
+	}
+	
+	.spacer {
+		height: 0px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	
+	.profile-link-panel {
+		overflow: hidden;
+		.bg-container {
+			height: auto;
+			.inner-container {
+				height: 600px;
+				
+				.image-container {
+					text-align: center;
+					img {
+						margin: auto;
+						height: 100px;
+						width: 100px;
+					}
+				}
+				.columns {
+					
+					h3 {
+						font-size: 22px;
+						span {
+							display: block;
+							font-size: 18px;
+							width: 100%;
+						}
+					}
+					
+					.profile-link-container {
+						.card-bio {
+							max-height: none;
+						}
+					}
+				}
+			}
+			
+			.gen-header {
+				height: 700px;
 			}
 		}
 	}
