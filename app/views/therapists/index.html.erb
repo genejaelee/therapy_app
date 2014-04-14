@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :body do %>
-  <p>Write here about the beta.</p>
+  <p>We will soon have more therapists to choose from. If you don't like anyone, we can email you with new options. Just click here.</p>
 	<p></p>
 <% end %>	
 
@@ -18,44 +18,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel profile-link-panel closed">
-		<div class="bg-container closed">
-			
-			<div class="inner-container">
-				<div class="container">
-					<div class="four columns">
-						<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
-					</div>
-					<div class="eight columns">
-						<div class="profile-link-container">
-							<h3><%= link_to "#{therapist.first_name} #{therapist.last_name}", show_therapist_path(:id => therapist.permalink) %></h3>
-							<li><%= therapist.title %> / <%= therapist.degree %></li>
-							<li><%= therapist.email %></li>
-							<p class="card-bio"><%= therapist.bio %></p>
-						</div>
-					</div>
-				
-					<div class="four columns">
-						<div class="cta-button-white profile-open-button read-more-button">
-							<div class="button">
-								Read More
-							</div>
-						</div>
-						<div class="cta-button-white profile-open-button request-call-button">
-							<div class="button">
-								Request a call
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			<div class="gen-header">
-				<div class="container expanded-profile-content">
-					<%= render 'layouts/calendar_form' %>
-					<%= render 'layouts/profile_more' %>
-				</div>
-			</div>
-		</div>
-	</div>
+	<%= render 'layouts/index_profile', :therapist => therapist %>
 <% end %>

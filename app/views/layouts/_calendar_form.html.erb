@@ -1,12 +1,15 @@
 <div class="calendar-form-container">	
 	<div class="sixteen columns">
-		<h1>Talk to this therapist</h1>
+		<h1>Get a call from <%= therapist.first_name %></h1>
 	</div>
-	<div class="four columns">&nbsp;</div>
+	<div class="four columns spacer">&nbsp;</div>
 	<div class="eight columns">
 		<hr>
 	</div>
-	<div class="sixteen columns form-container">
+	<div class="four columns spacer">&nbsp;</div>
+	<div class="eight columns datepicker-container">
+	</div>
+	<div class="eight columns form-container">
 		<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
 	
 			<%= f.label "Choose a date" %>

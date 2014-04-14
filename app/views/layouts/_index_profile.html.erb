@@ -1,0 +1,43 @@
+<div class="panel profile-link-panel closed">
+	<div class="bg-container closed">
+		<div class="inner-container">
+			<span class="tap-message">Tap anywhere</span>
+			<div class="container">
+				<div class="four columns image-container">
+					<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+				</div>
+				<div class="twelve columns">
+					<div class="profile-link-container">
+						<h3><%= therapist.first_name %> <%= therapist.last_name %>
+							<span> / <%= therapist.title %>, <%= therapist.degree %></span></h3>
+						<p class="card-bio"><%= therapist.bio %></p>
+					</div>
+				</div>
+			
+			<!--
+				<div class="four columns">
+					<div class="cta-button-white profile-open-button read-more-button">
+						<div class="button">
+							Read More
+						</div>
+					</div>
+					<div class="cta-button-white profile-open-button request-call-button">
+						<div class="button">
+							Request a call
+						</div>
+					</div>
+				</div>
+				-->
+			</div>
+		</div>
+		
+		<div class="gen-header">
+			<div class="container expanded-profile-content">
+				<%= render 'layouts/calendar_form', :therapist => therapist %>
+				<!--
+				<%= render 'layouts/profile_more', :therapist => therapist %>
+					-->
+			</div>
+		</div>
+	</div>
+</div>
