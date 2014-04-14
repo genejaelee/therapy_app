@@ -111,20 +111,21 @@ var ready = function() {
 		goToByScroll('#therapist-contact')
 	});
 	
-	var currentHeight = $('.profile-link-panel').css('height');
+	var currentHeightPixels = $('.profile-link-panel').css('height');
+	var currentHeight = currentHeightPixels.slice(0, 3)
 	$('.profile-link-panel .bg-container .inner-container').click(function(){
 		var windowWidth = $(window).width()
 		if(windowWidth < 480) {
-			var maxHeight = '1300px';
+			var maxHeight = '1300';
 		}
 		else if(480 < windowWidth && windowWidth < 767) {
-			var maxHeight = '1200px';
+			var maxHeight = '1200';
 		}
 		else if(767 < windowWidth && windowWidth < 960) {
-			var maxHeight = '850px';
+			var maxHeight = '850';
 		}
 		else if(960 < windowWidth) {
-			var maxHeight = '775px';
+			var maxHeight = '775';
 		}
 		var thisProfile = $(this).parent().parent();
 		openCloseOnClick(thisProfile, currentHeight, maxHeight);

@@ -38,6 +38,12 @@
 	}
 }
 
+.spacer {
+	display: block;
+	width: 100%;
+	height: 40px;
+}
+
 .image-panel {
 	.bg-container {
 		background-image: image-url('hiking.JPG');
@@ -73,14 +79,7 @@
 }
 
 .profile-link-panel {
-	position: relative;
 	height: 335px;
-	
-	.spacer {
-		display: block;
-		width: 100%;
-		height: 40px;
-	}
 	
 	.bg-container {
 		box-shadow: 0px 4px 4px rgba(0,0,0,0.08);
@@ -96,18 +95,18 @@
 		}
 
 		.inner-container {
+			position: relative;
 			padding: 50px 0px;
 			background-color: #fff;
 			width: 100%;
 			height: $profile-index-height;
 			
-			.tap-message {
-				visibility: hidden;
+			.tap-plus-sign {
 				position: absolute;
-				font-size: 12px;
-				color: #ccc;
-				left: 10px;
-				top: 5px;
+				font-size: 36px;
+				color: #ddd;
+				right: 10px;
+				bottom: 15px;
 			}
 
 			.four {
@@ -212,11 +211,11 @@
 					}
 					
 					.datepicker-container {
-						padding: 20px 0px;
+						padding: 15px 0px;
 					}
 				
 					.form-container {
-						padding: 20px 0px;
+						padding: 15px 0px;
 						form {
 							label {
 								color: #fff;
@@ -276,8 +275,9 @@
 			.inner-container {
 				height: 350px;
 				
-				.tap-message {
-					visibility: visible;
+				.tap-plus-sign {
+					top: 300px;
+					right: 10px;
 				}
 				
 				.image-container {
@@ -328,6 +328,8 @@
 			height: 80px;
 			.container {
 				h1 {
+					font-family: $light-font;
+					font-weight: 200;
 					line-height: 80px;
 					font-size: 48px;
 				}
@@ -371,12 +373,12 @@
 			
 			.gen-header {
 				height: 700px;
+				
+				.spacer {
+					height: 0px;
+				}
 			}
 		}
-	}
-	
-	.spacer {
-		height: 0px;
 	}
 }
 

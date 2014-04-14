@@ -46,13 +46,14 @@ function renderEitherCalendarOrProfile(thisButton) {
 
 function openCloseOnClick(element, min, max) {
 	if ($(element).hasClass("closed")) {
-		$(element).animate({height: max}, 500, "easeOutCubic", function(){
+		$(element).stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
 			$(element).removeClass("closed");
 			$(element).addClass("opened");
 		});
 	}
 	if ($(element).hasClass("opened")) {
-		$(element).animate({height: min}, 500, "easeOutCubic", function(){
+		$(element).stop().animate({height: (min-5) + "px"}, 300, "easeOutCubic", function(){
+				$(element).stop().animate({height: min + "px"}, 150, "easeOutCubic", function(){});
 			$(element).removeClass("opened");
 			$(element).addClass("closed");
 		});
