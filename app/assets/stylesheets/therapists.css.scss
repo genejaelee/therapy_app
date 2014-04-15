@@ -116,7 +116,23 @@
 		.inner-container:hover {
 			cursor: pointer;
 			background-color: #f9f9f9;
-			border: 2px dashed $scouter-green;
+			box-shadow: 0px 4px 4px rgba(0,0,0,0.15);
+			
+			.container {
+				.columns {
+					.profile-link-container {
+						h3 {
+							color: $scouter-green;
+							span {
+								color: $scouter-green;
+							}
+						}
+						p {
+							color: $scouter-green;
+						}
+					}
+				}
+			}
 		}
 
 		.inner-container {
@@ -322,7 +338,7 @@
 					right: 10px;
 				}
 				
-				.image-container {
+				.therapist-image-container {
 					text-align: center;
 					img {
 						margin: auto;
@@ -386,7 +402,7 @@
 			.inner-container {
 				height: 500px;
 				
-				.image-container {
+				.therapist-image-container {
 					text-align: center;
 					img {
 						margin: auto;
@@ -433,7 +449,7 @@
 			.inner-container {
 				height: 650px;
 				
-				.image-container {
+				.therapist-image-container {
 					text-align: center;
 					img {
 						margin: auto;

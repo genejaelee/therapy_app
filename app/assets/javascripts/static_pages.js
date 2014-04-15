@@ -61,14 +61,6 @@ var ready = function() {
 	var timeZone = jstz.determine();
 	document.cookie = 'jstz_time_zone='+timeZone.name()+';';
 	
-	$('.cta-button2').click(function(){
-	  $('html,body').stop().animate({
-			scrollTop: 0}, 
-			1000, "easeOutCubic", function(){
-				$('#user_email').focus();
-			});
-	});
-	
   $(function() {
 	  $( "#accordion" ).accordion({header: "h3", collapsible: true, active: false, heightStyle: "content"});
   });
@@ -89,7 +81,7 @@ var ready = function() {
 	$('#therapist-bio').keyup(updateCountdown);
 	
 	//therapist profile stuff
-	addSubsection()
+	//addSubsection()
 	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){
@@ -104,19 +96,6 @@ var ready = function() {
 		}
 	});
 	
-	$('#welcome-nav-item').click(function(){
-		goToByScroll('.welcome-panel')
-	});
-	$('#about-therapy-nav-item').click(function(){
-		goToByScroll('#approach-panel')
-	});
-	$('#about-nav-item').click(function(){
-		goToByScroll('.therapist-about-panel')
-	});
-	$('#contact-nav-item').click(function(){
-		goToByScroll('#therapist-contact')
-	});
-	
 	//therapist index stuff
 	$('#open-email-dropbox').click(function(){
 		$('.email-dropbox').css({'display' : 'block',
@@ -127,8 +106,10 @@ var ready = function() {
 	
 	if($('body').is('#therapist-index')) {
 		var currentHeightPixels = $('.profile-link-panel').css('height');
-		var currentHeight = currentHeightPixels.slice(0, 3);
+		var currentHeight = parseInt(currentHeightPixels.slice(0, 3));
 	}
+	
+	mouseEnterAnimateIndex(currentHeight);
 	
 	$('.profile-link-panel .bg-container .inner-container').click(function(){
 		var windowWidth = $(window).width()

@@ -12,8 +12,6 @@
 			</div>
 			<div class="sixteen columns" id="cta-form">
 				<%= render 'users/create' %>
-				<!--<%= button_to "Browse Therapists", therapists_path, :class => "button browse-therapist-button", :method => 'get' %>
-					-->
 				<span id="secure-notice">This is confidential. Your identity will not be revealed.</span>
 				<%= render 'shared/error_messages' %>
 				<% flash.each do |key, value| %>

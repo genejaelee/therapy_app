@@ -44,19 +44,41 @@ function renderEitherCalendarOrProfile(thisButton) {
 	}
 }
 
+function mouseEnterAnimateIndex(currentHeight) {
+	$('.profile-link-panel .bg-container .inner-container').bind("mouseenter", function() {
+		var thisProfile = $(this).parent().parent();
+		if (thisProfile.hasClass("closed")) {
+			thisProfile.find('.tap-plus-sign').css('color', '#90bc64');
+			thisProfile.stop().animate({height: (currentHeight + 5) + "px"}, 200, "easeOutCubic", function() {
+				$(this).unbind('mouseenter');
+			});
+		}
+	});
+
+	$('.profile-link-panel .bg-container .inner-container').bind("mouseleave", function() {
+		var thisProfile = $(this).parent().parent();
+		if (thisProfile.hasClass("closed")) {
+			thisProfile.find('.tap-plus-sign').css('color', '#ddd');
+			thisProfile.stop().animate({height: (currentHeight) + "px"}, 100, "easeOutCubic", function() {
+				$(this).unbind('mouseleave');
+			});
+		}
+	});
+}
+
 function openCloseOnClick(element, min, max) {
 	if ($(element).hasClass("closed")) {
+		$(element).removeClass("closed");
 		goToByScroll(element);
 		$(element).stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
-			$(element).removeClass("closed");
 			$(element).addClass("opened");
 		});
 	}
 	if ($(element).hasClass("opened")) {
+		$(element).removeClass("opened");
 		$(element).stop().animate({height: (min-5) + "px"}, 300, "easeOutCubic", function(){
 				$(element).stop().animate({height: min + "px"}, 150, "easeOutCubic", function(){});
-			$(element).removeClass("opened");
-			$(element).addClass("closed");
+				$(element).addClass("closed");
 		});
 	}
 }
