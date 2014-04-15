@@ -58,6 +58,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'paperclip', '~> 3.5.1'
+gem 'aws-sdk'
 
 gem 'sprockets', '~> 2.11.0'
 
