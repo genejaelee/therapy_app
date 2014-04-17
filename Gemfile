@@ -10,6 +10,7 @@ gem 'retina_rails', '~> 2.0.0'
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'rack-timeout'
 
 group :assets do
   gem 'sass', require: 'sass'
