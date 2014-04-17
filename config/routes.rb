@@ -20,7 +20,7 @@ TherapyApp::Application.routes.draw do
   match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/:id' => 'therapists#show', :as => :show_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
   
-  match '/signup' => 'users#create', :as => :create_user, via: 'post'
+  match '/signup' => 'users#new', :as => :new_user, via: 'post'
   match '/save_c' => 'users#save_c', :as => :save_user_card, via: 'post'
   match '/update' => 'users#update', :as => :update_user, via: 'patch'
   match '/finish' => 'users#finish', :as => :finish_user, via: 'patch'

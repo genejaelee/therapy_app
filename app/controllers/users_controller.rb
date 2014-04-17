@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @user.update_attributes(:time_zone => cookies["jstz_time_zone"])
+    session[:current_user_id] = @user.id
+    redirect_to :controller => 'therapists', :action => 'index'
   end
   
   def create
