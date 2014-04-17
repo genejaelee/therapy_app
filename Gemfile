@@ -8,6 +8,9 @@ gem 'pg', '0.15.1'
 gem 'figaro'
 gem 'retina_rails', '~> 2.0.0'
 
+# Use unicorn as the app server
+gem 'unicorn'
+
 group :assets do
   gem 'sass', require: 'sass'
   gem 'sass-rails', '~> 4.0.1'
@@ -73,9 +76,6 @@ end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
