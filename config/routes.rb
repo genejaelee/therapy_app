@@ -24,7 +24,6 @@ TherapyApp::Application.routes.draw do
   match '/therapists/update' => 'therapists#update', via: 'patch'
   match '/browse' => 'therapists#index', :as => :therapists_index, via: 'get'
   match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, via: 'get'
-  match '/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
   
   match '/signup' => 'users#new', :as => :new_user, via: 'post'
   match '/save_c' => 'users#save_c', :as => :save_user_card, via: 'post'
@@ -34,6 +33,8 @@ TherapyApp::Application.routes.draw do
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
+  
+  match '/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
   
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
