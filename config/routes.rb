@@ -6,8 +6,8 @@ TherapyApp::Application.routes.draw do
   resources :charges, :therapists, :events
   
   devise_scope :therapist do
-    match '/signup' => 'devise/registrations#new', :constraints => { :subdomain => 'therapy' }, via: 'get'
-    match '/edit' => 'devise/registrations#edit', :constraints => { :subdomain => 'therapy' }, :as => :therapist_edit, via: 'get'
+    match '/signup' => 'devise/registrations#new', via: 'get'
+    match '/edit' => 'devise/registrations#edit', :as => :therapist_edit, via: 'get'
   end
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
@@ -16,15 +16,15 @@ TherapyApp::Application.routes.draw do
     match '/about' => 'therapists#about', :as => :therapist_about, via: 'get'
     match '/privacy' => 'therapists#privacy', :as => :therapist_privacy, via: 'get'
     match '/terms' => 'therapists#terms', :as => :therapist_terms, via: 'get'
+    match '/' => 'therapists#home', :as => :therapist_home, via: 'get'
   end
   
-  match '/update' => 'therapists#signup', :as => :update_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
-  match '/create' => 'therapists#create', :constraints => { :subdomain => 'therapy' }, via: 'post'
-  match '/' => 'therapists#home', :constraints => { :subdomain => 'therapy' }, via: 'get'
-  match '/update' => 'therapists#update', :constraints => { :subdomain => 'therapy' }, via: 'patch'
+  match '/therapists/update' => 'therapists#signup', :as => :update_therapist, via: 'get'
+  match '/therapists/create' => 'therapists#create', via: 'post'
+  match '/therapists/update' => 'therapists#update', via: 'patch'
   match '/browse' => 'therapists#index', :as => :therapists_index, via: 'get'
-  match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, :constraints => { :subdomain => 'therapy' }, via: 'get'
-  match '/:id' => 'therapists#show', :as => :show_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
+  match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, via: 'get'
+  match '/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
   
   match '/signup' => 'users#new', :as => :new_user, via: 'post'
   match '/save_c' => 'users#save_c', :as => :save_user_card, via: 'post'
