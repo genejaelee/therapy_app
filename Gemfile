@@ -9,7 +9,7 @@ gem 'figaro'
 gem 'retina_rails', '~> 2.0.0'
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '~> 2.1'
+gem 'jquery-rails'
 
 # Use unicorn as the app server
 gem 'unicorn'

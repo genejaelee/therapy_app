@@ -29,6 +29,12 @@ TherapyApp::Application.routes.draw do
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
   
+  constraints(:subdomain => 'therapy') do
+    get '/about', :to => 'static_pages#about'
+    get '/privacy', :to => redirect {|params, request| "https://www.scouterapp.com/privacy"}
+    get '/terms', :to => redirect {|params, request| "https://www.scouterapp.com/terms"}
+  end
+  
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
