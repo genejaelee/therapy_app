@@ -96,6 +96,9 @@ var ready = function() {
 		}
 	});
 	
+	//therapist home page stuff
+	hideNavBar()
+	
 	//therapist index stuff
 	$('#open-email-dropbox').click(function(){
 		$('.email-dropbox').css({'display' : 'block',
@@ -143,12 +146,6 @@ var ready = function() {
 			openCloseOnClick(thisProfile, currentHeight, maxHeight);
 		});
 	}
-	
-	$('#request_appointment_button').click(function() {
-		if (confirm('Hey you sure you wanna do dis?')) {
-			
-		}
-	});
 	
 	//handle unbeforeunload method for pages x y z
 	$('.button').click(function() {

@@ -82,3 +82,20 @@ function openCloseOnClick(element, min, max) {
 		});
 	}
 }
+
+function hideNavBar() {
+	if ($(window).scrollTop() == 0) {
+		$('.navbar').stop().animate({'height' : '0px'}, 300, 'easeOutCubic');
+		$('.navbar-links').stop().animate({'height' : '0px'}, 300, 'easeOutCubic');
+	}
+	
+	$(window).scroll(function() {
+		console.log($(window).scrollTop())
+		if ($(window).scrollTop() < 5) {
+			$('.navbar').stop().animate({'height' : '0px'}, 150, 'easeOutCubic');
+		}
+		else {
+			$('.navbar').stop().animate({'height' : '50px'}, 150, 'easeOutCubic');
+		}
+	});
+}
