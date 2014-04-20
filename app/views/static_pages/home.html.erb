@@ -1,5 +1,8 @@
 <div id="panel1" class="panel">
 	<div class="bg-container">
+		<div class="subdomain_link">
+			<%= link_to "Therapist?", root_url(:subdomain => 'therapy') %>
+		</div>
 		<div class="container">
 			<div class="sixteen columns" id="logo-banner">
 				<%= link_to image_tag("couch-logo5.png", height: "60px", class: "top-logo"), homepage_path %>

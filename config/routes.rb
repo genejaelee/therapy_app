@@ -12,6 +12,12 @@ TherapyApp::Application.routes.draw do
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
   
+  constraints(:subdomain => 'therapy') do
+    match '/about' => 'therapists#about', :as => :therapist_about, via: 'get'
+    match '/privacy' => 'therapists#privacy', :as => :therapist_privacy, via: 'get'
+    match '/terms' => 'therapists#terms', :as => :therapist_terms, via: 'get'
+  end
+  
   match '/update' => 'therapists#signup', :as => :update_therapist, :constraints => { :subdomain => 'therapy' }, via: 'get'
   match '/create' => 'therapists#create', :constraints => { :subdomain => 'therapy' }, via: 'post'
   match '/' => 'therapists#home', :constraints => { :subdomain => 'therapy' }, via: 'get'
@@ -28,12 +34,6 @@ TherapyApp::Application.routes.draw do
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
-  
-  constraints(:subdomain => 'therapy') do
-    get '/about', :to => 'static_pages#about'
-    get '/privacy', :to => redirect {|params, request| "https://www.scouterapp.com/privacy"}
-    get '/terms', :to => redirect {|params, request| "https://www.scouterapp.com/terms"}
-  end
   
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

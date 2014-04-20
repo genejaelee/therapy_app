@@ -46,6 +46,15 @@ class TherapistsController < ApplicationController
     @therapist = Therapist.all
   end
   
+  def about
+  end
+  
+  def privacy
+  end
+  
+  def terms
+  end
+  
   def new
   end
   
