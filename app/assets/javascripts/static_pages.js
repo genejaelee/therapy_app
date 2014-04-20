@@ -144,6 +144,12 @@ var ready = function() {
 		});
 	}
 	
+	$('#request_appointment_button').click(function() {
+		if (confirm('Hey you sure you wanna do dis?')) {
+			
+		}
+	});
+	
 	//handle unbeforeunload method for pages x y z
 	$('.button').click(function() {
 		window.onbeforeunload = null;

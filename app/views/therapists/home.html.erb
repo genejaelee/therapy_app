@@ -1,10 +1,20 @@
 <%= render 'layouts/navbar' %>
 
-<div class="panel">
+<div id="panel1" class="panel">
 	<div class="bg-container">
 		<div class="container">
+			<div class="sixteen columns" id="logo-banner">
+				<%= link_to image_tag("couch-logo5.png", height: "60px", class: "top-logo"), homepage_path %>
+			</div>
+			<div class="sixteen columns" id="copy-container">
+				<h1>Get a therapist to call you.</h1>
+				<h5>Try therapy the simplest way — by taking a phone call.</h5>
+			</div>
+			<div class="spacer sixteen columns">
+			</div>
+			<div class="sixteen columns" id="cta-form">
+				<span id="secure-notice">This is confidential. Your identity will not be revealed.</span>
+			</div>
 		</div>
 	</div>
 </div>
-
-<%= render 'layouts/header_tall' %>

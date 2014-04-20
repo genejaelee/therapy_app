@@ -1,16 +1,17 @@
 class EventsController < ApplicationController
   def create
-    @event = Event.create(event_params)
-    if @event.user_id.nil?
-      @user = @event.users.build(params[:user])
+    if @_current_user.nil?
+      @user = User.create(params[:user])
+      @event = @user.events.create(event_params)
     else
       @user = @_current_user
-      @event.user_id = @user.id
+      @event = @user.events.create(event_params)
     end
     if @event.save
       render 'users/update'
     else
       redirect_to :controller => 'therapists', :action => 'index', :messages => "error"
+      flash[:fail] = "Sorry there was an error processing your entries."
     end
   end
   

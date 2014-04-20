@@ -102,6 +102,72 @@
 	}
 }
 
+.ui-widget-overlay {
+	background: #525252;
+}
+
+.ui-dialog {
+	font-family: $medium-font;
+	width: 500px !important;
+	padding: 10px;
+	border: none;
+	border-radius: 0px;
+	top: 25% !important;
+	position: fixed;
+	
+	.ui-dialog-titlebar {
+		background: #fff;
+		border: none;
+		
+		span {
+			color: $scouter-blue-fade;
+		}
+		
+		button {
+			border-radius: 0px;
+			border: none;
+			background: none;
+		}
+	}
+	
+	.ui-dialog-content {
+		font-size: 16px;
+		color: #525252;
+	}
+	
+	.ui-dialog-buttonpane {
+		border: none;
+		
+		button {
+			background: none;
+			width: 90px;
+			height: 35px;
+			span {
+				font-size: 14px;
+			}
+		}
+		
+		button:focus {
+			border: none;
+			outline: 0;
+		}
+		
+		button:hover {
+			background-color: #eee;
+		}
+		
+		button:nth-child(1) {
+			color: $scouter-green;
+			border: 1px solid $scouter-green;
+		}
+		
+		button:nth-child(2) {
+			color: $scouter-red;
+			border: 1px solid $scouter-red;
+		}
+	}
+}
+
 @media only screen and (max-width: 480px) {
 	.ui-datepicker-inline {
 		width: 280px;

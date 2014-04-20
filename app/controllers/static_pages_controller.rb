@@ -5,11 +5,14 @@ class StaticPagesController < ApplicationController
   end
   
   def about
+    @user = User.new
   end
   
   def privacy
+    @user = User.new
   end
   
   def terms
+    @user = User.new
   end
 end

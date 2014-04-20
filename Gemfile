@@ -8,6 +8,9 @@ gem 'pg', '0.15.1'
 gem 'figaro'
 gem 'retina_rails', '~> 2.0.0'
 
+# Use jquery as the JavaScript library
+gem 'jquery-rails', '~> 2.1'
+
 # Use unicorn as the app server
 gem 'unicorn'
 gem 'rack-timeout'
@@ -51,9 +54,6 @@ gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://g
 gem 'zip-code-info'
 
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
