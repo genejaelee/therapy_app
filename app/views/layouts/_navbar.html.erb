@@ -3,15 +3,18 @@
 			<% if therapist_signed_in? %>
 			  Logged in as <strong><%= current_therapist.email %></strong>.
 				<div class='navbar-links'>
-					<%= link_to 'My Profile', show_my_profile_url(:subdomain => ''), :class => 'navbar-link' %> |
-				  <%= link_to 'Edit profile', edit_therapist_registration_url(:subdomain => ''), :class => 'navbar-link' %> |
-				  <%= link_to "Logout", destroy_therapist_session_url(:subdomain => ''), method: :delete, :class => 'navbar-link'  %>
+					
+					<% define_subdomain %>
+					
+					<%= link_to 'My Profile', show_my_profile_url(:subdomain => @subdomain), :class => 'navbar-link' %> |
+				  <%= link_to 'Edit profile', edit_therapist_registration_url(:subdomain => @subdomain), :class => 'navbar-link' %> |
+				  <%= link_to "Logout", destroy_therapist_session_url(:subdomain => @subdomain), method: :delete, :class => 'navbar-link'  %>
 				</div>
 		
 			<% else %>
 				<div class="navbar-links">
-				  <%= link_to "Sign up", new_therapist_registration_url(:subdomain => ''), :class => 'navbar-link'  %> |
-				  <%= link_to "Login", new_therapist_session_url(:subdomain => ''), :class => 'navbar-link'  %>
+				  <%= link_to "Sign up", new_therapist_registration_url(:subdomain => @subdomain), :class => 'navbar-link'  %> |
+				  <%= link_to "Login", new_therapist_session_url(:subdomain => @subdomain), :class => 'navbar-link'  %>
 				</div>
 				<% end %>
 				

@@ -20,4 +20,12 @@ module TherapistsHelper
   		end
     end
   end
+  
+  def define_subdomain
+    if Rails.env.development?
+      @subdomain = ''
+    elsif Rails.env.production?
+      @subdomain = 'www'
+    end
+  end
 end
