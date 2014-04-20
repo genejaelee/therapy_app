@@ -1,6 +1,9 @@
 <div id="panel1" class="panel">
 	<div class="bg-container">
 		<div class="subdomain_link">
+			<% flash.each do |key, value| %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			<% end %>
 			<%= link_to "Therapist?", therapist_home_url(:protocol => 'http') %>
 		</div>
 		<div class="container">
@@ -17,9 +20,6 @@
 				<%= render 'users/create' %>
 				<span id="secure-notice">This is confidential. Your identity will not be revealed.</span>
 				<%= render 'shared/error_messages' %>
-				<% flash.each do |key, value| %>
-					<div class="alert alert-<%= key %>"><%= value %></div>
-				<% end %>
 			</div>
 		</div>
 	</div>
