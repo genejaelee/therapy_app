@@ -11,6 +11,7 @@ TherapyApp::Application.routes.draw do
   end
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
+  match '/this_therapist_events' => 'events#this_therapist_events', via: 'post'
   
   constraints(:subdomain => 'therapy') do
     match '/about' => 'therapists#about', :as => :therapist_about, via: 'get'

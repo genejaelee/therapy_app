@@ -23,12 +23,23 @@ class EventsController < ApplicationController
     @event = Event.find_by(event_params)
   end
   
+  def this_therapist_events
+    therapist_id = params[:therapist_id]
+    @events = Event.where(therapist_id: therapist_id).load
+    @events.each do |f|
+      puts f.start_date
+    end
+    respond_to do |format|
+      format.json { render :json => @events }
+    end
+  end
+  
   def index
     @event = Event.scoped
     @event = Event.between(params['start'], params['end']) if (params['start'] && params['end'])
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @events }
+      format.json { render :json => @event }
     end
   end
   

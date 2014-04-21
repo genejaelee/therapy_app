@@ -73,6 +73,12 @@ function openCloseOnClick(element, min, max) {
 		$(element).stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
 			$(element).addClass("opened");
 		});
+		
+		timeRangesArray = [];
+		//AJAX
+		updateEventData(element);
+		//get event data
+		
 	}
 	if ($(element).hasClass("opened")) {
 		$(element).removeClass("opened");
@@ -85,12 +91,10 @@ function openCloseOnClick(element, min, max) {
 
 function hideNavBar() {
 	if ($(window).scrollTop() == 0) {
-		$('.navbar').stop().animate({'height' : '0px'}, 300, 'easeOutCubic');
-		$('.navbar-links').stop().animate({'height' : '0px'}, 300, 'easeOutCubic');
+		$('.navbar').stop().animate({'height' : '0px'}, 0);
 	}
 	
 	$(window).scroll(function() {
-		console.log($(window).scrollTop())
 		if ($(window).scrollTop() < 5) {
 			$('.navbar').stop().animate({'height' : '0px'}, 150, 'easeOutCubic');
 		}
@@ -98,4 +102,57 @@ function hideNavBar() {
 			$('.navbar').stop().animate({'height' : '50px'}, 150, 'easeOutCubic');
 		}
 	});
+}
+
+// AJAX STUFF
+
+var timeRangesArray = [];
+
+function updateEventData(element){
+	var id = element.data('id');
+	console.log('call ajax');
+	$.ajax({
+		url: "/this_therapist_events",
+		type: "POST",
+		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+		data: { therapist_id: id },
+		success: function(data) {
+			console.log(JSON.stringify(data));
+			for (var i = 0; i < data.length; i++) {
+				var startTime = data[i].start_time;
+				var startTimeArray = startTime.split('');
+				var endTimeArray = [];
+				
+				if (startTimeArray.length == 7) {
+					var endHourInteger = parseInt(startTimeArray.slice(0,1)) + 1;
+				}
+				if (startTimeArray.length == 6) {
+					var endHourInteger = parseInt(startTimeArray[0]) + 1;
+					var endHour = endHourInteger.toString();
+					console.log(endHour);
+					endTimeArray.push(endHour, startTimeArray.slice(1,6).join(''));
+					console.log(endTimeArray.join(''));
+				}
+				
+				endTime = endTimeArray.join('');
+				var aTimeRange = [startTime, endTime];
+				console.log(aTimeRange);
+				timeRangesArray.push(aTimeRange);
+				console.log(timeRangesArray);
+				if (i == (data.length - 1)) {
+					console.log('run callback!');
+					initTimePickerWithSlots(element, timeRangesArray);
+				}
+			}
+		}
+	});
+}
+
+function initTimePickerWithSlots(element, array){
+	console.log("this is the timeslot arrays" + array[0] + array[1]);
+	console.log(element.attr('class'));
+  element.find('.time-field').timepicker({
+		'step': 60,
+  	'disableTimeRanges': array
+  });
 }

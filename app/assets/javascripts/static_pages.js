@@ -70,7 +70,7 @@ var ready = function() {
   });
 	
   $(function() {
-    $( ".time-field" ).timepicker();
+    $( ".time-field" ).timepicker({'step': 60});
   });
 	
 	//updating countdown on explanation for therapist
