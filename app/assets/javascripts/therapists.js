@@ -78,7 +78,6 @@ function openCloseOnClick(element, min, max) {
 		//AJAX
 		updateEventData(element);
 		//get event data
-		
 	}
 	if ($(element).hasClass("opened")) {
 		$(element).removeClass("opened");
@@ -109,39 +108,39 @@ function hideNavBar() {
 var timeRangesArray = [];
 
 function updateEventData(element){
+	timeRangesArray =[];
 	var id = element.data('id');
-	console.log('call ajax');
+	var date = element.find('.date-field').val();
+	console.log(date);
 	$.ajax({
 		url: "/this_therapist_events",
 		type: "POST",
 		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-		data: { therapist_id: id },
+		data: { therapist_id: id, date: date },
 		success: function(data) {
 			console.log(JSON.stringify(data));
-			for (var i = 0; i < data.length; i++) {
-				var startTime = data[i].start_time;
-				var startTimeArray = startTime.split('');
-				var endTimeArray = [];
+			if (data.length == 0) {
+				initTimePickerWithSlots(element, timeRangesArray);
+			}
+			else {
+				for (var i = 0; i < data.length; i++) {
+					var startTime = data[i];
+					var startTimeSplit = startTime.split('');
+					var startTimeHour = startTimeSplit.slice(0,2).join('');
 				
-				if (startTimeArray.length == 7) {
-					var endHourInteger = parseInt(startTimeArray.slice(0,1)) + 1;
-				}
-				if (startTimeArray.length == 6) {
-					var endHourInteger = parseInt(startTimeArray[0]) + 1;
-					var endHour = endHourInteger.toString();
-					console.log(endHour);
-					endTimeArray.push(endHour, startTimeArray.slice(1,6).join(''));
-					console.log(endTimeArray.join(''));
-				}
+					var endTimeHour = (parseInt(startTimeHour, 10) + 1).toString();
+					var endTimeArray = [];
+					endTimeArray.push(endTimeHour, startTimeSplit.slice(2,5).join(''));
+					var endTime = endTimeArray.join('');
 				
-				endTime = endTimeArray.join('');
-				var aTimeRange = [startTime, endTime];
-				console.log(aTimeRange);
-				timeRangesArray.push(aTimeRange);
-				console.log(timeRangesArray);
-				if (i == (data.length - 1)) {
-					console.log('run callback!');
-					initTimePickerWithSlots(element, timeRangesArray);
+					var aTimeRange = [startTime, endTime];
+					//push arrays of start and end time to time ranges array
+					timeRangesArray.push(aTimeRange);
+					console.log('time ranges array is ' + timeRangesArray);
+					if (i == (data.length - 1)) {
+						//run callback function
+						initTimePickerWithSlots(element, timeRangesArray);
+					}
 				}
 			}
 		}
@@ -149,10 +148,12 @@ function updateEventData(element){
 }
 
 function initTimePickerWithSlots(element, array){
-	console.log("this is the timeslot arrays" + array[0] + array[1]);
-	console.log(element.attr('class'));
+	console.log('init new timepicker');
+	element.find('.time-field').timepicker('remove');
   element.find('.time-field').timepicker({
 		'step': 60,
-  	'disableTimeRanges': array
+  	'disableTimeRanges': array,
+		'minTime': '08:00',
+		'maxTime': '22:00'
   });
 }

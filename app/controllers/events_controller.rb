@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
   def create
     if @_current_user.nil?
-      @user = User.create(params[:user])
-      @event = @user.events.create(event_params)
+      @user = User.new(params[:user])
+      @event = @user.events.new(event_params)
     else
       @user = @_current_user
-      @event = @user.events.create(event_params)
+      @event = @user.events.new(event_params)
     end
     if @event.save
       render 'users/update'
@@ -25,12 +25,14 @@ class EventsController < ApplicationController
   
   def this_therapist_events
     therapist_id = params[:therapist_id]
-    @events = Event.where(therapist_id: therapist_id).load
-    @events.each do |f|
-      puts f.start_date
-    end
+    date = params[:date]
+    @therapist = Therapist.find_by_id(therapist_id)
+    @events = Event.where(therapist_id: therapist_id, start_date: date).load
+    #return array with appointment times formatted for user time zone
+    @times_array = Event.format_date_time(@events, @_current_user, @therapist, date)
+    puts "user date time array is #{@times_array}"
     respond_to do |format|
-      format.json { render :json => @events }
+      format.json { render :json => @times_array }
     end
   end
   

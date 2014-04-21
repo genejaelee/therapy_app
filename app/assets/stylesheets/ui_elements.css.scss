@@ -59,10 +59,12 @@
 		tbody {
 			tr {
 				.ui-datepicker-current-day {
-					background-color: #eee;
+					background-color: $scouter-green-superlight;
 					
 					a {
-						background-color: #eee;
+						background-color: $scouter-green-superlight;
+						color: #fff;
+						font-weight: 600;
 					}
 				}
 				td {
@@ -91,6 +93,19 @@
 					background-color: #eee;
 					a {
 						background-color: #eee;
+					}
+				}
+				
+				.ui-datepicker-unselectable {
+					background-color: #f5f5f5;
+					text-align: center;
+					opacity: 0.6;
+					
+					span {
+						color: #828282;
+						text-align: center;
+						background: none;
+						border: none;
 					}
 				}
 			}
@@ -166,6 +181,15 @@
 			border: 1px solid $scouter-red;
 		}
 	}
+}
+
+.ui-timepicker-wrapper {
+	margin-top: 5px;
+	width: 200px;
+}
+
+.ui-timepicker-disabled {
+	color: $scouter-red !important;
 }
 
 @media only screen and (max-width: 480px) {

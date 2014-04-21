@@ -53,9 +53,13 @@ var fadeThisIn = function(element) {
 	});
 }
 
+function showTimePicker(thisProfile){
+	thisProfile.find('.time-field').timepicker('show');
+}
+
 var ready = function() {
 	$('.phone-field').mask('(000) 000-0000');
-	$('.date-field').mask('00/00/0000');
+	$('.date-field').mask('00/00/00');
 	$('.time-field').mask('00:00AA')
 	
 	var timeZone = jstz.determine();
@@ -66,7 +70,16 @@ var ready = function() {
   });
 	
   $(function() {
-    $( ".datepicker-container" ).datepicker({ dateFormat: 'mm/dd/yy', inline: true, altField: '.date-field' });
+    $( ".datepicker-container" ).datepicker({ dateFormat: 'mm/dd/yy', 
+																							inline: true,
+																							altField: '.date-field',
+																							minDate: 0,
+																							onSelect: function(date){
+																								//update time slot availabilities
+																								var thisProfile = $(this).closest('.profile-link-panel');
+																								updateEventData(thisProfile);
+																							}
+																						});
   });
 	
   $(function() {
