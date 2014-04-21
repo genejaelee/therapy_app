@@ -11,6 +11,7 @@
 			<% flash.each do |key, value| %>
 				<div style="color: #fff; padding: 10px;" class="alert alert-<%= key %>"><%= value %></div>
 			<% end %>
+			<%= render 'shared/error_messages' %>
 			<%= yield :arrow_down_option %>
 		</div>
 	</div>

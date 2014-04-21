@@ -27,7 +27,8 @@ class EventsController < ApplicationController
     therapist_id = params[:therapist_id]
     date = params[:date]
     @therapist = Therapist.find_by_id(therapist_id)
-    @events = Event.where(therapist_id: therapist_id, start_date: date).load
+    #loads all events, inefficient but works for now
+    @events = Event.where(therapist_id: therapist_id).load
     #return array with appointment times formatted for user time zone
     @times_array = Event.format_date_time(@events, @_current_user, @therapist, date)
     puts "user date time array is #{@times_array}"
@@ -37,12 +38,7 @@ class EventsController < ApplicationController
   end
   
   def index
-    @event = Event.scoped
-    @event = Event.between(params['start'], params['end']) if (params['start'] && params['end'])
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @event }
-    end
+    @event = Event.all
   end
   
   private
