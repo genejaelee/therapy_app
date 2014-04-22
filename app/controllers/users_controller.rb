@@ -55,12 +55,22 @@ class UsersController < ApplicationController
   
   def finish
     @user = @_current_user
-    @user.should_validate_age = true
     if @user.update_attributes(user_params)
       @user.save
       reset_session
     else
       render "users/update"
+      flash[:fail] = "Sorry there was an error processing your entries."
+    end
+  end
+  
+  def drop_email
+    @user = @_current_user
+    if @user.update_attributes(user_params)
+      redirect_to root_url
+      flash[:success] = "Thanks for reaching out."
+    else
+      redirect_to :controller => 'therapists', :action => 'index'
       flash[:fail] = "Sorry there was an error processing your entries."
     end
   end

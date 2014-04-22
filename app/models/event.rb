@@ -7,23 +7,25 @@ class Event < ActiveRecord::Base
   validates :start_time, :uniqueness => { :scope => :start_date }
   
   def convert_to_UTC_0
-    @start_time = self.start_time
-    @user_time_zone = self.time_zone
-    @start_date = self.start_date
-    puts "#{@start_time} #{@time_zone}"
-    @split_date = @start_date.split('/')
-    year = @split_date[2]
-    day = @split_date[1]
-    month = @split_date[0]
-    @formatted_date = "#{year}-#{month}-#{day}"
-    @formatted_date_time = "#{@formatted_date} #{@start_time}"
-    @user_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@user_time_zone)
-    @neutral_date_time = @user_date_time.in_time_zone('UTC')
-    puts "neutral date time is #{@neutral_date_time}"
-    #assign new values
-    self.start_time = @neutral_date_time.strftime('%R')
-    self.start_date = @neutral_date_time.strftime('%m/%d/%Y')
-    self.time_zone = 'UTC'
+    unless self.start_time.nil?
+      @start_time = self.start_time
+      @user_time_zone = self.time_zone
+      @start_date = self.start_date
+      puts "#{@start_time} #{@time_zone}"
+      @split_date = @start_date.split('/')
+      year = @split_date[2]
+      day = @split_date[1]
+      month = @split_date[0]
+      @formatted_date = "#{year}-#{month}-#{day}"
+      @formatted_date_time = "#{@formatted_date} #{@start_time}"
+      @user_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@user_time_zone)
+      @neutral_date_time = @user_date_time.in_time_zone('UTC')
+      puts "neutral date time is #{@neutral_date_time}"
+      #assign new values
+      self.start_time = @neutral_date_time.strftime('%R')
+      self.start_date = @neutral_date_time.strftime('%m/%d/%Y')
+      self.time_zone = 'UTC'
+    end
   end
   
   def self.format_date_time(events, user, therapist, selected_date)

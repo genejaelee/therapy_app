@@ -128,6 +128,8 @@
 	border: none;
 	border-radius: 0px;
 	top: 25% !important;
+	left: 50% !important;
+	margin-left: -250px !important;
 	position: fixed;
 	
 	.ui-dialog-titlebar {
@@ -195,5 +197,11 @@
 @media only screen and (max-width: 480px) {
 	.ui-datepicker-inline {
 		width: 280px;
+	}
+	
+	.ui-dialog {
+		font-family: $medium-font;
+		width: 300px !important;
+		margin-left: -150px !important;
 	}
 }

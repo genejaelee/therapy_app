@@ -5,7 +5,7 @@
 
 	<% content_for :body do %>
 	  <p>We will soon have more therapists to choose from. If you don't see someone you like, we can email you with new options. Just click <a id="open-email-dropbox">here</a>.</p>
-		<%= form_for @user, url: { controller: "users", action: "finish" } do |f| %>
+		<%= form_for @user, url: { controller: "users", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>
 				<%= f.hidden_field :id %>	
