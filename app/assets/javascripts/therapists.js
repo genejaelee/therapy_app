@@ -70,7 +70,7 @@ function openCloseOnClick(element, min, max) {
 	if ($(element).hasClass("closed")) {
 		$(element).removeClass("closed");
 		goToByScroll(element);
-		$(element).stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
+		$(element).stop().animate({height: max + "px"}, 500, "ease	OutCubic", function(){
 			$(element).addClass("opened");
 		});
 		
