@@ -20,9 +20,9 @@ TherapyApp::Application.routes.draw do
     match '/' => 'therapists#home', :as => :therapist_home, via: 'get'
   end
   
-  match '/therapists/update' => 'therapists#signup', :as => :update_therapist, via: 'get'
-  match '/therapists/create' => 'therapists#create', via: 'post'
-  match '/therapists/update' => 'therapists#update', via: 'patch'
+  match '/therapist/update' => 'therapists#signup', :as => :update_therapist, via: 'get'
+  match '/therapist/create' => 'therapists#create', via: 'post'
+  match '/therapist/update' => 'therapists#update', via: 'patch'
   match '/browse' => 'therapists#index', :as => :therapists_index, via: 'get'
   match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, via: 'get'
   
@@ -37,7 +37,7 @@ TherapyApp::Application.routes.draw do
   
   match '/drop_email_route' => 'users#drop_email', via: 'patch' 
   
-  match '/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
+  match '/therapists/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
   
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

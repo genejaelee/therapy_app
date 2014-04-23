@@ -7,7 +7,9 @@ class Event < ActiveRecord::Base
   validates :start_time, :uniqueness => { :scope => :start_date }
   
   def convert_to_UTC_0
-    unless self.start_time.nil?
+    if self.start_time.blank?
+      self.start_time = nil
+    else
       @start_time = self.start_time
       @user_time_zone = self.time_zone
       @start_date = self.start_date

@@ -10,7 +10,6 @@
 	<div class="eight columns datepicker-container">
 	</div>
 	<div class="eight columns form-container">
-		<!--
 		<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
 	
 			<%= f.label "Choose a date" %>
@@ -25,11 +24,11 @@
 			<%= f.hidden_field :time_zone, :value => @_current_user.time_zone %>
 	
 			<%= f.submit "Request a Call", 
-			:confirm => "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Scouter Terms of Service and Privacy Policy", 
+			:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Scouter Terms of Service and Privacy Policy" }, 
 			:class => "submit_button_white button" %>
 		<% end %>
-			-->
 		
+		<!--
 		<p style="color: #fff;">Sorry, all available appointments during the next week are booked. We can notify you via email when an appointment is available.</p>
 		
 		<%= form_for @user, url: { controller: "users", action: "drop_email" } do |f| %>
@@ -40,6 +39,7 @@
 				<%= f.submit "Submit", :class => "submit_button_white button" %>
 			</div>
 		<% end %>
+			-->
 		
 	</div>
 </div>

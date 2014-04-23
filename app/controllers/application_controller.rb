@@ -31,6 +31,8 @@ class ApplicationController < ActionController::Base
   end
   
   def therapist_time_zone(&block)
+    puts "getting time zone of therapist"
     Time.use_zone(current_therapist.time_zone, &block)
+    puts "current therapist timezone is #{current_therapist.time_zone}"
   end
 end
