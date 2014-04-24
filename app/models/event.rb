@@ -60,7 +60,7 @@ class Event < ActiveRecord::Base
     
     @disabled_time_array.each do |time|
       @therapist_open_slots.each do |open_slot|
-        parsed_time = Time.zone.parse("#{open_slot}")
+        parsed_time = Time.zone.parse("#{open_slot}").in_time_zone(@user_timezone)
         open_slot_time = parsed_time.strftime('%R')
         if open_slot_time == time
           @disabled_time_array.delete(time)
