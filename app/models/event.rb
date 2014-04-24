@@ -69,7 +69,7 @@ class Event < ActiveRecord::Base
     end
     puts @disabled_time_array
     @taken_time_array = @disabled_time_array.push(*@user_taken_time_array)
-    return @taken_time_array
+    return @disabled_time_array
   end
   
   def self.get_therapist_open_slots(therapist, selected_date)
