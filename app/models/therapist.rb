@@ -1,6 +1,7 @@
 class Therapist < ActiveRecord::Base
   has_many :events
   has_many :users, through: :events
+  before_save :create_permalink, :convert_slots_to_UTC_0_and_format
   
   retina!
   # Include default devise modules. Others available are:
@@ -24,7 +25,42 @@ class Therapist < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, :city, :state, :degree, :on => :update
   validates :zipcode, presence: true, length: { minimum: 5 }, :with => :zipcode_validator, :on => :update
   
-  before_save :create_permalink
+  def convert_slots_to_UTC_0_and_format
+    if self.open_slots.empty?
+    else
+      @therapist_time_zone = self.time_zone
+      @neutral_array = []
+      self.open_slots.each do |slot|
+        parsed_slot = Time.zone.parse(slot)
+        if parsed_slot.time_zone.name == "UTC"
+          @neutral_array.push(parsed_slot)
+        else
+          @neutral_slot = slot.in_time_zone("UTC")
+          @neutral_array.push(@neutral_slot)
+        end
+      end
+      self.open_slots = @neutral_array
+      puts "neutral array is #{@neutral_array}"
+    end
+  end
+  
+  def add_open_slots(time)
+    blank_array = []
+    current_array = self.open_slots
+    @therapist_time_zone = self.time_zone
+    if !current_array.nil?
+      Time.zone = @therapist_time_zone
+      current_array.push(Time.zone.parse(time).in_time_zone(@therapist_time_zone).to_s)
+      puts "put in #{Time.zone.parse(time).in_time_zone(@therapist_time_zone)}"
+    end
+    puts current_array
+    self.open_slots = current_array
+    self.save
+  end
+  
+  def clear_slots
+    self.open_slots.clear
+  end
   
   def zipcode_validator
     if ((ZipCodeInfo.instance.scf_city_for self.zipcode) == false)
@@ -46,6 +82,7 @@ class Therapist < ActiveRecord::Base
       self.permalink = self.first_name.downcase + self.last_name.downcase + self.id
     elsif self.permalink.nil?
       self.permalink = self.email.split("@")[0].to_s + rand(1000..9999).to_s
+    else
     end
   end
 end

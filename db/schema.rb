@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20140423174117) do
     t.string   "approach_sub2_title"
     t.string   "school_name"
     t.string   "time_zone"
-    t.string   "open_slots"
+    t.string   "open_slots",             default: [],              array: true
   end
 
   add_index "therapists", ["email"], name: "index_therapists_on_email", unique: true, using: :btree
