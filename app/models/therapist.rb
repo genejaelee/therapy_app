@@ -65,6 +65,18 @@ class Therapist < ActiveRecord::Base
     self.save
   end
   
+  def find_slots_by_date(date)
+    current_array = self.open_slots
+    @scoped_array = []
+    current_array.each do |slot|
+      parsed_slot_date = Time.zone.parse(slot).strftime('%F')
+      if parsed_slot_date == date
+        @scoped_array.push(Time.zone.parse(slot))
+      end
+    end
+    return @scoped_array
+  end
+  
   def zipcode_validator
     if ((ZipCodeInfo.instance.scf_city_for self.zipcode) == false)
       errors.add(:zipcode, "error. Sorry, we're only in the USA right now.")
