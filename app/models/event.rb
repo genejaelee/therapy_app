@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
       
       @formatted_date = self.class.format_date_to_ISO(@start_date)
       @formatted_date_time = "#{@formatted_date} #{@start_time}"
+      Time.zone = @user_time_zone
       @user_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@user_time_zone)
       @neutral_date_time = @user_date_time.in_time_zone('UTC')
       puts "neutral date time is #{@neutral_date_time}"
@@ -112,5 +113,14 @@ class Event < ActiveRecord::Base
       @formatted_date = date
     end
     return @formatted_date
+  end
+end
+
+class Event
+  def convert_datetime_to_timezone(timezone)
+    @datetime = "#{self.start_date} #{self.start_time}"
+    Time.zone = self.time_zone
+    @converted_datetime = Time.zone.parse(@datetime).in_time_zone(timezone)
+    return @converted_datetime
   end
 end
