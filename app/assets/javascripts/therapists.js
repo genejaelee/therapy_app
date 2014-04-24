@@ -138,9 +138,6 @@ function updateEventData(element){
 					var aTimeRange = [startTime, endTime];
 					//push arrays of start and end time to time ranges array
 					timeRangesArray.push(aTimeRange);
-					$.each(timeRangesArray, function(index, val) {
-					    console.log('time ranges array is ' + val);
-					});
 					if (i == (data.length - 1)) {
 						//run callback function
 						initTimePickerWithSlots(element, timeRangesArray);
