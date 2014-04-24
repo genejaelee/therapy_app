@@ -32,6 +32,9 @@ class Event < ActiveRecord::Base
     @user_timezone = user.time_zone
     @user_taken_time_array = []
     @therapist_open_slots = get_therapist_open_slots(therapist, selected_date)
+    if @therapist_open_slots.empty?
+      puts "No avaiable therapist slots"
+    end
     #convert time to TimeWithZone with therapist timezone, then push to array with user timezone
     events.each do |event|
       @formatted_date = format_date_to_ISO(event.start_date)
@@ -39,13 +42,15 @@ class Event < ActiveRecord::Base
       #convert from UTC to current user timezone
       Time.zone = 'UTC'
       @user_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@user_timezone)
-      puts @user_date_time
+      puts "user chose date and time #{@user_date_time}"
       @user_time = "#{@user_date_time.strftime('%R')}"
       @user_date = "#{@user_date_time.strftime('%m/%d/%Y')}"
       #after timezone convert if selected date matches appointment date
       if @user_date == selected_date
         puts "user date is equal to selected date!"
         @user_taken_time_array.push(@user_time.to_s)
+      else 
+        puts "user chose no dates equal to selected"
       end
     end
     
@@ -58,18 +63,27 @@ class Event < ActiveRecord::Base
       end
     end
     
-    @disabled_time_array.each do |time|
+    puts "about to put therapist slots in, this is the array #{@therapist_open_slots}"
+    @slots_to_erase = []
+    @disabled_time_array.each_with_index do |time, index|
+      puts "now checking #{time} at #{index}"
       @therapist_open_slots.each do |open_slot|
         parsed_time = Time.zone.parse("#{open_slot}").in_time_zone(@user_timezone)
         open_slot_time = parsed_time.strftime('%R')
+        puts "parsed therapist open slot time is #{open_slot_time}"
         if open_slot_time == time
-          @disabled_time_array.delete(time)
+          @slots_to_erase.push(time)
+          puts "will delete #{time} from disabled time array"
         end
       end
     end
+    
+    @slots_to_erase.each do |slot|
+      @disabled_time_array.delete(slot)
+    end
     puts @disabled_time_array
     @taken_time_array = @disabled_time_array.push(*@user_taken_time_array)
-    return @disabled_time_array
+    return @taken_time_array
   end
   
   def self.get_therapist_open_slots(therapist, selected_date)
@@ -79,7 +93,7 @@ class Event < ActiveRecord::Base
     @therapist_open_slots_array.each do |slot|
       parsed_slot = Time.zone.parse(slot)
       if parsed_slot.strftime('%m/%d/%Y') == selected_date
-        puts "therapist open slot date is equal to selected date!"
+        puts "therapist open slot date #{parsed_slot} is equal to selected date!"
         @open_slots_by_date_array.push(slot)
       end
     end
