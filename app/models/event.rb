@@ -50,7 +50,7 @@ class Event < ActiveRecord::Base
     end
     
     @disabled_time_array = []
-    for i in 1..24
+    for i in 1..23
       if i < 10
         @disabled_time_array.push("0#{i}:00")
       else
