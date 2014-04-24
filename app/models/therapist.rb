@@ -58,8 +58,11 @@ class Therapist < ActiveRecord::Base
     self.save
   end
   
-  def clear_slots
-    self.open_slots.clear
+  def remove_open_slots(time)
+    current_array = self.open_slots
+    current_array.delete(time)
+    self.open_slots = current_array
+    self.save
   end
   
   def zipcode_validator
