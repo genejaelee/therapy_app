@@ -6,7 +6,8 @@
 	<% @user = @_current_user %>
 	<% @event = @user.events.last %>
 	<% @therapist = @user.therapists.last %>
-  <p>Thanks for signing up and requesting a session. On <%= @event.start_date %> at <%= @event.start_time %>, <%= @therapist.first_name %> <%= @therapist.last_name %> will call you at <%= @user.phone %>. </p>
+	<% Time.zone = @event.time_zone %>
+  <p>Thanks for signing up and requesting a session. On <%= Time.zone.parse(@event.start_date).in_time_zone(@user.time_zone).strftime('%F') %> at <%= Time.zone.parse(@event.start_time).in_time_zone(@user.time_zone).strftime('%r') %>, <%= @therapist.first_name %> <%= @therapist.last_name %> will call you at <%= @user.phone %>. </p>
 	
 	<p>Please make sure to answer the call. If you need to change your scheduled time, please email us at Scouterapp@gmail.com, preferably 24 hours in advance.</p>
 	
