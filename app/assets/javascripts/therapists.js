@@ -127,10 +127,12 @@ function updateEventData(element){
 					var startTime = data[i];
 					var startTimeSplit = startTime.split('');
 					var startTimeHour = startTimeSplit.slice(0,2).join('');
+					var startTimeMinute = startTimeSplit.slice(4,5).join('');
 				
+					var endTimeMinute = (parseInt(startTimeMinute, 10) + 59).toString();
 					var endTimeHour = (parseInt(startTimeHour, 10) + 1).toString();
 					var endTimeArray = [];
-					endTimeArray.push(endTimeHour, startTimeSplit.slice(2,5).join(''));
+					endTimeArray.push(endTimeHour, ':', '00');
 					var endTime = endTimeArray.join('');
 				
 					var aTimeRange = [startTime, endTime];
