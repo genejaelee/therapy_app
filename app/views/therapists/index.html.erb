@@ -4,7 +4,7 @@
 	<% end %>
 
 	<% content_for :body do %>
-	  <p>We will soon have more therapists to choose from. If you don't see someone you like, we can email you with new options. Just click <a id="open-email-dropbox">here</a>.</p>
+	  <p>We will soon have more therapists to choose from. If you don't see someone you like, we can email you with new options. <span style="font-weight: 600;"><a id="open-email-dropbox">Just click here</a></span>.</p>
 		<%= form_for @user, url: { controller: "users", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>
@@ -25,7 +25,7 @@
 			<div class='image-panel<%= index %> image-panel panel'>
 				<div class="bg-container">
 					<div class="container">
-						<h1><%= index + 1 %>.</h1>
+						<h1></h1>
 					</div>
 				</div>
 			</div>
