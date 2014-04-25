@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     @events = Event.where(therapist_id: therapist_id).load
     #return array with appointment times formatted for user time zone
     if @_current_user.nil?
-      @_current_user = User.new(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
+      @_current_user = User.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
     end
     
     @times_array = Event.format_date_time(@events, @_current_user, @therapist, date)
