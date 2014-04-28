@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def create
     if @_current_user.nil?
+      puts "current user nil, creating new"
       @user = User.new(params[:user])
       @event = @user.events.new(event_params)
     else
@@ -31,10 +32,14 @@ class EventsController < ApplicationController
     @events = Event.where(therapist_id: therapist_id).load
     #return array with appointment times formatted for user time zone
     if @_current_user.nil?
-      @_current_user = User.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
+      puts "current user nil, creating new"
+      @user = User.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
+      session[:current_user_id] = @user.id
+    else
+      @user = @_current_user
     end
     
-    @times_array = Event.format_date_time(@events, @_current_user, @therapist, date)
+    @times_array = Event.format_date_time(@events, @user, @therapist, date)
     puts "user date time array is #{@times_array}"
     respond_to do |format|
       format.json { render :json => @times_array }

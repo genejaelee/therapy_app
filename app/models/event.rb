@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
     else
       @start_time = self.start_time
       @user_time_zone = self.time_zone
+      puts self.time_zone
       @start_date = self.start_date
       puts "#{@start_time} #{@time_zone}"
       
