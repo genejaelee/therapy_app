@@ -19,14 +19,14 @@
 				<%= link_to image_tag("couch-logo5.png", height: "60px", class: "top-logo"), homepage_path %>
 			</div>
 			<div class="sixteen columns" id="copy-container">
-				<h1>Get a therapist to call you.</h1>
-				<h5>Try therapy the simplest way — by taking a phone call.</h5>
+				<h1>Talk to a Peer Counselor.</h1>
+				<h5>Graduate students studying to be therapists. Speak with one for fifty minutes.</h5>
 			</div>
 			<div class="spacer sixteen columns">
 			</div>
 			<div class="sixteen columns" id="cta-form">
 				<%= render 'users/create' %>
-				<span id="secure-notice">This is confidential. Your identity will not be revealed.</span>
+				<span id="secure-notice">This is confidential.</span>
 				<%= render 'shared/error_messages' %>
 			</div>
 		</div>
@@ -37,14 +37,14 @@
 	<div class="bg-container">
 		<div class="container">
 			<div class="ten columns">
-				<h2>It's <span class="medium-font">too hard</span> to try therapy.</h2>
+				<h2>Life after college is<span class="medium-font"> hard.</span></h2>
 			</div>
 			<div class="ten columns">
-				<p>The idea itself may scare you. You might wrestle with thinking it could help, yet wonder if it's just a sham. And how do you choose a therapist? When you're feeling crappy, you probably don't want to dig in.</p>
-				<p>We’ve been exactly there. So we want to make it effortless. </p>
+				<p>You wonder what to do with your life. You don't like your job, but need it to survive. Maybe you're lonely. You might be anxious, depressed, or scared.</p>
+				<p>We know this all too well. So we want to help.</p>
 				
-				<h2>Now, just answer your phone.</h2>
-				<p>We've made it quite simple to try therapy. Choose a therapist, and schedule a 30 minute phone call. At the set time, pick up. That's it.
+				<h2>So, talk with a peer counselor.</h2>
+				<p>Peer counselors are graduate student studying clinical psychology, psychiatry, or social work. They're available to talk at a very affordable rate, and they can really relate to you. 
 					
 			</div>
 		</div>
@@ -57,8 +57,8 @@
 			<div class="sixteen columns" id="how-header">
 				<h1>How it works</h1>
 				<hr class="dashed-hr">
-				<h2>$40 for a half-hour session.</h2>
-				<h5>Charged afterwards, only if you have a positive experience.</h5>
+				<h2>$20 for a 50-minute session.</h2>
+				<h5>Only charged if you have a positive experience.</h5>
 			</div>
 		</div>
 	</div>
@@ -84,15 +84,15 @@
 				-->
 			<div class="ten columns">
 				<h3>Sign up and choose a time.</h2>
-				<p>Pick a therapist to work with, and choose a time to be called for a half-hour session. Give a few simple background details as well as your payment information. <span style="font-weight:600">This is just for our records, you will not be charged until after your session.</span></p>
+				<p>Select a peer counselor to speak with, and a time for a 50-minute session. Give a few background details and your payment information. <span style="font-weight:600">You will not be charged unless you're satisfied.</span></p>
 			</div>
 			<div class="ten columns">
 				<h3>Answer your phone.</h2>
-				<p>Have a private, half-hour conversation about what’s on your mind. That’s all you have to do.</p>
+				<p>Have a private, 50-minute conversation about what’s on your mind. That’s all you have to do.</p>
 			</div>
 			<div class="ten columns">
 				<h3>We'll follow up.</h2>
-				<p>We’ll check in over email and ask how things went. If it was a positive experience, we can schedule you another session. If you disliked the session, we will pay the therapist $40 on your behalf. You will not be charged a dime. It’s as simple as that.</p>
+				<p>We’ll check in over email. If you had a positive experience, you can schedule another session. If you disliked it, we will pay the peer counselor on your behalf -- you won't be charged a dime.</p>
 			</div>
 		</div>
 	</div>
@@ -105,7 +105,7 @@
 		<div class="container">
 			<h2>Frequently Asked Questions</h2>
       <div id="accordion">
-        <h3>Is talking over the phone as effective as seeing a therapist face to face?</h3>
+        <h3>Is talking over the phone actually helpful?</h3>
         <div>
           <p>
 			University of Cambridge psychologists performed a research study with ~4,000 patients across ~190,000 therapy sessions in order to compare ‘over-the-telephone’ and ‘face-to-face’ therapy. Their findings were positive:</p>
@@ -114,26 +114,26 @@
 			<p style="font-weight: 600;">“We demonstrated that over-the-telephone and face-to-face showed equivalent effectiveness for anxiety symptoms, depression symptoms, and work and social functioning in all but the most severely affected patients”</p>
 			<br>
 
-			<p>So according to this study (as well as others), it can be just as effective for mild/moderate depression, stress, anxiety, and insecurity. If you’re struggling with severe or extreme feelings though, you likely need more intensive, face-to-face resources for help. </p>
+			<p>So according to this study (as well as others), phone conversations can be quite helpful for emotional support. If you’re struggling with severe or extreme feelings though, you likely need more intensive, face-to-face resources for help. </p>
 			<br>
 
-			<p>If you’re skeptical, we suggest just giving it a try. At the least, you can see what a session of therapy is like, and decide after if you’d prefer to see someone in-person.</p>
+			<p>If you’re skeptical, we suggest just giving it a try. At the least, you can see what talking to a peer counselor is like, and decide after if you’d prefer other options.</p>
 			<br>
 
 			<p>If you’d like to read the quoted study, please <a style="font-weight: 600" href="http://www.plosone.org/article/fetchObject.action?uri=info%3Adoi%2F10.1371%2Fjournal.pone.0042916&representation=PDF" target="_blank">click here.</a></p>
             
           </p>
         </div>
-        <h3>So if I dislike my session, you’ll pay the therapist for me? Why would you do that?</h3>
+        <!-- <h3>So if I dislike my session, you’ll pay for me? Why?</h3>
         <div>
           <p>
 			We want to make sure you and the therapist are as comfortable as possible in your conversation. A lot of therapists offer a short ‘free trial’ consultation, but we’ve found these can be uncomfortable—prospective clients can feel guilty taking the therapist’s time without him/her getting paid, and the therapist might feel like he/she needs to make a sales pitch. Those thoughts aren’t helpful or authentic for either person. We think if the therapist is definitely getting paid, both parties will feel more comfortable going into the conversation. </p>
 			<br>
 			<p>That way, you’re more likely to have a positive experience—and if you don’t, it’s motivation for us to figure out how to make the experience right.</p>
-        </div>
-        <h3>Is this appropriate for severe mental illness?</h3>
+        </div> -->
+        <h3>Is this appropriate for severe problems?</h3>
         <div>
-          <p>No, it’s not. If you or the therapist you contact think you need more intensive help, then please consider working with a therapist face-to-face, or even seeking inpatient care. </p>
+          <p>No, it’s not. If you or your peer counselor think you need more intensive help, then please consider trying formal therapy, or visiting a doctor. If it's an emergency, please seek emergency help such as 911 or the suicide prevention hotline (1.800.784.2433). </p>
 					<br>
 
 			<p>If you feel you might hurt yourself or others, this service cannot help you. If you are a resident of the U.S., please contact the suicide prevention hotline at 1.800.784.2433 for immediate help.</p>
@@ -142,7 +142,7 @@
         <h3>How is my information kept confidential?</h3>
         <div>
           <p>
-			We will only share your phone number with your chosen therapist, and we will never share your email address. You can also delete all your information permanently from our systems.</p>
+			We will only share your phone number with your chosen peer counselor, and we will never share your email address. You can also delete all your information permanently from our systems.</p>
 			<br>
 
 			<p>On the technical side, all incoming and outgoing transmissions through scouterapp.com are secured through the SSL (Secure Sockets Layer) protocol. Further, all data provided to us is encrypted before it is stored.</p>
@@ -150,9 +150,9 @@
         <h3>Can I use medical insurance?</h3>
         <div>
           <p>
-            Sorry, no. We hope to offer that someday, but we’re just starting this and aren’t in a position to work with insurance companies. We’ve tried to keep the cost down though (talking over the phone is cheaper for therapists than operating out of an office), and it should be close to the range of a typical outpatient co-payment.
+            Sorry, no. This isn't formal therapy, and insurance can't be used.
           </p>
-        </div>
+        <!-- </div>
         <h3>Who are you? Why are you doing this?</h3>
         <div>
           <p>
@@ -168,7 +168,7 @@ I wanted to see someone for years, but I was scared and didn’t know how to go 
 <p>That’s why I’m building this—getting started with a therapist should be much easier.</p>
 <br>
 
-<p>Gene: During my first years of college I struggled with severe depression and anxiety but didn't know or want to seek help. If there were easier and more convenient alternatives I could have been spared a lot of unnecessary grief. Partially influenced by these experiences, I studied psychology, specializing in mental illness and psychiatry. </p>
+<p>Gene: During my first years of college I struggled with severe depression and anxiety but didn't know or want to seek help. If there were easier and more convenient alternatives I could have been spared a lot of unnecessary grief. Partially influenced by these experiences, I studied psychology, specializing in mental illness and psychiatry. </p> -->
         </div>
     	</div>
 		</div>
