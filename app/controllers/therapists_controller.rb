@@ -39,8 +39,9 @@ class TherapistsController < ApplicationController
   def index
     @event = Event.new
     if @_current_user.nil?
-      @_current_user = User.new(params[:user])
-      @user = @_current_user
+      puts "current user nil, creating new"
+      @user = User.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
+      session[:current_user_id] = @user.id
     else
       @user = @_current_user
     end

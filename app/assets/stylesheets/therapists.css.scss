@@ -92,16 +92,6 @@
 	}
 }
 
-.image-panel0 {
-	.bg-container {
-	}
-}
-
-.image-panel1 {
-	.bg-container {
-	}
-}
-
 .profile-link-panel {
 	height: 345px;
 	position: relative;
@@ -321,6 +311,14 @@
 				margin-left: -4px;
 				max-width: 1328px;
 			}
+		}
+	}
+}
+
+//ipad specific
+@media only screen and (max-width: 1024px) {
+	.image-panel {
+		.bg-container {
 		}
 	}
 }

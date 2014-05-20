@@ -58,9 +58,13 @@ function showTimePicker(thisProfile){
 }
 
 var ready = function() {
+	$(function() {
+	    FastClick.attach(document.body);
+	});
+	
 	$('.phone-field').mask('(000) 000-0000');
 	$('.date-field').mask('00/00/00');
-	$('.time-field').mask('00:00AA')
+	//$('.time-field').mask('00:00AA');
 	
 	var timeZone = jstz.determine();
 	document.cookie = 'jstz_time_zone='+timeZone.name()+';';
@@ -128,37 +132,10 @@ var ready = function() {
 	mouseEnterAnimateIndex(currentHeight);
 	
 	$('.profile-link-panel .bg-container .inner-container').click(function(){
-		var windowWidth = $(window).width()
-		if(windowWidth < 480) {
-			var maxHeight = '1350';
-		}
-		else if(480 < windowWidth && windowWidth < 767) {
-			var maxHeight = '1200';
-		}
-		else if(767 < windowWidth && windowWidth < 960) {
-			var maxHeight = '850';
-		}
-		else if(960 < windowWidth) {
-			var maxHeight = '775';
-		}
+		maxHeight = setProfilePanelHeights();
 		var thisProfile = $(this).parent().parent();
 		openCloseOnClick(thisProfile, currentHeight, maxHeight);
 	});
-	
-	if (is_touch_device()) {
-		var arrowDown = $('.arrow-down')
-		arrowDown.on( 'touchend', function(){
-			goToByScroll(".signup-panel");
-		});
-		
-		$('.profile-link-panel .bg-container .inner-container').on( 'touchend', function(){
-			if(windowWidth < 480) {
-				var maxHeight = '1300px';
-			}
-			var thisProfile = $(this).parent().parent();
-			openCloseOnClick(thisProfile, currentHeight, maxHeight);
-		});
-	}
 	
 	//handle unbeforeunload method for pages x y z
 	$('.button').click(function() {
