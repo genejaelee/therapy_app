@@ -1,0 +1,46 @@
+<body id="form-page">
+	<% content_for :title do %>
+	  Payment information, the final step.
+	<% end %>
+
+	<% content_for :body do %>
+	  <p>Remember, you are not currently being charged. You will not be charged until after your session, and only if you confirm it was a positive experience.</p>
+	<% end %>
+	
+	<% content_for :arrow_down_option do %>
+	<% render 'layouts/arrow_down' %>
+	<% end %>
+
+	<%= render 'layouts/header' %>
+
+	<div class="charge-panel panel">
+		<div class="bg-container">
+			<div class="container">
+
+			<%= form_tag charges_path do %>
+				<article>
+					<label class="amount">
+						<h2>$20</h2>
+						<h3>Pay securely via Stripe -- We will not receive your card information.</h3>
+					</label>
+				</article>
+	
+				<hr></hr>
+	
+				<div class="payment-errors"></div>
+	
+				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+				          data-description="Charge for appointment"
+				          data-amount="2000"></script>
+	
+			<% end %>
+
+				<% flash.each do |key, value| %>
+					<div class="alert alert-<%= key %>"><%= value %></div>
+				<% end %>
+
+			</div>
+		</div>
+	</div>
+</body>
