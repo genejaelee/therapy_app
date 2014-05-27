@@ -27,6 +27,9 @@ class UsersController < ApplicationController
     end
   end
   
+  def charge
+  end
+  
   def save_c
     @user = @_current_user
     @user.stripe_token = params[:stripeToken]

@@ -26,6 +26,8 @@ TherapyApp::Application.routes.draw do
   match '/browse' => 'therapists#index', :as => :therapists_index, via: 'get'
   match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, via: 'get'
   
+  match '/paysecure' => 'charges#new', via: 'get'
+  
   match '/signup' => 'users#new', :as => :new_user, via: 'post'
   match '/save_c' => 'users#save_c', :as => :save_user_card, via: 'post'
   match '/update' => 'users#update', :as => :update_user, via: 'patch'
