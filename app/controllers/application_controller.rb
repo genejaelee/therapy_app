@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  before_filter { response.headers['P3P'] = %q|CP="HONK"| }
   protect_from_forgery with: :exception
   around_filter :user_time_zone, :if => :current_user
   around_filter :therapist_time_zone, :if => :current_therapist

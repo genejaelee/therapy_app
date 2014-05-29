@@ -10,6 +10,10 @@ TherapyApp::Application.routes.draw do
     match '/edit' => 'devise/registrations#edit', :as => :therapist_edit, via: 'get'
   end
   
+  match "/chat/:id" => "chat#view", via: 'get'
+  match "/new" => "chat#new", via: 'get'
+  match "/chatindex" => 'index#index', via: 'get'
+  
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
   match '/this_therapist_events' => 'events#this_therapist_events', via: 'post'
   
@@ -38,6 +42,12 @@ TherapyApp::Application.routes.draw do
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
   
   match '/drop_email_route' => 'users#drop_email', via: 'patch' 
+  
+  #chat api ajax call routes
+  match '/api/authenticate' => 'api#authenticate', via: 'post'
+  match '/api/typing_status' => 'api#typing_status', via: 'post'
+  match '/api/update_nickname' => 'api#update_nickname', via: 'post'
+  match '/api/post_message' => 'api#post_message', via: 'post'
   
   match '/therapists/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
   

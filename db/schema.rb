@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520203938) do
+ActiveRecord::Schema.define(version: 20140529194621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 20140520203938) do
   create_table "appointments", force: true do |t|
     t.string   "date"
     t.string   "hour"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "chat_users", force: true do |t|
+    t.string   "nickname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "time_zone"
+  end
+
+  create_table "chats", force: true do |t|
+    t.string   "owner"
+    t.string   "channel"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,6 +49,14 @@ ActiveRecord::Schema.define(version: 20140520203938) do
     t.string   "start_time"
     t.string   "start_date"
     t.string   "time_zone"
+  end
+
+  create_table "messages", force: true do |t|
+    t.text     "message"
+    t.integer  "chat_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "therapists", force: true do |t|

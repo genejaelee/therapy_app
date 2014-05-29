@@ -31,6 +31,20 @@ function goToByScroll(element){
 		500, "easeOutCubic");
 }
 
+function scrollToBottomAndFocus(){
+	$('html,body').stop().animate({
+		scrollTop: $(document).height()},
+		1000, "easeOutCubic", function(){
+			$('#message').focus();
+		});
+}
+
+function goToByScrollBottom(element){
+	$('html,body').stop().animate({
+		scrollTop: ($(element).offset().top) + $(element).height() + 50 - $(window).height()},
+		500, "easeOutCubic");
+}
+
 //legacy functions to hide and show things
 var hide_element = function(element) {
 	$( element ).stop().animate( {opacity : 0 }, 300, function(){
