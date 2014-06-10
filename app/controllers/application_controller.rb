@@ -3,13 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   before_filter { response.headers['P3P'] = %q|CP="HONK"| }
   protect_from_forgery with: :exception
-  around_filter :user_time_zone, :if => :current_user
+  around_filter :client_time_zone, :if => :current_client
   around_filter :therapist_time_zone, :if => :current_therapist
-  helper_method :current_user, :which_edit_page
-  before_action :current_user
+  helper_method :which_edit_page
   
   def after_sign_in_path_for(resource)
     @therapist = current_therapist
+    @client = current_client
   end
   
   def which_edit_page
@@ -21,19 +21,13 @@ class ApplicationController < ActionController::Base
   end
   
   private
-  
-  def current_user
-      @_current_user ||= session[:current_user_id] &&
-        User.find_by(id: session[:current_user_id])
-  end
 
-  def user_time_zone(&block)
-    Time.use_zone(@_current_user.time_zone, &block)
+  def client_time_zone(&block)
+    Time.use_zone(current_client.time_zone, &block)
   end
   
   def therapist_time_zone(&block)
     puts "getting time zone of therapist"
     Time.use_zone(current_therapist.time_zone, &block)
-    puts "current therapist timezone is #{current_therapist.time_zone}"
   end
 end

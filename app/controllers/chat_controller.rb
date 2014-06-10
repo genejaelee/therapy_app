@@ -1,4 +1,6 @@
 class ChatController < ApplicationController
+  protect_from_forgery with: :exception
+  before_action :authenticate_client!
   
   def new
     chat = Chat.new
@@ -13,11 +15,10 @@ class ChatController < ApplicationController
   end
 
   def view
-    
     if(params[:id] != nil)
       @chat = Chat.find(Tiny::untiny(params[:id]))
       @user = ChatUser.user(session)
-      #@user.update_attributes(:time_zone => cookies["jstz_time_zone"])
+      @user.update_attributes(:time_zone => cookies["jstz_time_zone"])
       @messages = Message.where("chat_id = ?", @chat.id.to_s).load
     else
       redirect_to :controller => 'index', :action => 'index'

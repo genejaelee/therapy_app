@@ -4,6 +4,8 @@
 								 :reverse => true 
 %>
 
+<%= render 'layouts/client_navbar' %>
+
 <div id="panel1" class="panel">
 	<div class="bg-container">
 		<div class="subdomain_link">
@@ -28,7 +30,7 @@
 				<%= link_to({:controller => "chat", :action => "new"}, {:class => "button"}) do %>
 					<button>New Chat</button>
 				<% end %>
-				<%= render 'users/create' %>
+				<%= render 'clients/create' %>
 				<span id="secure-notice">This is confidential.</span>
 				<%= render 'shared/error_messages' %>
 			</div>

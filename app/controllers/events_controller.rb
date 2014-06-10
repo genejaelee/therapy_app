@@ -1,15 +1,15 @@
 class EventsController < ApplicationController
   def create
-    if @_current_user.nil?
-      puts "current user nil, creating new"
-      @user = User.new(params[:user])
-      @event = @user.events.new(event_params)
+    if @_current_client.nil?
+      puts "current client nil, creating new"
+      @client = Client.new(params[:client])
+      @event = @client.events.new(event_params)
     else
-      @user = @_current_user
-      @event = @user.events.new(event_params)
+      @client = @_current_client
+      @event = @client.events.new(event_params)
     end
     if @event.save
-      render 'users/update'
+      render 'clients/update'
     else
       redirect_to :controller => 'therapists', :action => 'index', :messages => "error"
       flash[:fail] = "Sorry there was an error processing your entries."
@@ -30,17 +30,17 @@ class EventsController < ApplicationController
     @therapist = Therapist.find_by_id(therapist_id)
     #loads all events, inefficient but works for now
     @events = Event.where(therapist_id: therapist_id).load
-    #return array with appointment times formatted for user time zone
-    if @_current_user.nil?
-      puts "current user nil, creating new"
-      @user = User.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
-      session[:current_user_id] = @user.id
+    #return array with appointment times formatted for client time zone
+    if @_current_client.nil?
+      puts "current client nil, creating new"
+      @client = Client.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
+      session[:current_client_id] = @client.id
     else
-      @user = @_current_user
+      @client = @_current_client
     end
     
-    @times_array = Event.format_date_time(@events, @user, @therapist, date)
-    puts "user date time array is #{@times_array}"
+    @times_array = Event.format_date_time(@events, @client, @therapist, date)
+    puts "client date time array is #{@times_array}"
     respond_to do |format|
       format.json { render :json => @times_array }
     end
@@ -53,6 +53,6 @@ class EventsController < ApplicationController
   private
   
   def event_params
-    params.require(:event).permit(:therapist_id, :user_id, :title, :description, :start_time, :start_date, :time_zone, :end)
+    params.require(:event).permit(:therapist_id, :client_id, :title, :description, :start_time, :start_date, :time_zone, :end)
   end
 end

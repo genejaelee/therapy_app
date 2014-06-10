@@ -3,7 +3,8 @@ TherapyApp::Application.routes.draw do
   get "appointments/index"
   get "events/index"
   devise_for :therapists, :controllers => { :registrations => "registrations" }
-  resources :charges, :therapists, :events
+  devise_for :clients, :controllers => { :registrations => "registrations" }
+  resources :charges, :clients, :therapists, :events
   
   devise_scope :therapist do
     match '/signup' => 'devise/registrations#new', via: 'get'
@@ -32,16 +33,15 @@ TherapyApp::Application.routes.draw do
   
   match '/paysecure' => 'charges#new', via: 'get'
   
-  match '/signup' => 'users#new', :as => :new_user, via: 'post'
-  match '/save_c' => 'users#save_c', :as => :save_user_card, via: 'post'
-  match '/update' => 'users#update', :as => :update_user, via: 'patch'
-  match '/finish' => 'users#finish', :as => :finish_user, via: 'patch'
+  match '/save_c' => 'clients#save_c', :as => :save_client_card, via: 'post'
+  match '/update' => 'clients#update', :as => :update_client, via: 'patch'
+  match '/finish' => 'clients#finish', :as => :finish_client, via: 'patch'
   match '/' => 'static_pages#home', :as => :homepage, via: 'get'
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
   
-  match '/drop_email_route' => 'users#drop_email', via: 'patch' 
+  match '/drop_email_route' => 'clients#drop_email', via: 'patch' 
   
   #chat api ajax call routes
   match '/api/authenticate' => 'api#authenticate', via: 'post'

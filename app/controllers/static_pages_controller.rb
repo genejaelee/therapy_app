@@ -1,18 +1,18 @@
 class StaticPagesController < ApplicationController
   
   def home
-    @user = User.new
+    @client = Client.new
   end
   
   def about
-    @user = User.new
+    @client = Client.new
   end
   
   def privacy
-    @user = User.new
+    @client = Client.new
   end
   
   def terms
-    @user = User.new
+    @client = Client.new
   end
 end

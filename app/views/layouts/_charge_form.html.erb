@@ -1,7 +1,7 @@
 <%= form_tag("/save_c") do %>
 	<article>
 		<label class="amount">
-			<h2><%= "$" + (@user.price.to_f / 100).ceil.to_s %>.</h2>
+			<h2><%= "$" + (@client.price.to_f / 100).ceil.to_s %>.</h2>
 			<h3>Pay securely via Stripe -- We will not receive your card information.</h3>
 		</label>
 	</article>
@@ -11,7 +11,7 @@
 	<div class=".payment-errors"></div>
  
  <!--
-	<form action="users/charge" method="post" id="stripe-form">
+	<form action="clients/charge" method="post" id="stripe-form">
 	    <div class="formset">
 	        <label>Card Number</label>
 	        <input type="text" size="20" autocomplete="off" class="credit-number" />
@@ -37,7 +37,7 @@
 	          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
 	          data-description="Set up your appointment."
 						data-panel-label="Store with no charge."
-						data-email=<%= @user.email %>>
+						data-email=<%= @client.email %>>
 						
 	</script>
 	
