@@ -27,9 +27,6 @@
 			<div class="spacer sixteen columns">
 			</div>
 			<div class="sixteen columns" id="cta-form">
-				<%= link_to({:controller => "chat", :action => "new"}, {:class => "button"}) do %>
-					<button>New Chat</button>
-				<% end %>
 				<%= render 'clients/create' %>
 				<span id="secure-notice">This is confidential.</span>
 				<%= render 'shared/error_messages' %>
