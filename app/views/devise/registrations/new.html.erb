@@ -1,20 +1,29 @@
-<h2>Sign up</h2>
+<% page_title "Sign Up" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= render 'layouts/header'%>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+<div class="panel signup-panel">
+	<div class="bg-container">
+		<div class="container">
+			
+			<h2>Sign up</h2>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+			  <%= devise_error_messages! %>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-		
-		<%= f.hidden_field :time_zone, :value => resource.time_zone %>
+			  <%= f.label :email %>
+			  <%= f.email_field :email, autofocus: true %>
 
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
+			  <%= f.label :password %>
+			  <%= f.password_field :password, autocomplete: "off" %>
 
-<%= render "devise/shared/links" %>
+			  <%= f.label :password_confirmation %>
+			  <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+			  <%= f.submit "Sign up", :class => "submit_button_white button" %>
+			<% end %>
+
+			<div class="shared-links"><%= render "devise/shared/links" %></div>
+		</div>
+	</div>
+</div>

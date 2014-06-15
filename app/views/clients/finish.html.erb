@@ -1,0 +1,28 @@
+<% page_title "Thank You" %>
+
+<% content_for :title do %>
+  You're done
+<% end %>
+
+<% content_for :body do %>
+	<% @client = @_current_client %>
+	<% @event = @client.events.last %>
+	<% @therapist = @client.therapists.last %>
+	<% Time.zone = @event.time_zone %>
+  <p>Thanks for signing up and requesting a session. On <%= Time.zone.parse(@event.start_date).in_time_zone(@client.time_zone).strftime('%F') %> at <%= Time.zone.parse(@event.start_time).in_time_zone(@client.time_zone).strftime('%r') %>, <%= @therapist.first_name %> <%= @therapist.last_name %> will call you at <%= @client.phone %>. </p>
+	
+	<p>Please make sure to answer the call. If you need to change your scheduled time, please email us at Scouterapp@gmail.com, preferably 24 hours in advance.</p>
+	
+	<p>After your call, we will follow up with you at <%= @client.email %> to see how things went. Remember, your card will not be charged until this time.</p>
+<% end %>
+
+<%= render 'layouts/header' %>
+
+<div class="panel">
+	<div class="bg-container">
+		<div class="container">
+			<div class="sixteen columns">
+				
+		</div>
+	</div>
+</div>

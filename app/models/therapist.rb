@@ -1,6 +1,6 @@
 class Therapist < ActiveRecord::Base
   has_many :events
-  has_many :users, through: :events
+  has_many :clients, through: :events
   before_save :create_permalink, :convert_slots_to_UTC_0_and_format
   
   retina!

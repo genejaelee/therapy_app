@@ -20,8 +20,8 @@
 				
 	
 			<%= f.hidden_field :therapist_id, :value => @therapist_id %>
-			<%= f.hidden_field :user_id, :value => @user.id %>
-			<%= f.hidden_field :time_zone, :value => @user.time_zone %>
+			<%= f.hidden_field :client_id, :value => @client.id %>
+			<%= f.hidden_field :time_zone, :value => @client.time_zone %>
 	
 			<%= f.submit "Request a Call", 
 			:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Scouter Terms of Service and Privacy Policy" }, 
@@ -31,7 +31,7 @@
 		<!--
 		<p style="color: #fff;">Sorry, all available appointments during the next week are booked. We can notify you via email when an appointment is available.</p>
 		
-		<%= form_for @user, url: { controller: "users", action: "drop_email" } do |f| %>
+		<%= form_for @client, url: { controller: "clients", action: "drop_email" } do |f| %>
 			<div class="email-dropbox2">
 				<%= f.hidden_field :id %>	
 				<%= f.hidden_field :flag_therapist, :value => true %>

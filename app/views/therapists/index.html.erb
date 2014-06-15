@@ -7,7 +7,7 @@
 
 	<% content_for :body do %>
 	  <p>We will soon have more peer counselors to choose from. If you don't see someone you like, we can email you with new options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
-		<%= form_for @user, url: { controller: "users", action: "drop_email" } do |f| %>
+		<%= form_for @client, url: { controller: "clients", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>
 				<%= f.hidden_field :id %>	

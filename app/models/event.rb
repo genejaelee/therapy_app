@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :therapist
-  belongs_to :user
+  belongs_to :client
   before_validation :convert_to_UTC_0_and_format
   
   validates_presence_of :start_date, :start_time, :time_zone
@@ -13,16 +13,16 @@ class Event < ActiveRecord::Base
     elsif self.time_zone.blank?
     else
       @start_time = self.start_time
-      @user_time_zone = self.time_zone
+      @client_time_zone = self.time_zone
       puts self.time_zone
       @start_date = self.start_date
       puts "#{@start_time} #{@time_zone}"
       
       @formatted_date = self.class.format_date_to_ISO(@start_date)
       @formatted_date_time = "#{@formatted_date} #{@start_time}"
-      Time.zone = @user_time_zone
-      @user_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@user_time_zone)
-      @neutral_date_time = @user_date_time.in_time_zone('UTC')
+      Time.zone = @client_time_zone
+      @client_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@client_time_zone)
+      @neutral_date_time = @client_date_time.in_time_zone('UTC')
       puts "neutral date time is #{@neutral_date_time}"
       #assign new values
       self.start_time = @neutral_date_time.strftime('%R')
@@ -31,29 +31,29 @@ class Event < ActiveRecord::Base
     end
   end
   
-  def self.format_date_time(events, user, therapist, selected_date)
-    @user_timezone = user.time_zone
-    @user_taken_time_array = []
+  def self.format_date_time(events, client, therapist, selected_date)
+    @client_timezone = client.time_zone
+    @client_taken_time_array = []
     @therapist_open_slots = get_therapist_open_slots(therapist, selected_date)
     if @therapist_open_slots.empty?
       puts "No avaiable therapist slots"
     end
-    #convert time to TimeWithZone with therapist timezone, then push to array with user timezone
+    #convert time to TimeWithZone with therapist timezone, then push to array with client timezone
     events.each do |event|
       @formatted_date = format_date_to_ISO(event.start_date)
       @formatted_date_time = "#{@formatted_date} #{event.start_time}"
-      #convert from UTC to current user timezone
+      #convert from UTC to current client timezone
       Time.zone = 'UTC'
-      @user_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@user_timezone)
-      puts "user chose date and time #{@user_date_time}"
-      @user_time = "#{@user_date_time.strftime('%R')}"
-      @user_date = "#{@user_date_time.strftime('%m/%d/%Y')}"
+      @client_date_time = Time.zone.parse("#{@formatted_date_time}").in_time_zone(@client_timezone)
+      puts "client chose date and time #{@client_date_time}"
+      @client_time = "#{@client_date_time.strftime('%R')}"
+      @client_date = "#{@client_date_time.strftime('%m/%d/%Y')}"
       #after timezone convert if selected date matches appointment date
-      if @user_date == selected_date
-        puts "user date is equal to selected date!"
-        @user_taken_time_array.push(@user_time.to_s)
+      if @client_date == selected_date
+        puts "client date is equal to selected date!"
+        @client_taken_time_array.push(@client_time.to_s)
       else 
-        puts "user chose no dates equal to selected"
+        puts "client chose no dates equal to selected"
       end
     end
     
@@ -71,7 +71,7 @@ class Event < ActiveRecord::Base
     @disabled_time_array.each_with_index do |time, index|
       puts "now checking #{time} at #{index}"
       @therapist_open_slots.each do |open_slot|
-        parsed_time = Time.zone.parse("#{open_slot}").in_time_zone(@user_timezone)
+        parsed_time = Time.zone.parse("#{open_slot}").in_time_zone(@client_timezone)
         open_slot_time = parsed_time.strftime('%R')
         puts "parsed therapist open slot time is #{open_slot_time}"
         if open_slot_time == time
@@ -85,7 +85,7 @@ class Event < ActiveRecord::Base
       @disabled_time_array.delete(slot)
     end
     puts @disabled_time_array
-    @taken_time_array = @disabled_time_array.push(*@user_taken_time_array)
+    @taken_time_array = @disabled_time_array.push(*@client_taken_time_array)
     return @taken_time_array
   end
   

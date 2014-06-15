@@ -4,6 +4,8 @@
 								 :reverse => true 
 %>
 
+<%= render 'layouts/client_navbar' %>
+
 <div id="panel1" class="panel">
 	<div class="bg-container">
 		<div class="subdomain_link">
@@ -25,7 +27,14 @@
 			<div class="spacer sixteen columns">
 			</div>
 			<div class="sixteen columns" id="cta-form">
+<<<<<<< HEAD
 				<%= render 'users/create' %>
+=======
+				<%= link_to({:controller => "chat", :action => "new"}, {:class => "button"}) do %>
+					<button>New Chat</button>
+				<% end %>
+				<%= render 'clients/create' %>
+>>>>>>> ceab226ba102447d13718f4c78396dd3144234f7
 				<span id="secure-notice">This is confidential.</span>
 				<%= render 'shared/error_messages' %>
 			</div>
