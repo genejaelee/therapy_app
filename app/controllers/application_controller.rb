@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   around_filter :client_time_zone, :if => :current_client
   around_filter :therapist_time_zone, :if => :current_therapist
-  helper_method :which_edit_page
+  helper_method :which_edit_page, :current_client
   
   def after_sign_in_path_for(resource)
     @therapist = current_therapist
@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
   end
   
   private
+  
+  def current_client
+      @_current_client ||= session[:current_client_id] &&
+        Client.find_by(id: session[:current_client_id])
+  end
 
   def client_time_zone(&block)
     Time.use_zone(current_client.time_zone, &block)

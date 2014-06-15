@@ -46,7 +46,7 @@ class ClientsController < ApplicationController
   end
   
   def update
-    @client = Client.find_by(id: params[:client_id])
+    @client = @_current_client
     if @client.update_attributes(client_params)
       session[:current_client_id] = @client.id
       render 'clients/save_c'
