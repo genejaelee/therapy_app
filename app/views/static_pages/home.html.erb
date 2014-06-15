@@ -4,7 +4,7 @@
 								 :reverse => true 
 %>
 
-<div id="panel-header" class="panel">
+<div id="panel1" class="panel">
 	<div class="bg-container">
 		<div class="subdomain_link">
 			<% flash.each do |key, value| %>
@@ -18,36 +18,18 @@
 			<div class="sixteen columns" id="logo-banner">
 				<%= link_to image_tag("couch-logo5.png", height: "60px", class: "top-logo"), homepage_path %>
 			</div>
-			<div class="ten columns" id="cta-form">
-				<%= form_for @client, url: { controller: "clients", action: "create" } do |f| %>
-					<%= f.hidden_field :id %>
-					<%= f.text_area :description, :placeholder => "I wish..." %>
-					<%= f.submit "Submit", :class => "button submit-button" %>
-				<% end %>
+			<div class="sixteen columns" id="copy-container">
+				<h1>Talk to a Peer Counselor.</h1>
+				<h5>Graduate students studying to be therapists. Speak with one for fifty minutes.</h5>
+			</div>
+			<div class="spacer sixteen columns">
+			</div>
+			<div class="sixteen columns" id="cta-form">
+				<%= render 'clients/create' %>
 				<span id="secure-notice">This is confidential.</span>
 				<%= render 'shared/error_messages' %>
 			</div>
 		</div>
-	</div>
-</div>
-
-<div id="panel1" class="panel">
-	<div class="bg-container">
-		<div class="container">
-			
-		</div>
-		<!--
-		<div id="example-feed">
-			<div class="feed-header">
-			</div>
-			<div class="feed-container">
-				<div class="feed-item">
-					<i>Anonymous said:</i>
-					<p>I wish I wouldn't be so anxious in social situations</p>
-				</div>
-			</div>
-		</div>
-			-->
 	</div>
 </div>
 
@@ -68,6 +50,7 @@
 		</div>
 	</div>
 </div>
+
 
 <div id="how-it-works" class="panel panel3">
 	<div class="bg-container">
