@@ -25,7 +25,7 @@
 <div id="panel2" class="panel">
 	<div class="bg-container">
 		<div class="container">
-			<div class="sixteen columns" id="cta-form">
+			<div class="ten columns" id="cta-form">
 				<%= form_for @client, url: { controller: "clients", action: "create" } do |f| %>
 					<%= f.hidden_field :id %>
 					<%= f.text_area :description, :placeholder => "I wish..." %>
@@ -35,16 +35,18 @@
 				<%= render 'shared/error_messages' %>
 			</div>
 		</div>
-	</div>
-	<div id="example-feed">
-		<div class="feed-header">
-		</div>
-		<div class="feed-container">
-			<div class="feed-item">
-				<i>Anonymous said:</i>
-				<p>I wish I wouldn't be so anxious in social situations
+		<!--
+		<div id="example-feed">
+			<div class="feed-header">
+			</div>
+			<div class="feed-container">
+				<div class="feed-item">
+					<i>Anonymous said:</i>
+					<p>I wish I wouldn't be so anxious in social situations</p>
+				</div>
 			</div>
 		</div>
+			-->
 	</div>
 </div>
 
