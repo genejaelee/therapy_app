@@ -38,12 +38,12 @@ class TherapistsController < ApplicationController
   
   def index
     @event = Event.new
-    if @_current_client.nil?
+    if current_client.nil?
       puts "current client nil, creating new"
       @client = Client.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
       session[:current_client_id] = @client.id
     else
-      @client = @_current_client
+      @client = current_client
     end
     @therapist = Therapist.all
   end

@@ -223,7 +223,11 @@
 			width: 100%;
 			height: 460px;
 			background-color: $scouter-blue;
-			.columns {
+			
+			//styling spacers
+			.spacer {
+				height: 40px;
+				margin-top: 20px;
 				text-align: center;
 				a {
 					text-align: center;
@@ -234,13 +238,15 @@
 				text-align: center;
 				
 				hr {
-					margin: 10px 0px;
+					margin: 5px 0px;
 					border-top: 1px dashed rgba(255,255,255,0.5);
 				}
 				
-				.calendar-form-container {
+				.goal-form-container {
+					
 					.sixteen {
 						h1 {
+							padding-top: 10px;
 							margin: 5px auto;
 							font-size: 28px;
 							color: #fff;
@@ -248,55 +254,60 @@
 						}
 					}
 					
-					.datepicker-container {
-						padding: 15px 0px;
+					.examples-container {
+						text-align: left;
+						padding-bottom: 20px;
+						color: #fff;
+						
+						p {
+							font-size: 18px;
+							margin-bottom: 10px;
+						}
 					}
 				
 					.form-container {
 						padding: 15px 0px;
+						
 						form {
 							label {
 								color: #fff;
+								margin-bottom: 5px;
 							}
+							
+							.container {
+								#goal-text-field {
+									width: 100%;
+									max-width: 500px;
+									height: 50px;
+									font-size: 20px;
+								}
+								
+								p {
+									font-size: 24px;
+									font-weight: 600;
+									padding-right: 10px;
+									color: #fff;
+									display: inline-block;
+								}
+							}
+							
 							input {
 								border: none;
-								width: 200px;
-								height: 35px;
-								text-align: center;
-								margin: auto;
-								margin-bottom: 5px;
+								padding: 0px 15px;
+								margin: 30px auto;
 							}
 						
 							.submit_button_white {
 								margin-top: 10px;
 								margin-left: 0px;
-								height: 44px;
-								width: 202px;
-								color: $scouter-green;
+								height: 40px;
+								width: 160px;
+								color: $scouter-blue;
 								font-size: 16px;
 								font-weight: 200;
 								background-color: #fff;
-								border-width: 1px;
-								border-style: solid;
-								border-color: $scouter-green;
 							}
 						}
-					}
-				}
-				
-				.profile-more-container {
-					hr {
-						margin: 5px 0px;
-					}
-					
-					h1 {
-						margin-bottom: 0px;
-						text-align: left;
-					}
-					
-					p {
-						text-align: left;
-						color: #fff;
 					}
 				}
 			}

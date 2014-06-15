@@ -33,6 +33,7 @@ TherapyApp::Application.routes.draw do
   
   match '/paysecure' => 'charges#new', via: 'get'
   
+  match '/clients/new' => 'clients#new', via: 'post'
   match '/save_c' => 'clients#save_c', :as => :save_client_card, via: 'post'
   match '/update' => 'clients#update', :as => :update_client, via: 'patch'
   match '/finish' => 'clients#finish', :as => :finish_client, via: 'patch'

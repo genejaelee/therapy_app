@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140615182045) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "flag_therapist"
   end
 
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree

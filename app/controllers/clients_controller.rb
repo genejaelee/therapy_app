@@ -46,8 +46,7 @@ class ClientsController < ApplicationController
   end
   
   def update
-    @client = @_current_client
-    @client.should_validate = true
+    @client = Client.find_by(id: params[:client_id])
     if @client.update_attributes(client_params)
       session[:current_client_id] = @client.id
       render 'clients/save_c'
