@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530202454) do
+ActiveRecord::Schema.define(version: 20140615182045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,13 +59,8 @@ ActiveRecord::Schema.define(version: 20140530202454) do
     t.text     "responses",                                            array: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_gender_pref"
-    t.string   "encrypted_gender_pref_salt"
-    t.string   "encrypted_gender_pref_iv"
     t.string   "current_therapist"
     t.string   "current_therapist_name"
-    t.string   "price"
-    t.boolean  "flag_therapist"
     t.string   "stripe_token"
     t.string   "phone"
     t.string   "time_zone"

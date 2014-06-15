@@ -4,8 +4,6 @@
 								 :reverse => true 
 %>
 
-<%= render 'layouts/client_navbar' %>
-
 <div id="panel1" class="panel">
 	<div class="bg-container">
 		<div class="subdomain_link">
@@ -20,17 +18,6 @@
 			<div class="sixteen columns" id="logo-banner">
 				<%= link_to image_tag("couch-logo5.png", height: "60px", class: "top-logo"), homepage_path %>
 			</div>
-			<div class="sixteen columns" id="copy-container">
-				<h1>Talk to a Peer Counselor.</h1>
-				<h5>Graduate students studying to be therapists. Speak with one for fifty minutes.</h5>
-			</div>
-			<div class="spacer sixteen columns">
-			</div>
-			<div class="sixteen columns" id="cta-form">
-				<%= render 'clients/create' %>
-				<span id="secure-notice">This is confidential.</span>
-				<%= render 'shared/error_messages' %>
-			</div>
 		</div>
 	</div>
 </div>
@@ -38,59 +25,28 @@
 <div id="panel2" class="panel">
 	<div class="bg-container">
 		<div class="container">
-			<div class="ten columns">
-				<h2>Life after college is<span class="medium-font"> hard.</span></h2>
+			<div class="sixteen columns" id="cta-form">
+				<%= form_for @client, url: { controller: "clients", action: "create" } do |f| %>
+					<%= f.hidden_field :id %>
+					<%= f.text_area :description, :placeholder => "I wish..." %>
+					<%= f.submit "Submit", :class => "button submit-button" %>
+				<% end %>
+				<span id="secure-notice">This is confidential.</span>
+				<%= render 'shared/error_messages' %>
 			</div>
-			<div class="ten columns">
-				<p>You wonder what to do with your life. You don't like your job, but need it to survive. Maybe you're lonely. You might be anxious, depressed, or scared.</p>
-				<p>We know this all too well. So we want to help.</p>
-				
-				<h2>So, talk with a peer counselor.</h2>
-				<p>Peer counselors are graduate student studying clinical psychology, psychiatry, or social work. They're available to talk at a very affordable rate, and they can really relate to you. 
-					
+		</div>
+	</div>
+	<div id="example-feed">
+		<div class="feed-header">
+		</div>
+		<div class="feed-container">
+			<div class="feed-item">
+				<i>Anonymous said:</i>
+				<p>I wish I wouldn't be so anxious in social situations
 			</div>
 		</div>
 	</div>
 </div>
-
-<div id="how-it-works" class="panel panel3">
-	<div class="bg-container">
-		<div class="container">
-			<div class="sixteen columns" id="how-header">
-				<h1>How it works</h1>
-				<hr class="dashed-hr">
-				<h2>$20 for a 50-minute session.</h2>
-				<h5>Only charged if you have a positive experience.</h5>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="panel panel3" id="how-panel">
-	<div class="bg-container">
-		<div class="container">
-			<!--
-			<div class="three columns">
-				<div class="image" id="form-icon"></div>
-			</div>
-				-->
-			<div class="ten columns">
-				<h3>Sign up and choose a time.</h2>
-				<p>Select a peer counselor to speak with, and a time for a 50-minute session. Give a few background details and your payment information. <span style="font-weight:600">You will not be charged unless you're satisfied.</span></p>
-			</div>
-			<div class="ten columns">
-				<h3>Answer your phone.</h2>
-				<p>Have a private, 50-minute conversation about what’s on your mind. That’s all you have to do.</p>
-			</div>
-			<div class="ten columns">
-				<h3>We'll follow up.</h2>
-				<p>We’ll check in over email. If you had a positive experience, you can schedule another session. If you disliked it, we will pay the peer counselor on your behalf -- you won't be charged a dime.</p>
-			</div>
-		</div>
-	</div>
-</div>
-
-<%= render 'layouts/cta_green' %>
 
 <div id="panel5" class="panel">
 	<div class="bg-container">

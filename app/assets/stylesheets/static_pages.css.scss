@@ -103,16 +103,16 @@ p {
 #panel1 {
 	
 	.bg-container {
-		background-image: image-url("mousehand5.jpg");
+		background-color: $scouter-blue;
 		background-size: $max-width auto;
 		background-position: center bottom;
 		background-repeat: no-repeat;
-		height: 600px;
 	
 		.container {
-			padding-bottom: 80px;
+			padding-bottom: 30px;
 			
 			#logo-banner {
+				background-color: $scouter-blue;
 				padding-top: 40px;
 				text-align: center;
 				.top-logo {
@@ -142,10 +142,61 @@ p {
 					text-align: center;
 				}
 			}
+		}
+	}
+}
+
+#panel2 {
+	position: relative;
+	
+	.bg-container {
+		height: 680px;
+		background-size: $max-width auto;
+		background-position: center;
+	
+		.container {
+			padding-top: 60px;
+			padding-bottom: 60px;
+		
+			.columns {
+			}
+		
+			#copy-container {
+				padding-top: 20px;
+			
+				h1 {
+					text-align: center;
+					color: #fff;
+					margin: auto;
+					margin-top: 40px;
+					margin-bottom: 10px;
+					max-width: 600px;
+				}
+			
+				h5 {
+					color: #fff;
+					text-align: center;
+				}
+			}
 		
 			#cta-form {
 				margin-top: 3px;
-				text-align: center;
+				
+				textarea:focus {
+					box-shadow: none;
+				}
+				
+				textarea {
+					overflow-x: hidden;
+					min-height: 400px;
+					width: 100%;
+					border: none;
+					margin-bottom: 0px;
+					color: $scouter-teal-fade;
+					font-size: 30px;
+					line-height: 44px;
+					resize: none;
+				}
 				
 				form {
 					margin-bottom: 5px;
@@ -155,18 +206,18 @@ p {
 					padding: 10px 40px;
 				}
 				
-				.browse-therapist-button {
+				.submit-button {
 					margin-bottom: 0px;
-					width: 260px;
+					width: 200px;
 					height: 44px !important;
 					-webkit-appearance: none;
-					border: 1px solid #fff;
+					border: 1px solid $scouter-blue;
 					background-color: #fff;
-					color: $scouter-blue !important;
+					color: $scouter-blue;
 					text-shadow: none;
 					font-family: $light-font;
 					font-weight: 200;
-					font-size: 18px !important;
+					font-size: 18px;
 				}
 				
 				.button:hover {
@@ -192,53 +243,7 @@ p {
 						}
 					}
 				}
-			
-				#new_user {
-					text-align: center;
-					margin: auto;
-					width: 260px;
 				
-					input {
-						height: 38px;
-						width: 100%;
-						font-size: 15px;
-						color: #525252;
-						text-align: center;
-						margin-bottom: 10px;
-						border: 0px;
-						padding-left: 0px;
-						padding-right: 0px;
-					}
-				
-					.field_with_errors {
-						input {
-							height: 38px !important;
-						}
-					}
-				
-					.submit_button_white {
-						height: 40px;
-						width: 100%;
-						color: $scouter-green;
-						font-size: 16px;
-						font-weight: 200;
-						background-color: #fff;
-						border-width: 1px;
-						border-style: solid;
-						border-color: $scouter-green;
-					}
-				
-					.field_with_errors {
-						input {
-							height: 20px;
-							width: 100%;
-							text-align: center;
-							margin-bottom: 10px;
-							border: 0px;
-						}
-					}
-				}
-			
 				.alert-success {
 					color: #fff;
 				}
@@ -250,33 +255,27 @@ p {
 			}
 		}
 	}
-}
-
-#panel2 {
 	
-	.bg-container {
-		height: 680px;
-		background-image: image-url('phone-hand.jpg');
-		background-size: $max-width auto;
-		background-position: center;
-	
-		.container {
-			padding-top: 110px;
-			padding-bottom: 90px;
+	#example-feed {
+		width: 300px;
+		height: 100%;
+		border-left: 1px solid #ccc;
+		position: absolute;
+		right: 0;
+		top: 0;
 		
-			h2 {
-				color: #626262;
-			}
+		.feed-header {
+			height: 50px;
+			width: 100%;
+			border-bottom: 1px solid #ccc;
+		}
 		
-			.ten.columns {
-				h2 {
-					padding-top: 50px;
-				}
-				
-				p {
-					color: #525252;
-					font-size: 16px;
-				}
+		.feed-container {
+			padding: 10px 20px;
+			
+			i {
+				font-size: 12px;
+				color: #aaa;
 			}
 		}
 	}
@@ -560,7 +559,6 @@ p {
 	#panel2 {
 		.bg-container {
 			height: auto;
-			background-image: image-url('phone-hand.jpg');
 			background-size: 1140px auto;
 			background-position: right;
 			.container {
@@ -587,7 +585,6 @@ p {
 @media only screen and (max-width: 960px) {
 	#panel2 {
 		.bg-container {
-			background-image: image-url('phone-hand-tablet.jpg');
 			
 			.container {
 				.columns {
@@ -638,7 +635,6 @@ p {
 	#panel2 {
 		
 		.bg-container {
-			background-image: image-url('phone-hand-mobile.jpg');
 			background-size: 767px auto;
 			background-position: bottom center;
 			height: auto;
