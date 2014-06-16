@@ -21,16 +21,6 @@ class Client < ActiveRecord::Base
       return true
     end
   end
-
-  def apply_promo
-    if self.promo_code == "WHISPER033"
-      self.price = "0"
-    elsif self.promo_code == "WHISPER016"
-      self.price = "200"
-    else
-      self.price = "400"
-    end
-  end
  
   def save_user_card
     customer = Stripe::Customer.create(
@@ -43,7 +33,7 @@ class Client < ActiveRecord::Base
 
 end   
 
-class User
+class Client
   def self.list
     puts "All attributes of users"
     self.all.each do |user|

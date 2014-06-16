@@ -49,7 +49,7 @@ class ClientsController < ApplicationController
     @client = @_current_client
     if @client.update_attributes(client_params)
       session[:current_client_id] = @client.id
-      render 'clients/save_c'
+      redirect_to '/paysecure'
     else
       render "clients/update"
     end
