@@ -44,15 +44,7 @@
 				<p>We know this all too well. So we want to help.</p>
 				
 				<h2>So, talk with a peer counselor.</h2>
-				<p>Peer counselors are graduate student studying clinical psychology, psychiatry, or social work. They're available to talk at a very affordable rate, and they can really relate to you. 
-			<div class="sixteen columns" id="cta-form">
-				<%= form_for @client, url: { controller: "clients", action: "create" } do |f| %>
-					<%= f.hidden_field :id %>
-					<%= f.text_area :description, :placeholder => "I wish..." %>
-					<%= f.submit "Submit", :class => "button submit-button" %>
-				<% end %>
-				<span id="secure-notice">This is confidential.</span>
-				<%= render 'shared/error_messages' %>
+				<p>Peer counselors are graduate student studying clinical psychology, psychiatry, or social work. They're available to talk at a very affordable rate, and they can really relate to you. </p>
 			</div>
 		</div>
 	</div>
