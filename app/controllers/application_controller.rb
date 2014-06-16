@@ -7,11 +7,6 @@ class ApplicationController < ActionController::Base
   around_filter :therapist_time_zone, :if => :current_therapist
   helper_method :which_edit_page, :current_client
   
-  def after_sign_in_path_for(resource)
-    @therapist = current_therapist
-    @client = current_client
-  end
-  
   def which_edit_page
     if request.path_parameters == { 'action' => 'signup', 'controller' => 'therapists'}
       @edit_page = 'signup'
