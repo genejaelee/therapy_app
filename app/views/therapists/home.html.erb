@@ -1,6 +1,8 @@
 <% page_title "Scouter - Welcome" %>
 
-<%= render 'layouts/navbar' %>
+<% if current_therapist %>
+	<%= render 'layouts/navbar' %>
+<% end %>
 
 <div id="panel1" class="panel">
 	<div class="bg-container">

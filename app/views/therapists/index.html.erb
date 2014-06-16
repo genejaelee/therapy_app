@@ -2,11 +2,11 @@
 
 <body id="therapist-index">
 	<% content_for :title do %>
-	  Click a Peer Counselor. Choose a time.
+	  Click a Peer Coach. Choose a time.
 	<% end %>
 
 	<% content_for :body do %>
-	  <p>We will soon have more peer counselors to choose from. If you don't see someone you like, we can email you with new options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
+	  <p>We will soon have more peer coaches to choose from. If you don't see someone you like, we can email you with new options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
 		<%= form_for @client, url: { controller: "clients", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>
