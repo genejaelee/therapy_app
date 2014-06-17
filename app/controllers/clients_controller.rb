@@ -82,6 +82,6 @@ class ClientsController < ApplicationController
   def client_params
     params.require(:client).permit(:name, :phone, :email, :password, :zipcode, :time_zone, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
     :stripe_token,
-    :flag_therapist)
+    :flag_therapist, :therapist_id)
   end
 end

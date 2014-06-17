@@ -2,7 +2,7 @@ class Client < ActiveRecord::Base
   has_many :events
   has_many :therapists, through: :events
   
-  attr_encrypted :name, :zipcode, :description, :gender, :age, :gender_pref, :insurance, :key => :encryption_key
+  attr_encrypted :name, :zipcode, :gender, :age, :gender_pref, :insurance, :key => :encryption_key
   attr_accessor :should_validate, :paid, :add_responses
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

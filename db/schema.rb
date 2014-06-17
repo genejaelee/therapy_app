@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615182045) do
+ActiveRecord::Schema.define(version: 20140617170739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20140615182045) do
     t.string   "encrypted_zipcode"
     t.string   "encrypted_zipcode_salt"
     t.string   "encrypted_zipcode_iv"
-    t.text     "encrypted_description"
-    t.text     "encrypted_description_salt"
-    t.text     "encrypted_description_iv"
+    t.string   "encrypted_description"
+    t.string   "encrypted_description_salt"
+    t.string   "encrypted_description_iv"
     t.string   "encrypted_gender"
     t.string   "encrypted_gender_salt"
     t.string   "encrypted_gender_iv"
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20140615182045) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "flag_therapist"
+    t.integer  "therapist_id"
+    t.text     "description"
   end
 
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
@@ -141,6 +143,7 @@ ActiveRecord::Schema.define(version: 20140615182045) do
     t.string   "school_name"
     t.string   "time_zone"
     t.string   "open_slots",             default: [],              array: true
+    t.integer  "client_id"
   end
 
   add_index "therapists", ["email"], name: "index_therapists_on_email", unique: true, using: :btree
