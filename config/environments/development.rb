@@ -1,5 +1,13 @@
 TherapyApp::Application.configure do
+  require 'pusher'
   # Settings specified here will take precedence over those in config/application.rb.
+ 
+  Pusher.encrypted = true 
+
+  # Set your pusher API credentials here
+  Pusher.app_id = '76202'
+  Pusher.key = '37bd6eda17fd7226f61e'
+  Pusher.secret = '82376874e37f5c86d503'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

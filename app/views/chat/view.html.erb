@@ -1,0 +1,69 @@
+<!-- render javascript partials specific to chat -->
+<% content_for :head do %>
+	<%= javascript_include_tag "//js.pusher.com/2.2/pusher.min.js" %>
+  <script type="text/javascript">
+    <%= render :partial => "/specific/chat.js" %>
+		<%= render :partial => "/specific/chat.functions.js" %>
+  </script>
+<% end %>
+
+<% content_for :title do %>
+  Chat with your therapist.
+<% end %>
+
+<% content_for :body do %>
+  <p></p>
+<% end %>
+
+<%= render 'layouts/header' %>
+
+<script type="text/javascript">
+	// Set the globals used by chat.js
+	channel = "<%= @chat.channel %>";
+	chat_id = "<%= @chat.id %>";
+	user_id = "<%= @user.id %>";
+</script>
+
+<div class="panel chat-panel">
+	<div class="bg-container">
+		<div class="container">
+			<ul id="messages">
+				<% @messages.each do |message| %>
+					<% user = ChatUser.find(message.user_id) %>
+					<div>
+						<li<% if user.id == @user.id %> 
+								class="you"
+								<% else %>
+								class="them"
+								<% end %>>
+							<span class="nickname-said"><strong class="nickname"><%= user.nickname %></strong> said:</span>
+							<span class="timestamps">
+								<% unless message.created_at.nil? %>
+									<%= message.created_at.in_time_zone(user.time_zone).strftime('%a %I:%M %p %Z') %>
+								<% end %>
+							</span>
+							<br>
+							<div class="message-wrapper">
+								<div class="message">
+									<p><%= message.message %></p>
+								</div>
+							</div>
+						</li>
+					</div>
+				<% end %>
+			</ul>
+			<div id="message-overlay"></div>
+			<textarea id="message" name="message" placeholder="Type your message here and hit enter..."></textarea>
+			<div class="header">
+				<!--<div id="title" class="member_list_title">Pusher Chat (<span id="room_count">0</span>)</div>-->
+					<input type="text" value="<%= @user.nickname %>" id="nickname" />
+					<div class="change-nickname-container">
+						<a href="#" id="changeNickname">Change nickname</a>
+					</div>
+				<span id="loading"></span>
+			</div>
+		</div>
+	</div>
+	<div id="mobile-chat-input">
+	</div>
+</div>
