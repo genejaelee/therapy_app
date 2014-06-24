@@ -32,7 +32,7 @@
 			}
 			
 			.nickname-said {
-				color: #525252;
+				color: #727272;
 				.nickname {
 					@extend .nickname-said;
 				}
@@ -41,6 +41,10 @@
 			#messages {
 				.note {
 					margin-bottom: 0px;
+					color: $scouter-green;
+					strong {
+						color: #727272;
+					}
 				}
 				
 				.message-container {
