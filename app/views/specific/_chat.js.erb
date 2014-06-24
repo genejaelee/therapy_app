@@ -30,7 +30,7 @@ $(document).ready(function()
 	// Pusher.log = function() { if (window.console) window.console.log.apply(window.console, arguments); };
 	
 	Pusher.channel_auth_endpoint = '/api/authenticate?user_id=' + user_id;
-	var socket = new Pusher('37bd6eda17fd7226f61e', {
+	var socket = new Pusher(PUSHER_KEY, {
 		encrypted: true
 	});
 	
