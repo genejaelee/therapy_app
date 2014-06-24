@@ -41,7 +41,11 @@ function send_message() {
 	$('#message').blur();
 	
 	$.ajaxSetup({
-		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+		beforeSend: 
+		function(xhr){
+			xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+			$("#spinner").show();
+		}
 	})
 	
 	// Post off to the server with the message and some vars!
@@ -53,6 +57,7 @@ function send_message() {
 		$('#loading').fadeOut();
 		is_typing_currently = false;
 		typing_status(false);
+		onSuccess: $("#spinner").hide();
 	});
 	
 }

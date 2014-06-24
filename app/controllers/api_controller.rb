@@ -2,6 +2,7 @@ class ApiController < ApplicationController
   protect_from_forgery :except => :authenticate # stop rails CSRF protection for this action
   
   def update_nickname
+    puts "changing nickname..."
     if params[:user_id] != nil && params[:nickname] != nil
       user = ChatUser.find(params[:user_id])
       old_nickname = user.nickname

@@ -39,6 +39,14 @@ function scrollToBottomAndFocus(){
 		});
 }
 
+function jumpToBottomAndFocus(){
+	$('html,body').stop().animate({
+		scrollTop: $(document).height()},
+		0, "easeOutCubic", function(){
+			$('#message').focus();
+		});
+}
+
 function goToByScrollBottom(element){
 	$('html,body').stop().animate({
 		scrollTop: ($(element).offset().top) + $(element).height() + 50 - $(window).height()},
