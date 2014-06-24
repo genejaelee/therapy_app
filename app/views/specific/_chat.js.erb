@@ -41,11 +41,11 @@ $(document).ready(function()
 	presenceChannel.bind('updated_nickname', function(member) {
 		if(member.user_id == user_id)
 		{
-			$('#messages').append('<li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('#messages').append('<br><li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
 		else
 		{
-			$('#messages').append('<li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('#messages').append('<br><li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
 		scrollToTheTop();
 	});
