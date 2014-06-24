@@ -1,4 +1,4 @@
-class ChatController < ApplicationController
+class ChatsController < ApplicationController
   protect_from_forgery with: :exception
   
   def new

@@ -11,8 +11,8 @@ TherapyApp::Application.routes.draw do
     match '/edit' => 'devise/registrations#edit', :as => :therapist_edit, via: 'get'
   end
   
-  match "/chat/new" => "chat#new", via: 'get'
-  match "/chat/:id" => "chat#view", via: 'get'
+  match "/chat/new" => "chats#new", via: 'get'
+  match "/chat/:id" => "chats#view", via: 'get'
   match "/chatindex" => 'index#index', via: 'get'
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
