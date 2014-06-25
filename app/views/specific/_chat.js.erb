@@ -172,4 +172,23 @@ $(document).ready(function()
 		if($(this).val() == "") { $(this).val(text); }
 	});
 	
+	// Helpline bar stuff
+	var helplineBar = $('#helpline-bar')
+	var curHeight = $('#helpline-bar').height();
+	var autoHeight = $('#helpline-bar .container').height();
+	
+	$('#helpline-header').click(function() {
+		if (helplineBar.hasClass('opened')) {
+			helplineBar.stop().animate( { height : curHeight }, 300, 'easeInOutCubic', function() {
+			});
+			helplineBar.removeClass('opened');
+		}
+		else {
+			helplineBar.stop().animate( { height : autoHeight }, 400, 'easeInOutCubic', function() {
+				helplineBar.addClass('opened');
+			});
+		}
+	});
+	
 });
+

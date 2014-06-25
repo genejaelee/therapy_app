@@ -1,6 +1,63 @@
 @import "variables.css.scss";
 
+#helpline-bar {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 0;
+	background-color: $scouter-orange;
+	z-index: 1000;
+	overflow: hidden;
+	
+	.container {
+		
+		#helpline-header {
+			height: 50px;
+			
+			h3 {
+				color: #fff;
+				line-height: 44px;
+				font-weight: 600;
+				
+				span {
+					font-weight: 200;
+					font-size: 22px;
+				}
+			}
+		}
+		
+		#helpline-header:hover {
+			cursor: pointer;
+			
+			h3 {
+				span {
+				}
+			}
+		}
+		
+		#helplines {
+			padding-bottom: 20px;
+			dt {
+				margin-top: 8px;
+				color: #fff;
+			}
+			
+			dd {
+				color: #fff;
+				a {
+					color: #fff;
+				}
+				
+				a:hover {
+					opacity: 0.8;
+				}
+			}
+		}
+	}
+}
+
 .chat-panel {
+	position: relative;
 	.bg-container {
 		padding-top: 80px;
 		padding-bottom: 20px;
@@ -56,6 +113,7 @@
 					.message-wrapper {
 						overflow: auto;
 						width: 100%;
+						
 						.message {
 							display: inline-block;
 							min-width: 50px;
@@ -126,6 +184,25 @@
 		height: 50px;
 		width: 100%;
 		bottom: 0px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	#helpline-header {
+		height: 50px;
+		
+		h3 {
+			padding-top: 5px;
+			color: #fff;
+			font-size: 16px;
+			line-height: 16px !important;
+			font-weight: 600;
+			
+			span {
+				font-weight: 200;
+				font-size: 14px !important;
+			}
+		}
 	}
 }
 
