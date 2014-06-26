@@ -4,15 +4,15 @@
 								 :reverse => true 
 %>
 
+<%= render 'layouts/client_navbar' %>
+
 <div id="panel1" class="panel">
 	<div class="bg-container">
 		<div class="subdomain_link">
 			<% flash.each do |key, value| %>
 				<div class="alert alert-<%= key %>"><%= value %></div>
 			<% end %>
-			<!--
 			<%= link_to "Therapist?", therapist_home_url(:protocol => 'http') %>
-				-->
 		</div>
 		<div class="container">
 			<div class="sixteen columns" id="logo-banner">

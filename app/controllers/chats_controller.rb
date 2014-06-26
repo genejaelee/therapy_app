@@ -1,5 +1,6 @@
 class ChatsController < ApplicationController
   protect_from_forgery with: :exception
+  before_filter { authenticate_client! || authenticate_therapist! }
   
   def new
     puts "creating new chat"

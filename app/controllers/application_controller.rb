@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   around_filter :client_time_zone, :if => :current_client
   around_filter :therapist_time_zone, :if => :current_therapist
-  helper_method :which_edit_page, :current_client
+  helper_method :which_edit_page
   
   def which_edit_page
     if request.path_parameters == { 'action' => 'signup', 'controller' => 'therapists'}
@@ -17,14 +17,17 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     @therapist = current_therapist
+    @client = current_client
+    puts "request referer is #{request.referer}"
+    return request.referer
   end
   
   private
   
-  def current_client
-      @_current_client ||= session[:current_client_id] &&
-        Client.find_by(id: session[:current_client_id])
-  end
+  #def current_client
+  #    @_current_client ||= session[:current_client_id] &&
+  #      Client.find_by(id: session[:current_client_id])
+  #end
 
   def client_time_zone(&block)
     Time.use_zone(current_client.time_zone, &block)

@@ -67,7 +67,7 @@ gem 'sprockets', '~> 2.11.0'
 
 gem 'attr_encryptor'
 
-gem 'devise', '>= 2.1.2'
+gem 'devise'
 
 gem 'meta-tags'
 
