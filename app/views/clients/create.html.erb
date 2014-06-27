@@ -15,7 +15,7 @@
 <div class="panel signup-panel">
 	<div class="bg-container">
 		<div class="container">
-			<%= form_for @client, url: { controller: "clients", action: "update" } do |f| %>
+			<%= form_for @user.role, url: { controller: "clients", action: "update" } do |f| %>
 			
 				<%= f.text_area :description, 
 												:onkeyup => "textAreaAdjust(this)",

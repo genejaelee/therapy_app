@@ -4,13 +4,15 @@ class ChargesController < ApplicationController
   def new
     @amount = 4000
     
-    @client = @_current_client
+    @user = current_user
+    @client = @user.role
     puts "current client has id #{@client.id}"
   end
 
   def create
     @amount = 4000
-    @client = @_current_client
+    @user = current_user
+    @client = @user.role
 
     customer = Stripe::Customer.create(
       :card  => params[:stripeToken]
@@ -23,10 +25,11 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
     
-    @client.update_attributes(:email => params[:stripeEmail], :stripe_token => params[:stripeToken])
+    @client.update_attributes(:stripe_token => params[:stripeToken])
 
+  redirect_to :action => 'generate', :controller => 'chats'
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to charges_path
+    redirect_to :action => 'new', :controller => 'charges'
   end
 end

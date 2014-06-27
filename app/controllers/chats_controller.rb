@@ -1,6 +1,6 @@
 class ChatsController < ApplicationController
   protect_from_forgery with: :exception
-  before_filter { authenticate_client! || authenticate_therapist! }
+  before_filter :authenticate_user!
   
   def new
     puts "creating new chat"
@@ -17,20 +17,31 @@ class ChatsController < ApplicationController
   end
 
   def view
-    if(params[:id] != nil)
-      @chat = Chat.find(Tiny::untiny(params[:id]))
-      @user = ChatUser.user(session)
-      @user.update_attributes(:time_zone => cookies["jstz_time_zone"])
-      @messages = Message.where("chat_id = ?", @chat.id.to_s).load
+    @chat = Chat.find(Tiny::untiny(params[:id]))
+    puts "#{current_user.role.id}, #{@chat.therapist_id}, #{@chat.client_id}"
+    if current_user.role.id == @chat.therapist_id || current_user.role.id == @chat.client_id
+    
+      if(params[:id] != nil)
+        @chat = Chat.find(Tiny::untiny(params[:id]))
+        @user = ChatUser.user(session, current_user)
+        @messages = Message.where("chat_id = ?", @chat.id.to_s).load
+      else
+        redirect_to :controller => 'index', :action => 'index'
+      end
     else
-      redirect_to :controller => 'index', :action => 'index'
+      redirect_to unauthorized_chat_path
+      flash[:error] = "You are not authorized to enter this chat"
     end
   end
   
   def generate
-    chat = Chat.new
-    chat.owner = ChatUser.user(session)
-    chat.owner.update_attributes(:time_zone => cookies["jstz_time_zone"])
+    @client = current_user.role
+    @event = @client.events.find_by(client_id: @client.id)
+    
+    puts "making new chat"
+    chat = @client.chats.new
+    chat.therapist_id = @event.therapist_id
+    chat.owner = ChatUser.user(session, current_user)
     if chat.save
       chat_tiny = Tiny::tiny(chat.id)
       puts "chat id is #{chat.id}"
@@ -39,5 +50,7 @@ class ChatsController < ApplicationController
       redirect_to :action => "view", :id => chat_tiny
     end
   end
-
+  
+  def unauthorized
+  end
 end

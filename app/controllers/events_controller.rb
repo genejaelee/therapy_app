@@ -1,18 +1,59 @@
 class EventsController < ApplicationController
+  
   def create
-    if @_current_client.nil?
-      puts "current client nil, creating new"
+    if current_user.nil?
+      puts "current user nil"
+      session[:event] = params[:event]
+      puts "#{session[:event]}"
+      redirect_to new_user_session_path
+    elsif current_user.role.present?
+      @client = current_user.role
+      @event = @client.events.new(event_params)
+      @event.save
+      redirect_to :action => "new", :controller => "charges"
+    else
       @client = Client.new(params[:client])
+      @client.save
       @event = @client.events.new(event_params)
-    else
-      @client = @_current_client
-      @event = @client.events.new(event_params)
+      @event.save
+      redirect_to :action => "new", :controller => "charges"
     end
-    if @event.save
-      render 'clients/update'
+  end
+  
+  def finish
+    if current_user.role.present?
+      @user = current_user
+      @client = @user.role
+      @event = @client.events.new
+      client_id = @client.id
+      therapist_id = session[:event]["therapist_id"]
+      description = session[:event]["description"]
+      
+      @event.update_attributes({"client_id" => client_id, "therapist_id" => therapist_id, "description" => description})
+      puts "saving event"
+      @event.save
     else
-      redirect_to :controller => 'therapists', :action => 'index', :messages => "error"
-      flash[:fail] = "Sorry there was an error processing your entries."
+      @client = Client.find_by_id(session[:event]["client_id"])
+      puts "client id is #{@client.id}, saving now"
+      @client.save
+      
+      # find event and save it to client
+      @event = @client.events.new
+      client_id = session[:event]["client_id"]
+      therapist_id = session[:event]["therapist_id"]
+      description = session[:event]["description"]
+      puts "updating attributes"
+      @event.update_attributes({"client_id" => client_id, "therapist_id" => therapist_id, "description" => description})
+      puts "saving event"
+      @event.save
+    
+      @user = current_user
+      @user.role = @client
+    end
+    
+    if @user.save
+      redirect_to :action => "new", :controller => "charges"
+      session[:event] = nil
     end
   end
   

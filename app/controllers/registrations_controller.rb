@@ -4,25 +4,26 @@ class RegistrationsController < Devise::RegistrationsController
   
   def after_sign_up_path_for(resource)
     puts "user signed up"
+    @user = current_user
     
-    @therapist = current_therapist
-    if resource.class == Therapist
+    if @user.role_type == "Therapist"
       puts "signed up user is therapist"
-      @therapist.update_attribute(:time_zone, cookies["jstz_time_zone"])
+      @user.role = Therapist.create(params[:therapist])
+      @user.save
       return update_therapist_path
     end
     
-    @client = current_client
-    if resource.class == Client
-      puts "signed up user is client"
-      puts "request referer is #{request.referer}"
-      return session[:return_to]
+    if @user.role_type == "Client" && session[:event].present?
+      puts "signed in user is client, return finish event"
+      return '/event/finish'
+    else
+      return homepage_path
     end
   end
   
   def edit
-    which_edit_page
-    @therapist = current_therapist
+    @therapist = current_user.role
+    @client = current_user.role
   end
   
   def get_return_to

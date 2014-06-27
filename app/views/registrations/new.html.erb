@@ -10,6 +10,9 @@
 
 			<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 			  <%= devise_error_messages! %>
+				
+				<%= f.label :role_type, "Who are you?" %>
+				<%= f.select(:role_type, [['Client', 'Client'], ['Therapist', 'Therapist']]) %>
 
 			  <%= f.label :email %>
 			  <%= f.email_field :email, autofocus: true %>

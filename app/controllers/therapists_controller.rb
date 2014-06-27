@@ -1,17 +1,10 @@
 class TherapistsController < ApplicationController
-  #before_filter :authenticate_user!
   
   def home
   end
   
   def signup
-    @therapist = current_therapist
-    which_edit_page
-  end
-  
-  def show_my_profile
-    @therapist = current_therapist
-    render 'show'
+    @therapist = current_user.role
   end
   
   def show
@@ -20,14 +13,13 @@ class TherapistsController < ApplicationController
   
   def create
     @therapist = Therapist.create(therapist_params)
-    @therapist.update_attributes(:time_zone => cookies["jstz_time_zone"])
     if @therapist.save
       @therapist.create_permalink
     end
   end
   
   def update
-    @therapist = current_therapist
+    @therapist = current_user.role
     @therapist.should_validate_attributes = true
     if @therapist.update_attributes(therapist_params)
       render :action => 'show'
@@ -37,15 +29,9 @@ class TherapistsController < ApplicationController
   end
   
   def index
+    @emails = EmailBox.create
     @event = Event.new
-    if @_current_client.nil?
-      puts "current client nil, creating new"
-      @client = Client.create(:id => params[:id], :time_zone => cookies["jstz_time_zone"])
-      session[:current_client_id] = @client.id
-    else
-      puts "current client not nil"
-      @client = @_current_client
-    end
+    @client = Client.create(params[:client])
     @therapist = Therapist.all
   end
   
@@ -64,9 +50,9 @@ class TherapistsController < ApplicationController
   private
   
   def therapist_params
-    params.require(:therapist).permit(:email, :password, :first_name, :title, :degree, :last_name, :gender, :state, :license_number, :school_name, :city, :zipcode, :phone, 
-    :time_zone, :open_slots,
+    params.require(:therapist).permit(:first_name, :title, :degree, :last_name, :gender, :state, :license_number, :school_name, :city, :zipcode, :phone, 
+    :open_slots,
     :welcome, :bio, :approach, :approach_sub1, :approach_sub1_title, :approach_sub2, :approach_sub2_title, :issues, :avatar, 
-    :permalink)
+    :permalink, user_attributes: [ :id, :email, :password ])
   end
 end

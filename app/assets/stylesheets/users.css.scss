@@ -1,0 +1,16 @@
+@import "variables.css.scss";
+
+#user-profile {
+	.bg-container {
+		.container {
+			padding: 60px 0px;
+			
+			.appointments-header {
+				margin-bottom: 20px;
+				h3 {
+					color: $scouter-teal-fade;
+				}
+			}
+		}
+	}
+}

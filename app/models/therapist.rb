@@ -1,13 +1,15 @@
 class Therapist < ActiveRecord::Base
   has_many :events
+  has_many :chats
   has_many :clients, through: :events
-  before_save :create_permalink, :convert_slots_to_UTC_0_and_format
+  #before_save :create_permalink, :convert_slots_to_UTC_0_and_format
+  
+  has_one :user, as: :role, dependent: :destroy
+  has_one :chat_user
+  accepts_nested_attributes_for :user
   
   retina!
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+
   attr_accessor :should_validate_attributes
          
   has_attached_file :avatar, 
@@ -18,10 +20,6 @@ class Therapist < ActiveRecord::Base
   
   validates_attachment_size :avatar, :less_than => 3.megabytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
-  
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
-  validates_uniqueness_of :permalink, :message => ": Your custom URL taken", :on => :update
   validates_presence_of :first_name, :last_name, :city, :state, :degree, :on => :update
   validates :zipcode, presence: true, length: { minimum: 5 }, :with => :zipcode_validator, :on => :update
   
@@ -91,13 +89,4 @@ class Therapist < ActiveRecord::Base
   end
   
   private
-  
-  def create_permalink
-    if self.permalink.nil? && !self.first_name.nil? && !self.last_name.nil?
-      self.permalink = self.first_name.downcase + self.last_name.downcase + self.id
-    elsif self.permalink.nil?
-      self.permalink = self.email.split("@")[0].to_s + rand(1000..9999).to_s
-    else
-    end
-  end
 end

@@ -2,18 +2,14 @@ TherapyApp::Application.routes.draw do
   get "appointments/new"
   get "appointments/index"
   get "events/index"
-  devise_for :therapists, :controllers => { :registrations => "registrations" }
-  devise_for :clients, :controllers => { :registrations => "registrations" }
-  resources :charges, :clients, :therapists, :events
-  
-  devise_scope :therapist do
-    match '/signup' => 'devise/registrations#new', via: 'get'
-    match '/edit' => 'devise/registrations#edit', :as => :therapist_edit, via: 'get'
-  end
+  devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
+  resources :charges, :clients, :therapists, :users, :events
   
   match "/chat/new" => "chats#new", via: 'get'
+  match "/chat/unauthorized" => "chats#unauthorized", :as => :unauthorized_chat, via: 'get'
   match "/chat/:id" => "chats#view", via: 'get'
   match "/chatindex" => 'index#index', via: 'get'
+  match '/chats/generate' => 'chats#generate', via: 'get'
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
   match '/this_therapist_events' => 'events#this_therapist_events', via: 'post'
@@ -29,28 +25,39 @@ TherapyApp::Application.routes.draw do
   match '/therapist/create' => 'therapists#create', via: 'post'
   match '/therapist/update' => 'therapists#update', via: 'patch'
   match '/browse' => 'therapists#index', :as => :therapists_index, via: 'get'
-  match '/profile' => 'therapists#show_my_profile', :as => :show_my_profile, via: 'get'
+  match '/therapists/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
+  
+  # user stuff
+  match '/profile' => 'users#show_my_profile', :as => :show_my_profile, via: 'get'
   
   match '/paysecure' => 'charges#new', via: 'get'
   
   match '/clients/new' => 'clients#new', via: 'post'
+  match '/client_create' => "clients#create", :as => :create_client, via: 'get'
   match '/save_c' => 'clients#save_c', :as => :save_client_card, via: 'post'
-  match '/update' => 'clients#update', :as => :update_client, via: 'patch'
+  match '/update' => 'clients#update', :as => :update_client, via: 'post'
   match '/finish' => 'clients#finish', :as => :finish_client, via: 'patch'
+  
+  # static page stuff
   match '/' => 'static_pages#home', :as => :homepage, via: 'get'
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
   
-  match '/drop_email_route' => 'clients#drop_email', via: 'patch' 
+  match '/event/finish' => 'events#finish', via: 'get'
+  
+  match '/drop_email_route' => 'applications#drop_email', via: 'patch' 
+  
+  # set up webhooks
+  scope '/hooks', :controller => :hooks do
+    post :pusher_hooks
+  end
   
   #chat api ajax call routes
   match '/api/authenticate' => 'api#authenticate', via: 'post'
   match '/api/typing_status' => 'api#typing_status', via: 'post'
   match '/api/update_nickname' => 'api#update_nickname', via: 'post'
   match '/api/post_message' => 'api#post_message', via: 'post'
-  
-  match '/therapists/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
   
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

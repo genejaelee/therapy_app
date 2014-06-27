@@ -1,0 +1,15 @@
+<% page_title "Unauthorized" %>
+
+<%= render 'layouts/navbar' %>
+
+<% content_for :title do %>
+  Unauthorized User
+<% end %>
+
+<% content_for :body do %>
+  <p>Your account is not authorized to enter this chat room. Go to your profile to find the link of your chat room. Or find someone to talk to by clicking the button below.</p>
+<% end %>
+
+<%= render 'layouts/header' %>
+
+<%= render 'layouts/cta_white' %>

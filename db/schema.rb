@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617170739) do
+ActiveRecord::Schema.define(version: 20140627041810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20140617170739) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "time_zone"
+    t.integer  "client_id"
+    t.integer  "therapist_id"
   end
 
   create_table "chats", force: true do |t|
@@ -35,6 +37,8 @@ ActiveRecord::Schema.define(version: 20140617170739) do
     t.string   "channel"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id"
+    t.integer  "therapist_id"
   end
 
   create_table "clients", force: true do |t|
@@ -44,9 +48,6 @@ ActiveRecord::Schema.define(version: 20140617170739) do
     t.string   "encrypted_zipcode"
     t.string   "encrypted_zipcode_salt"
     t.string   "encrypted_zipcode_iv"
-    t.string   "encrypted_description"
-    t.string   "encrypted_description_salt"
-    t.string   "encrypted_description_iv"
     t.string   "encrypted_gender"
     t.string   "encrypted_gender_salt"
     t.string   "encrypted_gender_iv"
@@ -56,30 +57,23 @@ ActiveRecord::Schema.define(version: 20140617170739) do
     t.string   "encrypted_insurance"
     t.string   "encrypted_insurance_salt"
     t.string   "encrypted_insurance_iv"
-    t.text     "responses",                                            array: true
+    t.text     "responses",                array: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "current_therapist"
     t.string   "current_therapist_name"
     t.string   "stripe_token"
     t.string   "phone"
-    t.string   "time_zone"
-    t.string   "email",                      default: "", null: false
-    t.string   "encrypted_password",         default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",              default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
     t.boolean  "flag_therapist"
     t.integer  "therapist_id"
     t.text     "description"
   end
 
-  add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
+  create_table "email_boxes", force: true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.string   "title"
@@ -104,16 +98,6 @@ ActiveRecord::Schema.define(version: 20140617170739) do
   end
 
   create_table "therapists", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name"
@@ -141,12 +125,30 @@ ActiveRecord::Schema.define(version: 20140617170739) do
     t.string   "approach_sub1_title"
     t.string   "approach_sub2_title"
     t.string   "school_name"
-    t.string   "time_zone"
-    t.string   "open_slots",             default: [],              array: true
+    t.string   "open_slots",          default: [], array: true
     t.integer  "client_id"
   end
 
-  add_index "therapists", ["email"], name: "index_therapists_on_email", unique: true, using: :btree
-  add_index "therapists", ["reset_password_token"], name: "index_therapists_on_reset_password_token", unique: true, using: :btree
+  create_table "users", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "role_id"
+    t.string   "role_type"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "time_zone"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["role_id", "role_type"], name: "index_users_on_role_id_and_role_type", using: :btree
 
 end

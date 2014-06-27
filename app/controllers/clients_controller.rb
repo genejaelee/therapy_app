@@ -1,4 +1,5 @@
 class ClientsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:create, :new]
   
   def show
     @client = Client.find(params[:id])
@@ -6,24 +7,20 @@ class ClientsController < ApplicationController
   
   def new
     @client = Client.new
-    @client.update_attributes(:time_zone => cookies["jstz_time_zone"])
     session[:current_client_id] = @client.id
     redirect_to :controller => 'therapists', :action => 'index'
   end
   
   def create
-    @client = Client.new(client_params)
-    @client.update_attributes(:time_zone => cookies["jstz_time_zone"])
-    if @client.save
-      session[:current_client_id] = @client.id
-      #if @client.promo_code == "WHISPER033"
-        #render "clients/create"
-        redirect_to :controller => 'therapists', :action => 'index'
-        #else
-        #render :action => :charge
-        #end
+    if current_user.nil?
+      redirect_to new_user_session_path
     else
-      render "static_pages/home"
+      @user = current_user
+      @user.role = Client.create(client_params)
+      puts "#{@user.role.description}"
+      puts "client saved!"
+      @user.save
+      @user.role.save
     end
   end
   
@@ -66,22 +63,11 @@ class ClientsController < ApplicationController
     end
   end
   
-  def drop_email
-    @client = @_current_client
-    if @client.update_attributes(client_params)
-      redirect_to root_url
-      flash[:success] = "Thanks for reaching out."
-    else
-      redirect_to :controller => 'therapists', :action => 'index'
-      flash[:fail] = "Sorry there was an error processing your entries."
-    end
-  end
-  
   private
   
   def client_params
-    params.require(:client).permit(:name, :phone, :email, :password, :zipcode, :time_zone, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :current_therapist, :current_therapist_name, :price, 
+    params.require(:client).permit(:name, :phone, :zipcode, :time_zone, :age, :insurance, :gender, :gender_pref, :description, :promo_code, :price, 
     :stripe_token,
-    :flag_therapist, :therapist_id)
+    :flag_therapist, :therapist_id, user_attributes: [ :id, :email, :password ])
   end
 end

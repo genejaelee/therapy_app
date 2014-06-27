@@ -1,0 +1,43 @@
+<% page_title "Portal" %>
+
+<%= render 'layouts/navbar' %>
+
+<% content_for :title do %>
+  Your Page
+<% end %>
+
+<% content_for :body do %>
+  <p>Scouter aims to make it as simple as possible to get mental health support. We are Matthew Krisiloff and Gene Lee, two recent graduates of University of Chicago who believe it should be easier and more comfortable to access help. </p>
+
+<% end %>
+
+<%= render 'layouts/header' %>
+
+<div class="panel" id="user-profile">
+	<div class="bg-container">
+		<div class="container">
+			<div class="appointments-header">
+				<h3>Your appointments</h3>
+			</div>
+			<div class="sixteen columns appointments-container">
+				<% if current_user.role_type == "Client" %>
+					<% @client = current_user.role %>
+					<% @client.events.each_with_index do |event, index| %>
+						<% therapist = event.therapist %>
+						<div class="appointment">
+							<div class="three columns therapist-image-container">
+								<%= retina_image_tag(therapist, :avatar, :small, :default => [100,100]) %>
+							</div>
+							<div class="eight columns therapist-info-container">
+								<p><%= therapist.first_name %> <%= therapist.last_name %>
+									<span> / <%= therapist.title %>, <%= therapist.degree %></span></p>
+								<p><%= therapist.user.email %></p>
+							</div>
+						</div>
+					
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

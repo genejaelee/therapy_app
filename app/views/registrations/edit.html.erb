@@ -30,11 +30,15 @@
 			  	<%= f.submit "Update Account", :class => "submit_button_white button" %>
 			<% end %>
 			
-			<hr class="edit-divider"></hr>
+			<% if current_user.role_type == "Therapist" %>
 			
-			<h2 class="edit-headers">Edit Profile Details</h2>
+				<hr class="edit-divider"></hr>
 			
-			<%= render 'layouts/therapist_edit_form' %>
+				<h2 class="edit-headers">Edit Profile Details</h2>
+			
+				<%= render 'layouts/therapist_edit_form' %>
+				
+			<% end %>
 
 
 <p><%= button_to "Cancel my account", registration_path(resource_name), :class => "submit_button_red button", data: { confirm: "Are you sure?" }, method: :delete %></p>

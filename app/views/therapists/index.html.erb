@@ -7,11 +7,9 @@
 
 	<% content_for :body do %>
 	  <p>We will soon have more peer coaches to choose from. If you don't see someone you like, we can email you with new options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
-		<%= form_for @client, url: { controller: "clients", action: "drop_email" } do |f| %>
+		<%= form_for @emails, url: { controller: "applications", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>
-				<%= f.hidden_field :id %>	
-				<%= f.hidden_field :flag_therapist, :value => true %>
 				<%= f.text_field :email, :placeholder => "john@example.com" %>
 				<%= f.submit "Submit", :class => "submit_button_white button" %>
 			</div>

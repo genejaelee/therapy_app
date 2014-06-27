@@ -3,8 +3,8 @@ class Event < ActiveRecord::Base
   belongs_to :client
   before_validation :convert_to_UTC_0_and_format
   
-  validates_presence_of :start_date, :start_time, :time_zone
-  validates :start_time, :uniqueness => { :scope => :start_date }
+  #validates_presence_of :start_date, :start_time, :time_zone
+  #validates :start_time, :uniqueness => { :scope => :start_date }
   
   #format to format "2014-04-23 15:00:00 -0300"
   def convert_to_UTC_0_and_format

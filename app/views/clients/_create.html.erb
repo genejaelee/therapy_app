@@ -1,7 +1,1 @@
-	<%= form_for @client, url: { controller: "clients", action: "new" } do |f| %>
-	
-		<%#= f.text_field :email, :type => "email", :placeholder => "john@example.com" %>
-		<%#= f.text_field :zipcode, :placeholder => "Your zipcode" %> 
-		<%= f.hidden_field :id %>
-		<%= f.submit "Browse Peer Coaches", :class => "button browse-therapist-button" %>
-	<% end %>
+<%= button_to "Try for free", therapists_index_path, :class => "button browse-therapist-button", :method => 'get' %>
