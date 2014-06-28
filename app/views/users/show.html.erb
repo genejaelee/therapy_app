@@ -19,19 +19,23 @@
 			<div class="appointments-header">
 				<h3>Your appointments</h3>
 			</div>
-			<div class="sixteen columns appointments-container">
+			<div class="appointments-container">
 				<% if current_user.role_type == "Client" %>
 					<% @client = current_user.role %>
 					<% @client.events.each_with_index do |event, index| %>
 						<% therapist = event.therapist %>
 						<div class="appointment">
-							<div class="three columns therapist-image-container">
+							<div class="two columns therapist-image-container">
 								<%= retina_image_tag(therapist, :avatar, :small, :default => [100,100]) %>
 							</div>
-							<div class="eight columns therapist-info-container">
+							<div class="ten columns therapist-info-container">
 								<p><%= therapist.first_name %> <%= therapist.last_name %>
 									<span> / <%= therapist.title %>, <%= therapist.degree %></span></p>
 								<p><%= therapist.user.email %></p>
+								<p><%= link_to "Chat Room", :action => :view, :controller => :chats, :id => Tiny::tiny(Chat.find_by(event_id: event.id).id) %></p>
+							</div>
+							<div class="three columns">
+								rating system here
 							</div>
 						</div>
 					

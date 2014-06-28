@@ -5,6 +5,7 @@ class EventsController < ApplicationController
       puts "current user nil"
       session[:event] = params[:event]
       puts "#{session[:event]}"
+      @event = Event.new(event_params)
       redirect_to new_user_session_path
     elsif current_user.role.present?
       @client = current_user.role
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
       @event.save
       redirect_to :action => "new", :controller => "charges"
     end
+    session[:event_id] = @event.id
   end
   
   def finish
@@ -52,8 +54,9 @@ class EventsController < ApplicationController
     end
     
     if @user.save
+      session[:event_id] = @event.id
+      puts "session event id is saved as #{@event.id} to #{session[:event_id]}"
       redirect_to :action => "new", :controller => "charges"
-      session[:event] = nil
     end
   end
   

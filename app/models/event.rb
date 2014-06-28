@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   belongs_to :therapist
   belongs_to :client
   before_validation :convert_to_UTC_0_and_format
+  has_one :chat
   
   #validates_presence_of :start_date, :start_time, :time_zone
   #validates :start_time, :uniqueness => { :scope => :start_date }

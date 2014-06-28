@@ -36,11 +36,13 @@ class ChatsController < ApplicationController
   
   def generate
     @client = current_user.role
-    @event = @client.events.find_by(client_id: @client.id)
+    puts "finding event by session event id #{session[:event_id]}"
+    @event = @client.events.find_by(id: session[:event_id])
     
     puts "making new chat"
     chat = @client.chats.new
     chat.therapist_id = @event.therapist_id
+    chat.event_id = @event.id
     chat.owner = ChatUser.user(session, current_user)
     if chat.save
       chat_tiny = Tiny::tiny(chat.id)
