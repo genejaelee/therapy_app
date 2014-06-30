@@ -12,6 +12,7 @@
 				<p><%= link_to "Chat Room", :action => :view, :controller => :chats, :id => Tiny::tiny(@chat.id) %></p>
 				<% end %>
 				<% event.suggested_times.each do |time| %>
+				<% Time.zone = client.user.time_zone %>
 					<p><%= Time.zone.parse(time).in_time_zone(current_user.time_zone).strftime('%-I:%M%p on %A, %b %d') %></p>
 				<% end %>
 			</div>

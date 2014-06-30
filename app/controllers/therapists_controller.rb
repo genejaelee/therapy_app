@@ -50,7 +50,7 @@ class TherapistsController < ApplicationController
   private
   
   def therapist_params
-    params.require(:therapist).permit(:first_name, :title, :degree, :last_name, :gender, :state, :license_number, :school_name, :city, :zipcode, :phone, 
+    params.require(:therapist).permit(:id, :first_name, :title, :degree, :last_name, :gender, :state, :license_number, :school_name, :city, :zipcode, :phone, 
     :open_slots,
     :welcome, :bio, :approach, :approach_sub1, :approach_sub1_title, :approach_sub2, :approach_sub2_title, :issues, :avatar, 
     :permalink, user_attributes: [ :id, :email, :password ])

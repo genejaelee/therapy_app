@@ -85,7 +85,7 @@ var ready = function() {
 	});
 	
 	// deal with alert stuff
-	if ($('.alert-bar').text().length > 1) {
+	if ($('.alert-bar .alert').text().length > 1) {
 		$('body').animate({ 'marginTop' : '50px'}, 400);
 	}
 	else {

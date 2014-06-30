@@ -5,6 +5,10 @@ TherapyApp::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations", :sessions => "sessions" }
   resources :charges, :clients, :therapists, :users, :events
   
+  devise_scope :user do
+    match '/new_therapist' => 'registrations#new_therapist', via: 'get'
+  end
+  
   match "/chat/new" => "chats#new", via: 'get'
   match "/chat/unauthorized" => "chats#unauthorized", :as => :unauthorized_chat, via: 'get'
   match "/chat/:id" => "chats#view", via: 'get'
@@ -16,6 +20,7 @@ TherapyApp::Application.routes.draw do
   match '/update_session' => 'events#update_session', via: 'patch'
   match '/session_details' => 'events#session_details', via: 'get'
   match '/event/finish' => 'events#finish', via: 'get'
+  match '/events' => 'events#index', via: 'patch'
   
   constraints(:subdomain => 'therapy') do
     match '/about' => 'therapists#about', :as => :therapist_about, via: 'get'

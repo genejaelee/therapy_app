@@ -37,7 +37,7 @@ class ChatsController < ApplicationController
   def generate
     @client = current_user.role
     puts "finding event by session event id #{session[:event_id]}"
-    @event = @client.events.find_by(id: session[:event_id])
+    @event = Event.find_by(id: session[:event_id])
     
     puts "making new chat"
     chat = @client.chats.new

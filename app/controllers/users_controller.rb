@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   
   private
   
-  def therapist_params
-    params.require(:user).permit(:role_type, :time_zone)
+  def user_params
+    params.require(:user).permit(:role_type, :time_zone, :events_attributes => [:id, :therapist_id, :client_id, :title, :description, :suggested_times])
   end
 end

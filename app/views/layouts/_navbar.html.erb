@@ -1,15 +1,20 @@
-<div class="navbar">
-	<% if user_signed_in? %>
-		<div class='navbar-links'>
+<div class="panel" id="navbar-panel">
+	<div class="bg-container">
+		<div class="navbar">
+			<% if user_signed_in? %>
+				<div class='navbar-links'>
+					<p style="display: inline-block; color: #fff; margin-right: 10px;"><%= current_user.email %></p>
 			
-			<%= button_to 'My Page', show_my_profile_url, method: :get, :class => 'navbar-link' %>
-		  <%= button_to 'Edit', edit_user_registration_url, method: :get, :class => 'navbar-link' %>
-		  <%= button_to "Logout", destroy_user_session_url, method: :delete, :class => 'navbar-link'  %>
-		</div>
+					<%= button_to 'My Page', show_my_profile_url, method: :get, :class => 'navbar-link' %>
+				  <%= button_to 'Edit', edit_user_registration_url, method: :get, :class => 'navbar-link' %>
+				  <%= button_to "Logout", destroy_user_session_url, method: :delete, :class => 'navbar-link'  %>
+				</div>
 
-	<% else %>
-		<div class="navbar-links">
-		  <%= button_to "Login", new_user_session_url, :class => 'navbar-link'  %>
+			<% else %>
+				<div class="navbar-links">
+				  <%= button_to "Login", new_user_session_url, :class => 'navbar-link'  %>
+				</div>
+			<% end %>
 		</div>
-	<% end %>
+	</div>
 </div>

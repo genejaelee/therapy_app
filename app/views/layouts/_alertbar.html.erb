@@ -1,0 +1,10 @@
+<div class="panel" id="alert-panel">
+	<div class="bg-container">
+		<div class="alert-bar">
+			<% flash.each do |key, value| %>
+				<%= image_tag( 'x-icon.png', size: '17x17', class: "close-alert" ) %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			<% end %>
+		</div>
+	</div>
+</div>
