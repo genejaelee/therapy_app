@@ -47,9 +47,13 @@ class ChatsController < ApplicationController
     if chat.save
       chat_tiny = Tiny::tiny(chat.id)
       puts "chat id is #{chat.id}"
-        chat.channel = "message_channel_" + chat.id.to_s
-        chat.save
-      redirect_to :action => "view", :id => chat_tiny
+      chat.channel = "message_channel_" + chat.id.to_s
+      chat.save
+      session[:event_id] = nil
+      redirect_to :action => "show_my_profile", :controller => "users"
+    else
+      redirect_to homepage_path
+      flash[:error] = "There was an error generating the chatroom"
     end
   end
   

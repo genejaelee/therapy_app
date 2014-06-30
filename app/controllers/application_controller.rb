@@ -5,22 +5,10 @@ class ApplicationController < ActionController::Base
   #before_filter { response.headers['P3P'] = %q|CP="HONK"| }
   protect_from_forgery with: :exception
   around_filter :user_time_zone, :if => :current_user
-  helper_method :current_client
+  helper_method :current_client, :registrations_router
   
   def after_sign_in_path_for(resource)
-    @user = current_user
-    @return_path = Rails.application.routes.recognize_path(session[:return_to])
-    
-    if @user.role_type == "Client"
-      puts "signed in user is client, return finish event"
-      
-      if session[:event].present?
-        return '/event/finish'
-      end
-    end
-    
-    puts "request referer is #{@return_path}"
-    return session[:return_to]
+    return registrations_router
   end
   
   def drop_email
@@ -34,10 +22,29 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def registrations_router
+    @user = current_user
+    
+    if @user.role_type == "Therapist"
+      puts "signed up user is therapist"
+      routed_path = update_therapist_path
+    elsif @user.role_type == "Client" && session[:event].present? && session[:suggested_times].present?
+      routed_path = '/event/finish'
+    elsif @user.role_type == "Client" && session[:event].present?
+      routed_path = '/session_details'
+    elsif @user.role_type == "Client"
+      routed_path = session[:return_to]
+      session[:return_to] = nil
+    else
+      routed_path = homepage_path
+    end
+    return routed_path
+  end
+  
   private
   
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:role_type, :email, :password, :password_confirmation) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:role_type, :email, :password, :password_confirmation, :time_zone) }
   end
   
   def current_client

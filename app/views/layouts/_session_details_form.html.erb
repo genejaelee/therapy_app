@@ -1,0 +1,29 @@
+<br>
+<h2>Session details</h2>
+
+	<%= label_tag "Suggest three times to talk" %>
+		<div class="datetime-container">
+			<%= text_field(:suggested_times, :suggested_date1, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY") %>
+			<%= text_field(:suggested_times, :suggested_time1, :class => "time-field", :required => "true", :placeholder => "HH:MMpm") %>
+		</div>
+		<div class="datetime-container">
+			<%= text_field(:suggested_times, :suggested_date2, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY") %>
+			<%= text_field(:suggested_times, :suggested_time2, :class => "time-field", :required => "true", :placeholder => "HH:MMpm") %>
+		</div>
+		<div class="datetime-container">
+			<%= text_field(:suggested_times, :suggested_date3, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY") %>
+			<%= text_field(:suggested_times, :suggested_time3, :class => "time-field", :required => "true", :placeholder => "HH:MMpm") %>
+		</div>
+		
+		<div class="timezone-container">
+			<span>Change my timezone (currently <%= time_zone %>)</span>
+			<%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, default: time_zone_value_to_name(time_zone) ) %>
+		</div>
+		
+		<br>
+		
+		<% if @therapist.nil? %>
+			<% @therapist = Therapist.find_by(id: session[:event][:therapist_id]) %>
+		<% end %>
+		<%= label_tag "Write anything you want to share with #{@therapist.first_name} here."%>
+		<%= text_area(:event, :description, :id => "description", :placeholder => "Optional") %>

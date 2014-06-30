@@ -11,8 +11,6 @@
 	<meta name="viewport" content="initial-scale=1, user-scalable=no, maximum-scale=1">
 	<meta name="google-site-verification" content="AKIGOymA82-1NwROwiVrgyiPA4LyhTMc4VA6I1LZ7Sw" />
 	<%= display_meta_tags :site => 'Scouter' %>
-	<meta property="al:ios:url" content="fb-messenger://" />
-	<meta property="al:ios:app_name" content="Facebook" />
 	<%= csrf_meta_tags %>
 	<% set_meta_tags :description => "Get counseling the easiest way possible - by taking a phone call." %>
 	
@@ -22,6 +20,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<%= javascript_include_tag "//js.pusher.com/2.2/pusher.min.js" %>
 	<%= javascript_include_tag "jquery.mask.min", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "jquery.timepicker.min", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "jstz-1.0.4.min", "data-turbolinks-track" => true %>
@@ -46,7 +45,7 @@
 		
 
 </head>
-<body>
+<body class="<%= controller_name %>	 <%= action_name %>">
 	<header>
 	</header>
 	<main>

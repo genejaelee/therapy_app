@@ -1,0 +1,24 @@
+<% @therapist = current_user.role %>
+<% @therapist.events.each_with_index do |event, index| %>
+<% if event.charge.present? %>
+	<% @chat = Chat.find_by(event_id: event.id) %>
+		<% client = event.client %>
+		<div class="appointment">
+			<div class="ten columns therapist-info-container">
+				<p><%= client.user.email %></p>
+				<% if @chat.nil? %>
+				<p>No chatroom</p>
+				<% else %>
+				<p><%= link_to "Chat Room", :action => :view, :controller => :chats, :id => Tiny::tiny(@chat.id) %></p>
+				<% end %>
+				<% event.suggested_times.each do |time| %>
+					<p><%= Time.zone.parse(time).in_time_zone(current_user.time_zone).strftime('%-I:%M%p on %A, %b %d') %></p>
+				<% end %>
+			</div>
+			<div class="three columns">
+				rating system here
+			</div>
+		</div>
+
+	<% end %>
+<% end %>

@@ -4,16 +4,17 @@
 								 :reverse => true 
 %>
 
+<div class="alert-bar">
+	<% flash.each do |key, value| %>
+		<%= image_tag( 'x-icon.png', size: '17x17', class: "close-alert" ) %>
+		<div class="alert alert-<%= key %>"><%= value %></div>
+	<% end %>
+</div>
+
 <%= render 'layouts/navbar' %>
 
 <div id="panel1" class="panel">
 	<div class="bg-container">
-		<div class="subdomain_link">
-			<% flash.each do |key, value| %>
-				<div class="alert alert-<%= key %>"><%= value %></div>
-			<% end %>
-			<!--<%= link_to "Therapist?", therapist_home_url(:protocol => 'http') %>-->
-		</div>
 		<div class="container">
 			<div class="sixteen columns" id="logo-banner">
 				<%= link_to image_tag("couch-logo5.png", height: "50px", class: "top-logo"), homepage_path %>

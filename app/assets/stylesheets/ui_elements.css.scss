@@ -9,6 +9,11 @@
 	}
 }
 
+.ui-datepicker {
+	margin-top: 10px;
+	@extend .ui-datepicker-inline;
+}
+
 .ui-datepicker-inline {
 	margin: auto;
 	padding: 8px;

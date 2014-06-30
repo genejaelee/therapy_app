@@ -2,8 +2,8 @@
 var is_typing_currently = false;
 var browser_audio_type = "";
 
-$(document).ready(function()
-{
+$(".chats.view").ready(function() {
+	
 	scrollToBottomAndFocus();
 	
 	$.ajaxSetup({
@@ -189,6 +189,4 @@ $(document).ready(function()
 			});
 		}
 	});
-	
 });
-

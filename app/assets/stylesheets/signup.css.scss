@@ -79,25 +79,40 @@
 			
 			input {
 				color: $scouter-teal-fade;
-				font-size: 20px;
-				padding: 12px 10px;
-				width: 300px;
+				font-size: 16px;
+				padding: 10px 10px;
+				width: 260px;
 				-webkit-appearance: none;
+				margin-bottom: 10px;
 			}
 			
 			input:focus {
 				box-shadow: none;
 			}
 			
+			.date-field {
+				margin-right: 5px;
+				display: inline-block;
+			}
+			
+			.time-field {
+				width: 160px;
+				display: inline-block;
+			}
+			
+			#user_time_zone {
+				width: 300px;
+			}
+			
 			textarea {
 				overflow-x: hidden;
-				min-height: 400px;
-				width: 100%;
-				border: none;
-				margin-bottom: 0px;
+				min-height: 200px;
+				width: 500px;
+				font-size: 16px;
+				border: 1px solid #ccc;
+				padding: 10px;
+				margin-bottom: 15px;
 				color: $scouter-teal-fade;
-				font-size: 36px;
-				line-height: 44px;
 				resize: none;
 			}
 			
@@ -173,7 +188,7 @@
 			
 			label {
 				margin-bottom: 5px;
-				margin-top: 30px;
+				margin-top: 15px;
 				color: #aaa;
 				font-size: 16px;
 				font-weight: 200;
@@ -235,9 +250,6 @@
 			.container {
 				padding-top: 50px;
 				textarea {
-					min-height: 320px;
-					font-size: 26px;
-					line-height: 32px;
 				}
 				
 				#counter-text {

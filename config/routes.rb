@@ -13,6 +13,9 @@ TherapyApp::Application.routes.draw do
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
   match '/this_therapist_events' => 'events#this_therapist_events', via: 'post'
+  match '/update_session' => 'events#update_session', via: 'patch'
+  match '/session_details' => 'events#session_details', via: 'get'
+  match '/event/finish' => 'events#finish', via: 'get'
   
   constraints(:subdomain => 'therapy') do
     match '/about' => 'therapists#about', :as => :therapist_about, via: 'get'
@@ -43,8 +46,6 @@ TherapyApp::Application.routes.draw do
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
-  
-  match '/event/finish' => 'events#finish', via: 'get'
   
   match '/drop_email_route' => 'applications#drop_email', via: 'patch' 
   

@@ -25,9 +25,16 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
     
-    @client.update_attributes(:stripe_token => params[:stripeToken])
-
+    @charge = @client.charges.new
+    @event = Event.find_by(id: session[:event_id])
+    @charge.update_attributes(:stripe_token => params[:stripeToken], 
+                              :stripe_customer_id => customer.id, 
+                              :amount => @amount, 
+                              :event_id => @event.id, 
+                              :therapist_id => @event.therapist_id)
+                              
   redirect_to :action => 'generate', :controller => 'chats'
+  
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to :action => 'new', :controller => 'charges'

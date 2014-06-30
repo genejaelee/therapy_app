@@ -1,9 +1,10 @@
-<div class="navbar">
+<div class="registration-container">
 	<% if user_signed_in? %>
+	  Logged in as <strong><%= current_user.email %></strong>.
 		<div class='navbar-links'>
 			
-			<%= button_to 'My Page', show_my_profile_url, method: :get, :class => 'navbar-link' %>
-		  <%= button_to 'Edit', edit_user_registration_url, method: :get, :class => 'navbar-link' %>
+			<%= button_to 'My Profile', show_my_profile_url, :class => 'navbar-link' %> |
+		  <%= button_to 'Edit profile', edit_user_registration_url, :class => 'navbar-link' %> |
 		  <%= button_to "Logout", destroy_user_session_url, method: :delete, :class => 'navbar-link'  %>
 		</div>
 

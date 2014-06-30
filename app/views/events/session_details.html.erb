@@ -1,0 +1,19 @@
+<% page_title "Session Details" %>
+
+<%= render 'layouts/header'%>
+
+<div class="panel signup-panel">
+	<div class="bg-container">
+		<div class="container">
+			
+			<%= form_for(@user, url: { :controller => "events", :action => "update_session" }) do |f| %>
+				
+				<%= render :partial => 'layouts/session_details_form', :locals => { :f => f, :time_zone => @time_zone } %>
+
+			  <%= f.submit "Sign up", :class => "submit_button_white button" %>
+				
+			<% end %>
+			
+		</div>
+	</div>
+</div>

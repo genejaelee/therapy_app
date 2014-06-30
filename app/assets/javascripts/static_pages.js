@@ -84,6 +84,16 @@ var ready = function() {
 	    FastClick.attach(document.body);
 	});
 	
+	// deal with alert stuff
+	if ($('.alert-bar').text().length > 1) {
+		$('body').animate({ 'marginTop' : '50px'}, 400);
+	}
+	else {
+	}
+	$('.close-alert').click(function(){
+		$('body').animate({ 'marginTop' : '0px'}, 400);
+	});
+	
 	$('.phone-field').mask('(000) 000-0000');
 	$('.date-field').mask('00/00/00');
 	//$('.time-field').mask('00:00AA');
@@ -96,14 +106,12 @@ var ready = function() {
   });
 	
   $(function() {
-    $( ".datepicker-container" ).datepicker({ dateFormat: 'mm/dd/yy', 
-																							inline: true,
-																							altField: '.date-field',
+    $( ".date-field" ).datepicker({ dateFormat: 'mm/dd/yy', 
 																							minDate: 0,
 																							onSelect: function(date){
 																								//update time slot availabilities
-																								var thisProfile = $(this).closest('.profile-link-panel');
-																								updateEventData(thisProfile);
+																								//var thisProfile = $(this).closest('.profile-link-panel');
+																								//updateEventData(thisProfile);
 																							}
 																						});
   });
@@ -134,9 +142,6 @@ var ready = function() {
 			$('.current_therapist_name').css('display', 'none');
 		}
 	});
-	
-	//therapist home page stuff
-	hideNavBar()
 	
 	//therapist index stuff
 	$('#open-email-dropbox').click(function(){

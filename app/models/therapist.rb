@@ -2,6 +2,7 @@ class Therapist < ActiveRecord::Base
   has_many :events
   has_many :chats
   has_many :clients, through: :events
+  has_many :charges
   #before_save :create_permalink, :convert_slots_to_UTC_0_and_format
   
   has_one :user, as: :role, dependent: :destroy

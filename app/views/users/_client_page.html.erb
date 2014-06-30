@@ -1,0 +1,29 @@
+<% @client = current_user.role %>
+<% @client.events.each_with_index do |event, index| %>
+<% if event.charge.present? %>
+	<% @chat = Chat.find_by(event_id: event.id) %>
+		<% therapist = event.therapist %>
+		<div class="appointment">
+			<div class="two columns therapist-image-container">
+				<%= retina_image_tag(therapist, :avatar, :small, :default => [100,100]) %>
+			</div>
+			<div class="ten columns therapist-info-container">
+				<p><%= therapist.first_name %> <%= therapist.last_name %>
+					<span> / <%= therapist.title %>, <%= therapist.degree %></span></p>
+				<p><%= therapist.user.email %></p>
+				<% if @chat.nil? %>
+				<p>No chatroom</p>
+				<% else %>
+				<p><%= link_to "Chat Room", :action => :view, :controller => :chats, :id => Tiny::tiny(@chat.id) %></p>
+				<% end %>
+				<% event.suggested_times.each do |time| %>
+					<p><%= Time.zone.parse(time).in_time_zone(current_user.time_zone).strftime('%-I:%M%p on %A, %b %d') %></p>
+				<% end %>
+			</div>
+			<div class="three columns">
+				rating system here
+			</div>
+		</div>
+
+	<% end %>
+<% end %>

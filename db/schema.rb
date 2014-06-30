@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140627225052) do
+ActiveRecord::Schema.define(version: 20140629235822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20140627225052) do
     t.string   "hour"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "charges", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripe_token"
+    t.integer  "event_id"
+    t.integer  "client_id"
+    t.integer  "therapist_id"
+    t.integer  "amount"
+    t.integer  "stripe_customer_id"
   end
 
   create_table "chat_users", force: true do |t|
@@ -79,15 +90,11 @@ ActiveRecord::Schema.define(version: 20140627225052) do
   create_table "events", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "start"
-    t.string   "end"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "therapist_id"
     t.integer  "client_id"
-    t.string   "start_time"
-    t.string   "start_date"
-    t.string   "time_zone"
+    t.string   "suggested_times", default: [], array: true
   end
 
   create_table "messages", force: true do |t|

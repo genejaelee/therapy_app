@@ -2,6 +2,7 @@ class Client < ActiveRecord::Base
   has_many :events
   has_many :chats
   has_many :therapists, through: :events
+  has_many :charges
   
   has_one :user, as: :role, dependent: :destroy
   has_one :chat_user
