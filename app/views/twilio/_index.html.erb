@@ -10,9 +10,9 @@ function hangup() {
 
 $(function() {
   Twilio.Device.setup("<%= twilio_token %>");
- 
-  Twilio.Device.ready(function (device) {
-    $("#log").text("Ready");
+	
+	Twilio.Device.ready(function (device) {
+    $("#log").text("Client '<%= client_name %>' is ready");
   });
  
   Twilio.Device.error(function (error) {
@@ -32,6 +32,16 @@ $(function() {
     // accept the incoming connection and start two-way audio
     conn.accept();
   });
+	
+	function call() {
+	  // get the phone number or client to connect the call to
+	  params = {"PhoneNumber": $("#number").val()};
+	  Twilio.Device.connect(params);
+	}
+	
+	function hangup() {
+    Twilio.Device.disconnectAll();
+  }
   
 });
 <% end %>

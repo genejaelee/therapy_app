@@ -52,7 +52,7 @@ TherapyApp::Application.routes.draw do
   match '/finish' => 'clients#finish', :as => :finish_client, via: 'patch'
   
   # static page stuff
-  #match '/' => 'static_pages#home', :as => :homepage, via: 'get'
+  match '/' => 'static_pages#home', :as => :homepage, via: 'get'
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
@@ -70,8 +70,8 @@ TherapyApp::Application.routes.draw do
   match '/api/update_nickname' => 'api#update_nickname', via: 'post'
   match '/api/post_message' => 'api#post_message', via: 'post'
   
-  root :to => 'twilio#index'
-  # root 'static_pages#home'
+  #root :to => 'twilio#index'
+  root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
