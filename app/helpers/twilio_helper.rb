@@ -1,18 +1,20 @@
 module TwilioHelper 
   def client_name
     default_client = 'jenny'
-    @from = current_user.id
+    @from = current_user.email.split('@')[0]
     puts "from id is #{@from}"
     if current_user.role_type == "Therapist"
-      @to_call = Client.find_by(id: session[:chat_client_id]).user.id
+      @to_call_email = Client.find_by(id: session[:chat_client_id]).user.email
+      @username = @to_call_email.split('@')[0]
     elsif current_user.role_type == "Client"
-      @to_call = Therapist.find_by(id: session[:chat_therapist_id]).user.id
+      @to_call_email = Therapist.find_by(id: session[:chat_therapist_id]).user.email
+      @username = @to_call_email.split('@')[0]
     end
-    if @to_call.nil?
-      @to_call = default_client
+    if @username.nil?
+      @username = default_client
     end
-    puts "to id is #{@to_call}"
-    return @to_call
+    puts "to id is #{@username}"
+    return @username
   end
   
   def twilio_token
