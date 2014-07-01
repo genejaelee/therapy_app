@@ -20,7 +20,7 @@ class TwilioController < ApplicationController
       end
     end
     response.text
-    render 'twilio/index'
+    render :nothing => true
   end
   
   def incoming
