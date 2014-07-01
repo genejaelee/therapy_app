@@ -13,7 +13,7 @@ class TwilioController < ApplicationController
         # Test to see if the PhoneNumber is a number, or a Client ID. In
         # this case, we detect a Client ID by the presence of non-numbers
         # in the PhoneNumber parameter.
-        puts 'supposedly dialing number'
+        puts "supposedly dialing number #{number}"
         d.Client number
       end
     end
