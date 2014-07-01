@@ -10,9 +10,9 @@ TherapyApp::Application.routes.draw do
   end
   
   # twilio stuff
-  post 'twilio/voice' => 'twilio#voice'
-  get 'twilio/index' => 'twilio#index'
-  post 'twilio/incoming' => 'twilio#incoming'
+  post '/twilio/voice' => 'twilio#voice'
+  get '/twilio/index' => 'twilio#index'
+  post '/twilio/incoming' => 'twilio#incoming'
   
   match "/chat/new" => "chats#new", via: 'get'
   match "/chat/unauthorized" => "chats#unauthorized", :as => :unauthorized_chat, via: 'get'
