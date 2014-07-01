@@ -3,11 +3,12 @@ module TwilioHelper
     default_client = 'jenny'
     @from = current_user.email.split('@')[0]
     puts "from id is #{@from}"
+    @chat = Chat.find_by(id: session[:chat_id])
     if current_user.role_type == "Therapist"
-      @to_call_email = Client.find_by(id: session[:chat_client_id]).user.email
+      @to_call_email = @chat.client.user.email
       @username = @to_call_email.split('@')[0]
     elsif current_user.role_type == "Client"
-      @to_call_email = Therapist.find_by(id: session[:chat_therapist_id]).user.email
+      @to_call_email = @chat.therapist.user.email
       @username = @to_call_email.split('@')[0]
     end
     if @username.nil?

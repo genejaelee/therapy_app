@@ -19,8 +19,7 @@ class ChatsController < ApplicationController
 
   def view
     @chat = Chat.find(Tiny::untiny(params[:id]))
-    session[:chat_therapist_id] = @chat.therapist_id
-    session[:chat_client_id] = @chat.client_id
+    session[:chat_id] = @chat.id
     puts "#{current_user.role.id}, #{@chat.therapist_id}, #{@chat.client_id}"
     if current_user.role.id == @chat.therapist_id || current_user.role.id == @chat.client_id
     

@@ -10,6 +10,8 @@ class HooksController < ApplicationController
           puts "Channel occupied: #{event["channel"]}"
         when 'channel_vacated'
           puts "Channel vacated: #{event["channel"]}"
+          Message.where(chat_id: session[:chat_id]).destroy_all
+          session[:chat_id] = nil
         when 'member_added'
           puts "Member added: #{event["channel"]}"
         end
