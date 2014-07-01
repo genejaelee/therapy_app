@@ -24,8 +24,8 @@
     Twilio.Device.incoming(function (conn) {
       $("#log").text("Incoming connection from " + conn.parameters.From);
       // accept the incoming connection and start two-way audio
-      $('.answer').click(function() {
-      	answer(conn);
+      if $('.answer').click(function() {
+      	answer(connection);
       })
     });
 
