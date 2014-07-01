@@ -93,7 +93,7 @@ function openCloseOnClick(element, min, max) {
 		
 		timeRangesArray = [];
 		//AJAX
-		updateEventData(element);
+		//updateEventData(element);
 		//get event data
 	}
 	if ($(element).hasClass("opened")) {

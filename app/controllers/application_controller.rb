@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_client, :registrations_router
   
   def after_sign_in_path_for(resource)
+    session[:registration_state] = "login"
     return registrations_router
   end
   
@@ -27,18 +28,84 @@ class ApplicationController < ActionController::Base
     
     if @user.role_type == "Therapist"
       puts "signed up user is therapist"
-      routed_path = update_therapist_path
-    elsif @user.role_type == "Client" && session[:event].present? && session[:suggested_times].present?
+      if session[:registration_state] == "login"
+        routed_path = show_my_profile_path
+      elsif session[:registration_state] == "signup"
+        routed_path = update_therapist_path
+      end
+      session[:registration_state] == nil
+    elsif @user.role_type == "Client" && session[:event_id].present? && session[:suggested_times].present?
       routed_path = '/event/finish'
-    elsif @user.role_type == "Client" && session[:event].present?
+    elsif @user.role_type == "Client" && session[:event_id].present?
       routed_path = '/session_details'
     elsif @user.role_type == "Client"
       routed_path = session[:return_to]
       session[:return_to] = nil
+    elsif session[:return_to].present?
+      routed_path = session[:return_to]
     else
       routed_path = homepage_path
     end
     return routed_path
+  end
+  
+  def find_event_and_client_or_build
+    puts 'finding event and client or building'
+    if session[:event_id].present?
+      puts 'getting event from session'
+      @event = Event.find_by(id: session[:event_id])
+      @client = check_client_presence_or_build
+    elsif params[:event].present?
+      puts 'getting event from params'
+      @event = Event.find_by(params[:event])
+      @client = check_client_presence_or_build
+    else
+      puts 'neither event params or session exists'
+      @client = check_client_presence_or_build
+      @event = @client.events.new
+    end
+    
+    check_client_id_equal_event_client_id
+    @client.save
+    @event.save
+    
+    if session[:event_id] != @event.id
+      puts 'session didnt equal event, reassignign session'
+      session[:event_id] = @event.id
+    end
+  end
+  
+  def check_client_presence_or_build
+    if current_user.present?
+      if current_user.role.present? && current_user.role_type = "Client"
+        @user = current_user
+        @client = @user.role
+      elsif current_user.role.nil?
+        @user = current_user
+        if Client.find_by(id: @event.client_id).present?
+          @client = Client.find_by(id: @event.client_id)
+          @user.role = @client
+        else
+          @client = Client.create
+          @user.role = @client
+        end
+      end
+      
+    elsif current_user.nil?
+      if @event.nil?
+        @client = Client.create
+      else
+        @client = Client.find_by(id: @event.client_id)
+      end
+    end
+    return @client
+  end
+  
+  def check_client_id_equal_event_client_id
+    if @client.id != @event.client_id
+      puts 'event client id not equal to client id, reassigning'
+      @event.client_id = @client.id
+    end
   end
   
   private

@@ -22,7 +22,7 @@ class TherapistsController < ApplicationController
     @therapist = current_user.role
     @therapist.should_validate_attributes = true
     if @therapist.update_attributes(therapist_params)
-      render :action => 'show'
+      redirect_to :controller => 'users', :action => 'show_my_profile'
     else
       render 'therapists/signup'
     end
@@ -33,6 +33,9 @@ class TherapistsController < ApplicationController
     @event = Event.new
     @client = Client.create(params[:client])
     @therapist = Therapist.all
+    if user_signed_in?
+      
+    end
   end
   
   def about

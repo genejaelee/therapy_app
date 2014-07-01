@@ -109,9 +109,6 @@ var ready = function() {
     $( ".date-field" ).datepicker({ dateFormat: 'mm/dd/yy', 
 																							minDate: 0,
 																							onSelect: function(date){
-																								//update time slot availabilities
-																								//var thisProfile = $(this).closest('.profile-link-panel');
-																								//updateEventData(thisProfile);
 																							}
 																						});
   });

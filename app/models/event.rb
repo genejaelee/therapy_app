@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   #validates_presence_of :start_date, :start_time, :time_zone
   #validates :start_time, :uniqueness => { :scope => :start_date }
   
-  def update_values_with_timezone(client_id, therapist_id, description, times_hash, time_zone)
+  def format_suggested_times_with_timezone(times_hash, time_zone)
     datetimes = []
     puts "times hash is #{times_hash}"
     datetime1 = "#{self.format_date_to_ISO(times_hash[:suggested_date1])} #{times_hash[:suggested_time1]}"
@@ -16,11 +16,7 @@ class Event < ActiveRecord::Base
     datetimes.push(datetime1, datetime2, datetime3)
     
     formatted_datetimes = parse_datetimes_with_timezone(datetimes, time_zone)
-    
-    self.update_attributes({"client_id" => client_id, 
-                            "therapist_id" => therapist_id, 
-                            "description" => description, 
-                            "suggested_times" => formatted_datetimes})
+    return formatted_datetimes
   end
   
   def parse_datetimes_with_timezone(datetimes, time_zone)

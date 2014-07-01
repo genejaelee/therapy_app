@@ -6,6 +6,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.3'
 gem 'pg', '0.15.1'
 gem 'figaro'
+gem 'sinatra'
 gem 'retina_rails', '~> 2.0.0'
 
 # Use jquery as the JavaScript library
@@ -41,6 +42,9 @@ end
 gem 'nokogiri', '1.6.1'
 gem 'mechanize', '~> 2.7.2'
 gem 'socksify'
+
+# For Communications
+gem 'twilio-ruby'
 
 # SSL
 gem 'rack-ssl-enforcer'

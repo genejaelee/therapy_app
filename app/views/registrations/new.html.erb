@@ -24,7 +24,7 @@
 			  <%= f.label :password_confirmation %>
 			  <%= f.password_field :password_confirmation, autocomplete: "off" %>
 				
-				<% if session[:event].present? %>
+				<% if session[:event_id].present? %>
 					<%= render :partial => 'layouts/session_details_form', :locals => { :f => f } %>
 				<% end %>
 				

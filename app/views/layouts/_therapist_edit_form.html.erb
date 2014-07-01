@@ -1,17 +1,13 @@
 			<%= form_for @therapist, url: { controller: "therapists", action: "update" }, :html => { :multipart => true } do |f| %>
 			
-			
 				<%= retina_image_tag(@therapist, :avatar, :small, :default => [100,100]) %>
 				<%= f.label :avatar, "Upload a photo of yourself." %>
 			  <%= f.file_field :avatar %>
-				
-				<%= f.label :permalink, "Your unique URL" %>
-				<%= f.text_field :permalink %>
 	
-				<%= f.label :first_name, "*First name" %>
+				<%= f.label :first_name, "First name" %>
 				<%= f.text_field :first_name, :placeholder => "ex. John" %>
 		
-				<%= f.label :last_name, "*Last name" %>
+				<%= f.label :last_name, "Last name" %>
 				<%= f.text_field :last_name, :placeholder => "ex. Smith"%>
 				
 				<%= f.label :title, "What is your title?" %>
@@ -22,9 +18,6 @@
 				
 				<%= f.label :school_name, "Specify where you obtained your degree." %>
 				<%= f.text_field :school_name, :placeholder => "University of Massachusetts" %>
-				
-				<%= f.label :license_number, "What is your therapy license number?" %>
-				<%= f.text_field :license_number, :placeholder => "ex. PT 19318"%>
 		
 				<%= label_tag :gender, "What is your gender?" %>
 				<%= f.select(:gender, [['Male', 'Male'], ['Female', 'Female'], ['Other', 'Other']]) %>

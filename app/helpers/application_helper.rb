@@ -24,7 +24,8 @@ module ApplicationHelper
   end
   
   def get_therapist_for_user
-    therapist = check_presence_and_find_by_id(Therapist, session[:event][:therapist_id])
+    therapist_id = Event.find_by(id: session[:event_id]).therapist_id
+    therapist = check_presence_and_find_by_id(Therapist, therapist_id)
     if therapist.nil?
       therapist = current_user.build_therapist
     end

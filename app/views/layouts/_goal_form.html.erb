@@ -1,7 +1,6 @@
 <div class="goal-form-container">
 	<div class="sixteen columns form-container">
 		<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
-				<%= f.hidden_field :id, :value => @event.id %>
 				<%= f.hidden_field :therapist_id, :value => @therapist_id %>
 				<%= f.hidden_field :client_id, :value => @client.id %>
 			

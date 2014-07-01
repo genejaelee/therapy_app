@@ -1,16 +1,22 @@
 class RegistrationsController < Devise::RegistrationsController
   protected
-  before_filter :get_return_to, :get_time_zone, :get_session_ids
+  before_filter :get_return_to, :get_time_zone, :get_roles
   
   def after_sign_up_path_for(resource)
-    if params[:suggested_times].present?
-      session[:suggested_times] = params[:suggested_times]
-      session[:description] = session[:event][:description]
+    if current_user.role_type == "Client"
+      if params[:suggested_times].present?
+        session[:suggested_times] = params[:suggested_times]
+        session[:description] = params[:event][:description]
+      end
+    elsif current_user.role_type == "Therapist"
+      
     end
+    session[:registration_state] = "signup"
     return registrations_router
   end
   
-  def edit
+  def get_roles
+    puts 'getting roles'
     @therapist = current_user.role
     @client = current_user.role
   end
@@ -21,12 +27,5 @@ class RegistrationsController < Devise::RegistrationsController
   
   def get_time_zone
     @time_zone = cookies["jstz_time_zone"]
-    puts "#{@time_zone}"
-  end
-  
-  def get_session_ids
-    @session_client_id = session[:event][:client_id]
-    @session_therapist_id = session[:event][:therapist_id]
-    @session_event_id = session[:event_id]
   end
 end

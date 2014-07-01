@@ -9,6 +9,10 @@ TherapyApp::Application.routes.draw do
     match '/new_therapist' => 'registrations#new_therapist', via: 'get'
   end
   
+  # twilio stuff
+  post 'twilio/voice' => 'twilio#voice'
+  get 'twilio/call' => 'twilio#call'
+  
   match "/chat/new" => "chats#new", via: 'get'
   match "/chat/unauthorized" => "chats#unauthorized", :as => :unauthorized_chat, via: 'get'
   match "/chat/:id" => "chats#view", via: 'get'
@@ -65,6 +69,7 @@ TherapyApp::Application.routes.draw do
   match '/api/update_nickname' => 'api#update_nickname', via: 'post'
   match '/api/post_message' => 'api#post_message', via: 'post'
   
+  #root :to => 'twilio#index'
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
