@@ -29,7 +29,7 @@
 
     function call() {
       // get the phone number to connect the call to
-      params = {"PhoneNumber": $("#number").val()};
+      params = {"To": '<%= other_name %>'};
       Twilio.Device.connect(params);
     }
 
@@ -45,10 +45,7 @@
 
   <button class="hangup" onclick="hangup();">
     Hangup
-  </button>
-
-  <input type="text" id="number" name="number"
-    placeholder="Enter a phone number to call"/>
+	</button>
 
   <div id="log">Loading pigeons...</div>
 </body>
