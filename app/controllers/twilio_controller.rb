@@ -3,9 +3,9 @@ class TwilioController < ApplicationController
   skip_before_action :verify_authenticity_token
  
   def voice
-    caller_id = '12132925011'
-    puts 'voice post made'
+    caller_id = '2132925011'
     number = params[:PhoneNumber]
+    puts "voice post made for number #{number}"
     response = Twilio::TwiML::Response.new do |r|
       # Should be your Twilio Number or a verified Caller ID
       r.Dial :callerId => caller_id do |d|
@@ -16,8 +16,7 @@ class TwilioController < ApplicationController
         d.Client number
       end
     end
-    response.text
-    render :nothing => true
+    return response.text
   end
   
   def incoming
