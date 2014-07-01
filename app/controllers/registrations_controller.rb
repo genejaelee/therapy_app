@@ -17,9 +17,11 @@ class RegistrationsController < Devise::RegistrationsController
   
   def get_roles
     puts 'getting roles'
-    if current_user.role.present?
-      @therapist = current_user.role
-      @client = current_user.role
+    if current_user.present?
+      if current_user.role.present?
+        @therapist = current_user.role
+        @client = current_user.role
+      end
     end
   end
   
