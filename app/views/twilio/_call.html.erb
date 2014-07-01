@@ -29,7 +29,7 @@
 
     function call() {
       // get the phone number to connect the call to
-      params = {"To": 'client:<%= other_name %>'};
+      params = {"To": '<%= other_name %>'};
       Twilio.Device.connect(params);
     }
 

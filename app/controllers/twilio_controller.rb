@@ -4,7 +4,7 @@ class TwilioController < ApplicationController
   before_action :get_number
  
   def voice
-    caller_id = '2132925011'
+    caller_id = '+12132925011'
     number = params[:To]
     puts "voice post made for number #{number}"
     response = Twilio::TwiML::Response.new do |r|
