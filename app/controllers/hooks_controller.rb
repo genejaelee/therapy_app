@@ -1,4 +1,6 @@
 class HooksController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def pusher_hooks
     webhook = Pusher::WebHook.new(request)
     if webhook.valid?
