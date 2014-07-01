@@ -6,7 +6,7 @@
   Twilio.Device.setup("<%= twilio_token %>", {debug: true});
 
 		Twilio.Device.ready(function (device) {
-	    $("#log").text("Client '<%= client_name %>' is ready");
+	    $("#log").text("Client '<%= client_name %>' is ready to call '<%= other_name %>' ");
 	  });
 
     Twilio.Device.error(function (error) {

@@ -12,11 +12,8 @@ class TwilioController < ApplicationController
         # Test to see if the PhoneNumber is a number, or a Client ID. In
         # this case, we detect a Client ID by the presence of non-numbers
         # in the PhoneNumber parameter.
-        if /^[\d\+\-\(\) ]+$/.match(number)
-            d.Number(CGI::escapeHTML number)
-        else
-            d.Client number
-        end
+        puts 'supposedly dialing number'
+        d.Client number
       end
     end
     response.text
