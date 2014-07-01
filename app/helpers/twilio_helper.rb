@@ -1,5 +1,5 @@
 module TwilioHelper 
-  def client_name
+  def other_name
     default_client = 'jenny'
     @from = current_user.email.split('@')[0]
     puts "from id is #{@from}"
@@ -17,10 +17,14 @@ module TwilioHelper
     return @username
   end
   
+  def client_name
+    return current_user.email.split('@')[0]
+  end
+  
   def twilio_token
     capability = Twilio::Util::Capability.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
     capability.allow_client_outgoing "AP1cee76b44225ccf0c74cffb3d1ef4078"
-    capability.allow_client_incoming 'therapistgmail.com'
+    capability.allow_client_incoming client_name
     capability.generate
   end
 end
