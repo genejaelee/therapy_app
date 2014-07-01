@@ -4,13 +4,14 @@ class RegistrationsController < Devise::RegistrationsController
   
   def after_sign_up_path_for(resource)
     if current_user.role_type == "Client"
+      find_event_and_client_or_build
       if params[:suggested_times].present?
         session[:suggested_times] = params[:suggested_times]
         session[:description] = params[:event][:description]
       end
     elsif current_user.role_type == "Therapist"
-      
     end
+    
     session[:registration_state] = "signup"
     return registrations_router
   end

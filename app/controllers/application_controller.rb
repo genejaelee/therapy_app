@@ -34,15 +34,17 @@ class ApplicationController < ActionController::Base
         routed_path = update_therapist_path
       end
       session[:registration_state] == nil
-    elsif @user.role_type == "Client" && session[:event_id].present? && session[:suggested_times].present?
-      routed_path = '/event/finish'
-    elsif @user.role_type == "Client" && session[:event_id].present?
-      routed_path = '/session_details'
-    elsif @user.role_type == "Client"
-      routed_path = session[:return_to]
-      session[:return_to] = nil
+    elsif session[:event_id].present? && @user.role_type == "Client"
+      unless Event.find_by(id: session[:event_id]).has_attribute?('therapist_id')
+        if session[:suggested_times].present?
+          routed_path = '/event/finish'
+        else
+          routed_path = '/session_details'
+        end
+      end
     elsif session[:return_to].present?
       routed_path = session[:return_to]
+      session[:return_to] = nil
     else
       routed_path = homepage_path
     end
@@ -69,7 +71,7 @@ class ApplicationController < ActionController::Base
     @client.save
     @event.save
     
-    if session[:event_id] != @event.id
+    if session[:event_id].present? && session[:event_id] != @event.id
       puts 'session didnt equal event, reassignign session'
       session[:event_id] = @event.id
     end
@@ -82,14 +84,20 @@ class ApplicationController < ActionController::Base
         @client = @user.role
       elsif current_user.role.nil?
         @user = current_user
-        if Client.find_by(id: @event.client_id).present?
-          @client = Client.find_by(id: @event.client_id)
+        if @event.present? && @event.has_attribute?('client_id')
+          @client_id = @event.client_id
+        end
+        if Client.find_by(id: @client_id).present?
+          puts 'found client, setting as role'
+          @client = Client.find_by(id: @client_id)
           @user.role = @client
         else
+          puts 'couldnt find client, creating client'
           @client = Client.create
           @user.role = @client
         end
       end
+      @user.save
       
     elsif current_user.nil?
       if @event.nil?

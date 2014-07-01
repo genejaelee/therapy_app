@@ -20,9 +20,9 @@
 				<h3>Your appointments</h3>
 			</div>
 			<div class="appointments-container">
-				<% if current_user.role_type == "Client" %>
+				<% if current_user.role_type == "Client" && !current_user.role.events.nil? %>
 					<%= render :partial => 'users/client_page' %>
-				<% elsif current_user.role_type == "Therapist" %>
+				<% elsif current_user.role_type == "Therapist" && !current_user.role.events.nil? %>
 					<%= render :partial => 'users/therapist_page' %>
 				<% end %>
 			</div>
