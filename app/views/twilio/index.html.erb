@@ -1,0 +1,54 @@
+
+<head>
+  <title>Hello Client Monkey 4</title>
+  <script type="text/javascript">
+
+  Twilio.Device.setup("<%= twilio_token %>", {debug: true});
+
+		Twilio.Device.ready(function (device) {
+	    $("#log").text("Client '<%= client_name %>' is ready");
+	  });
+
+    Twilio.Device.error(function (error) {
+      $("#log").text("Error: " + error.message);
+    });
+
+    Twilio.Device.connect(function (conn) {
+      $("#log").text("Successfully established call");
+    });
+
+    Twilio.Device.disconnect(function (conn) {
+      $("#log").text("Call ended");
+    });
+
+    Twilio.Device.incoming(function (conn) {
+      $("#log").text("Incoming connection from " + conn.parameters.From);
+      // accept the incoming connection and start two-way audio
+      conn.accept();
+    });
+
+    function call() {
+      // get the phone number to connect the call to
+      params = {"PhoneNumber": $("#number").val()};
+      Twilio.Device.connect(params);
+    }
+
+    function hangup() {
+      Twilio.Device.disconnectAll();
+    }
+  </script>
+</head>
+<body>
+  <button class="call" onclick="call();">
+    Call
+  </button>
+
+  <button class="hangup" onclick="hangup();">
+    Hangup
+  </button>
+
+  <input type="text" id="number" name="number"
+    placeholder="Enter a phone number to call"/>
+
+  <div id="log">Loading pigeons...</div>
+</body>

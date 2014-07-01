@@ -11,7 +11,7 @@ TherapyApp::Application.routes.draw do
   
   # twilio stuff
   post 'twilio/voice' => 'twilio#voice'
-  get 'twilio/call' => 'twilio#call'
+  get 'twilio/index' => 'twilio#index'
   post 'twilio/incoming' => 'twilio#incoming'
   
   match "/chat/new" => "chats#new", via: 'get'
