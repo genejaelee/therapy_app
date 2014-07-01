@@ -26,6 +26,13 @@ $(function() {
   Twilio.Device.connect(function (conn) {
     $("#log").text("Successfully established call");
   });
+
+  Twilio.Device.incoming(function (conn) {
+    $("#log").text("Incoming connection from " + conn.parameters.From);
+    // accept the incoming connection and start two-way audio
+    conn.accept();
+  });
+  
 });
 <% end %>
 <button class="call" onclick="call();">

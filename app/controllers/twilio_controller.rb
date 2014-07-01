@@ -12,6 +12,16 @@ class TwilioController < ApplicationController
     render_twiml response
   end
   
+  def incoming
+    response = Twilio::TwiML::Response.new do |r|
+      r.Dial  do |d|
+        d.Client 'jenny'
+      end
+    end
+
+    render :text => response.text
+  end
+  
   def index
   end
 end
