@@ -17,7 +17,7 @@ class TwilioController < ApplicationController
         d.Client number
       end
     end
-    return response.text
+    render :text => response.text
   end
   
   def incoming
