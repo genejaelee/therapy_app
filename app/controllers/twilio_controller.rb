@@ -20,20 +20,6 @@ class TwilioController < ApplicationController
     render :text => response.text
   end
   
-  def incoming
-    response = Twilio::TwiML::Response.new do |r|
-      r.Dial  do |d|
-        d.Client 'jenny'
-      end
-    end
-
-    render :text => response.text
-  end
-  
   def index
-  end
-  
-  def get_number
-    number = params[:PhoneNumber]
   end
 end
