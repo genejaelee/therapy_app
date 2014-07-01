@@ -1,6 +1,7 @@
 class TwilioController < ApplicationController
   include Webhookable
   skip_before_action :verify_authenticity_token
+  before_action :get_number
  
   def voice
     caller_id = '2132925011'
@@ -30,5 +31,9 @@ class TwilioController < ApplicationController
   end
   
   def index
+  end
+  
+  def get_number
+    number = params[:PhoneNumber]
   end
 end
