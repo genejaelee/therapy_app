@@ -20,6 +20,7 @@ class TwilioController < ApplicationController
       end
     end
     response.text
+    render 'twilio/index'
   end
   
   def incoming
