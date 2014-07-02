@@ -9,7 +9,6 @@ $sidebar-width : 240px;
 	right: 0;
 	height: 100%;
 	overflow: hidden;
-	border-left: 1px solid #ccc;
 	
 	.sidebar-container {
 		padding: 20px;
@@ -129,11 +128,12 @@ $sidebar-width : 240px;
 	overflow: hidden;
 	height: 100%;
 	.messages-panel {
+		position: relative;
 		height: 100%;
+		
 		.container {
 			width: 100%;
 			height: 100%;
-			padding: 40px 20px;
 			
 			.timestamps {
 				float: right;
@@ -149,9 +149,9 @@ $sidebar-width : 240px;
 			}
 			
 			#messages {
+				position: relative;
 				overflow-y: scroll;
-				border: 1px solid #ccc;
-				padding: 15px;
+				padding: 30px;
 				height: 100%;
 				
 				.note {
@@ -163,6 +163,7 @@ $sidebar-width : 240px;
 				}
 				
 				.messages-container {
+					
 					.message-container {
 					
 						li {
@@ -194,9 +195,6 @@ $sidebar-width : 240px;
 			}
 			
 			.you {
-				.nickname-said {
-					float: left;
-				}
 				.message {
 					background-color: $scouter-blue;
 					color: #fff;
@@ -297,13 +295,14 @@ $sidebar-width : 240px;
 	}
 }
 
-@media only screen and (max-width: 480px) {
-	.you {
+@media only screen and (max-width: 1140px) {
+	.them {
 		.nickname-said {
-			float: left;
+			text-align: right;
+			float: right !important;
 		}
 		.message {
-			float: right;
+			float: right !important;
 			background-color: $scouter-blue;
 			color: #fff;
 		}

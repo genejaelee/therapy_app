@@ -95,7 +95,7 @@ $(".chats.view").ready(function() {
 		pop.load();
 		pop.play();
 		
-		$('.messages-container').append('<br><div class="message-container"><li class="' + who + 'just_added_id_' + message.id + '" style="display:none;"><span><strong>' + message.user.nickname + '</strong> said:</span>' +
+		$('.messages-container').append('<br><div class="message-container"><li class="' + who + 'just_added_id_' + message.id + '" style="display:none;"><span class="nickname-said"><strong>' + message.user.nickname + '</strong> said:</span>' +
 													'<div class="message-wrapper"><div class="message">' + 
 														'<p>' + replaceURLWithHTMLLinks(message.message) + '</p></div></div></li></div>');
 		$('.messages-container li.just_added_id_' + message.id).fadeIn();
