@@ -23,6 +23,9 @@
 </script>
 
 <div class="left-panel chat-panel">
+	<div id="chat-navbar">
+		<p>Talking with <%= @chat.therapist.first_name %>, 32:36 remaining.</p>
+	</div>
 	<div id="helpline-bar">
 		<div class="container">
 			<div class="sixteen columns" id="helpline-header">
@@ -127,3 +130,4 @@
 		<%= render :partial => 'twilio/call' %>
 	</div>
 </div>
+
