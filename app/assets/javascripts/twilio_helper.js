@@ -5,11 +5,13 @@ $(".chats.view").ready(function() {
 	
   Twilio.Device.connect(function (conn) {
     $('.call').hide();
+		$('.answer').hide();
 		$('.hangup').show();
   });
 	
   Twilio.Device.disconnect(function (conn) {
     $('.hangup').hide();
+		$('.answer').hide();
 		$('.call').show();
   });
 	
