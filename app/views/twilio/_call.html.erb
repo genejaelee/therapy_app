@@ -6,10 +6,12 @@
   Twilio.Device.setup("<%= twilio_token %>", {debug: true});
 
 		Twilio.Device.ready(function (device) {
+			$("#twilio-spinner").hide();
 	    $("#log").text("Client '<%= client_name %>' is ready to call '<%= other_name %>' ");
 	  });
 
     Twilio.Device.error(function (error) {
+			hideAllTwilioButtons();
       $("#log").text("Error: " + error.message);
     });
 
@@ -41,18 +43,23 @@
 		
   </script>
 </head>
-<body>
-  <button class="call" onclick="call();">
-    Call
-  </button>
 
-  <button class="hangup" onclick="hangup();">
-    Hangup
-	</button>
+	<div class="twilio-container" style="display: inline-block">
+	  <button class="call" onclick="call();">
+	    Call
+	  </button>
+
+	  <button class="hangup" onclick="hangup();">
+	    Hang Up
+		</button>
 	
-  <button class="answer">
-    Answer
-	</button>
-
-  <div id="log">Loading pigeons...</div>
-</body>
+	  <button class="answer">
+	    Answer
+		</button>
+		
+		<div id="log">
+		</div>
+		<div id="twilio-spinner" class="spinner" style="display: block;">
+				<%= image_tag("loading.gif", :alt => "Loading", :height => "50px") %>
+		</div>
+	</div>

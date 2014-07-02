@@ -1,5 +1,27 @@
 @import "variables.css.scss";
 
+.spinner {
+	display: none;
+	height: 50px;
+	margin-bottom: 15px;
+}
+
+.twilio-container {
+	button {
+		width: 80px;
+		-webkit-appearance: none;
+		border: 1px solid $scouter-blue;
+		background-color: #fff;
+		color: $scouter-blue;
+		font-size: 14px;
+		font-weight: 200;
+	}
+	
+	#log {
+		color: $scouter-green;
+	}
+}
+
 #helpline-bar {
 	width: 100%;
 	height: 50px;
@@ -62,16 +84,6 @@
 		padding-top: 80px;
 		padding-bottom: 20px;
 		.container {
-			#nickname {
-				display: inline-block;
-				height: 40px;
-				font-size: 14px;
-				padding-left: 10px;
-				width: 200px;
-				-webkit-appearance: none;
-				box-shadow: none;
-			}
-			
 			textarea {
 				-webkit-appearance: none;
 				box-shadow: none;
@@ -155,25 +167,40 @@
 			}
 			
 			.change-nickname-container {
-				height: 40px;
-				width: 200px;
-				text-align: center;
-				background-color: $scouter-green;
-				
-				a {
-					line-height: 38px;
+				#nickname {
+					display: inline-block;
+					margin-bottom: 5px;
+					height: 40px;
 					font-size: 14px;
-					color: #fff;
+					padding-left: 10px;
+					width: 200px;
+					-webkit-appearance: none;
+					box-shadow: none;
 				}
-			}
+				
+				.change-nickname-button {
+					height: 40px;
+					width: 100px;
+					margin-bottom: 10px;
+					border: 1px solid $scouter-green;
+					text-align: center;
+					background-color: $scouter-green;
+				
+					a {
+						line-height: 38px;
+						font-size: 14px;
+						color: #fff;
+					}
+				}
 			
-			.change-nickname-container:hover {
-				opacity: 0.8;
-				cursor: pointer;
-			}
+				.change-nickname-button:hover {
+					opacity: 0.8;
+					cursor: pointer;
+				}
 			
-			.change-nickname-container:active {
-				background-color: #ccc;
+				.change-nickname-button:active {
+					background-color: #ccc;
+				}
 			}
 		}
 	}

@@ -139,9 +139,17 @@ $(".chats.view").ready(function() {
 		return false;
 	});
 
-	$('.change-nickname-container').click(function() {
+	$('.change-nickname-button').click(function() {
 		//$('#nickname').attr("disabled", "disabled");
-		
+		changeNickname();
+	});
+	
+	$('#nickname').keydown(function(e)
+	{
+		if (e.keyCode == 13) { changeNickname(); }
+	});
+	
+	var changeNickname = function() {
 		if($('#nickname').val() != old_nickname) {
 			$("#spinner").show();
 			
@@ -162,7 +170,7 @@ $(".chats.view").ready(function() {
 		}
 		
 		return false;
-	});
+	}
 	
 	// Cross browser placeholder shiz
 	var text = 'Type your message here and hit enter...';

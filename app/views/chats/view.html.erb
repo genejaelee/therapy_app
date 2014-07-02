@@ -8,7 +8,6 @@
 
 <% content_for :body do %>
   <p></p>
-	<%= render :partial => 'twilio/call' %>
 <% end %>
 
 <%= render 'layouts/header' %>
@@ -91,19 +90,22 @@
 					</div>
 				<% end %>
 			</ul>
-			<div id="spinner" class="spinner" style="display: none; height: 50px; margin-bottom: 15px">
+			<div id="spinner" class="spinner">
 					<%= image_tag("loading.gif", :alt => "Loading", :height => "50px") %>
 			</div>
 			<div id="message-overlay"></div>
 			<textarea id="message" name="message" placeholder="Type your message here and hit enter..."></textarea>
 			<div class="header">
 				<!--<div id="title" class="member_list_title">Pusher Chat (<span id="room_count">0</span>)</div>-->
-				<div>
-					<input type="text" value="<%= @user.nickname %>" id="nickname" />
-				</div>
 				<div class="change-nickname-container">
-					<a href="#" id="changeNickname">Change nickname</a>
+					<div style="display: inline-block">
+						<input type="text" value="<%= @user.nickname %>" id="nickname" />
+					</div>
+					<div class="change-nickname-button" style="display: inline-block">
+						<a href="#" id="changeNickname">Change</a>
+					</div>
 				</div>
+				<%= render :partial => 'twilio/call' %>
 			</div>
 		</div>
 	</div>
