@@ -1,28 +1,73 @@
 @import "variables.css.scss";
+$sidebar-width : 240px;
+
+.sidebar {
+	width: $sidebar-width;
+	background-color: $scouter-blue;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 100%;
+	overflow: hidden;
+	border-left: 1px solid #ccc;
+	
+	.sidebar-container {
+		padding: 20px;
+		text-align: center;
+		
+		#logo-banner {
+			img {
+				height: 40px;
+				margin: auto;
+				
+			}
+			
+			p {
+				color: white;
+			}
+		}
+	}
+}
 
 .spinner {
 	display: none;
 	height: 50px;
-	margin-bottom: 15px;
+	margin-top: 10px;
+	margin-bottom: 0px;
 }
 
 .twilio-container {
 	button {
 		width: 80px;
 		-webkit-appearance: none;
+		text-shadow: none;
 		border: 1px solid $scouter-blue;
 		background-color: #fff;
 		color: $scouter-blue;
+		margin-bottom: 10px;
 		font-size: 14px;
 		font-weight: 200;
 	}
 	
+	button:hover {
+		background-color: #eee;
+	}
+	
+	.disabled {
+		background-color: #eee;
+	}
+	
+	.disabled:hover {
+		cursor: default;
+	}
+	
 	#log {
-		color: $scouter-green;
+		color: #fff;
 	}
 }
 
 #helpline-bar {
+	display: none;
 	width: 100%;
 	height: 50px;
 	position: fixed;
@@ -79,20 +124,16 @@
 }
 
 .chat-panel {
-	position: relative;
-	.bg-container {
-		padding-top: 80px;
-		padding-bottom: 20px;
+	position: absolute;
+	right: $sidebar-width;
+	overflow: hidden;
+	height: 100%;
+	.messages-panel {
+		height: 100%;
 		.container {
-			textarea {
-				-webkit-appearance: none;
-				box-shadow: none;
-				color: $scouter-teal-fade;
-				border: 1px solid #ccc;
-				width: 100%;
-				resize: none;
-				height: 100px;
-			}
+			width: 100%;
+			height: 100%;
+			padding: 40px 20px;
 			
 			.timestamps {
 				float: right;
@@ -108,6 +149,11 @@
 			}
 			
 			#messages {
+				overflow-y: scroll;
+				border: 1px solid #ccc;
+				padding: 15px;
+				height: 100%;
+				
 				.note {
 					margin-bottom: 0px;
 					color: $scouter-green;
@@ -116,29 +162,31 @@
 					}
 				}
 				
-				.message-container {
+				.messages-container {
+					.message-container {
 					
-					li {
-						margin-bottom: 0px;
-					}
+						li {
+							margin-bottom: 0px;
+						}
 					
-					.message-wrapper {
-						overflow: auto;
-						width: 100%;
-						
-						.message {
-							display: inline-block;
-							min-width: 50px;
+						.message-wrapper {
 							overflow: auto;
-							font-size: 15px;
-							margin-top: 5px;
-							padding: 12px;
-							border-radius: 7px;
+							width: 100%;
+						
+							.message {
+								display: inline-block;
+								min-width: 50px;
+								overflow: auto;
+								font-size: 15px;
+								margin-top: 5px;
+								padding: 12px;
+								border-radius: 7px;
 				
-							p {
-								margin: 0px;
-								max-width: 450px;
-								display: block;
+								p {
+									margin: 0px;
+									max-width: 450px;
+									display: block;
+								}
 							}
 						}
 					}
@@ -165,53 +213,68 @@
 					color: #fff;
 				}
 			}
-			
-			.change-nickname-container {
-				#nickname {
-					display: inline-block;
-					margin-bottom: 5px;
-					margin-right: 3px;
-					height: 40px;
-					font-size: 14px;
-					padding-left: 10px;
-					width: 200px;
-					-webkit-appearance: none;
-					box-shadow: none;
-				}
-				
-				.change-nickname-button {
-					height: 40px;
-					width: 100px;
-					margin-bottom: 10px;
-					border: 1px solid $scouter-green;
-					text-align: center;
-					background-color: $scouter-green;
-				
-					a {
-						line-height: 38px;
-						font-size: 14px;
-						color: #fff;
-					}
-				}
-			
-				.change-nickname-button:hover {
-					opacity: 0.8;
-					cursor: pointer;
-				}
-			
-				.change-nickname-button:active {
-					background-color: #ccc;
-				}
-			}
 		}
 	}
 	
-	#mobile-chat-input {
-		background-color: none;
-		position: fixed;
-		height: 50px;
+	.chat-input-panel {
+		position: absolute;
+		bottom: 0;
+		height: 150px;
 		width: 100%;
-		bottom: 0px;
+		border-radius: 0px;
+		border-top: 1px solid #ccc;
+		background-color: green;
+		
+		textarea {
+			-webkit-appearance: none;
+			box-shadow: none;
+			color: $scouter-teal-fade;
+			padding: 10px;
+			border: none;
+			font-size: 18px;
+			border-radius: 0px;
+			width: 100%;
+			resize: none;
+			height: 100%;
+		}
+		
+		.change-nickname-container {
+			#nickname {
+				display: inline-block;
+				margin-bottom: 5px;
+				margin-right: 3px;
+				height: 40px;
+				font-size: 14px;
+				padding-left: 10px;
+				width: 200px;
+				-webkit-appearance: none;
+				box-shadow: none;
+			}
+		
+			.change-nickname-button {
+				height: 40px;
+				width: 100px;
+				margin-bottom: 10px;
+				border: 1px solid $scouter-green;
+				text-align: center;
+				background-color: $scouter-green;
+		
+				a {
+					line-height: 38px;
+					font-size: 14px;
+					color: #fff;
+				}
+			}
+	
+			.change-nickname-button:hover {
+				opacity: 0.8;
+				cursor: pointer;
+			}
+	
+			.change-nickname-button:active {
+				background-color: #ccc;
+			}
+		}
 	}
 }
 

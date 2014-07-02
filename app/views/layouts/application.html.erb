@@ -56,7 +56,7 @@
 	<footer>
 		<%= render 'layouts/analytics'%>
 		<%= render 'layouts/footer' %>
-		<%= debug(params) if Rails.env.development?%>
+		<%= debug(params) if Rails.env.development? && controller_name != "chats" %>
 	</footer>
 </body>
 </html>

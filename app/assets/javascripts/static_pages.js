@@ -31,11 +31,11 @@ function goToByScroll(element){
 		500, "easeOutCubic");
 }
 
-function scrollToBottomAndFocus(){
-	$('html,body').stop().animate({
-		scrollTop: $(document).height()},
+function scrollToBottomOfAndFocusOn(toScroll, toFocusOn){
+	$(toScroll).parent().stop().animate({
+		scrollTop: $(toScroll).height() + $('#spinner').height()},
 		1000, "easeOutCubic", function(){
-			$('#message').focus();
+			$(toFocusOn).focus();
 		});
 }
 

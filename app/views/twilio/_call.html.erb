@@ -7,7 +7,7 @@
 
 		Twilio.Device.ready(function (device) {
 			$("#twilio-spinner").hide();
-	    $("#log").text("Client '<%= client_name %>' is ready to call '<%= other_name %>' ");
+			enableTwilioButtons('.twilio-button');
 	  });
 
     Twilio.Device.error(function (error) {
@@ -45,21 +45,23 @@
 </head>
 
 	<div class="twilio-container" style="display: inline-block">
-	  <button class="call" onclick="call();">
+	  <button class="twilio-button call" onclick="call();">
 	    Call
 	  </button>
 
-	  <button class="hangup" onclick="hangup();">
+	  <button class="twilio-button hangup" onclick="hangup();">
 	    Hang Up
 		</button>
 	
-	  <button class="answer">
+	  <button class="twilio-button answer">
 	    Answer
 		</button>
 		
 		<div id="log">
 		</div>
+		<!--
 		<div id="twilio-spinner" class="spinner" style="display: block;">
 				<%= image_tag("loading.gif", :alt => "Loading", :height => "50px") %>
 		</div>
+			-->
 	</div>

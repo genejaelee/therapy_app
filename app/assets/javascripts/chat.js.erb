@@ -2,9 +2,25 @@
 var is_typing_currently = false;
 var browser_audio_type = "";
 
+var getSizesAndResize = function() {
+	var windowWidth = $(window).width();
+	var leftPanelWidth = windowWidth - $('.sidebar').width();
+	var messagePanelHeight = $(window).height() - $('.chat-input-panel').height();
+	//resize
+	$('.chat-panel').css('width', leftPanelWidth + 'px');
+	$('.messages-panel').css('height', messagePanelHeight + 'px');
+}
+
 $(".chats.view").ready(function() {
 	
-	scrollToBottomAndFocus();
+	disableTwilioButtons('.twilio-button');
+	getSizesAndResize();
+	
+	$(window).resize(function() {
+		getSizesAndResize();
+	});
+	
+	scrollToBottomOfAndFocusOn('.messages-container', '#message');
 	
 	$.ajaxSetup({
 	  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
@@ -41,11 +57,11 @@ $(".chats.view").ready(function() {
 	presenceChannel.bind('updated_nickname', function(member) {
 		if(member.user_id == user_id)
 		{
-			$('#messages').append('<br><li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('.messages-container').append('<br><li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
 		else
 		{
-			$('#messages').append('<br><li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('.messages-container').append('<br><li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
 		scrollToTheTop();
 	});
@@ -68,7 +84,7 @@ $(".chats.view").ready(function() {
 			// Do some alerting of the user
 			if(!hasFocus) {
 				// TODO: Update the page title
-				document.title = "New Message! - Scouter"
+				document.title = "New Message! - Plain White Couch"
 			}
 		}
 		
@@ -79,20 +95,20 @@ $(".chats.view").ready(function() {
 		pop.load();
 		pop.play();
 		
-		$('#messages').append('<br><div class="message-container"><li class="' + who + 'just_added_id_' + message.id + '" style="display:none;"><span><strong>' + message.user.nickname + '</strong> said:</span>' +
+		$('.messages-container').append('<br><div class="message-container"><li class="' + who + 'just_added_id_' + message.id + '" style="display:none;"><span><strong>' + message.user.nickname + '</strong> said:</span>' +
 													'<div class="message-wrapper"><div class="message">' + 
 														'<p>' + replaceURLWithHTMLLinks(message.message) + '</p></div></div></li></div>');
-		$('#messages li.just_added_id_' + message.id).fadeIn();
-		scrollToBottomAndFocus();
+		$('.messages-container li.just_added_id_' + message.id).fadeIn();
+		scrollToBottomOfAndFocusOn('.messages-container', '#message');
 	});
 	
 	// Typing Messages
 	presenceChannel.bind('typing_status', function(notification) {
 		if(notification.user.id == user_id) return false;
 		if(notification.status == "true") {
-			$('#messages').append('<li class="note" id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</li>');
+			$('.messages-container').append('<li class="note" id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</li>');
 		} else {
-			$('#messages #is_typing_' + notification.user.id).remove();
+			$('.messages-container #is_typing_' + notification.user.id).remove();
 		}
 		scrollToTheTop();
 	});
