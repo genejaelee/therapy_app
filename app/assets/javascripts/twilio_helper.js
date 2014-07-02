@@ -17,7 +17,7 @@ $(".chats.view").ready(function() {
   });
 	
   Twilio.Device.incoming(function (conn) {
-    $('.hangup').hide();
+    $('.hangup').show();
 		$('.call').hide();
 		$('.answer').show();
   });

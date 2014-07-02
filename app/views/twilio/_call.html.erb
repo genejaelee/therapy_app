@@ -9,6 +9,10 @@
 			$("#twilio-spinner").hide();
 			enableTwilioButtons('.twilio-button');
 	  });
+		
+		Twilio.Device.offline(function (device) {
+			disableTwilioButtons('.twilio-button');
+		});
 
     Twilio.Device.error(function (error) {
 			hideAllTwilioButtons();
@@ -24,11 +28,18 @@
     });
 
     Twilio.Device.incoming(function (conn) {
-      $("#log").text("Incoming connection from " + conn.parameters.From);
+      $("#log").text("Incoming connection from " + '<%= other_name %>');
       // accept the incoming connection and start two-way audio
 			$('.answer').click(function(){
 				conn.accept();
-			})
+			});
+			$('.hangup').click(function(){
+				conn.reject();
+		    $('.hangup').hide();
+				$('.answer').hide();
+				$('.call').show();
+				$("#log").text("Call ended");
+			});
     });
 
     function call() {
