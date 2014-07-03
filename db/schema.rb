@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630051854) do
+ActiveRecord::Schema.define(version: 20140703021736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,8 +39,7 @@ ActiveRecord::Schema.define(version: 20140630051854) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "time_zone"
-    t.integer  "client_id"
-    t.integer  "therapist_id"
+    t.integer  "user_id"
   end
 
   create_table "chats", force: true do |t|

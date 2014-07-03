@@ -5,7 +5,6 @@ class Client < ActiveRecord::Base
   has_many :charges
   
   has_one :user, as: :role, dependent: :destroy
-  has_one :chat_user
   
   accepts_nested_attributes_for :user
   

@@ -6,7 +6,6 @@ class Therapist < ActiveRecord::Base
   #before_save :create_permalink, :convert_slots_to_UTC_0_and_format
   
   has_one :user, as: :role, dependent: :destroy
-  has_one :chat_user
   accepts_nested_attributes_for :user
   
   retina!

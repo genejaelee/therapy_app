@@ -11,13 +11,43 @@ var getSizesAndResize = function() {
 	$('.messages-panel').css('height', messagePanelHeight + 'px');
 }
 
+var openHelplines = function() {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	$('.helplines-panel').stop().animate({'right' : sideBarWidth + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('opened');
+		$(this).removeClass('closed');
+	});
+}
+
+var closeHelplines = function() {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	var helplinesPanelWidth = $('.helplines-panel').width()
+	$('.helplines-panel').stop().animate({'right' : (sideBarWidth - helplinesPanelWidth) + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('closed');
+		$(this).removeClass('opened');
+	});
+}
+
 $(".chats.view").ready(function() {
+	
+	//UI STUFF
 	
 	disableTwilioButtons('.twilio-button');
 	getSizesAndResize();
 	
 	$(window).resize(function() {
 		getSizesAndResize();
+	})
+	
+	$('.helplines-button').click(function() {
+		if ($('.helplines-panel').hasClass('opened')) {
+			closeHelplines();
+		}
+		else if ($('.helplines-panel').hasClass('closed')) {
+			openHelplines();
+		}
 	});
 	
 	scrollToBottomOfAndFocusOn('.messages-container', '#message');

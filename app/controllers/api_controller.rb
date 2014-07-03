@@ -26,7 +26,7 @@ class ApiController < ApplicationController
     message = Message.create
     message.chat_id = chat.id
     
-    user = ChatUser.user(session, current_user)
+    user = ChatUser.user(session, current_user, chat)
     message.user_id = user.id
     message.message = params[:message]
     

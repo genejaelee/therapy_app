@@ -32,13 +32,21 @@ $sidebar-width : 240px;
 }
 
 .sidebar {
+	
 	width: $sidebar-width;
+	z-index: 2;
 	background-color: $scouter-blue;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	height: 100%;
 	overflow: hidden;
+	
+	hr {
+		border-top: 1px solid #6dadbc;
+		border-bottom: 1px solid #a2d5e0;
+		margin-bottom: 15px;
+	}
 	
 	.sidebar-container {
 		padding: 20px;
@@ -55,6 +63,27 @@ $sidebar-width : 240px;
 				color: white;
 			}
 		}
+		
+		.sidebar-section {
+			height: 120px;
+			width: 100%;
+			text-align: center;
+		}
+		
+		button {
+			width: 80px;
+			height: 35px;
+			-webkit-appearance: none;
+			text-shadow: none;
+			border: 1px solid $scouter-blue;
+			background-color: #fff;
+			color: $scouter-blue;
+			margin-bottom: 10px;
+			font-size: 14px;
+			line-height: 18px;
+			vertical-align: middle;
+			font-weight: 200;
+		}
 	}
 }
 
@@ -68,6 +97,7 @@ $sidebar-width : 240px;
 .twilio-container {
 	button {
 		width: 80px;
+		height: 30px;
 		-webkit-appearance: none;
 		text-shadow: none;
 		border: 1px solid $scouter-blue;
@@ -75,6 +105,8 @@ $sidebar-width : 240px;
 		color: $scouter-blue;
 		margin-bottom: 10px;
 		font-size: 14px;
+		line-height: 15px;
+		vertical-align: middle;
 		font-weight: 200;
 	}
 	
@@ -95,50 +127,44 @@ $sidebar-width : 240px;
 	}
 }
 
-#helpline-bar {
-	display: none;
-	width: 100%;
-	height: 50px;
-	position: fixed;
-	top: 0;
+.helplines-button-container {
+}
+
+.helplines-panel {
+	box-shadow: -1px 0px 2px rgba(0,0,0,0.15);
+	width: 300px;
 	background-color: $scouter-orange;
-	z-index: 1000;
-	overflow: hidden;
+	z-index: 1;
+	position: absolute;
+	bottom: 0;
+	right: -60px;
+	height: 100%;
+	overflow-y: scroll;
 	
-	.container {
+	.helplines-container {
+		padding: 20px;
+		
+		h3 {
+			color: #fff;
+			margin-bottom: 20px;
+		}
 		
 		#helpline-header {
 			height: 50px;
-			
-			h3 {
-				color: #fff;
-				line-height: 44px;
-				font-weight: 600;
-				
-				span {
-					font-weight: 200;
-					font-size: 22px;
-				}
-			}
-		}
-		
-		#helpline-header:hover {
-			cursor: pointer;
-			
-			h3 {
-				span {
-				}
-			}
 		}
 		
 		#helplines {
 			padding-bottom: 20px;
+			max-width: 300px;
 			dt {
 				margin-top: 8px;
+				font-weight: 600;
 				color: #fff;
 			}
 			
 			dd {
+				font-size: 16px;
+				line-height: 22px;
 				color: #fff;
 				a {
 					color: #fff;
@@ -157,8 +183,11 @@ $sidebar-width : 240px;
 	right: $sidebar-width;
 	overflow: hidden;
 	height: 100%;
+	
 	.messages-panel {
-		background-color: #f1f1f1;
+		background-image: url('stripe-background6.jpg');
+		background-size: 65px 65px;
+		background-repeat: repeat;
 		position: relative;
 		height: 100%;
 		
@@ -372,6 +401,10 @@ $sidebar-width : 240px;
 		}
 	}
 	.sidebar {
+		width: 0px;
+	}
+	
+	.helplines-panel {
 		width: 0px;
 	}
 }

@@ -12,6 +12,7 @@
 		
 		Twilio.Device.offline(function (device) {
 			disableTwilioButtons('.twilio-button');
+			$("#log").text("Can't make calls at the moment.");
 		});
 
     Twilio.Device.error(function (error) {
@@ -55,7 +56,7 @@
   </script>
 </head>
 
-	<div class="twilio-container" style="display: inline-block">
+	<div class="twilio-container sidebar-section" style="display: inline-block">
 	  <button class="twilio-button call" onclick="call();">
 	    Call
 	  </button>
