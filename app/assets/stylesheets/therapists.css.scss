@@ -116,7 +116,7 @@
 						font-family: $light-font;
 						border-radius: 5px;
 						width: 180px;
-						font-weight: 200;
+						font-weight: 400;
 						padding-left: 30px;
 						padding-right: 30px;
 						padding-top: 10px;
@@ -142,7 +142,7 @@
 					color: $scouter-teal-fade;
 					opacity: 0.8;
 					line-height: 24px;
-					font-family: "HelveticaNeue-Light";
+					font-family: $medium-font;
 					
 					span {
 						list-style: none;
@@ -362,7 +362,7 @@
 			.container {
 				h1 {
 					font-family: $light-font;
-					font-weight: 200;
+					font-weight: 300;
 					line-height: 80px;
 					font-size: 48px;
 				}

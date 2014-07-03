@@ -9,8 +9,8 @@ $scouter-green: #90bc64;
 $scouter-green-light: #a0d071;
 $scouter-green-superlight: #c7e0aa;
 $max-width: 1320px;
-$light-font: "HelveticaNeue-Light", "Helvetica Neue Light";
-$medium-font: "HelveticaNeue", "Helvetica Neue";
+$light-font: "HelveticaNeue-Light", "Helvetica Neue Light", "HelveticaNeue", "Open Sans", "Arial";
+$medium-font: "HelveticaNeue", "Helvetica Neue", "Open Sans", "Arial";
 
 $profile-index-height: 335px;
 $profile-index-height-mobile: 500px;
@@ -33,7 +33,7 @@ a {
 	width: 200px;
 	color: $scouter-green;
 	font-size: 16px;
-	font-weight: 200;
+	font-weight: 400;
 	background-color: #fff;
 	border-width: 1px;
 	border-style: solid;
