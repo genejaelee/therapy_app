@@ -41,7 +41,7 @@ class ChatsController < ApplicationController
     chat = @client.chats.new
     chat.therapist_id = @event.therapist_id
     chat.event_id = @event.id
-    chat.owner = ChatUser.user(session, current_user)
+    chat.owner = ChatUser.user(session, current_user, chat)
     if chat.save
       chat_tiny = Tiny::tiny(chat.id)
       puts "chat id is #{chat.id}"
