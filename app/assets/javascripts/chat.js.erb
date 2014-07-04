@@ -15,8 +15,7 @@ var openHelplines = function() {
 	var windowWidth = $(window).width();
 	var sideBarWidth = $('.sidebar').width();
 	$('.helplines-panel').stop().animate({'right' : sideBarWidth + 'px'}, 350, 'easeInOutCubic', function(){
-		$(this).addClass('opened');
-		$(this).removeClass('closed');
+		$(this).addClass('opened').removeClass('closed');
 	});
 }
 
@@ -25,9 +24,26 @@ var closeHelplines = function() {
 	var sideBarWidth = $('.sidebar').width();
 	var helplinesPanelWidth = $('.helplines-panel').width()
 	$('.helplines-panel').stop().animate({'right' : (sideBarWidth - helplinesPanelWidth) + 'px'}, 350, 'easeInOutCubic', function(){
-		$(this).addClass('closed');
-		$(this).removeClass('opened');
+		$(this).addClass('closed').removeClass('opened');
 	});
+}
+
+var startCounter = function(){
+	$('.timer').countdown( {since: 0, format: 'MS', layout: '{mn} {sn} min'} );
+	$('.timer-toggle-button').removeClass('inactive').addClass('active');
+}
+
+var toggleCounter = function(){
+	$('.timer').countdown('toggle');
+	toggle = $('.timer-toggle-button');
+	if (toggle.hasClass('active')) {
+		toggle.html('Start');
+		toggle.removeClass('active').addClass('inactive');
+	}
+	else if (toggle.hasClass('inactive')) {
+		toggle.html('Pause');
+		toggle.removeClass('inactive').addClass('active');
+	}
 }
 
 $(".chats.view").ready(function() {
@@ -41,12 +57,28 @@ $(".chats.view").ready(function() {
 		getSizesAndResize();
 	})
 	
+	$('.timer-start-button').click(function(){
+		startCounter();
+		$(this).hide();
+		$('.timer-toggle-button').show();
+	});
+	
+	$('.timer-toggle-button').click(function(){
+		toggleCounter();
+	});
+	
 	$('.helplines-button').click(function() {
 		if ($('.helplines-panel').hasClass('opened')) {
 			closeHelplines();
 		}
 		else if ($('.helplines-panel').hasClass('closed')) {
 			openHelplines();
+		}
+	});
+	
+	$('.chat-panel').click(function() {
+		if ($('.helplines-panel').hasClass('opened')) {
+			closeHelplines();
 		}
 	});
 	

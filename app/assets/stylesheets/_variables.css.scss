@@ -4,7 +4,9 @@ $scouter-blue-light: #9ad5e2;
 $scouter-blue-fade: #8bbdc9;
 $scouter-teal-fade: #79afaf;
 $scouter-link: #aaa;
+$scouter-orange-light: #f7b477;
 $scouter-orange: #f4a658;
+$scouter-orange-dark: #e0944f;
 $scouter-green: #90bc64;
 $scouter-green-light: #a0d071;
 $scouter-green-superlight: #c7e0aa;
@@ -24,6 +26,20 @@ a {
 	href {
 		text-decoration: none;
 	}
+}
+
+@mixin orange-hr {
+	border-top: 1px solid $scouter-orange-dark;
+	border-bottom: 1px solid $scouter-orange-light;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+@mixin blue-hr {
+	border-top: 1px solid #6dadbc;
+	border-bottom: 1px solid #a2d5e0;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 @mixin submit-button-white {

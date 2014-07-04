@@ -20,12 +20,14 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-	<%= javascript_include_tag "https://static.twilio.com/libs/twiliojs/1.2/twilio.min.js" %>
 	<%= javascript_include_tag "//js.pusher.com/2.2/pusher.min.js" %>
+	<%= javascript_include_tag "https://static.twilio.com/libs/twiliojs/1.2/twilio.min.js" %>
 	<%= javascript_include_tag "jquery.mask.min", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "jquery.timepicker.min", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "jstz-1.0.4.min", "data-turbolinks-track" => true %>
 	<%= javascript_include_tag "fastclick", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "jquery.plugin.min", "data-turbolinks-track" => true %>
+	<%= javascript_include_tag "jquery.countdown.min", "data-turbolinks-track" => true %>
 	
 	<!-- Yield partial javascript files -->
 	<%= yield :head %>
@@ -38,8 +40,8 @@
   ================================================== -->
 	<%= stylesheet_link_tag "application", media: "all",
 	                                       "data-turbolinks-track" => true %>
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 	<%= render 'layouts/shim' %>
 
 	<!-- Favicons

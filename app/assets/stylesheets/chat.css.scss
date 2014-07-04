@@ -43,9 +43,7 @@ $sidebar-width : 240px;
 	overflow: hidden;
 	
 	hr {
-		border-top: 1px solid #6dadbc;
-		border-bottom: 1px solid #a2d5e0;
-		margin-bottom: 15px;
+		@include blue-hr;
 	}
 	
 	.sidebar-container {
@@ -85,6 +83,16 @@ $sidebar-width : 240px;
 			font-family: $medium-font;
 			font-weight: 400;
 		}
+		
+		button:hover {
+			background-color: #eee;
+		}
+		
+		button:active {
+			background-color: #eee;
+			border: 1px solid $scouter-green;
+			color: $scouter-green;
+		}
 	}
 }
 
@@ -97,10 +105,6 @@ $sidebar-width : 240px;
 
 .twilio-container {
 	button {
-	}
-	
-	button:hover {
-		background-color: #eee;
 	}
 	
 	.disabled {
@@ -122,7 +126,7 @@ $sidebar-width : 240px;
 .helplines-panel {
 	box-shadow: -1px 0px 2px rgba(0,0,0,0.15);
 	width: 300px;
-	background-color: $scouter-orange;
+	background-color: #f9f9f9;
 	z-index: 1;
 	position: absolute;
 	bottom: 0;
@@ -130,11 +134,18 @@ $sidebar-width : 240px;
 	height: 100%;
 	overflow-y: scroll;
 	
+	hr {
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #fff;
+	}
+	
 	.helplines-container {
-		padding: 20px;
+		padding: 20px 25px;
 		
 		h3 {
-			color: #fff;
+			opacity: 0.9;
+			color: #525252;
+			font-weight: 600;
 			margin-bottom: 20px;
 		}
 		
@@ -145,22 +156,29 @@ $sidebar-width : 240px;
 		#helplines {
 			padding-bottom: 20px;
 			max-width: 300px;
-			dt {
-				margin-top: 8px;
-				font-weight: 600;
-				color: #fff;
+			.helpline-container:hover {
+				
 			}
 			
-			dd {
-				font-size: 16px;
-				line-height: 22px;
-				color: #fff;
-				a {
-					color: #fff;
+			.helpline-container {
+				dt {
+					margin-top: 15px;
+					line-height: 16px;
+					font-weight: 600;
+					color: #525252;
 				}
+			
+				dd {
+					font-size: 16px;
+					line-height: 22px;
+					color: #525252;
+					a {
+						color: #525252;
+					}
 				
-				a:hover {
-					opacity: 0.8;
+					a:hover {
+						opacity: 0.8;
+					}
 				}
 			}
 		}

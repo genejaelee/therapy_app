@@ -26,9 +26,9 @@
 	<div id="chat-navbar">
 		<p>
 			<% if current_user.role_type == "Client" %>
-				Talking with <%= @chat.therapist.first_name %>, 32:36 remaining.
+				Talking with <%= @chat.therapist.first_name %>, <span class="timer">(Session not started.)</span>
 			<% elsif current_user.role_type == "Therapist" %>
-				Talking with client, 32:36 remaining.
+				Talking with client, <span class="timer">(Session not started.)</span>
 			<% end %>
 		</p>
 	</div>
@@ -99,13 +99,20 @@
 			<%= link_to image_tag("couch-logo5.png", class: "top-logo"), homepage_path %>
 			<p>Plain <span style="font-weight: 600;">White</span> Couch</p>
 		</div>
-		<hr>
+		<hr class="blue-hr">
 		<%= render :partial => 'twilio/call' %>
 		<hr>
 		<div class="helplines-button-container sidebar-section">
 			<button class="helplines-button">Helplines</button>
 		</div>
 		<hr>
+		<% if current_user.role_type == "Therapist" %>
+		<div class="timer-button-container">
+			<button class="timer-start-button">Start</button>
+			<button class="timer-toggle-button" style="display: none;">Pause</button>
+		</div>
+		<% elsif current_user.role_type == "Client" %>
+		<% end %>
 	</div>
 </div>
 
@@ -115,32 +122,44 @@
 		</div>
 		<dl class="font-sans collapse sixteen columns" id="helplines">
 			<h3>Helplines</h3>
-        <dt>Suicide Prevention Lifeline</dt>
-        <dd>1-800-273-TALK(8255) or 1-800-SUICIDE(7842433)</dd>
-
-        <dt>Sexual Assault Hotline</dt>
-        <dd>(574)-254-7473</dd>    
-
-        <dt>US Veterans Crisis Hotline</dt>
-        <dd>1-800-273-TALK(8255)</dd>
-
-        <dt>Center to Prevent Youth Violence</dt>
-        <dd>1-866-773-2587</dd>
-
-        <dt>National Runaway Switchboard</dt>
-        <dd>1-800-RUNAWAY</dd>
-
-        <dt>The Trevor Project for LGBT teens</dt>
-        <dd>1-800-488-7386</dd>
-
-        <dt>Teen Line</dt>
-        <dd><a href="http://teenlineonline.org" target="_blank">teenlineonline.org</a></dd>
-
-        <dt>Safe Haven for self-injurers</dt>
-        <dd><a href="http://gabrielle.self-injury.net" target="_blank">gabrielle.self-injury.net</a></dd> 
-
-        <dt>Al-Anon / Alateen</dt>
-        <dd><a href="http://www.al-anon.alateen.org" target="_blank">www.al-anon.alateen.org</a></dd> 
+			<hr>
+        <div class="helpline-container">
+	        <dt>Suicide Prevention Lifeline</dt>
+	        <dd>1-800-273-TALK(8255) or 1-800-SUICIDE(7842433)</dd>
+				</div>
+				<div class="helpline-container">
+	        <dt>Sexual Assault Hotline</dt>
+	        <dd>(574)-254-7473</dd>    
+				</div>
+				<div class="helpline-container">
+	        <dt>US Veterans Crisis Hotline</dt>
+	        <dd>1-800-273-TALK(8255)</dd>
+				</div>
+				<div class="helpline-container">
+	        <dt>Center to Prevent Youth Violence</dt>
+	        <dd>1-866-773-2587</dd>
+				</div>
+				<div class="helpline-container">
+	        <dt>National Runaway Switchboard</dt>
+	        <dd>1-800-RUNAWAY</dd>
+				</div>
+				<div class="helpline-container">
+	        <dt>The Trevor Project for LGBT teens</dt>
+	        <dd>1-800-488-7386</dd>
+				</div>
+				<div class="helpline-container">
+	        <dt>Teen Line</dt>
+	        <dd><a href="http://teenlineonline.org" target="_blank">teenlineonline.org</a></dd>
+				</div>
+				<div class="helpline-container">
+	        <dt>Safe Haven for self-injurers</dt>
+	        <dd><a href="http://gabrielle.self-injury.net" target="_blank">gabrielle.self-injury.net</a></dd> 
+				</div>
+				<div class="helpline-container">
+	        <dt>Al-Anon / Alateen</dt>
+	        <dd><a href="http://www.al-anon.alateen.org" target="_blank">www.al-anon.alateen.org</a></dd>
+				</div>
+			</div>
     </dl>
 	</div>
 </div>

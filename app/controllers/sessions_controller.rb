@@ -3,6 +3,7 @@ class SessionsController < DeviseController
   prepend_before_filter :allow_params_authentication!, only: :create
   prepend_before_filter :verify_signed_out_user, only: :destroy
   prepend_before_filter only: [ :create, :destroy ] { request.env["devise.skip_timeout"] = true }
+  before_filter :get_return_to
   
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -72,5 +73,10 @@ class SessionsController < DeviseController
       format.all { head :no_content }
       format.any(*navigational_formats) { redirect_to after_sign_out_path_for(resource_name) }
     end
+  end
+  
+  def get_return_to
+    session[:return_to] ||= request.referer
+    puts "request referer is #{request.referer}"
   end
 end
