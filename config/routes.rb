@@ -69,6 +69,11 @@ TherapyApp::Application.routes.draw do
   match '/api/typing_status' => 'api#typing_status', via: 'post'
   match '/api/update_nickname' => 'api#update_nickname', via: 'post'
   match '/api/post_message' => 'api#post_message', via: 'post'
+  match '/api/start_timer' => 'api#start_timer', via: 'post'
+  match '/api/toggle_timer' => 'api#toggle_timer', via: 'post'
+  match '/api/update_timer_state_and_time' => 'api#update_timer_state_and_time', via: 'post'
+  match '/api/reset_timer' => 'api#reset_timer', via: 'post'
+  match '/api/get_timer' => 'api#get_timer', via: 'get'
   
   #root :to => 'twilio#index'
   root 'static_pages#home'

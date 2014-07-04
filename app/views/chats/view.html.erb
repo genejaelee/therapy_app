@@ -22,11 +22,13 @@
 	var PUSHER_KEY = '<%= Pusher.key %>'
 </script>
 
+<div id="chatroom">
+
 <div class="left-panel chat-panel">
 	<div id="chat-navbar">
 		<p>
 			<% if current_user.role_type == "Client" %>
-				Talking with <%= @chat.therapist.first_name %>, <span class="timer">(Session not started.)</span>
+				Talking with <%= @chat.therapist.first_name %>
 			<% elsif current_user.role_type == "Therapist" %>
 				Talking with client, <span class="timer">(Session not started.)</span>
 			<% end %>
@@ -110,56 +112,72 @@
 		<div class="timer-button-container">
 			<button class="timer-start-button">Start</button>
 			<button class="timer-toggle-button" style="display: none;">Pause</button>
+			<button class="timer-reset-button">Reset</button>
 		</div>
 		<% elsif current_user.role_type == "Client" %>
 		<% end %>
 	</div>
+	
+	<div class="sidebar-clock">
+		<div class="clock-circle" id="clock-back">
+			<span class="timer notstarted">Hello.<div data-time="-0m -0s"></div></span>
+		</div>
+		<div class="clock-circle" id="clock-front">
+			<div class="content clock-circle-concentric">
+				<p>timer</p>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div class="helplines-panel closed">
-	<div class="helplines-container">
-		<div class="sixteen columns" id="helpline-header">
-		</div>
-		<dl class="font-sans collapse sixteen columns" id="helplines">
-			<h3>Helplines</h3>
-			<hr>
-        <div class="helpline-container">
-	        <dt>Suicide Prevention Lifeline</dt>
-	        <dd>1-800-273-TALK(8255) or 1-800-SUICIDE(7842433)</dd>
-				</div>
-				<div class="helpline-container">
-	        <dt>Sexual Assault Hotline</dt>
-	        <dd>(574)-254-7473</dd>    
-				</div>
-				<div class="helpline-container">
-	        <dt>US Veterans Crisis Hotline</dt>
-	        <dd>1-800-273-TALK(8255)</dd>
-				</div>
-				<div class="helpline-container">
-	        <dt>Center to Prevent Youth Violence</dt>
-	        <dd>1-866-773-2587</dd>
-				</div>
-				<div class="helpline-container">
-	        <dt>National Runaway Switchboard</dt>
-	        <dd>1-800-RUNAWAY</dd>
-				</div>
-				<div class="helpline-container">
-	        <dt>The Trevor Project for LGBT teens</dt>
-	        <dd>1-800-488-7386</dd>
-				</div>
-				<div class="helpline-container">
-	        <dt>Teen Line</dt>
-	        <dd><a href="http://teenlineonline.org" target="_blank">teenlineonline.org</a></dd>
-				</div>
-				<div class="helpline-container">
-	        <dt>Safe Haven for self-injurers</dt>
-	        <dd><a href="http://gabrielle.self-injury.net" target="_blank">gabrielle.self-injury.net</a></dd> 
-				</div>
-				<div class="helpline-container">
-	        <dt>Al-Anon / Alateen</dt>
-	        <dd><a href="http://www.al-anon.alateen.org" target="_blank">www.al-anon.alateen.org</a></dd>
-				</div>
+<div id="sidebar-cards">
+	<div id="helplines-card" class="sidebar-card closed">
+		<div class="helplines-container">
+			<div class="sixteen columns" id="helpline-header">
 			</div>
-    </dl>
+			<dl class="font-sans collapse sixteen columns" id="helplines">
+				<h3>Helplines</h3>
+				<hr>
+	        <div class="helpline-container">
+		        <dt>Suicide Prevention Lifeline</dt>
+		        <dd>1-800-273-TALK(8255) or 1-800-SUICIDE(7842433)</dd>
+					</div>
+					<div class="helpline-container">
+		        <dt>Sexual Assault Hotline</dt>
+		        <dd>(574)-254-7473</dd>    
+					</div>
+					<div class="helpline-container">
+		        <dt>US Veterans Crisis Hotline</dt>
+		        <dd>1-800-273-TALK(8255)</dd>
+					</div>
+					<div class="helpline-container">
+		        <dt>Center to Prevent Youth Violence</dt>
+		        <dd>1-866-773-2587</dd>
+					</div>
+					<div class="helpline-container">
+		        <dt>National Runaway Switchboard</dt>
+		        <dd>1-800-RUNAWAY</dd>
+					</div>
+					<div class="helpline-container">
+		        <dt>The Trevor Project for LGBT teens</dt>
+		        <dd>1-800-488-7386</dd>
+					</div>
+					<div class="helpline-container">
+		        <dt>Teen Line</dt>
+		        <dd><a href="http://teenlineonline.org" target="_blank">teenlineonline.org</a></dd>
+					</div>
+					<div class="helpline-container">
+		        <dt>Safe Haven for self-injurers</dt>
+		        <dd><a href="http://gabrielle.self-injury.net" target="_blank">gabrielle.self-injury.net</a></dd> 
+					</div>
+					<div class="helpline-container">
+		        <dt>Al-Anon / Alateen</dt>
+		        <dd><a href="http://www.al-anon.alateen.org" target="_blank">www.al-anon.alateen.org</a></dd>
+					</div>
+				</div>
+	    </dl>
+		</div>
 	</div>
+</div>
+
 </div>

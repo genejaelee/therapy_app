@@ -1,51 +1,3 @@
-// Define Vars;
-var is_typing_currently = false;
-var browser_audio_type = "";
-
-var getSizesAndResize = function() {
-	var windowWidth = $(window).width();
-	var leftPanelWidth = windowWidth - $('.sidebar').width();
-	var messagePanelHeight = $(window).height() - $('.chat-input-panel').height();
-	//resize
-	$('.chat-panel').css('width', leftPanelWidth + 'px');
-	$('.messages-panel').css('height', messagePanelHeight + 'px');
-}
-
-var openHelplines = function() {
-	var windowWidth = $(window).width();
-	var sideBarWidth = $('.sidebar').width();
-	$('.helplines-panel').stop().animate({'right' : sideBarWidth + 'px'}, 350, 'easeInOutCubic', function(){
-		$(this).addClass('opened').removeClass('closed');
-	});
-}
-
-var closeHelplines = function() {
-	var windowWidth = $(window).width();
-	var sideBarWidth = $('.sidebar').width();
-	var helplinesPanelWidth = $('.helplines-panel').width()
-	$('.helplines-panel').stop().animate({'right' : (sideBarWidth - helplinesPanelWidth) + 'px'}, 350, 'easeInOutCubic', function(){
-		$(this).addClass('closed').removeClass('opened');
-	});
-}
-
-var startCounter = function(){
-	$('.timer').countdown( {since: 0, format: 'MS', layout: '{mn} {sn} min'} );
-	$('.timer-toggle-button').removeClass('inactive').addClass('active');
-}
-
-var toggleCounter = function(){
-	$('.timer').countdown('toggle');
-	toggle = $('.timer-toggle-button');
-	if (toggle.hasClass('active')) {
-		toggle.html('Start');
-		toggle.removeClass('active').addClass('inactive');
-	}
-	else if (toggle.hasClass('inactive')) {
-		toggle.html('Pause');
-		toggle.removeClass('inactive').addClass('active');
-	}
-}
-
 $(".chats.view").ready(function() {
 	
 	//UI STUFF
@@ -58,27 +10,53 @@ $(".chats.view").ready(function() {
 	})
 	
 	$('.timer-start-button').click(function(){
-		startCounter();
-		$(this).hide();
-		$('.timer-toggle-button').show();
+		var time = $('.timer div').data("time");
+		var state = "notstarted"
+		$.ajax({
+			url: '/api/start_timer',
+			type: 'POST',
+			data: { "chat_id": chat_id, "time": time },
+			success: function(data) {
+			}
+		});
 	});
 	
 	$('.timer-toggle-button').click(function(){
-		toggleCounter();
+		var time = $('.timer div').data("time");
+		timer = $('.timer');
+		var state = getTimerState(timer);
+		$.ajax({
+			url: '/api/toggle_timer',
+			type: 'POST',
+			data: { "chat_id": chat_id, "time": time, "state": state },
+			success: function(data) {
+			}
+		});
 	});
 	
+	$('.timer-reset-button').click(function(){
+		$.ajax({
+			url: '/api/reset_timer',
+			type: 'POST',
+			data: { "chat_id": chat_id },
+			success: function(data) {
+			}
+		});
+	})
+	
 	$('.helplines-button').click(function() {
-		if ($('.helplines-panel').hasClass('opened')) {
-			closeHelplines();
+		helplinesCard = $('#helplines-card')
+		if (helplinesCard.hasClass('opened')) {
+			closeSidebarCard(helplinesCard);
 		}
-		else if ($('.helplines-panel').hasClass('closed')) {
-			openHelplines();
+		else if (helplinesCard.hasClass('closed')) {
+			openSidebarCard(helplinesCard);
 		}
 	});
 	
 	$('.chat-panel').click(function() {
-		if ($('.helplines-panel').hasClass('opened')) {
-			closeHelplines();
+		if ($('.sidebar-card').hasClass('opened')) {
+			closeSidebarCard($('.sidebar-card'));
 		}
 	});
 	
@@ -115,14 +93,29 @@ $(".chats.view").ready(function() {
 	// Global variable "channel" is set in the view
 	var presenceChannel = socket.subscribe('presence-' + channel);
 	
+	presenceChannel.bind('start_timer', function(member){
+		startTimer(member.time);
+	});
+	
+	presenceChannel.bind('toggle_timer', function(member){
+		toggleTimer(member.time, member.state);
+	});
+	
+	presenceChannel.bind('get_timer', function(member){
+		startTimer(member.time, member.state);
+		$('.timer').countdown('pause');
+	});
+	
+	presenceChannel.bind('reset_timer', function(member){
+		resetTimer();
+	});
+	
 	// When somebody updates their nickname, tell all the people including yourself
 	presenceChannel.bind('updated_nickname', function(member) {
-		if(member.user_id == user_id)
-		{
+		if(member.user_id == user_id) {
 			$('.messages-container').append('<br><li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
-		else
-		{
+		else {
 			$('.messages-container').append('<br><li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
 		scrollToTheTop();
@@ -250,6 +243,8 @@ $(".chats.view").ready(function() {
 		return false;
 	}
 	
+	getServerTimer();
+	
 	// Cross browser placeholder shiz
 	var text = 'Type your message here and hit enter...';
 	$('#message').focus(function() {
@@ -257,22 +252,166 @@ $(".chats.view").ready(function() {
 	}).blur(function() {
 		if($(this).val() == "") { $(this).val(text); }
 	});
-	
-	// Helpline bar stuff
-	var helplineBar = $('#helpline-bar')
-	var curHeight = $('#helpline-bar').height();
-	var autoHeight = $('#helpline-bar .container').height();
-	
-	$('#helpline-header').click(function() {
-		if (helplineBar.hasClass('opened')) {
-			helplineBar.stop().animate( { height : curHeight }, 300, 'easeInOutCubic', function() {
-			});
-			helplineBar.removeClass('opened');
-		}
-		else {
-			helplineBar.stop().animate( { height : autoHeight }, 400, 'easeInOutCubic', function() {
-				helplineBar.addClass('opened');
-			});
+});
+
+//////////////////////////////////////////////////
+////////////////// Define Vars; //////////////////
+//////////////////////////////////////////////////
+
+var is_typing_currently = false;
+var browser_audio_type = "";
+
+var getSizesAndResize = function() {
+	var windowHeight = $(window).height();
+	var windowWidth = $(window).width();
+	var leftPanelWidth = windowWidth - $('.sidebar').width();
+	var messagePanelHeight = $(window).height() - $('.chat-input-panel').height();
+	var clockY = $('.sidebar-clock').height();
+	//resize
+	$('.chat-panel').css('width', leftPanelWidth + 'px');
+	$('.messages-panel').css('height', messagePanelHeight + 'px');
+	$('.sidebar-container').css('height', windowHeight - clockY + 'px');
+}
+
+var openSidebarCard = function(card) {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	var cardWidth = card.width();
+	$('#sidebar-cards').css('width', cardWidth + sideBarWidth + 'px');
+	card.stop().animate({'right' : sideBarWidth + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('opened').removeClass('closed');
+	})
+}
+
+var closeSidebarCard = function(card) {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	var cardWidth = card.width();
+	card.stop().animate({'right' : (sideBarWidth - cardWidth) + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('closed').removeClass('opened');
+		$('#sidebar-cards').css('width', sideBarWidth + 'px');
+	})
+}
+
+function watchTimer(periods) {
+	console.log('watching timer');
+	var minute = periods[5];
+	switch(minute) {
+		case 1:
+			alert('1 minute passed!');
+			break;
+		case 30:
+			alert('30 minutes passed!');
+			break;
+		case 45:
+			alert('45 minutes passed!');
+	}
+	updateServerTimerStateAndTime();
+}
+
+var destroyTimer = function(){
+	$('.timer').countdown('destroy').removeClass('active').addClass('inactive');
+}
+
+var resetTimer = function(){
+	$('.timer-toggle-button').hide();
+	$('.timer-start-button').show();
+	destroyTimer();
+	$('.timer').html('Hello.<div data-time="-0m -0s"></div>');
+	updateServerTimerStateAndTime();
+}
+
+var startTimer = function(start_time){
+	$('.timer-start-button').hide();
+	$('.timer-toggle-button').show();
+	$('.timer').countdown('destroy');
+	$('.timer').countdown( {since: start_time, onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
+	$('.timer').removeClass('inactive').removeClass('notstarted').addClass('active');
+	updateServerTimerStateAndTime();
+}
+
+var toggleTimer = function(start_time, state){
+	timer = $('.timer');
+	toggle = $('.timer-toggle-button');
+	switch(state) {
+		case "active":
+			toggle.html('Start');
+			timer.removeClass('active').addClass('inactive');
+			timer.countdown('pause');
+			if (timer.hasClass('notstarted')) {
+				startTimer(start_time);
+			}
+			break;
+		case "inactive":
+			toggle.html('Pause');
+			startTimer(start_time);
+			break;
+		case "notstarted":
+			startTimer(start_time);
+	}
+}
+
+var getServerTimer = function() {
+	$.ajax({
+		url: '/api/get_timer',
+		type: 'GET',
+		data: { "chat_id": chat_id },
+		success: function(data) {
+			startTimer(data);
+			toggleTimer(data, "active");
 		}
 	});
-});
+}
+
+var getTimerState = function(timer) {
+	if (timer.hasClass('active')) {
+		var state = "active"
+	}
+	if (timer.hasClass('inactive')) {
+		var state = "inactive"
+	}
+	if (timer.hasClass('notstarted')) {
+		var state = "notstarted"
+	}
+	return state;
+}
+
+var updateServerTimerStateAndTime = function() {
+	timer = $('.timer');
+	state = getTimerState(timer);
+	time = getTime();
+	$.ajax({
+		url: '/api/update_timer_state_and_time',
+		type: 'POST',
+		data: { "chat_id": chat_id, "state": state, "time": time, "user_id": user_id },
+		success: function(data) {
+		}
+	});
+}
+
+var getTime = function() {
+	if ($('.timer div').data("time") == ''){
+		var time = '-0m -0s';
+	}
+	else {
+		var time = $('.timer div').data("time");
+	}
+	return time;
+}
+
+var openClock = function(){
+	var clockY = $('.sidebar-clock').height();
+	var clockX = $('.sidebar-clock').width();
+	var clockFrontY = $('#clock-front').height();
+	var clockFrontX = $('#clock-front').width();
+	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + (clockFrontY / 1.3) + 'px' }, 300, 'easeInOutCubic');
+}
+
+var closeClock = function(){
+	console.log('close clock')
+	var clockY = $('.sidebar-clock').height();
+	var clockX = $('.sidebar-clock').width();
+	var clockFrontY = $('#clock-front').outerHeight();
+	var clockFrontX = $('#clock-front').width();
+	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + 'px' }, 650, 'easeOutBounce', function(){});
+}

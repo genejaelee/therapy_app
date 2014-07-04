@@ -47,7 +47,7 @@ class ApiController < ApplicationController
   def typing_status
     if params[:chat_id] != nil && params[:status] != nil
       chat = Chat.find(params[:chat_id])
-      user = ChatUser.user(session, current_user)
+      user = ChatUser.user(session, current_user, chat)
       
       payload = { :user => user.attributes, :status => params[:status] }
       Pusher["presence-" + chat.channel].trigger('typing_status', payload)
@@ -66,6 +66,71 @@ class ApiController < ApplicationController
     else
       render :text => "Not authorized", :status => '403'
     end
+  end
+  
+  def start_timer
+    chat = Chat.find(params[:chat_id])
+    user = ChatUser.user(session, current_user, chat)
+    puts "time from params is #{params[:time]}"
+    if chat.timer_time.nil?
+      @time = params[:time]
+      chat.timer_time = @time
+    else
+      @time = chat.timer_time
+    end
+    
+    if chat.save
+      payload = { :time => @time }
+      Pusher["presence-" + chat.channel].trigger('start_timer', payload)
+      render :text => "STARTED"
+    end
+  end
+  
+  def toggle_timer
+    chat = Chat.find(params[:chat_id])
+    user = ChatUser.user(session, current_user, chat)
+    @state = params[:state]
+    @time = params[:time]
+    chat.update_attributes(:timer_time => @time, :timer_state => @state)
+    
+    if chat.save
+      payload = { :time => @time, :state => @state }
+      Pusher["presence-" + chat.channel].trigger('toggle_timer', payload)
+      render :text => "TOGGLED"
+    end
+  end
+  
+  def reset_timer
+    chat = Chat.find(params[:chat_id])
+    if chat.save
+      payload = { }
+      Pusher["presence-" + chat.channel].trigger('reset_timer', payload)
+      render :text => "RESETTED"
+    end
+  end
+  
+  def update_timer_state_and_time
+    chat = Chat.find(params[:chat_id])
+    chat_user = ChatUser.find_by(id: params[:user_id])
+    if chat_user.user.role_type == "Therapist"
+      @time = params[:time]
+      @state = params[:state]
+      chat.update_attributes(:timer_state => @state, :timer_time => @time)
+      render :text => "UPDATED TIMER STATE AND TIME"
+    else
+      render :text => "NOT A THERAPIST"
+    end
+  end
+  
+  def get_timer
+    chat = Chat.find(params[:chat_id])
+    user = ChatUser.user(session, current_user, chat)
+    @time = chat.timer_time
+    @state = chat.timer_state
+    
+    payload = { :time => @time, :state => @state }
+    Pusher["presence-" + chat.channel].trigger('get_timer', payload)
+    render :text => @time
   end
 
 end

@@ -31,13 +31,101 @@ $sidebar-width : 240px;
 	}
 }
 
-.sidebar {
+.sidebar-clock:hover {
+	#clock-front {
+		-webkit-transform: rotate(180deg);
+	}
+}
+
+.sidebar-clock {
+	width: $sidebar-width;
+	z-index: 3;
+	background-color: $scouter-blue;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 160px;
+	overflow: visible;
 	
+	.clock-circle {
+		margin: auto;
+		position: absolute;
+		border-radius: 50px;
+	}
+	
+	#clock-back {
+		box-shadow: inset 0px 2px 2px rgba(0,0,0,0.1);
+		background-image: image-url('stripe-background6.jpg');
+		background-size: 65px 65px;
+		height: 90px;
+		width: 90px;
+		bottom: 35px;
+		right: 75px;
+		z-index: 4;
+		background-color: #fff;
+		text-align: center;
+		
+		.timer {
+			font-family: $light-font;
+			line-height: 90px;
+			margin: auto;
+			vertical-align: middle;
+			font-size: 20px;
+			font-weight: 200;
+			color: #626262;
+		}
+	}
+	
+	#clock-front {
+		height: 100px;
+		width: 100px;
+		right: 70px;
+	  bottom: 30px;
+		padding: 9px;
+		border: 1px solid $scouter-blue;
+		z-index: 5;
+		background-color: #fff;
+		-webkit-transform-origin: 50% 13%;
+		-webkit-transition: 0.5s ease-in-out;
+		
+		.clock-circle-concentric {
+			margin: auto;
+			border-radius: 40px;
+			height: 80px;
+			width: 80px;
+			border: 1px dashed $scouter-blue;
+			z-index: 6;
+			background-color: #fff;
+			text-align: center;
+			
+			p {
+				font-family: $light-font;
+				line-height: 80px;
+				vertical-align: middle;
+				color: $scouter-blue;
+				font-size: 20px;
+				font-weight: 200;
+			}
+		}
+	}
+}
+
+#sidebar-cards {
+	width: $sidebar-width;
+	z-index: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	overflow: hidden;
+}
+
+.sidebar {
 	width: $sidebar-width;
 	z-index: 2;
 	background-color: $scouter-blue;
 	position: absolute;
-	bottom: 0;
+	top: 0;
 	right: 0;
 	height: 100%;
 	overflow: hidden;
@@ -47,6 +135,7 @@ $sidebar-width : 240px;
 	}
 	
 	.sidebar-container {
+		overflow-y: scroll;
 		padding: 20px;
 		text-align: center;
 		
@@ -123,12 +212,11 @@ $sidebar-width : 240px;
 .helplines-button-container {
 }
 
-.helplines-panel {
+#helplines-card {
 	$brownish : #514b45;
-	box-shadow: -1px 0px 2px rgba(0,0,0,0.1);
+	border-left: 1px solid #e2ddd7;
 	width: 300px;
 	background-color: #f7f2ed;
-	z-index: 1;
 	position: absolute;
 	bottom: 0;
 	right: -60px;
