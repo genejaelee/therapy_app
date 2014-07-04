@@ -124,9 +124,10 @@ $sidebar-width : 240px;
 }
 
 .helplines-panel {
-	box-shadow: -1px 0px 2px rgba(0,0,0,0.15);
+	$brownish : #514b45;
+	box-shadow: -1px 0px 2px rgba(0,0,0,0.1);
 	width: 300px;
-	background-color: #f9f9f9;
+	background-color: #f7f2ed;
 	z-index: 1;
 	position: absolute;
 	bottom: 0;
@@ -135,7 +136,7 @@ $sidebar-width : 240px;
 	overflow-y: scroll;
 	
 	hr {
-		border-top: 1px solid #ddd;
+		border-top: 1px solid #d8d1cb;
 		border-bottom: 1px solid #fff;
 	}
 	
@@ -144,7 +145,7 @@ $sidebar-width : 240px;
 		
 		h3 {
 			opacity: 0.9;
-			color: #525252;
+			color: $brownish;
 			font-weight: 600;
 			margin-bottom: 20px;
 		}
@@ -165,15 +166,15 @@ $sidebar-width : 240px;
 					margin-top: 15px;
 					line-height: 16px;
 					font-weight: 600;
-					color: #525252;
+					color: $brownish;
 				}
 			
 				dd {
 					font-size: 16px;
 					line-height: 22px;
-					color: #525252;
+					color: $brownish;
 					a {
-						color: #525252;
+						color: $brownish;
 					}
 				
 					a:hover {
