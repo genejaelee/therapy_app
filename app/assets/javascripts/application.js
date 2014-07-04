@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery-readyselector
+//= require jquery.plugin.min
+//= require jquery.countdown.min
 //= require_tree .
