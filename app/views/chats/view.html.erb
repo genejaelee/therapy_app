@@ -76,17 +76,6 @@
 		
 	<div class="chat-input-panel">
 		<textarea id="message" name="message" placeholder="Type your message here and hit enter..."></textarea>
-		<!--<div id="title" class="member_list_title">Pusher Chat (<span id="room_count">0</span>)</div>-->
-		<!--
-		<div class="change-nickname-container">
-			<div style="display: inline-block">
-				<input type="text" value="<%= @user.nickname %>" id="nickname" />
-			</div>
-			<div class="change-nickname-button" style="display: inline-block">
-				<a href="#" id="changeNickname">Change</a>
-			</div>
-		</div>
-			-->
 	</div>
 		
 </div>
@@ -97,21 +86,35 @@
 			<%= link_to image_tag("couch-logo5.png", class: "top-logo"), homepage_path %>
 			<p>Plain <span style="font-weight: 600;">White</span> Couch</p>
 		</div>
-		<hr class="blue-hr">
+		<hr>
 		<%= render :partial => 'twilio/call' %>
 		<hr>
 		<div class="helplines-button-container sidebar-section">
+			<p style="margin-bottom: 5px; color: #fff;">Helpful Resources</p>
 			<button class="helplines-button">Helplines</button>
 		</div>
 		<hr>
 		<% if current_user.role_type == "Therapist" %>
-		<div class="timer-button-container">
+		<div class="timer-button-container sidebar-section">
+			<p style="margin-bottom: 5px; color: #fff;">Timer controls</p>
 			<button class="timer-start-button">Start</button>
 			<button class="timer-toggle-button" style="display: none;">Pause</button>
 			<button class="timer-reset-button">Reset</button>
 		</div>
+		<hr>
 		<% elsif current_user.role_type == "Client" %>
 		<% end %>
+		<div class="change-nickname-container sidebar-section">
+			<p style="margin-bottom: 5px; color: #fff;">Change nickname</p>
+			<div style="display: inline-block">
+				<input type="text" value="<%= @user.nickname %>" id="nickname" />
+			</div>
+			<!--
+			<div class="change-nickname-button" style="display: inline-block">
+				<a href="#" id="changeNickname">Change</a>
+			</div>
+				-->
+		</div>
 	</div>
 	
 	<div class="sidebar-clock">

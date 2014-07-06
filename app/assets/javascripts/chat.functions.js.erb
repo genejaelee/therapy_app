@@ -36,7 +36,7 @@ function send_message() {
 	var username = $('#username').val();
 	
 	// Start the "loading" UI
-	$('#loading').fadeIn();
+	$("#spinner").show();
 	$('#message-overlay').fadeIn(200);
 	$('#message').blur();
 	
@@ -45,7 +45,6 @@ function send_message() {
 		function(xhr){
 			xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
 			scrollToBottomOfAndFocusOn('.messages-container', '#message');
-			$("#spinner").show();
 		}
 	})
 	
