@@ -16,7 +16,6 @@ class HooksController < ApplicationController
           puts "Member added: #{event["channel"]}"
           payload = { :user_id => event["user_id"], :nickname => ChatUser.find_by(id: event["user_id"]).nickname }
           Pusher[event["channel"]].trigger('member_added', payload)
-          render :text => "MEMBER ADDED"
         end
       end
       render text: 'ok'
@@ -24,4 +23,5 @@ class HooksController < ApplicationController
       render text: 'invalid', status: 401
     end
   end
+  
 end
