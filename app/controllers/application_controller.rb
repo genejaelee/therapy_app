@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   around_filter :user_time_zone, :if => :current_user
   helper_method :current_client, :registrations_router
   
+  include SessionsHelper
+  
   def after_sign_in_path_for(resource)
     session[:registration_state] = "login"
     return registrations_router
@@ -44,7 +46,7 @@ class ApplicationController < ActionController::Base
       end
     elsif session[:return_to].present?
       routed_path = session[:return_to]
-      session[:return_to] = nil
+      clear_stored_location
     else
       routed_path = homepage_path
     end

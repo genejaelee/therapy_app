@@ -1,7 +1,9 @@
 class ChatsController < ApplicationController
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:view]
+  
+  include SessionsHelper
   
   def new
     puts "creating new chat"
@@ -18,20 +20,24 @@ class ChatsController < ApplicationController
   end
 
   def view
-    @chat = Chat.find(Tiny::untiny(params[:id]))
-    session[:chat_id] = @chat.id
-    if current_user.role.id == @chat.therapist_id || current_user.role.id == @chat.client_id
-    
-      if(params[:id] != nil)
-        @chat = Chat.find(Tiny::untiny(params[:id]))
-        @user = ChatUser.user(session, current_user, @chat)
-        @messages = Message.where("chat_id = ?", @chat.id.to_s).load
-      else
-        redirect_to :controller => 'index', :action => 'index'
-      end
+    if !user_signed_in?
+      deny_access
     else
-      redirect_to unauthorized_chat_path
-      flash[:error] = "You are not authorized to enter this chat"
+      @chat = Chat.find(Tiny::untiny(params[:id]))
+      session[:chat_id] = @chat.id
+      if current_user.role.id == @chat.therapist_id || current_user.role.id == @chat.client_id
+    
+        if(params[:id] != nil)
+          @chat = Chat.find(Tiny::untiny(params[:id]))
+          @user = ChatUser.user(session, current_user, @chat)
+          @messages = Message.where("chat_id = ?", @chat.id.to_s).load
+        else
+          redirect_to :controller => 'index', :action => 'index'
+        end
+      else
+        redirect_to unauthorized_chat_path
+        flash[:error] = "You are not authorized to enter this chat"
+      end
     end
   end
   
