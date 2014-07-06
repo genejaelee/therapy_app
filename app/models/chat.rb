@@ -3,4 +3,5 @@ class Chat < ActiveRecord::Base
   belongs_to :client
   belongs_to :event
   has_many :chat_users
+  has_many :messages
 end

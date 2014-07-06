@@ -34,6 +34,8 @@ $sidebar-width : 240px;
 .sidebar-clock:hover {
 	#clock-front {
 		-webkit-transform: rotate(180deg);
+		-moz-transform: rotate(180deg);
+		-o-transform: rotate(180deg);
 	}
 }
 
@@ -85,8 +87,13 @@ $sidebar-width : 240px;
 		border: 1px solid $scouter-blue;
 		z-index: 5;
 		background-color: #fff;
+		text-align: center;
 		-webkit-transform-origin: 50% 13%;
+		-moz-transform-origin: 50% 13%;
+		-o-transform-origin: 50% 13%;
 		-webkit-transition: 0.5s ease-in-out;
+		-moz-transition: 0.5s ease-in-out;
+		-o-transition: 0.5 ease-in-out;
 		
 		.clock-circle-concentric {
 			margin: auto;
@@ -161,6 +168,7 @@ $sidebar-width : 240px;
 			width: 80px;
 			height: 35px;
 			-webkit-appearance: none;
+			-moz-appearance: none;
 			text-shadow: none;
 			border: 1px solid $scouter-blue;
 			background-color: #fff;
