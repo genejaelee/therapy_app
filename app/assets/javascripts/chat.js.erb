@@ -103,11 +103,19 @@ $(".chats.view").ready(function() {
 	
 	presenceChannel.bind('get_timer', function(member){
 		startTimer(member.time, member.state);
-		$('.timer').countdown('pause');
+		pauseTimer();
 	});
 	
 	presenceChannel.bind('reset_timer', function(member){
 		resetTimer();
+	});
+	
+	presenceChannel.bind('member_added', function(member){
+		if(member.user_id == user_id) {
+		}
+		else {
+			$('.messages-container').append('<br><li class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</li>');
+		}
 	});
 	
 	// When somebody updates their nickname, tell all the people including yourself
@@ -330,6 +338,15 @@ var startTimer = function(start_time){
 	updateServerTimerStateAndTime();
 }
 
+var pauseTimer = function() {
+	timer = $('.timer');
+	toggle = $('.timer-toggle-button');
+	timer.countdown('pause');
+	timer.removeClass('active').removeClass('notstarted').addClass('inactive');
+	toggle.html('Start');
+	updateServerTimerStateAndTime();
+}
+
 var toggleTimer = function(start_time, state){
 	timer = $('.timer');
 	toggle = $('.timer-toggle-button');
@@ -358,7 +375,7 @@ var getServerTimer = function() {
 		data: { "chat_id": chat_id },
 		success: function(data) {
 			startTimer(data);
-			toggleTimer(data, "active");
+			pauseTimer();
 		}
 	});
 }
