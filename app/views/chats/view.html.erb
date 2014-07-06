@@ -96,7 +96,7 @@
 		<hr>
 		<% if current_user.role_type == "Therapist" %>
 		<div class="timer-button-container sidebar-section">
-			<p style="margin-bottom: 5px; color: #fff;">Timer controls</p>
+			<p style="margin-bottom: 5px; color: #fff;">Timer Controls</p>
 			<button class="timer-start-button">Start</button>
 			<button class="timer-toggle-button" style="display: none;">Pause</button>
 			<button class="timer-reset-button">Reset</button>
@@ -105,7 +105,7 @@
 		<% elsif current_user.role_type == "Client" %>
 		<% end %>
 		<div class="change-nickname-container sidebar-section">
-			<p style="margin-bottom: 5px; color: #fff;">Change nickname</p>
+			<p style="margin-bottom: 5px; color: #fff;">Change Username</p>
 			<div style="display: inline-block">
 				<input type="text" value="<%= @user.nickname %>" id="nickname" />
 			</div>
