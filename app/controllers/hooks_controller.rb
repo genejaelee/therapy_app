@@ -14,8 +14,12 @@ class HooksController < ApplicationController
           session[:chat_id] = nil
         when 'member_added'
           puts "Member added: #{event["channel"]}"
-          payload = { :user_id => event["user_id"], :nickname => ChatUser.find_by(id: event["user_id"]).nickname }
-          Pusher[event["channel"]].trigger('member_added', payload)
+          payload = { :event => event["name"], :user_id => event["user_id"], :nickname => ChatUser.find_by(id: event["user_id"]).nickname }
+          Pusher[event["channel"]].trigger('presence', payload)
+        when 'member_removed'
+          puts "Member removed: #{event["channel"]}"
+          payload = { :event => event["name"], :user_id => event["user_id"], :nickname => ChatUser.find_by(id: event["user_id"]).nickname }
+          Pusher[event["channel"]].trigger('presence', payload)
         end
       end
       render text: 'ok'

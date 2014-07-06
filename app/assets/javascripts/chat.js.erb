@@ -110,11 +110,20 @@ $(".chats.view").ready(function() {
 		resetTimer();
 	});
 	
-	presenceChannel.bind('member_added', function(member){
-		if(member.user_id == user_id) {
+	presenceChannel.bind('presence', function(member){
+		if (member.event == "member_added") {
+			if(member.user_id == user_id) {
+			}
+			else {
+				$('.messages-container').append('<br><li class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</li>');
+			}
 		}
-		else {
-			$('.messages-container').append('<br><li class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</li>');
+		else if (member.event == "member_removed") {
+			if(member.user_id == user_id) {
+			}
+			else {
+				$('.messages-container').append('<br><li class="note"><strong>' + member.nickname + '</strong> left the chatroom.</li>');
+			}
 		}
 	});
 	
