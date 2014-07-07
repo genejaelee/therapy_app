@@ -8,7 +8,7 @@
 				  <%= button_to 'Edit', edit_user_registration_url, method: :get, :class => 'navbar-link' %>
 				  <%= button_to "Logout", destroy_user_session_url, method: :delete, :class => 'navbar-link'  %>
 					<div class="email">
-						<p style="display: inline-block; color: #fff; margin-right: 10px;">Logged in: <%= current_user.email %></p>
+						<p>Logged in: <%= current_user.email %></p>
 					</div>
 				</div>
 

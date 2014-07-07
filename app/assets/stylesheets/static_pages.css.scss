@@ -143,6 +143,9 @@ p {
 					p {
 						font-size: 14px;
 						margin-bottom: 10px;
+						display: inline-block; 
+						color: #fff; 
+						margin-right: 10px;
 					}
 				}
 				
@@ -803,7 +806,22 @@ p {
 
 @media only screen and (max-width: 480px) {
 	#navbar-panel {
-		text-align: center !important;
+		.bg-container {
+			padding-top: 10px;
+			text-align: center;
+			background: none;
+			.navbar {
+				position: static;
+				
+				.navbar-links {
+					.email {
+						p {
+							margin-right: 0px;
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	.columns {
@@ -829,24 +847,8 @@ p {
 	
 	#panel2 {
 		.bg-container {
-			background-size: 480px auto;
 			
 			.container {
-				padding-bottom: 350px;
-			}
-		}
-	}
-	
-	.footer {
-		
-		.bg-container {
-			
-			.container {
-				text-align: center;
-				
-				.column {
-					margin-bottom: 30px;
-				}
 			}
 		}
 	}
