@@ -44,9 +44,8 @@ class ChatsController < ApplicationController
   def generate
     find_event_and_client_or_build
     puts "making new chat"
-    chat = @client.chats.new
-    chat.therapist_id = @event.therapist_id
-    chat.event_id = @event.id
+    chat = @event.build_chat
+    chat.update_attributes(:therapist_id => @event.therapist_id, :client_id => @event.client_id)
     chat.owner = ChatUser.user(session, current_user, chat)
     if chat.save
       chat_tiny = Tiny::tiny(chat.id)

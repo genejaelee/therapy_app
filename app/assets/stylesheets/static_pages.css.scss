@@ -115,7 +115,7 @@ p {
 #navbar-panel {
 	background: none;
 	z-index: 1000;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	height: 50px;
 	
@@ -136,22 +136,33 @@ p {
 					height: auto;
 					display: inline-block;
 				}
+				
+				.email {
+					text-align: center;
+					
+					p {
+						font-size: 14px;
+						margin-bottom: 10px;
+					}
+				}
+				
 				input {
-					width: 80px;
+					width: 75px;
 					height: 30px !important;
 					-webkit-appearance: none;
-					border: none;
-					background-color: #fff;
-					color: $scouter-green-light;
+					border: 1px solid #fff;
+					background: none;
+					color: #fff;
 					text-shadow: none;
 					font-family: $light-font;
 					font-weight: 400;
-					line-height: 15px;
+					line-height: 11px;
 					font-size: 14px;
+					margin-bottom: 7px;
 				}
 		
 				.navbar-link:hover {
-					background-color: #eee;
+					background-color: rgba(0,0,0,0.06);
 				}
 			}
 		}
@@ -175,18 +186,17 @@ p {
 #panel1 {
 	
 	.bg-container {
-		box-shadow: 0px -2px 1px rgba(0,0,0,0.08);
 		background-image: image-url("mousehand5.jpg");
 		background-size: $max-width auto;
 		background-position: center bottom;
 		background-repeat: no-repeat;
-		height: 600px;
+		height: 650px;
 	
 		.container {
+			padding-top: 50px;
 			padding-bottom: 80px;
 			
 			#logo-banner {
-				padding-top: 40px;
 				text-align: center;
 
 				a {
@@ -202,13 +212,12 @@ p {
 			}
 		
 			#copy-container {
-				padding-top: 40px;
+				margin-top: 40px;
 			
 				h1 {
 					text-align: center;
 					color: #fff;
 					margin: auto;
-					margin-top: 40px;
 					margin-bottom: 10px;
 					max-width: 600px;
 				}
@@ -322,27 +331,30 @@ p {
 #panel2 {
 	
 	.bg-container {
-		height: 680px;
-		background-image: image-url('phone-hand.jpg');
 		background-size: $max-width auto;
 		background-position: center;
 	
 		.container {
-			padding-top: 110px;
-			padding-bottom: 90px;
-		
-			h2 {
-				color: #626262;
-			}
-		
-			.ten.columns {
+			padding-top: 90px;
+			padding-bottom: 110px;
+			
+			.columns {
 				h2 {
-					padding-top: 50px;
+					color: #525252;
+					padding-top: 20px;
 				}
 				
 				p {
 					color: #525252;
 					font-size: 16px;
+				}
+				
+				#matt {
+					position: absolute;
+					top: 70px;
+					right: 30px;
+					width: 280px;
+					height: auto;
 				}
 			}
 		}
@@ -657,7 +669,6 @@ p {
 			
 			.container {
 				.columns {
-					padding-right: 30px;
 				}
 			}
 		}
@@ -665,6 +676,12 @@ p {
 }
 
 @media only screen and (max-width: 767px) {
+	#navbar-panel {
+		display: block;
+		position: relative;
+		background-color: $scouter-blue;
+	}
+	
 	h1 {
 		font-family: $medium-font;
 		font-size: 34px;
@@ -712,13 +729,25 @@ p {
 			
 			.container {
 				padding-right: 0px;
-				padding-top: 50px;
-				padding-bottom: 200px;
+				padding-top: 60px;
+				padding-bottom: 60px;
 				
 				h2 {
 					padding-right: 0;
 				}
 				.columns {
+				}
+				
+				.image-container {
+					text-align: center;
+					
+					#matt {
+						text-align: center;
+						position: static;
+						margin: auto;
+						padding-top: 30px;
+						
+					}
 				}
 			}
 			#example-feed {
@@ -773,6 +802,10 @@ p {
 }
 
 @media only screen and (max-width: 480px) {
+	#navbar-panel {
+		text-align: center !important;
+	}
+	
 	.columns {
 		padding-left: 10px !important;
 		padding-right: 10px !important;
@@ -781,13 +814,13 @@ p {
 	#panel1 {
 		.bg-container {
 			background-position: bottom;
-			height: 580px;
+			height: 600px;
 			background-size: cover;
 			background-image: image-url("mousehand-mobile.jpg");
 			.container {
 				#copy-container {
+					margin-top: 10px;
 					h1 {
-						margin-top: 10px;
 					}
 				}
 			}

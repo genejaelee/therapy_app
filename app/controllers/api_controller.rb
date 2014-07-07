@@ -4,7 +4,7 @@ class ApiController < ApplicationController
   def update_nickname
     puts "changing nickname..."
     if params[:user_id] != nil && params[:nickname] != nil
-      user = ChatUser.find(params[:user_id])
+      user = ChatUser.find_by(id: params[:user_id])
       old_nickname = user.nickname
       user.nickname = params[:nickname]
       if user.save

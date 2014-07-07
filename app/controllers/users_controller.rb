@@ -1,14 +1,18 @@
 class UsersController < ApplicationController
   
   def show_my_profile
-    role_type = current_user.role_type
-    if role_type == "Therapist"
-      @therapist = current_user.role
-    elsif role_type == "Client"
-      @client = current_user.role
-    end
+    if !user_signed_in?
+      deny_access
+    else
+      role_type = current_user.role_type
+      if role_type == "Therapist"
+        @therapist = current_user.role
+      elsif role_type == "Client"
+        @client = current_user.role
+      end
     
-    render 'show'
+      render 'show'
+    end
   end
   
   private

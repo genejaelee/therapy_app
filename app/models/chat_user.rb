@@ -1,21 +1,23 @@
 class ChatUser < ActiveRecord::Base
   belongs_to :user
+  belongs_to :chat
   
   def self.user(session, current_user, chat)
     
-    if current_user.chat_user.nil?
-      user = current_user.build_chat_user
-      user.nickname = "user_" + Time.now.to_i.to_s
+    if chat.chat_users.find_by(user_id: current_user.id).present?
+      user = chat.chat_users.find_by(user_id: current_user.id)
       user.time_zone = current_user.time_zone
       if user.save
-        session[:user_id] = user.id
+        session[:chat_user_id] = user.id
       end
-    elsif current_user.chat_user.present?
-      puts "current user role type is #{current_user.role_type} and id is #{current_user.id}"
-      user = current_user.chat_user
-      user.time_zone = current_user.time_zone
-      if user.save
-        session[:user_id] = user.id
+    else
+      user = current_user.chat_users.create
+      nickname = "user_" + Time.now.to_i.to_s
+      time_zone = current_user.time_zone
+      chat_id = chat.id
+
+      if user.update_attributes(:nickname => nickname, :time_zone => time_zone, :chat_id => chat_id)
+        session[:chat_user_id] = user.id
       end
     end
 
@@ -36,6 +38,34 @@ class ChatUser < ActiveRecord::Base
         end
       end
       chatuser.save
+    end
+  end
+  
+  def self.assign_events_to_user
+    Event.all.each do |event|
+      if event.therapist_id.present?
+        event.user_id = User.find_by(role_id: event.therapist_id)
+      end
+      if event.client_id.present?
+        event.user_id = User.find_by(role_id: event.therapist_id)
+      end
+    end
+  end
+  
+  def self.assign_to_chats
+    Chat.all.each do |chat|
+      unless User.find_by(role_id: chat.client_id).nil?
+        if chat.chat_users.find_by(user_id: User.find_by(role_id: chat.client_id).id) == nil?
+          @chat_user = chat.build_chat_user
+          @chat_user.update_attributes(:user_id => User.find_by(role_id: chat.client_id).id, :chat_id => chat.id)
+        end
+      end
+      unless User.find_by(role_id: chat.therapist_id).nil?
+        if chat.chat_users.find_by(user_id: User.find_by(role_id: chat.therapist_id).id) == nil?
+          @chat_user = chat.build_chat_user
+          @chat_user.update_attributes(:user_id => User.find_by(role_id: chat.client_id).id, :chat_id => chat.id)
+        end
+      end
     end
   end
 end

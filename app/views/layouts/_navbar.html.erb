@@ -3,11 +3,13 @@
 		<div class="navbar">
 			<% if user_signed_in? %>
 				<div class='navbar-links'>
-					<p style="display: inline-block; color: #fff; margin-right: 10px;"><%= current_user.email %></p>
 			
 					<%= button_to 'My Page', show_my_profile_url, method: :get, :class => 'navbar-link' %>
 				  <%= button_to 'Edit', edit_user_registration_url, method: :get, :class => 'navbar-link' %>
 				  <%= button_to "Logout", destroy_user_session_url, method: :delete, :class => 'navbar-link'  %>
+					<div class="email">
+						<p style="display: inline-block; color: #fff; margin-right: 10px;">Logged in: <%= current_user.email %></p>
+					</div>
 				</div>
 
 			<% else %>

@@ -37,17 +37,23 @@ class ApplicationController < ActionController::Base
       end
       session[:registration_state] == nil
     elsif session[:event_id].present? && @user.role_type == "Client"
-      unless Event.find_by(id: session[:event_id]).has_attribute?('therapist_id')
+      puts 'user role is client'
+      if Event.find_by(id: session[:event_id]).has_attribute?('therapist_id')
         if session[:suggested_times].present?
           routed_path = '/event/finish'
         else
           routed_path = '/session_details'
         end
+      else
+        flash[:error] = "Sorry there was an error processing your request. Please try again."
+        routed_path = homepage_path
       end
     elsif session[:return_to].present?
+      puts 'session return to present'
       routed_path = session[:return_to]
       clear_stored_location
     else
+      puts 'going to homepage'
       routed_path = homepage_path
     end
     return routed_path

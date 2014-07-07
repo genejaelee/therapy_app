@@ -4,10 +4,10 @@
 	<% @chat = Chat.find_by(event_id: event.id) %>
 		<% therapist = event.therapist %>
 		<div class="appointment">
-			<div class="two columns therapist-image-container">
-				<%= retina_image_tag(therapist, :avatar, :small, :default => [100,100]) %>
+			<div class="four columns therapist-image-container">
+				<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
 			</div>
-			<div class="ten columns therapist-info-container">
+			<div class="eight columns therapist-info-container">
 				<p><%= therapist.first_name %> <%= therapist.last_name %>
 					<span> / <%= therapist.title %>, <%= therapist.degree %></span></p>
 				<p><%= therapist.user.email %></p>
