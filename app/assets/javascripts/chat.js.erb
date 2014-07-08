@@ -1,9 +1,18 @@
 $(".chats.view").ready(function() {
 	
+	// INIT UI FUNCTIONS
+	
+	$('.messages-container').bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
+    if ( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
+      $('.messages-container').stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup'); // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
+    }
+	});   
+	
 	//UI STUFF
 	
 	disableTwilioButtons('.twilio-button');
 	getSizesAndResize();
+	scrollToBottomOfAndFocusOn('.messages-container', '#message');
 	
 	$(window).resize(function() {
 		getSizesAndResize();
@@ -60,8 +69,6 @@ $(".chats.view").ready(function() {
 		}
 	});
 	
-	scrollToBottomOfAndFocusOn('.messages-container', '#message');
-	
 	$.ajaxSetup({
 	  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
 	});
@@ -115,14 +122,14 @@ $(".chats.view").ready(function() {
 			if(member.user_id == user_id) {
 			}
 			else {
-				$('.messages-container').append('<br><li class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</li>');
+				$('.messages-container').append('<li class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</li>');
 			}
 		}
 		else if (member.event == "member_removed") {
 			if(member.user_id == user_id) {
 			}
 			else {
-				$('.messages-container').append('<br><li class="note"><strong>' + member.nickname + '</strong> left the chatroom.</li>');
+				$('.messages-container').append('<li class="note"><strong>' + member.nickname + '</strong> left the chatroom.</li>');
 			}
 		}
 	});
@@ -130,12 +137,12 @@ $(".chats.view").ready(function() {
 	// When somebody updates their nickname, tell all the people including yourself
 	presenceChannel.bind('updated_nickname', function(member) {
 		if(member.user_id == user_id) {
-			$('.messages-container').append('<br><li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('.messages-container').append('<li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
 		else {
-			$('.messages-container').append('<br><li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('.messages-container').append('<li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
 		}
-		scrollToTheTop();
+		scrollToTheBottom($('.messages-container'));
 	});
 
 	// Deal with incoming messages!
@@ -178,18 +185,17 @@ $(".chats.view").ready(function() {
 	presenceChannel.bind('typing_status', function(notification) {
 		if(notification.user.id == user_id) return false;
 		if(notification.status == "true") {
-			$('.messages-container').append('<br><li class="note" id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</li>');
+			$('.messages-container').append('<li class="note" id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</li>');
 		} 
 		else {
 			$('.messages-container #is_typing_' + notification.user.id).remove();
 		}
-		scrollToTheTop();
+		scrollToTheBottom($('.messages-container'));
 	});
 	
 	// Now pusher is all setup lets let the user go wild!
 	$('#loading').fadeOut();
 	$('#message').removeAttr("disabled");
-	scrollToTheTop();
 	
 	// Enter key to send message
 	$('#message').keydown(function(e)

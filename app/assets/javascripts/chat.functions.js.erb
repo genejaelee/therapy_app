@@ -59,8 +59,8 @@ function send_message() {
 	
 }
 
-function scrollToTheTop() {
-	$("#messages").scrollTop(20000000); 
+function scrollToTheBottom(element) {
+	element.animate({scrollTop: 2000000}, 500, 'easeInOutCubic'); 
 }
 
 function replaceURLWithHTMLLinks(text) {
