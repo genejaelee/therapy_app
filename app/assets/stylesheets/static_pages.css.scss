@@ -168,6 +168,10 @@ p {
 					background-color: #fff;
 					color: $scouter-blue;
 				}
+				
+				.navbar-link:active {
+					background-color: #eee;
+				}
 			}
 		}
 	}

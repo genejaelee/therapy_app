@@ -178,8 +178,9 @@ $(".chats.view").ready(function() {
 	presenceChannel.bind('typing_status', function(notification) {
 		if(notification.user.id == user_id) return false;
 		if(notification.status == "true") {
-			$('.messages-container').append('<li class="note" id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</li>');
-		} else {
+			$('.messages-container').append('<br><li class="note" id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</li>');
+		} 
+		else {
 			$('.messages-container #is_typing_' + notification.user.id).remove();
 		}
 		scrollToTheTop();
@@ -212,7 +213,10 @@ $(".chats.view").ready(function() {
 			typing_end_timeout = setTimeout(timout_function, 1500);
 		} else {
 			// If your not currently typing then send the notification
-			if(!is_typing_currently) { is_typing_currently = true; typing_status(true); }
+			if(!is_typing_currently) { 
+				is_typing_currently = true; 
+				typing_status(true); 
+			}
 		}
 	});
 	
