@@ -1,0 +1,78 @@
+
+<head>
+  <script type="text/javascript">
+
+  Twilio.Device.setup("<%= test_twilio_token %>", {debug: true});
+
+		Twilio.Device.ready(function (device) {
+			enableTwilioButtons('.twilio-button');
+	  });
+		
+		Twilio.Device.offline(function (device) {
+			disableTwilioButtons('.twilio-button');
+			$("#log").text("Can't make calls at the moment.");
+		});
+
+    Twilio.Device.error(function (error) {
+			hideAllTwilioButtons();
+      $("#log").text("Error: " + error.message);
+    });
+
+    Twilio.Device.connect(function (conn) {
+      $("#log").text("Successfully established call");
+    });
+
+    Twilio.Device.disconnect(function (conn) {
+      $("#log").text("Call ended");
+    });
+
+    Twilio.Device.incoming(function (conn) {
+      $("#log").text("Incoming connection from " + 'Test User');
+      // accept the incoming connection and start two-way audio
+			$('.answer').click(function(){
+				conn.accept();
+			});
+			$('.hangup').click(function(){
+				conn.reject();
+		    $('.hangup').hide();
+				$('.answer').hide();
+				$('.call').show();
+				$("#log").text("Call ended");
+			});
+    });
+
+    function call() {
+      // get the phone number to connect the call to
+      params = {"To": 'jenny'};
+      Twilio.Device.connect(params);
+    }
+
+    function hangup() {
+      Twilio.Device.disconnectAll();
+    }
+		
+  </script>
+</head>
+
+	<div class="twilio-container sidebar-section" style="display: inline-block">
+		<p style="margin-bottom: 5px; color: #fff;">Audio Chat</p>
+	  <button class="twilio-button call" onclick="call();">
+	    Call
+	  </button>
+
+	  <button class="twilio-button hangup" onclick="hangup();">
+	    Hang Up
+		</button>
+	
+	  <button class="twilio-button answer">
+	    Answer
+		</button>
+		
+		<div id="log">
+		</div>
+		<!--
+		<div id="twilio-spinner" class="spinner" style="display: block;">
+				<%= image_tag("loading.gif", :alt => "Loading", :height => "50px") %>
+		</div>
+			-->
+	</div>

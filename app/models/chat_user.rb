@@ -3,8 +3,9 @@ class ChatUser < ActiveRecord::Base
   belongs_to :chat
   
   def self.user(session, current_user, chat)
-    
-    if chat.chat_users.find_by(user_id: current_user.id).present?
+    if chat.channel == "message_channel_test"
+      user = set_test_user(session, current_user, chat)
+    elsif chat.chat_users.find_by(user_id: current_user.id).present?
       user = chat.chat_users.find_by(user_id: current_user.id)
       user.time_zone = current_user.time_zone
       if user.save
@@ -24,6 +25,24 @@ class ChatUser < ActiveRecord::Base
     # Return the user
     user
     
+  end
+  
+  def self.set_test_user(session, current_user, chat)
+    current_user = User.find_by(email: 'test@gmail.com')
+    if session[:chat_user_id].present?
+      user = ChatUser.find_by(id: session[:chat_user_id])
+      nickname = user.nickname
+    else
+      user = current_user.chat_users.create
+      nickname = "user_" + Time.now.to_i.to_s
+    end
+    chat_id = chat.id
+    
+    if user.update_attributes(:nickname => nickname, :chat_id => chat_id, :user_id => current_user.id)
+      session[:chat_user_id] = user.id
+    end
+    
+    return user
   end
   
   def self.assign_to_users
