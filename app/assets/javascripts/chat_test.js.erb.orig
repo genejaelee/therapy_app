@@ -1,0 +1,390 @@
+$(".chats.test").ready(function() {
+	
+	// INIT UI FUNCTIONS
+	
+	$('.messages-container').bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
+    if ( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
+      $('.messages-container').stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup'); // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
+    }
+	});   
+	
+	//UI STUFF
+	
+	$('.hangup').hide();
+	$('.answer').hide();
+	
+	disableTwilioButtons('.twilio-button');
+	getSizesAndResize();
+	scrollToBottomOfAndFocusOn('.messages-container', '#message');
+	
+	$(window).resize(function() {
+		getSizesAndResize();
+	})
+	
+	$('.timer-start-button').click(function(){
+		startTimer();
+	});
+	
+	$('.timer-toggle-button').click(function(){
+		toggleTimer();
+	});
+	
+	$('.timer-reset-button').click(function(){
+		resetTimer();
+	})
+	
+	$('.helplines-button').click(function() {
+		helplinesCard = $('#helplines-card')
+		if (helplinesCard.hasClass('opened')) {
+			closeSidebarCard(helplinesCard);
+		}
+		else if (helplinesCard.hasClass('closed')) {
+			openSidebarCard(helplinesCard);
+		}
+	});
+	
+	$('.chat-panel').click(function() {
+		if ($('.sidebar-card').hasClass('opened')) {
+			closeSidebarCard($('.sidebar-card'));
+		}
+	});
+	
+	$.ajaxSetup({
+	  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+	});
+	
+	//hide footer
+	$('#footer').css('display', 'none');
+	
+	var audio = document.createElement("audio");
+	var audio_types = ["ogg", "mpeg", "wav"];
+	// Loop through the types I have and break out when the browser says it might be able to play one
+	if (typeof audio.canPlayType == 'function') {
+  	for(type in audio_types) {
+  		var type_name = audio_types[type];
+  		if(audio.canPlayType("audio/" + type_name) == "yes" || audio.canPlayType("audio/" + type_name) == "maybe") {
+  			browser_audio_type = type_name;
+  			break;
+  		}
+  	}
+	}
+
+	// Logging - Disable in production
+	// Pusher.log = function() { if (window.console) window.console.log.apply(window.console, arguments); };
+	
+	Pusher.channel_auth_endpoint = '/api/authenticate?user_id=' + user_id;
+	var socket = new Pusher(PUSHER_KEY, {
+		encrypted: true
+	});
+	
+	// Global variable "channel" is set in the view
+	var presenceChannel = socket.subscribe('presence-' + channel);
+	
+	presenceChannel.bind('start_timer', function(member){
+		startTimer(member.time);
+	});
+	
+	presenceChannel.bind('toggle_timer', function(member){
+		toggleTimer(member.time, member.state);
+	});
+	
+	presenceChannel.bind('get_timer', function(member){
+		startTimer(member.time, member.state);
+		pauseTimer();
+	});
+	
+	presenceChannel.bind('reset_timer', function(member){
+		resetTimer();
+	});
+	
+	presenceChannel.bind('presence', function(member){
+		if (member.event == "member_added") {
+			if(member.user_id == user_id) {
+			}
+			else {
+				$('.messages-container').append('<div class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</div>');
+			}
+		}
+		else if (member.event == "member_removed") {
+			if(member.user_id == user_id) {
+			}
+			else {
+				$('.messages-container').append('<div class="note"><strong>' + member.nickname + '</strong> left the chatroom.</div>');
+			}
+		}
+	});
+	
+	// When somebody updates their nickname, tell all the people including yourself
+	presenceChannel.bind('updated_nickname', function(member) {
+		scrollToTheBottomUnlessScrolled($('#messages'));
+		if(member.user_id == user_id) {
+			$('.messages-container').append('<div class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</div>');
+		}
+		else {
+			$('.messages-container').append('<div class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</div>');
+		}
+	});
+
+	// Deal with incoming messages!
+	presenceChannel.bind('send_message', function(message) {
+		$("#spinner").hide();
+		var who = '';
+		
+		if(user_id == message.user.id) {
+			who = 'you ';
+			$('#message-overlay').fadeOut(150);
+		} 
+		
+		else {
+			scrollToTheBottomUnlessScrolled($('#messages'));
+			who = 'them ';
+			// If they have a typing message, hide it!
+			$('#chat-notification #is_typing_' + message.user.id).hide();
+			
+			// Do some alerting of the user
+			if(!hasFocus) {
+				// TODO: Update the page title
+				document.title = "New Message! - Plain White Couch"
+			}
+		}
+		
+		// Programatically create an audio element and pop the user
+		var pop = new Audio('/sounds/pop.wav');
+		pop.load();
+		pop.play();
+		
+		$('.messages-container').append('<br><div class="message-container"><li class="' + who + 'just_added_id_' + message.id + '" style="display:none;"><span class="nickname-said"><strong>' + message.user.nickname + '</strong> said:</span>' +
+													'<div class="message-wrapper"><div class="message">' + 
+														'<p>' + replaceURLWithHTMLLinks(message.message) + '</p></div></div></li></div>');
+		$('.messages-container li.just_added_id_' + message.id).fadeIn();
+	});
+	
+	// Typing Messages
+	presenceChannel.bind('typing_status', function(notification) {
+		if(notification.user.id == user_id) return false;
+		if(notification.status == "true") {
+			$('#chat-notification').html('<div id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</div>');
+			scrollToTheBottomUnlessScrolled($('#messages'));
+		} 
+		else {
+			$('#chat-notification #is_typing_' + notification.user.id).remove();
+		}
+	});
+	
+	// Now pusher is all setup lets let the user go wild!
+	$('#loading').fadeOut();
+	$('#message').removeAttr("disabled");
+	
+	// Enter key to send message
+	$('#message').keydown(function(e) {
+		if (e.keyCode == 13) { 
+			scrollToTheBottomUnlessScrolled($('#messages'));
+			send_message(); 
+			return false; 
+		}
+	});
+
+	// Typing Notifications
+	// "is_currently_typing" is defined at the top of this file
+	var timout_function = function() {
+		is_typing_currently = false;
+		typing_status(false);
+	}
+	var typing_end_timeout;
+	$('#message').keyup(function()
+	{
+		// Clear the timeout to stop annoying notifications coming every time you clear the field
+		clearTimeout(typing_end_timeout);
+		if($(this).val() == '' && is_typing_currently) {
+			// Has stopped typing by clearing the field
+			typing_end_timeout = setTimeout(timout_function, 1500);
+		} else {
+			// If your not currently typing then send the notification
+			if(!is_typing_currently) { 
+				is_typing_currently = true; 
+				typing_status(true); 
+			}
+		}
+	});
+	
+	var old_nickname = "";
+	$('#editNickname').click(function()
+	{
+		$('#title').fadeOut(200);
+		$('#nickname').fadeIn(200);
+		$('#changeNickname').fadeIn(200);
+		$(this).hide();
+		old_nickname = $('#nickname').val();
+		return false;
+	});
+
+	$('.change-nickname-button').click(function() {
+		//$('#nickname').attr("disabled", "disabled");
+		changeNickname();
+	});
+	
+	$('#nickname').keydown(function(e)
+	{
+		if (e.keyCode == 13) { changeNickname(); }
+	});
+	
+	var changeNickname = function() {
+		if($('#nickname').val() != old_nickname) {
+			$("#spinner").show();
+			
+			$.post('/api/update_nickname/', { 'chat_id': chat_id, 'user_id': user_id, 'nickname': $('#nickname').val() }, function(response) {
+				if(response != "SAVED") {
+					alert("There was an error updating your nickname, please try again.");
+				}
+				$('#editNickname').fadeIn(200);
+				$('#title').fadeIn(200);
+				onSuccess: {
+					$("#spinner").hide();
+				}
+			});
+		} else {
+			$('#nickname').hide();
+			$('#title').fadeIn(200);
+			$('#changeNickname').hide();
+		}
+		
+		return false;
+	}
+	
+	// Cross browser placeholder shiz
+	var text = 'Type your message here and hit enter...';
+	$('#message').focus(function() {
+		if($(this).val() == text) { $(this).val(""); }
+	}).blur(function() {
+		if($(this).val() == "") { $(this).val(text); }
+	});
+});
+
+//////////////////////////////////////////////////
+////////////////// Define Vars; //////////////////
+//////////////////////////////////////////////////
+
+var is_typing_currently = false;
+var browser_audio_type = "";
+
+var getSizesAndResize = function() {
+	var windowHeight = $(window).height();
+	var windowWidth = $(window).width();
+	var leftPanelWidth = windowWidth - $('.sidebar').width();
+	var messagePanelHeight = $(window).height() - $('.chat-input-panel').height();
+	var clockY = $('.sidebar-clock').height();
+	//resize
+	$('.chat-panel').css('width', leftPanelWidth + 'px');
+	$('.messages-panel').css('height', messagePanelHeight + 'px');
+	$('.sidebar-container').css('height', windowHeight - clockY + 'px');
+}
+
+var openSidebarCard = function(card) {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	var cardWidth = card.width();
+	$('#sidebar-cards').css('width', cardWidth + sideBarWidth + 'px');
+	card.stop().animate({'right' : sideBarWidth + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('opened').removeClass('closed');
+	})
+}
+
+var closeSidebarCard = function(card) {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	var cardWidth = card.width();
+	card.stop().animate({'right' : (sideBarWidth - cardWidth) + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('closed').removeClass('opened');
+		$('#sidebar-cards').css('width', sideBarWidth + 'px');
+	})
+}
+
+function watchTimer(periods) {
+	console.log('watching timer');
+	var minute = periods[5];
+	switch(minute) {
+		case 1:
+			alert('1 minute passed!');
+			break;
+		case 30:
+			alert('30 minutes passed!');
+			break;
+		case 45:
+			alert('45 minutes passed!');
+	}
+}
+
+var destroyTimer = function(){
+	$('.timer').countdown('destroy').removeClass('active').addClass('inactive');
+}
+
+var resetTimer = function(){
+	
+	$('.timer-toggle-button').html('Pause').hide();
+	$('.timer-start-button').show();
+	destroyTimer();
+	$('.timer').html('Hello.<div data-time="-0m -0s"></div>');
+}
+
+var startTimer = function(){
+	$('.timer-start-button').hide();
+	$('.timer-toggle-button').show();
+	$('.timer').countdown('destroy');
+	$('.timer').countdown( {since: '-0m -0s', onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
+	$('.timer').removeClass('inactive').removeClass('notstarted').addClass('active');
+}
+
+var pauseTimer = function() {
+	timer = $('.timer');
+	toggle = $('.timer-toggle-button');
+	timer.countdown('pause');
+	timer.removeClass('active').removeClass('notstarted').addClass('inactive');
+	toggle.html('Start');
+}
+
+var toggleTimer = function(){
+	timer = $('.timer');
+	state = getTimerState(timer);
+	start_time = getTime();
+	toggle = $('.timer-toggle-button');
+	switch(state) {
+		case "active":
+			toggle.html('Start');
+			timer.removeClass('active').addClass('inactive');
+			pauseTimer();
+			if (timer.hasClass('notstarted')) {
+				startTimer(start_time);
+			}
+			break;
+		case "inactive":
+			toggle.html('Pause');
+			timer.countdown('resume');
+			timer.removeClass('inactive').removeClass('notstarted').addClass('active');
+			break;
+		case "notstarted":
+			startTimer(start_time);
+	}
+}
+
+var getTimerState = function(timer) {
+	if (timer.hasClass('active')) {
+		var state = "active"
+	}
+	if (timer.hasClass('inactive')) {
+		var state = "inactive"
+	}
+	if (timer.hasClass('notstarted')) {
+		var state = "notstarted"
+	}
+	return state;
+}
+
+var getTime = function() {
+	if ($('.timer div').data("time") == ''){
+		var time = '-0m -0s';
+	}
+	else {
+		var time = $('.timer div').data("time");
+	}
+	return time;
+}
