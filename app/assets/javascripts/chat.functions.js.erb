@@ -4,6 +4,30 @@
 var hasFocus = true;
 var people = [];
 
+var getMessageHeader = function(nickname, who) {
+	var messages = $('.messages-container');
+	var lastMessage = messages.find('.message-container').last();
+	console.log(lastMessage.html());
+	if (!messages.find('.message-container') || senderChanged(who) === true) {
+		var header = '<span class="nickname-said"><strong>' + nickname + '</strong> said:</span>'
+	}
+	else {
+		var header = '<span class="nickname-said"></span>'
+	}
+	return header
+}
+
+var senderChanged = function(who) {
+	var messages = $('.messages-container');
+	var lastMessage = messages.find('.message-container').last();
+	if (lastMessage.children().hasClass(who)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
 // Post to the server about the current status of typing
 function typing_status(status) { 
 	// We don't care about the response or even if the sever gets it.. nothing important!
@@ -60,4 +84,168 @@ function send_message() {
 function replaceURLWithHTMLLinks(text) {
      var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
      return text.replace(exp,"<a href='$1' target='_blank'>$1</a>"); 
+}
+
+var getSizesAndResize = function() {
+	var windowHeight = $(window).height();
+	var windowWidth = $(window).width();
+	var leftPanelWidth = windowWidth - $('.sidebar').width();
+	var messagePanelHeight = $(window).height() - $('.chat-input-panel').height();
+	var clockY = $('.sidebar-clock').height();
+	//resize
+	$('.chat-panel').css('width', leftPanelWidth + 'px');
+	$('.messages-panel').css('height', messagePanelHeight + 'px');
+	$('.sidebar-container').css('height', windowHeight - clockY + 'px');
+}
+
+var openSidebarCard = function(card) {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	var cardWidth = card.width();
+	$('#sidebar-cards').css('width', cardWidth + sideBarWidth + 'px');
+	card.stop().animate({'right' : sideBarWidth + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('opened').removeClass('closed');
+	})
+}
+
+var closeSidebarCard = function(card) {
+	var windowWidth = $(window).width();
+	var sideBarWidth = $('.sidebar').width();
+	var cardWidth = card.width();
+	card.stop().animate({'right' : (sideBarWidth - cardWidth) + 'px'}, 350, 'easeInOutCubic', function(){
+		$(this).addClass('closed').removeClass('opened');
+		$('#sidebar-cards').css('width', sideBarWidth + 'px');
+	})
+}
+
+function watchTimer(periods) {
+	console.log('watching timer');
+	var minute = periods[5];
+	switch(minute) {
+		case 1:
+			alert('1 minute passed!');
+			break;
+		case 30:
+			alert('30 minutes passed!');
+			break;
+		case 45:
+			alert('45 minutes passed!');
+	}
+	updateServerTimerStateAndTime();
+}
+
+var destroyTimer = function(){
+	$('.timer').countdown('destroy').removeClass('active').addClass('inactive');
+}
+
+var resetTimer = function(){
+	$('.timer-toggle-button').hide();
+	$('.timer-start-button').show();
+	destroyTimer();
+	$('.timer').html('Hello.<div data-time="-0m -0s"></div>');
+	updateServerTimerStateAndTime();
+}
+
+var startTimer = function(start_time){
+	$('.timer-start-button').hide();
+	$('.timer-toggle-button').show();
+	$('.timer').countdown('destroy');
+	$('.timer').countdown( {since: start_time, onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
+	$('.timer').removeClass('inactive').removeClass('notstarted').addClass('active');
+	updateServerTimerStateAndTime();
+}
+
+var pauseTimer = function() {
+	timer = $('.timer');
+	toggle = $('.timer-toggle-button');
+	timer.countdown('pause');
+	timer.removeClass('active').removeClass('notstarted').addClass('inactive');
+	toggle.html('Start');
+	updateServerTimerStateAndTime();
+}
+
+var toggleTimer = function(start_time, state){
+	timer = $('.timer');
+	toggle = $('.timer-toggle-button');
+	switch(state) {
+		case "active":
+			toggle.html('Start');
+			timer.removeClass('active').addClass('inactive');
+			timer.countdown('pause');
+			if (timer.hasClass('notstarted')) {
+				startTimer(start_time);
+			}
+			break;
+		case "inactive":
+			toggle.html('Pause');
+			startTimer(start_time);
+			break;
+		case "notstarted":
+			startTimer(start_time);
+	}
+}
+
+var getServerTimer = function() {
+	$.ajax({
+		url: '/api/get_timer',
+		type: 'GET',
+		data: { "chat_id": chat_id },
+		success: function(data) {
+			startTimer(data);
+			pauseTimer();
+		}
+	});
+}
+
+var getTimerState = function(timer) {
+	if (timer.hasClass('active')) {
+		var state = "active"
+	}
+	if (timer.hasClass('inactive')) {
+		var state = "inactive"
+	}
+	if (timer.hasClass('notstarted')) {
+		var state = "notstarted"
+	}
+	return state;
+}
+
+var updateServerTimerStateAndTime = function() {
+	timer = $('.timer');
+	state = getTimerState(timer);
+	time = getTime();
+	$.ajax({
+		url: '/api/update_timer_state_and_time',
+		type: 'POST',
+		data: { "chat_id": chat_id, "state": state, "time": time, "user_id": user_id },
+		success: function(data) {
+		}
+	});
+}
+
+var getTime = function() {
+	if ($('.timer div').data("time") == ''){
+		var time = '-0m -0s';
+	}
+	else {
+		var time = $('.timer div').data("time");
+	}
+	return time;
+}
+
+var openClock = function(){
+	var clockY = $('.sidebar-clock').height();
+	var clockX = $('.sidebar-clock').width();
+	var clockFrontY = $('#clock-front').height();
+	var clockFrontX = $('#clock-front').width();
+	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + (clockFrontY / 1.3) + 'px' }, 300, 'easeInOutCubic');
+}
+
+var closeClock = function(){
+	console.log('close clock')
+	var clockY = $('.sidebar-clock').height();
+	var clockX = $('.sidebar-clock').width();
+	var clockFrontY = $('#clock-front').outerHeight();
+	var clockFrontX = $('#clock-front').width();
+	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + 'px' }, 650, 'easeOutBounce', function(){});
 }

@@ -131,13 +131,13 @@ $(".chats.test").ready(function() {
 		var who = '';
 		
 		if(user_id == message.user.id) {
-			who = 'you ';
+			who = 'you';
 			$('#message-overlay').fadeOut(150);
 		} 
 		
 		else {
 			scrollToTheBottomUnlessScrolled($('#messages'));
-			who = 'them ';
+			who = 'them';
 			// If they have a typing message, hide it!
 			$('#chat-notification #is_typing_' + message.user.id).hide();
 			
@@ -153,9 +153,14 @@ $(".chats.test").ready(function() {
 		pop.load();
 		pop.play();
 		
-		$('.messages-container').append('<br><div class="message-container"><li class="' + who + 'just_added_id_' + message.id + '" style="display:none;"><span class="nickname-said"><strong>' + message.user.nickname + '</strong> said:</span>' +
-													'<div class="message-wrapper"><div class="message">' + 
-														'<p>' + replaceURLWithHTMLLinks(message.message) + '</p></div></div></li></div>');
+		var header = getMessageHeader(message.user.nickname, who);
+		$('.messages-container').append(
+													'<div class="message-container">' +
+														'<li class="' + who + ' just_added_id_' + message.id + '" style="display:none;">' + header +
+																'<div class="message-wrapper"><div class="message">' + 
+																'<p>' + replaceURLWithHTMLLinks(message.message) + '</p>' +
+																'</div></div></li></div>');
+													
 		$('.messages-container li.just_added_id_' + message.id).fadeIn();
 	});
 	
