@@ -122,32 +122,32 @@ $(".chats.view").ready(function() {
 			if(member.user_id == user_id) {
 			}
 			else {
-				$('.messages-container').append('<li class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</li>');
+				$('.messages-container').append('<div class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</div>');
 			}
 		}
 		else if (member.event == "member_removed") {
 			if(member.user_id == user_id) {
 			}
 			else {
-				$('.messages-container').append('<li class="note"><strong>' + member.nickname + '</strong> left the chatroom.</li>');
+				$('.messages-container').append('<div class="note"><strong>' + member.nickname + '</strong> left the chatroom.</div>');
 			}
 		}
 	});
 	
 	// When somebody updates their nickname, tell all the people including yourself
 	presenceChannel.bind('updated_nickname', function(member) {
+		scrollToTheBottomUnlessScrolled($('#messages'));
 		if(member.user_id == user_id) {
-			$('.messages-container').append('<li class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('.messages-container').append('<div class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</div>');
 		}
 		else {
-			$('.messages-container').append('<li class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</li>');
+			$('.messages-container').append('<div class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</div>');
 		}
-		scrollToTheBottom($('.messages-container'));
 	});
 
 	// Deal with incoming messages!
 	presenceChannel.bind('send_message', function(message) {
-		
+		$("#spinner").hide();
 		var who = '';
 		
 		if(user_id == message.user.id) {
@@ -156,9 +156,10 @@ $(".chats.view").ready(function() {
 		} 
 		
 		else {
+			scrollToTheBottomUnlessScrolled($('#messages'));
 			who = 'them ';
 			// If they have a typing message, hide it!
-			$('#messages #is_typing_' + message.user.id).hide();
+			$('#chat-notification #is_typing_' + message.user.id).hide();
 			
 			// Do some alerting of the user
 			if(!hasFocus) {
@@ -169,8 +170,6 @@ $(".chats.view").ready(function() {
 		
 		// Programatically create an audio element and pop the user
 		var pop = new Audio('/sounds/pop.wav');
-
-		// Only if the browser is happy to play some audio, actually load and play it.
 		pop.load();
 		pop.play();
 		
@@ -178,19 +177,18 @@ $(".chats.view").ready(function() {
 													'<div class="message-wrapper"><div class="message">' + 
 														'<p>' + replaceURLWithHTMLLinks(message.message) + '</p></div></div></li></div>');
 		$('.messages-container li.just_added_id_' + message.id).fadeIn();
-		scrollToBottomOfAndFocusOn('.messages-container', '#message');
 	});
 	
 	// Typing Messages
 	presenceChannel.bind('typing_status', function(notification) {
 		if(notification.user.id == user_id) return false;
 		if(notification.status == "true") {
-			$('.messages-container').append('<li class="note" id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</li>');
+			$('#chat-notification').html('<div id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</div>');
+			scrollToTheBottomUnlessScrolled($('#messages'));
 		} 
 		else {
-			$('.messages-container #is_typing_' + notification.user.id).remove();
+			$('#chat-notification #is_typing_' + notification.user.id).remove();
 		}
-		scrollToTheBottom($('.messages-container'));
 	});
 	
 	// Now pusher is all setup lets let the user go wild!
@@ -198,9 +196,12 @@ $(".chats.view").ready(function() {
 	$('#message').removeAttr("disabled");
 	
 	// Enter key to send message
-	$('#message').keydown(function(e)
-	{
-		if (e.keyCode == 13) { send_message(); return false; }
+	$('#message').keydown(function(e) {
+		if (e.keyCode == 13) { 
+			scrollToTheBottomUnlessScrolled($('#messages'));
+			send_message(); 
+			return false; 
+		}
 	});
 
 	// Typing Notifications

@@ -350,6 +350,30 @@ $sidebar-width : 240px;
 				}
 			}
 			
+			#chat-notification-container {
+				position: absolute;
+				bottom: 0px;
+				height: 28px;
+				width: 100%;
+				z-index: 10;
+				
+				#chat-notification {
+					padding: 5px;
+					max-width: 840px;
+					margin: auto;
+					height: 100%;
+					
+					div {
+						font-size: 12px;
+						color: #525252;
+						
+						strong {
+							@extend div;
+						}
+					}
+				}
+			}
+			
 			#messages {
 				background-color: #fff;
 				padding-top: 20px;
@@ -359,17 +383,17 @@ $sidebar-width : 240px;
 				margin: auto;
 				height: 100%;
 				
-				.note {
-					margin-bottom: 0px;
-					margin-top: 15px;
-					color: $scouter-green;
-					strong {
-						color: #727272;
-					}
-				}
-				
 				.messages-container {
 					padding: 30px;
+					
+					.note {
+						margin-bottom: 0px;
+						margin-top: 15px;
+						color: $scouter-green;
+						strong {
+							color: #727272;
+						}
+					}
 					
 					.message-container {
 					

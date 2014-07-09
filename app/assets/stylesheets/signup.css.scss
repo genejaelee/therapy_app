@@ -57,22 +57,14 @@
 				}
 				
 				.check_box {
-					
+					margin-top: 10px;
+					position: relative;
 					label {
-						position: relative;
-						top: -4px;
-						display: inline;
-					}
-					
-					#therapist_remember_me {
-						border: 1px solid #ccc;
-						margin-left: 0px;
-						margin-right: 0px;
-						margin-bottom: 30px;
-						width: 25px;
-						height: 25px;
-						padding: 0px;
-						-webkit-appearance: checkbox;
+						position: absolute;
+						top: 1px;
+						left: 25px;
+						margin: 0px;
+						display: inline-block;
 					}
 				}
 			}
