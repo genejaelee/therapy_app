@@ -1,4 +1,4 @@
-$(".chats.view").ready(function() {
+$(".chats.test").ready(function() {
 	
 	// INIT UI FUNCTIONS
 	
@@ -10,6 +10,9 @@ $(".chats.view").ready(function() {
 	
 	//UI STUFF
 	
+	$('.hangup').hide();
+	$('.answer').hide();
+	
 	disableTwilioButtons('.twilio-button');
 	getSizesAndResize();
 	scrollToBottomOfAndFocusOn('.messages-container', '#message');
@@ -19,38 +22,15 @@ $(".chats.view").ready(function() {
 	})
 	
 	$('.timer-start-button').click(function(){
-		var time = $('.timer div').data("time");
-		var state = "notstarted"
-		$.ajax({
-			url: '/api/start_timer',
-			type: 'POST',
-			data: { "chat_id": chat_id, "time": time },
-			success: function(data) {
-			}
-		});
+		startTimer();
 	});
 	
 	$('.timer-toggle-button').click(function(){
-		var time = $('.timer div').data("time");
-		timer = $('.timer');
-		var state = getTimerState(timer);
-		$.ajax({
-			url: '/api/toggle_timer',
-			type: 'POST',
-			data: { "chat_id": chat_id, "time": time, "state": state },
-			success: function(data) {
-			}
-		});
+		toggleTimer();
 	});
 	
 	$('.timer-reset-button').click(function(){
-		$.ajax({
-			url: '/api/reset_timer',
-			type: 'POST',
-			data: { "chat_id": chat_id },
-			success: function(data) {
-			}
-		});
+		resetTimer();
 	})
 	
 	$('.helplines-button').click(function() {
@@ -271,8 +251,6 @@ $(".chats.view").ready(function() {
 		return false;
 	}
 	
-	getServerTimer();
-	
 	// Cross browser placeholder shiz
 	var text = 'Type your message here and hit enter...';
 	$('#message').focus(function() {
@@ -334,7 +312,6 @@ function watchTimer(periods) {
 		case 45:
 			alert('45 minutes passed!');
 	}
-	updateServerTimerStateAndTime();
 }
 
 var destroyTimer = function(){
@@ -342,20 +319,19 @@ var destroyTimer = function(){
 }
 
 var resetTimer = function(){
-	$('.timer-toggle-button').hide();
+	
+	$('.timer-toggle-button').html('Pause').hide();
 	$('.timer-start-button').show();
 	destroyTimer();
 	$('.timer').html('Hello.<div data-time="-0m -0s"></div>');
-	updateServerTimerStateAndTime();
 }
 
-var startTimer = function(start_time){
+var startTimer = function(){
 	$('.timer-start-button').hide();
 	$('.timer-toggle-button').show();
 	$('.timer').countdown('destroy');
-	$('.timer').countdown( {since: start_time, onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
+	$('.timer').countdown( {since: '-0m -0s', onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
 	$('.timer').removeClass('inactive').removeClass('notstarted').addClass('active');
-	updateServerTimerStateAndTime();
 }
 
 var pauseTimer = function() {
@@ -364,40 +340,30 @@ var pauseTimer = function() {
 	timer.countdown('pause');
 	timer.removeClass('active').removeClass('notstarted').addClass('inactive');
 	toggle.html('Start');
-	updateServerTimerStateAndTime();
 }
 
-var toggleTimer = function(start_time, state){
+var toggleTimer = function(){
 	timer = $('.timer');
+	state = getTimerState(timer);
+	start_time = getTime();
 	toggle = $('.timer-toggle-button');
 	switch(state) {
 		case "active":
 			toggle.html('Start');
 			timer.removeClass('active').addClass('inactive');
-			timer.countdown('pause');
+			pauseTimer();
 			if (timer.hasClass('notstarted')) {
 				startTimer(start_time);
 			}
 			break;
 		case "inactive":
 			toggle.html('Pause');
-			startTimer(start_time);
+			timer.countdown('resume');
+			timer.removeClass('inactive').removeClass('notstarted').addClass('active');
 			break;
 		case "notstarted":
 			startTimer(start_time);
 	}
-}
-
-var getServerTimer = function() {
-	$.ajax({
-		url: '/api/get_timer',
-		type: 'GET',
-		data: { "chat_id": chat_id },
-		success: function(data) {
-			startTimer(data);
-			pauseTimer();
-		}
-	});
 }
 
 var getTimerState = function(timer) {
@@ -413,19 +379,6 @@ var getTimerState = function(timer) {
 	return state;
 }
 
-var updateServerTimerStateAndTime = function() {
-	timer = $('.timer');
-	state = getTimerState(timer);
-	time = getTime();
-	$.ajax({
-		url: '/api/update_timer_state_and_time',
-		type: 'POST',
-		data: { "chat_id": chat_id, "state": state, "time": time, "user_id": user_id },
-		success: function(data) {
-		}
-	});
-}
-
 var getTime = function() {
 	if ($('.timer div').data("time") == ''){
 		var time = '-0m -0s';
@@ -434,21 +387,4 @@ var getTime = function() {
 		var time = $('.timer div').data("time");
 	}
 	return time;
-}
-
-var openClock = function(){
-	var clockY = $('.sidebar-clock').height();
-	var clockX = $('.sidebar-clock').width();
-	var clockFrontY = $('#clock-front').height();
-	var clockFrontX = $('#clock-front').width();
-	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + (clockFrontY / 1.3) + 'px' }, 300, 'easeInOutCubic');
-}
-
-var closeClock = function(){
-	console.log('close clock')
-	var clockY = $('.sidebar-clock').height();
-	var clockX = $('.sidebar-clock').width();
-	var clockFrontY = $('#clock-front').outerHeight();
-	var clockFrontX = $('#clock-front').width();
-	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + 'px' }, 650, 'easeOutBounce', function(){});
 }

@@ -10,8 +10,10 @@ class RegistrationsController < Devise::RegistrationsController
         session[:description] = params[:event][:description]
       end
     elsif current_user.role_type == "Therapist"
+      @user = current_user
       @therapist = Therapist.create
-      current_user.role = @therapist
+      @user.role = @therapist
+      @user.save
     end
     
     session[:registration_state] = "signup"

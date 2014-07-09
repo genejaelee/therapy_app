@@ -16,7 +16,7 @@
 			  <div><%= f.submit "Sign in", :class => "submit_button_white button" %></div>
 				
 			  <% if devise_mapping.rememberable? -%>
-			  <div class="check_box"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+			  <div class="check_box"><%= f.check_box :remember_me, :class => "hidden-check" %> <input type="checkbox" class="css-check"></input> <%= f.label :remember_me %></div>
 			  <% end -%>
 			<% end %>
 

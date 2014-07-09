@@ -4,11 +4,11 @@ class ApiController < ApplicationController
   def update_nickname
     puts "changing nickname..."
     if params[:user_id] != nil && params[:nickname] != nil
-      user = ChatUser.find_by(id: params[:user_id])
+      chat = Chat.find_by(id: params[:chat_id])
+      user = ChatUser.user(session, current_user, chat)
       old_nickname = user.nickname
       user.nickname = params[:nickname]
       if user.save
-        chat = Chat.find(params[:chat_id])
         payload = { :old_nickname => old_nickname, :nickname => user.nickname, :user_id => user.id }
         Pusher["presence-" + chat.channel].trigger('updated_nickname', payload)
         render :text => "SAVED"
@@ -21,13 +21,12 @@ class ApiController < ApplicationController
   end
 
   def post_message
-    puts("posting message on controller")
     chat = Chat.find(params[:chat_id])
     message = Message.create
     message.chat_id = chat.id
     
     user = ChatUser.user(session, current_user, chat)
-    message.user_id = user.id
+    message.user_id = params[:user_id]
     message.message = params[:message]
     
     payload = message.attributes

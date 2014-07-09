@@ -31,26 +31,21 @@ function goToByScroll(element){
 		500, "easeOutCubic");
 }
 
+function scrollToTheBottomUnlessScrolled(element) {
+	var messagesContainerHeight = $('.messages-container').outerHeight();
+	var threshold = 100
+	var scrollBottom = messagesContainerHeight - ($('#messages').scrollTop() + $('#messages').outerHeight() - 20);
+	if (scrollBottom < threshold) {
+		element.animate({scrollTop: 2000000}, 500, 'easeInOutCubic'); 
+	}
+}
+
 function scrollToBottomOfAndFocusOn(toScroll, toFocusOn){
 	$(toScroll).parent().stop().animate({
 		scrollTop: $(toScroll).height() + $('#spinner').height()},
 		1000, "easeOutCubic", function(){
 			$(toFocusOn).focus();
 		});
-}
-
-function jumpToBottomAndFocus(){
-	$('html,body').stop().animate({
-		scrollTop: $(document).height()},
-		0, "easeOutCubic", function(){
-			$('#message').focus();
-		});
-}
-
-function goToByScrollBottom(element){
-	$('html,body').stop().animate({
-		scrollTop: ($(element).offset().top) + $(element).height() + 50 - $(window).height()},
-		500, "easeOutCubic");
 }
 
 //legacy functions to hide and show things

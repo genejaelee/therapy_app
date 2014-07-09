@@ -2,10 +2,9 @@
 <head>
   <script type="text/javascript">
 
-  Twilio.Device.setup("<%= twilio_token %>", {debug: true});
+  Twilio.Device.setup("<%= test_twilio_token %>", {debug: true});
 
 		Twilio.Device.ready(function (device) {
-			$("#twilio-spinner").hide();
 			enableTwilioButtons('.twilio-button');
 	  });
 		
@@ -28,7 +27,7 @@
     });
 
     Twilio.Device.incoming(function (conn) {
-      $("#log").text("Incoming connection from " + '<%= other_name %>');
+      $("#log").text("Incoming connection from " + 'Test User');
       // accept the incoming connection and start two-way audio
 			$('.answer').click(function(){
 				conn.accept();
@@ -44,7 +43,7 @@
 
     function call() {
       // get the phone number to connect the call to
-      params = {"To": '<%= other_name %>'};
+      params = {"To": 'jenny'};
       Twilio.Device.connect(params);
     }
 

@@ -11,7 +11,11 @@ class HooksController < ApplicationController
         when 'channel_vacated'
           puts "Channel vacated: #{event["channel"]}"
           @chat_id = event["channel"].split('_').last
-          Message.where(chat_id: @chat_id).destroy_all
+          if @chat_id == "test"
+            Message.where(chat_id: Chat.find_by(channel: "message_channel_test").id).destroy_all
+          else
+            Message.where(chat_id: @chat_id).destroy_all
+          end
         when 'member_added'
           puts "Member added: #{event["channel"]}"
           payload = { :event => event["name"], :user_id => event["user_id"], :nickname => ChatUser.find_by(id: event["user_id"]).nickname }

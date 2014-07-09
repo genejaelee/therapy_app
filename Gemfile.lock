@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: https://github.com/stripe/stripe-ruby
-  revision: bb9388384f8bade9cf257e5907679e7afaab85a6
+  revision: 52792264efdbdc83a56f95dad82bc376adba5727
   specs:
     stripe (1.14.0)
       json (~> 1.8.1)
@@ -43,7 +43,7 @@ GEM
     arel (4.0.2)
     attr_encryptor (2.0.0)
       encryptor2 (>= 1.0.0)
-    aws-sdk (1.45.0)
+    aws-sdk (1.46.0)
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
@@ -172,8 +172,9 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
+    rest-client (1.6.8)
+      mime-types (~> 1.16)
+      rdoc (>= 2.4.2)
     retina_rails (2.0.1)
       rails (>= 3.2.0)
     rspec-core (2.13.1)

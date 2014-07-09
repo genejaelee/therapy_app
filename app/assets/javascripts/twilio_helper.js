@@ -1,4 +1,4 @@
-$(".chats.view").ready(function() {
+$(".chats").ready(function() {
 	console.log('loading twilio helper js');
 	// hide buttons initially
 	$('.hangup').hide();
