@@ -13,6 +13,7 @@ class HooksController < ApplicationController
           @chat_id = event["channel"].split('_').last
           if @chat_id == "test"
             Message.where(chat_id: Chat.find_by(channel: "message_channel_test").id).destroy_all
+            ChatUser.where(chat_id: Chat.find_by(channel: "message_channel_test").id).destroy_all
           else
             Message.where(chat_id: @chat_id).destroy_all
           end
