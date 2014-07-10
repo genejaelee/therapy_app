@@ -81,6 +81,29 @@ function send_message() {
 	
 }
 
+var changeNickname = function() {
+	if($('#nickname').val() != old_nickname) {
+		$("#spinner").show();
+		
+		$.post('/api/update_nickname/', { 'chat_id': chat_id, 'user_id': user_id, 'nickname': $('#nickname').val() }, function(response) {
+			if(response != "SAVED") {
+				alert("There was an error updating your nickname, please try again.");
+			}
+			$('#editNickname').fadeIn(200);
+			$('#title').fadeIn(200);
+			onSuccess: {
+				$("#spinner").hide();
+			}
+		});
+	} else {
+		$('#nickname').hide();
+		$('#title').fadeIn(200);
+		$('#changeNickname').hide();
+	}
+	
+	return false;
+}
+
 function replaceURLWithHTMLLinks(text) {
      var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
      return text.replace(exp,"<a href='$1' target='_blank'>$1</a>"); 

@@ -412,7 +412,7 @@ $sidebar-width : 240px;
 								font-size: 15px;
 								margin-top: 5px;
 								padding: 12px;
-								border-radius: 7px;
+								border-radius: 8px;
 				
 								p {
 									margin: 0px;
@@ -422,6 +422,13 @@ $sidebar-width : 240px;
 							}
 						}
 					}
+				}
+			}
+			
+			.system {
+				.message {
+					background-color: #ddd;
+					color: #525252;
 				}
 			}
 			

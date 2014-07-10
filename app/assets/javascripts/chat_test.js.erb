@@ -1,5 +1,12 @@
 $(".chats.test").ready(function() {
 	
+	$('.message-container').remove();
+	
+	var i;
+	for (i = 0; i < systemMessages.length; ++i) {
+		appendSystemMessage(i);
+	}
+	
 	// INIT UI FUNCTIONS
 	
 	$('.messages-container').bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
@@ -233,29 +240,6 @@ $(".chats.test").ready(function() {
 		if (e.keyCode == 13) { changeNickname(); }
 	});
 	
-	var changeNickname = function() {
-		if($('#nickname').val() != old_nickname) {
-			$("#spinner").show();
-			
-			$.post('/api/update_nickname/', { 'chat_id': chat_id, 'user_id': user_id, 'nickname': $('#nickname').val() }, function(response) {
-				if(response != "SAVED") {
-					alert("There was an error updating your nickname, please try again.");
-				}
-				$('#editNickname').fadeIn(200);
-				$('#title').fadeIn(200);
-				onSuccess: {
-					$("#spinner").hide();
-				}
-			});
-		} else {
-			$('#nickname').hide();
-			$('#title').fadeIn(200);
-			$('#changeNickname').hide();
-		}
-		
-		return false;
-	}
-	
 	// Cross browser placeholder shiz
 	var text = 'Type your message here and hit enter...';
 	$('#message').focus(function() {
@@ -272,124 +256,57 @@ $(".chats.test").ready(function() {
 var is_typing_currently = false;
 var browser_audio_type = "";
 
-var getSizesAndResize = function() {
-	var windowHeight = $(window).height();
-	var windowWidth = $(window).width();
-	var leftPanelWidth = windowWidth - $('.sidebar').width();
-	var messagePanelHeight = $(window).height() - $('.chat-input-panel').height();
-	var clockY = $('.sidebar-clock').height();
-	//resize
-	$('.chat-panel').css('width', leftPanelWidth + 'px');
-	$('.messages-panel').css('height', messagePanelHeight + 'px');
-	$('.sidebar-container').css('height', windowHeight - clockY + 'px');
+var systemMessages = [];
+systemMessages[0] = "Hi! Welcome to the Plain White Couch test chat room. For safety, all messages are deleted upon leaving the chatroom."
+systemMessages[1] = "These chatrooms are meant to be starting points for people to feel more comfortable talking to a therapist. Potential clients can start by instant messaging over text, get more comfortable, and transition to an audio chat in the middle of a session. The ultimate goal is to help people feel more comfortable meeting with the therapist in video chat or in person."
+systemMessages[2] = "To start typing, simply type in the text box at the bottom of the page. There's no one else actually here right now, but you can get a feel for how it works."
+systemMessages[3] = "As a therapist, you have a set of controls on the right hand side. The call button allows you to start an audio chat conversation with the potential client you are messaging with -- the client has the option to toggle this button too. The helplines button is a list of referrals for emergency resources. Finally, there is a timer which you can toggle to track the session time -- simply hover over the timer to see how much time has elapsed. You'll also get notifications as the session starts to wind down."
+systemMessages[4] = "This should give you a sense of how things would work. Let me know if you have questions, feedback or if you would like to do a live test chat!<br> -Matthew Krisioff (mattkrisiloff@gmail.com)"
+
+var appendSystemMessage = function(index) {
+	var timeIntervals = [0,5000,18000,26000,39000];
+	setTimeout(function(){
+		if (index === 0) {
+			$('.messages-container').append('<span class="nickname-said"><strong>Plain White Couch</strong> said:</span>');
+		}
+		
+		tutorialHighlights(index);
+		
+		$('.messages-container').append(
+			'<div class="message-container" style="display:none;">' +
+			'<li class="system">' +
+			'<div class="message-wrapper"><div class="message">' + 
+			'<p>' + (systemMessages[index]) + '</p>' +
+			'</div></div></li></div>');
+			
+			$('.message-container').last().fadeIn(500);
+			scrollToTheBottomUnlessScrolled($('#messages'));
+		
+			// Programatically create an audio element and pop the user
+			var pop = new Audio('/sounds/pop.wav');
+			pop.load();
+			pop.play();
+	}, timeIntervals[index])
 }
 
-var openSidebarCard = function(card) {
-	var windowWidth = $(window).width();
-	var sideBarWidth = $('.sidebar').width();
-	var cardWidth = card.width();
-	$('#sidebar-cards').css('width', cardWidth + sideBarWidth + 'px');
-	card.stop().animate({'right' : sideBarWidth + 'px'}, 350, 'easeInOutCubic', function(){
-		$(this).addClass('opened').removeClass('closed');
-	})
-}
-
-var closeSidebarCard = function(card) {
-	var windowWidth = $(window).width();
-	var sideBarWidth = $('.sidebar').width();
-	var cardWidth = card.width();
-	card.stop().animate({'right' : (sideBarWidth - cardWidth) + 'px'}, 350, 'easeInOutCubic', function(){
-		$(this).addClass('closed').removeClass('opened');
-		$('#sidebar-cards').css('width', sideBarWidth + 'px');
-	})
-}
-
-function watchTimer(periods) {
-	console.log('watching timer');
-	var minute = periods[5];
-	switch(minute) {
+var tutorialHighlights = function(index) {
+	switch(index) {
+		case 0:
+			break;
 		case 1:
-			alert('1 minute passed!');
 			break;
-		case 30:
-			alert('30 minutes passed!');
+		case 2:
+			$('#message').css('border', '5px solid #fff')
+			$('#message').animate({ borderColor : '#a0d071' }, 500, 'easeInOutCubic');
 			break;
-		case 45:
-			alert('45 minutes passed!');
-	}
-}
-
-var destroyTimer = function(){
-	$('.timer').countdown('destroy').removeClass('active').addClass('inactive');
-}
-
-var resetTimer = function(){
-	
-	$('.timer-toggle-button').html('Pause').hide();
-	$('.timer-start-button').show();
-	destroyTimer();
-	$('.timer').html('Hello.<div data-time="-0m -0s"></div>');
-}
-
-var startTimer = function(){
-	$('.timer-start-button').hide();
-	$('.timer-toggle-button').show();
-	$('.timer').countdown('destroy');
-	$('.timer').countdown( {since: '-0m -0s', onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
-	$('.timer').removeClass('inactive').removeClass('notstarted').addClass('active');
-}
-
-var pauseTimer = function() {
-	timer = $('.timer');
-	toggle = $('.timer-toggle-button');
-	timer.countdown('pause');
-	timer.removeClass('active').removeClass('notstarted').addClass('inactive');
-	toggle.html('Start');
-}
-
-var toggleTimer = function(){
-	timer = $('.timer');
-	state = getTimerState(timer);
-	start_time = getTime();
-	toggle = $('.timer-toggle-button');
-	switch(state) {
-		case "active":
-			toggle.html('Start');
-			timer.removeClass('active').addClass('inactive');
-			pauseTimer();
-			if (timer.hasClass('notstarted')) {
-				startTimer(start_time);
-			}
+		case 3:
+			$('#message').css('border', 'none');
+			$('.call').css('color', '#a0d071');
+			$('.helplines-button').css('color', '#a0d071');
+			$('.timer-start-button').css('color', '#a0d071');
+			$('.timer-reset-button').css('color', '#a0d071')
 			break;
-		case "inactive":
-			toggle.html('Pause');
-			timer.countdown('resume');
-			timer.removeClass('inactive').removeClass('notstarted').addClass('active');
-			break;
-		case "notstarted":
-			startTimer(start_time);
+		case 4:
+			$('.sidebar').find('button').css('color', '#7fc4d7');
 	}
-}
-
-var getTimerState = function(timer) {
-	if (timer.hasClass('active')) {
-		var state = "active"
-	}
-	if (timer.hasClass('inactive')) {
-		var state = "inactive"
-	}
-	if (timer.hasClass('notstarted')) {
-		var state = "notstarted"
-	}
-	return state;
-}
-
-var getTime = function() {
-	if ($('.timer div').data("time") == ''){
-		var time = '-0m -0s';
-	}
-	else {
-		var time = $('.timer div').data("time");
-	}
-	return time;
 }
