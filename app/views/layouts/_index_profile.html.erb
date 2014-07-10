@@ -1,5 +1,6 @@
 <div class="panel profile-link-panel closed" data-id="<%= therapist.id %>">
 	<div class="bg-container closed">
+		
 		<div class="top-panel">
 			<span class="tap-plus-sign">+</span>
 			<div class="container">
@@ -19,7 +20,29 @@
 		
 		<div class="bottom-panel">
 			<div class="container expanded-profile-content">
-				<%= render 'layouts/goal_form', :therapist => therapist %>
+				<div class="goal-form-container">
+					<div class="sixteen columns form-container">
+						<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
+								<%= f.hidden_field :therapist_id, :value => therapist.id %>
+								<%= f.hidden_field :client_id, :value => @client.id %>
+			
+							<div class="sixteen columns spacer examples-container-header">
+								<%= f.label "What others have posted:", :style => "text-align: left;" %>
+								<hr>
+							</div>
+			
+							<%= render 'layouts/examples' %>
+			
+							<div class="sixteen columns">
+								<%= f.submit "Submit", 
+								:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Scouter Terms of Service and Privacy Policy" }, 
+								:class => "submit_button_white button" %>
+							</div>
+			
+						<% end %>
+		
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
