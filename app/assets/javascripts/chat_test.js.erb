@@ -219,24 +219,12 @@ $(".chats.test").ready(function() {
 		}
 	});
 	
-	var old_nickname = "";
-	$('#editNickname').click(function()
-	{
-		$('#title').fadeOut(200);
-		$('#nickname').fadeIn(200);
-		$('#changeNickname').fadeIn(200);
-		$(this).hide();
-		old_nickname = $('#nickname').val();
-		return false;
-	});
-
 	$('.change-nickname-button').click(function() {
 		//$('#nickname').attr("disabled", "disabled");
 		changeNickname();
 	});
 	
-	$('#nickname').keydown(function(e)
-	{
+	$('#nickname').keydown(function(e) {
 		if (e.keyCode == 13) { changeNickname(); }
 	});
 	

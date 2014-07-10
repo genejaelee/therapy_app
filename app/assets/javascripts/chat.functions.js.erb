@@ -82,7 +82,7 @@ function send_message() {
 }
 
 var changeNickname = function() {
-	if($('#nickname').val() != old_nickname) {
+	if($('#nickname').val().length > 0) {
 		$("#spinner").show();
 		
 		$.post('/api/update_nickname/', { 'chat_id': chat_id, 'user_id': user_id, 'nickname': $('#nickname').val() }, function(response) {
