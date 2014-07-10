@@ -1,6 +1,6 @@
 <div class="panel profile-link-panel closed" data-id="<%= therapist.id %>">
 	<div class="bg-container closed">
-		<div class="inner-container">
+		<div class="top-panel">
 			<span class="tap-plus-sign">+</span>
 			<div class="container">
 				<div class="four columns therapist-image-container">
@@ -14,25 +14,10 @@
 						<p class="card-bio"><%= therapist.bio %></p>
 					</div>
 				</div>
-			
-			<!--
-				<div class="four columns">
-					<div class="cta-button-white profile-open-button read-more-button">
-						<div class="button">
-							Read More
-						</div>
-					</div>
-					<div class="cta-button-white profile-open-button request-call-button">
-						<div class="button">
-							Request a call
-						</div>
-					</div>
-				</div>
-				-->
 			</div>
 		</div>
 		
-		<div class="gen-header">
+		<div class="bottom-panel">
 			<div class="container expanded-profile-content">
 				<%= render 'layouts/goal_form', :therapist => therapist %>
 			</div>

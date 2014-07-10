@@ -44,7 +44,8 @@ TherapyApp::Application.routes.draw do
   # user stuff
   match '/profile' => 'users#show_my_profile', :as => :show_my_profile, via: 'get'
   
-  match '/paysecure' => 'charges#new', via: 'get'
+  match '/paysecure' => 'charges#just_payment', via: 'get'
+  match '/process' => 'charges#process_payment', :as => :process_payment, via: 'post'
   
   match '/clients/new' => 'clients#new', via: 'post'
   match '/client_create' => "clients#create", :as => :create_client, via: 'get'

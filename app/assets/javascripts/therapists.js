@@ -1,6 +1,99 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+$(".therapists").ready(function() {
+	//therapist profile stuff
+	//addSubsection()
+	
+	$('.profile-link-panel').stop().css({height: $(this).find('.top-panel').outerHeight() - 50 + "px"}, 500, "easeOutCubic");
+	
+	$('.current_therapist_name').css('display', 'none');
+	$('#user_current_therapist').change(function(){
+		if ($(this).val() == "Yes") {
+			$('.current_therapist_name').css('display', 'block');
+			$('.current_therapist_name').css('opacity', '0');
+			$('.current_therapist_name').stop().animate({ opacity: 1.0 }, 400, function(){
+	});
+		}
+		else {
+			$('.current_therapist_name').css('display', 'none');
+		}
+	});
+	
+	//therapist index stuff
+	$('#open-email-dropbox').click(function(){
+		$('.email-dropbox').css({'display' : 'block',
+														'margin-top' : '-151px',
+														'opacity' : '0'});
+		$('.email-dropbox').stop().animate({opacity: 1.0, 'margin-top' : '0px'}, 350, "easeOutCubic")
+	});
+	
+	mouseEnterAnimateIndex();
+	
+	$('.profile-link-panel .bg-container .top-panel').click(function(){
+		var maxHeight = setProfilePanelHeights();
+		var thisProfile = $(this).parent().parent();
+		openCloseOnClick(thisProfile, $(this).height(), maxHeight);
+	});
+	
+});
+
+function mouseEnterAnimateIndex() {
+	$('.profile-link-panel .bg-container .top-panel').bind("mouseenter", function() {
+		var thisProfile = $(this).parent().parent();
+		if (thisProfile.hasClass("closed")) {
+			thisProfile.find('.tap-plus-sign').css('color', '#90bc64');
+			thisProfile.stop().animate({height: $(this).outerHeight() + 5 + "px"}, 200, "easeOutCubic", function() {
+				$(this).unbind('mouseenter');
+			});
+		}
+	});
+
+	$('.profile-link-panel .bg-container .top-panel').bind("mouseleave", function() {
+		var thisProfile = $(this).parent().parent();
+		if (thisProfile.hasClass("closed")) {
+			thisProfile.find('.tap-plus-sign').css('color', '#ddd');
+			thisProfile.stop().animate({height: $(this).outerHeight() - 50 + "px"}, 200, "easeOutCubic", function() {
+				$(this).unbind('mouseleave');
+			});
+		}
+	});
+}
+
+function setProfilePanelHeights() {
+	var windowWidth = $(window).width()
+	if(windowWidth < 480) {
+		var maxHeight = '1150';
+	}
+	else if(480 < windowWidth && windowWidth < 767) {
+		var maxHeight = '1000';
+	}
+	else if(767 < windowWidth && windowWidth < 960) {
+		var maxHeight = '800';
+	}
+	else if(960 < windowWidth) {
+		var maxHeight = '775';
+	}
+	return maxHeight;
+}
+
+function openCloseOnClick(element, min, max) {
+	if (element.hasClass("closed")) {
+		element.removeClass("closed");
+		goToByScroll(element);
+		element.find('.bottom-panel').height(max - $('.top-panel').outerHeight());
+		element.stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
+			element.addClass("opened");
+		});
+	}
+	
+	if (element.hasClass("opened")) {
+		element.stop().animate({height: element.find('.top-panel').outerHeight() + "px"}, 300, "easeOutCubic", function(){
+			element.removeClass("opened").addClass("closed");
+		});
+	}
+}
+
 var reduceMarginsIfAllAdded = function(element) {
 	if ($('#add-subsection-one').css('display') == 'none' && $('#add-subsection-two').css('display') == 'none' ) {
 		$('#add-subsection-container').css('display', 'none');
@@ -42,82 +135,6 @@ function renderEitherCalendarOrProfile(thisButton) {
 	else {
 		renderProfileMore();
 	}
-}
-
-function mouseEnterAnimateIndex(currentHeight) {
-	$('.profile-link-panel .bg-container .inner-container').bind("mouseenter", function() {
-		var thisProfile = $(this).parent().parent();
-		if (thisProfile.hasClass("closed")) {
-			thisProfile.find('.tap-plus-sign').css('color', '#90bc64');
-			thisProfile.stop().animate({height: (currentHeight + 5) + "px"}, 200, "easeOutCubic", function() {
-				$(this).unbind('mouseenter');
-			});
-		}
-	});
-
-	$('.profile-link-panel .bg-container .inner-container').bind("mouseleave", function() {
-		var thisProfile = $(this).parent().parent();
-		if (thisProfile.hasClass("closed")) {
-			thisProfile.find('.tap-plus-sign').css('color', '#ddd');
-			thisProfile.stop().animate({height: (currentHeight) + "px"}, 100, "easeOutCubic", function() {
-				$(this).unbind('mouseleave');
-			});
-		}
-	});
-}
-
-function setProfilePanelHeights() {
-	var windowWidth = $(window).width()
-	if(windowWidth < 480) {
-		var maxHeight = '1150';
-	}
-	else if(480 < windowWidth && windowWidth < 767) {
-		var maxHeight = '1000';
-	}
-	else if(767 < windowWidth && windowWidth < 960) {
-		var maxHeight = '800';
-	}
-	else if(960 < windowWidth) {
-		var maxHeight = '775';
-	}
-	return maxHeight;
-}
-
-function openCloseOnClick(element, min, max) {
-	if ($(element).hasClass("closed")) {
-		$(element).removeClass("closed");
-		goToByScroll(element);
-		$(element).stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
-			$(element).addClass("opened");
-		});
-		
-		timeRangesArray = [];
-		//AJAX
-		//updateEventData(element);
-		//get event data
-	}
-	if ($(element).hasClass("opened")) {
-		$(element).removeClass("opened");
-		$(element).stop().animate({height: (min-5) + "px"}, 300, "easeOutCubic", function(){
-				$(element).stop().animate({height: min + "px"}, 150, "easeOutCubic", function(){});
-				$(element).addClass("closed");
-		});
-	}
-}
-
-function hideNavBar() {
-	if ($(window).scrollTop() == 0) {
-		$('.navbar').stop().animate({'height' : '0px'}, 0);
-	}
-	
-	$(window).scroll(function() {
-		if ($(window).scrollTop() < 5) {
-			$('.navbar').stop().animate({'height' : '0px'}, 150, 'easeOutCubic');
-		}
-		else {
-			$('.navbar').stop().animate({'height' : '50px'}, 150, 'easeOutCubic');
-		}
-	});
 }
 
 // AJAX STUFF

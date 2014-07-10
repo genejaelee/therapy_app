@@ -119,43 +119,6 @@ var ready = function() {
 	$('#therapist-bio').change(updateCountdown);
 	$('#therapist-bio').keyup(updateCountdown);
 	
-	//therapist profile stuff
-	//addSubsection()
-	
-	$('.current_therapist_name').css('display', 'none');
-	$('#user_current_therapist').change(function(){
-		if ($(this).val() == "Yes") {
-			$('.current_therapist_name').css('display', 'block');
-			$('.current_therapist_name').css('opacity', '0');
-			$('.current_therapist_name').stop().animate({ opacity: 1.0 }, 400, function(){
-	});
-		}
-		else {
-			$('.current_therapist_name').css('display', 'none');
-		}
-	});
-	
-	//therapist index stuff
-	$('#open-email-dropbox').click(function(){
-		$('.email-dropbox').css({'display' : 'block',
-														'margin-top' : '-151px',
-														'opacity' : '0'});
-		$('.email-dropbox').stop().animate({opacity: 1.0, 'margin-top' : '0px'}, 350, "easeOutCubic")
-	});
-	
-	if($('body').is('#therapist-index')) {
-		var currentHeightPixels = $('.profile-link-panel').css('height');
-		var currentHeight = parseInt(currentHeightPixels.slice(0, 3));
-	}
-	
-	mouseEnterAnimateIndex(currentHeight);
-	
-	$('.profile-link-panel .bg-container .inner-container').click(function(){
-		maxHeight = setProfilePanelHeights();
-		var thisProfile = $(this).parent().parent();
-		openCloseOnClick(thisProfile, currentHeight, maxHeight);
-	});
-	
 	//handle unbeforeunload method for pages x y z
 	$('.button').click(function() {
 		window.onbeforeunload = null;

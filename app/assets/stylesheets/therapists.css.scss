@@ -31,9 +31,9 @@
 
 .image-panel {
 	.bg-container {
-		background-image: image-url('hiking.JPG');
+		background-color: #eee;
 		background-size: cover;
-		height: 120px;
+		height: 5px;
 		background-attachment: fixed;
 		.container {
 			text-align: center;
@@ -54,21 +54,18 @@
 }
 
 .profile-link-panel {
-	height: 345px;
+	height: $profile-index-height;
 	position: relative;
 	overflow: hidden;
 	
 	.bg-container {
-		box-shadow: 0px 4px 4px rgba(0,0,0,0.08);
 		height: $profile-index-height;
 		overflow: hidden;
 		padding: 0px;
 		height: 100%;
 		
-		.inner-container:hover {
+		.top-panel:hover {
 			cursor: pointer;
-			background-color: #f9f9f9;
-			box-shadow: 0px 4px 4px rgba(0,0,0,0.15);
 			
 			.container {
 				.columns {
@@ -87,12 +84,11 @@
 			}
 		}
 
-		.inner-container {
+		.top-panel {
 			position: absolute;
-			box-shadow: 0px 2px 1px rgba(0,0,0,0.08);
 			z-index: 2;
 			top: 0px;
-			padding: 50px 0px;
+			padding: 40px 0px;
 			background-color: #fff;
 			width: 100%;
 			height: $profile-index-height;
@@ -174,7 +170,7 @@
 			}
 		}
 		
-		.gen-header {
+		.bottom-panel {
 			max-width: $max-width;
 			z-index: 1;
 			position: absolute;
