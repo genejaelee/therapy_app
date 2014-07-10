@@ -5,7 +5,27 @@ $(".therapists").ready(function() {
 	//therapist profile stuff
 	//addSubsection()
 	
-	$('.profile-link-panel').stop().css({height: $(this).find('.top-panel').outerHeight() - 50 + "px"}, 500, "easeOutCubic");
+	// do index stuff for therapist
+	if ($('body').hasClass('index')) {
+		$('.tutorial-panel').css('top', - $(".tutorial-panel").height());
+		
+		setTimeout(function(){
+			openTutorial();
+		}, 250)
+		
+		$('.confirm-button').click(function(){
+			closeTutorial();
+		});
+	}
+	
+	function openTutorial(){
+		$('.tutorial-panel').animate({top: "0px"}, 500, "easeInOutCubic");
+	}
+	
+	function closeTutorial(){
+		var tutorialHeight = $('.tutorial-panel').innerHeight();
+		$('.tutorial-panel').animate({top: "-" + tutorialHeight + "px"}, 500, "easeInOutCubic");
+	}
 	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){
@@ -43,7 +63,7 @@ function mouseEnterAnimateIndex() {
 		var thisProfile = $(this).parent().parent();
 		if (thisProfile.hasClass("closed")) {
 			thisProfile.find('.tap-plus-sign').css('color', '#90bc64');
-			thisProfile.stop().animate({height: $(this).outerHeight() + 5 + "px"}, 200, "easeOutCubic", function() {
+			thisProfile.stop().animate({height: $(this).outerHeight() + 10 + "px"}, 150, "easeInOutCubic", function() {
 				$(this).unbind('mouseenter');
 			});
 		}
@@ -53,8 +73,9 @@ function mouseEnterAnimateIndex() {
 		var thisProfile = $(this).parent().parent();
 		if (thisProfile.hasClass("closed")) {
 			thisProfile.find('.tap-plus-sign').css('color', '#ddd');
-			thisProfile.stop().animate({height: $(this).outerHeight() - 50 + "px"}, 200, "easeOutCubic", function() {
+			thisProfile.stop().animate({height: $(this).outerHeight() + "px"}, 150, "easeInOutCubic", function() {
 				$(this).unbind('mouseleave');
+				thisProfile.removeAttr('style');
 			});
 		}
 	});
@@ -63,16 +84,16 @@ function mouseEnterAnimateIndex() {
 function setProfilePanelHeights() {
 	var windowWidth = $(window).width()
 	if(windowWidth < 480) {
-		var maxHeight = '1150';
-	}
-	else if(480 < windowWidth && windowWidth < 767) {
-		var maxHeight = '1000';
-	}
-	else if(767 < windowWidth && windowWidth < 960) {
 		var maxHeight = '800';
 	}
+	else if(480 < windowWidth && windowWidth < 767) {
+		var maxHeight = '800';
+	}
+	else if(767 < windowWidth && windowWidth < 960) {
+		var maxHeight = '600';
+	}
 	else if(960 < windowWidth) {
-		var maxHeight = '775';
+		var maxHeight = '600';
 	}
 	return maxHeight;
 }

@@ -4,14 +4,16 @@
 	opacity: 0.8;
 }
 
-.header-tall {
-	background-color: #eee;
-	.bg-container {
-		.container {
-			#logo-banner {
-				padding-top: 80px !important;
-			}
-		}
+#logo-banner {
+	padding-bottom: 40px;
+	text-align: center;
+
+	a {
+		margin: auto;
+	}
+	
+	p {
+		color: #fff;
 	}
 }
 
@@ -26,15 +28,6 @@
 		margin: auto;
 
 		.container {
-
-			#logo-banner {
-				padding-bottom: 40px;
-				text-align: center;
-
-				a {
-					margin: auto;
-				}
-			}
 			
 			#copy-container {
 				a {

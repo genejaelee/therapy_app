@@ -86,10 +86,7 @@
 
 <div class="sidebar">
 	<div class="sidebar-container">
-		<div id="logo-banner">
-			<%= link_to image_tag("couch-logo5.png", class: "top-logo"), homepage_path %>
-			<p>Plain <span style="font-weight: 600;">White</span> Couch</p>
-		</div>
+		<%= render 'layouts/logo' %>
 		<hr>
 		<%= render :partial => 'twilio/test_call' %>
 		<hr>

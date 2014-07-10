@@ -1,10 +1,7 @@
 <div class="gen-header">
 	<div class="bg-container">
 		<div class="container">
-			<div class="sixteen columns" id="logo-banner">
-				<%= link_to image_tag("couch-logo5.png", height: "50px", class: "top-logo"), homepage_path %>
-				<p>Plain <span style="font-weight: 600;">White</span> Couch</p>
-			</div>
+			<%= render 'layouts/logo' %>
 			<div class="sixteen columns" id="copy-container">
 				<h1><%= yield :title %></h1>
 				<%= yield :body %>

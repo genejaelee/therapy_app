@@ -1,5 +1,97 @@
 @import "variables.css.scss";
 
+.tutorial-panel {
+	background-image: image-url('stripe-background6.jpg');
+	background-repeat: repeat;
+	background-size: 50px;
+	width: 100%;
+	background-color: #fff;
+	z-index: 1100;
+	position: fixed;
+	height: 100%;
+	overflow-y: scroll;
+	
+	#logo-banner {
+		background-color: $scouter-blue;
+		padding-top: 20px;
+		padding-bottom: 5px;
+	}
+	
+	i {
+		font-size: 12px;
+		color: rgba(0,0,0,0.7);
+	}
+	
+	.bg-container {
+		margin: auto;
+		max-width: $max-width;
+		.container {
+			padding: 40px 0px;
+			
+			.header-container {
+				h2 {
+					font-weight: 600;
+					font-size: 30px;
+					margin-bottom: 0px;
+					color: rgba(0,0,0,0.7);
+				}
+			}
+			
+			.content-container {
+				height: 140px;
+				
+				.text-container {
+					padding-left: 20px;
+				}
+			
+				.content {
+				
+					img {
+						width: 100px;
+						height: 100px;
+					}
+				
+					h3 {
+						font-size: 16px;
+						margin-bottom: 0px;
+						font-weight: 600;
+						color: rgba(0,0,0,0.7);
+					}
+			
+					p {
+						font-size: 14px;
+						color: rgba(0,0,0,0.7);
+					}
+				}
+			}
+			
+			.button-container {
+				text-align: left;
+				width: 100%;
+				
+				.confirm-button {
+					@include submit-button-white;
+					height: 40px;
+					width: 180px;
+					font-size: 16px;
+					margin-right: 10px;
+				}
+				
+				.cancel-button {
+					@include submit-button-white;
+					height: 40px;
+					width: 180px;
+					@include red-border;
+				}
+				
+				button:hover {
+					background-color: #eee;
+				}
+			}
+		}
+	}
+}
+
 .spacer {
 	display: block;
 	width: 100%;
@@ -33,7 +125,7 @@
 	.bg-container {
 		background-color: #eee;
 		background-size: cover;
-		height: 5px;
+		height: 10px;
 		background-attachment: fixed;
 		.container {
 			text-align: center;
@@ -46,7 +138,6 @@
 			}
 		}
 		div {
-			background-color: rgba(0,0,0,0.1);
 			height: 100%;
 			width: 100%;
 		}
@@ -59,7 +150,6 @@
 	overflow: hidden;
 	
 	.bg-container {
-		height: $profile-index-height;
 		overflow: hidden;
 		padding: 0px;
 		height: 100%;
@@ -103,6 +193,11 @@
 			}
 
 			.four {
+				img {
+					width: 150px;
+					height: 150px;
+				}
+				
 				.cta-button-white {
 					margin: auto;
 					text-align: center;
@@ -280,9 +375,7 @@
 @media only screen and (min-width: 1320px) {
 	.profile-link-panel {
 		.bg-container {
-			.inner-container {
-				margin-left: -4px;
-				max-width: 1328px;
+			.top-panel {
 			}
 		}
 	}
@@ -299,10 +392,11 @@
 @media only screen and (max-width: 960px) {
 	
 	.profile-link-panel {
+		height: 350px;
 		overflow: hidden;
 		.bg-container {
 			height: auto;
-			.inner-container {
+			.top-panel {
 				height: 350px;
 				
 				.tap-plus-sign {
@@ -314,8 +408,6 @@
 					text-align: center;
 					img {
 						margin: auto;
-						height: 170px;
-						width: 170px;
 					}
 				}
 				.columns {
@@ -337,15 +429,8 @@
 				}
 			}
 			
-			.gen-header {
-				height: 450px;
+			.bottom-panel {
 			}
-		}
-	}
-	
-	.datepicker-container {
-		div {
-			margin: auto;
 		}
 	}
 }
@@ -354,8 +439,8 @@
 	.image-panel {
 		.bg-container {
 			background-image: none;
-			background-color: #ddd;
-			height: 80px;
+			background-color: #eee;
+			height: 20px;
 			.container {
 				h1 {
 					font-family: $light-font;
@@ -367,12 +452,43 @@
 		}
 	}
 	
+	.tutorial-panel {
+		.bg-container {
+			.container {
+				.header-container {
+					h2 {
+						margin-bottom: 10px;
+					}
+				}
+				.content-container {
+					height: auto;
+					text-align: center;
+					
+					.image-container {
+						
+					}
+					
+					.text-container {
+						padding-left: 0px;
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+	
 	.profile-link-panel {
 		overflow: hidden;
+		height: 500px;
 		.bg-container {
 			height: auto;
-			.inner-container {
+			.top-panel {
 				height: 500px;
+				
+				.tap-plus-sign {
+					top: 460px;
+					right: 10px;
+				}
 				
 				.therapist-image-container {
 					text-align: center;
@@ -401,7 +517,7 @@
 				}
 			}
 			
-			.gen-header {
+			.bottom-panel {
 				height: 500px;
 				
 				.spacer {
@@ -418,8 +534,7 @@
 		overflow: hidden;
 		.bg-container {
 			height: auto;
-			.inner-container {
-				height: 650px;
+			.top-panel {
 				
 				.therapist-image-container {
 					text-align: center;
@@ -456,7 +571,7 @@
 				}
 			}
 			
-			.gen-header {
+			.bottom-panel {
 				height: 500px;
 				
 				.form-container {

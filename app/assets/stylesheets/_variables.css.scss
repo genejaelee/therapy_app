@@ -36,11 +36,19 @@ a {
 	margin-bottom: 15px;
 }
 
+.orange-hr {
+	@include orange-hr;
+}
+
 @mixin blue-hr {
 	border-top: 1px solid #6dadbc;
 	border-bottom: 1px solid #a2d5e0;
 	margin-top: 15px;
 	margin-bottom: 15px;
+}
+
+.blue-hr {
+	@include blue-hr;
 }
 
 @mixin submit-button-white {
@@ -55,4 +63,18 @@ a {
 	border-width: 1px;
 	border-style: solid;
 	border-color: $scouter-green;
+}
+
+@mixin green-border {
+	border-color: $scouter-green;
+	color: $scouter-green;
+}
+
+@mixin red-border {
+	border-color: $scouter-red;
+	color: $scouter-red;
+}
+
+.submit-button.white {
+	@include submit-button-white;
 }
