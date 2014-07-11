@@ -55,7 +55,7 @@ class EventsController < ApplicationController
   def finish
     @user = current_user
     find_event_and_client_or_build
-    @event.update_attributes(:user_id => current_user.id)
+    @event.update_attributes(:user_id => current_user.id, :description => session[:description])
     
     if @event.save
       session[:event_id] = @event.id
