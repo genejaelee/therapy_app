@@ -36,10 +36,12 @@ class ApplicationController < ActionController::Base
         routed_path = update_therapist_path
       end
       session[:registration_state] == nil
+      
     elsif session[:event_id].present? && @user.role_type == "Client"
       puts 'user role is client'
-      if Event.find_by(id: session[:event_id]).has_attribute?('therapist_id')
-        if session[:suggested_times].present?
+      @event = Event.find_by(id: session[:event_id])
+      if @event.has_attribute?('therapist_id')
+        if session[:description].present?
           routed_path = '/event/finish'
         else
           routed_path = '/session_details'

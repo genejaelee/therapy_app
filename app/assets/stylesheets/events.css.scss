@@ -1,4 +1,36 @@
-.calendar-form {
-	.bg-container {
+@import "variables.css.scss";
+
+.datetime-container {
+	
+	input {
+		color: $scouter-teal-fade;
+		font-size: 16px;
+		padding: 10px 10px;
+		height: 40px;
+		width: 260px;
+		-webkit-appearance: none;
+		margin-bottom: 10px;
+	}
+	
+	input:focus {
+		box-shadow: none;
+	}
+	
+	.date-field {
+		margin-right: 5px;
+		display: inline-block;
+	}
+	
+	.time-field {
+		width: 160px;
+		display: inline-block;
+	}
+			
+	label {
+		margin-bottom: 5px;
+		margin-top: 15px;
+		color: #aaa;
+		font-size: 16px;
+		font-weight: 200;
 	}
 }

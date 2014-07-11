@@ -24,14 +24,13 @@
 			  <%= f.label :password_confirmation %>
 			  <%= f.password_field :password_confirmation, autocomplete: "off" %>
 				
-				<% if session[:event_id].present? %>
-					<%= render :partial => 'layouts/session_details_form', :locals => { :f => f } %>
+				<% @event = get_a_event_for_user %>
+				<% @therapist = get_therapist_for_user %>
+
+				<% unless @therapist.nil? %>
+					<%= label_tag "Write anything you want to share with #{@therapist.first_name} here."%>
 				<% end %>
-				
-				<div class="timezone-container">
-					<span>Change my timezone (currently <%= @time_zone %>)</span>
-					<%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, default: time_zone_value_to_name(@time_zone) ) %>
-				</div>
+				<%= text_area(:event, :description, :id => "description", :placeholder => "Optional") %>
 
 			  <%= f.submit "Sign up", :class => "submit_button_white button" %>
 			<% end %>

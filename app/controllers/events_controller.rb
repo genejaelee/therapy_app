@@ -12,11 +12,13 @@ class EventsController < ApplicationController
     @event = Event.create(event_params)
     session[:event_id] = @event.id
     puts "#{session[:event_id]}"
+    @formatted_times = @event.format_suggested_times_with_timezone(params[:suggested_times], params[:user][:time_zone])
+    @event.update_attributes(:suggested_times => @formatted_times)
     if current_user.nil?
       redirect_to new_user_registration_path
     else
       find_event_and_client_or_build
-      redirect_to '/session_details'
+      redirect_to new_user_session_path
     end
   end
   
@@ -30,13 +32,17 @@ class EventsController < ApplicationController
   def update_session
     @user = current_user
     find_event_and_client_or_build
+    @event.update_attributes(:user_id => current_user.id, :description => params[:event][:description])
     # check if login or signup
     if params[:user].present?
       @user.update_attributes(:time_zone => params[:user][:time_zone])
     end
     
-    @formatted_times = @event.format_suggested_times_with_timezone(params[:suggested_times], @user.time_zone)
-    @event.update_attributes(:suggested_times => @formatted_times, :description => params[:event][:description])
+    if @event.save
+      session[:event_id] = @event.id
+      session[:suggested_times] = nil
+      session[:description] = nil
+    end
     
     if @user.save
       redirect_to :action => "new", :controller => "charges"
@@ -49,8 +55,7 @@ class EventsController < ApplicationController
   def finish
     @user = current_user
     find_event_and_client_or_build
-    @formatted_times = @event.format_suggested_times_with_timezone(session[:suggested_times], @user.time_zone)
-    @event.update_attributes(:suggested_times => @formatted_times, :description => session[:description])
+    @event.update_attributes(:user_id => current_user.id)
     
     if @event.save
       session[:event_id] = @event.id

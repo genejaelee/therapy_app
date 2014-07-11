@@ -6,9 +6,17 @@
 	<div class="bg-container">
 		<div class="container">
 			
-			<%= form_for(@user, url: { :controller => "events", :action => "update_session" }) do |f| %>
+			<h2>Session Details</h2>
+			
+			<%= form_for(@event, url: { :controller => "events", :action => "update_session" }) do |f| %>
 				
-				<%= render :partial => 'layouts/session_details_form', :locals => { :f => f, :time_zone => @time_zone } %>
+				<% @event = get_a_event_for_user %>
+				<% @therapist = check_presence_and_find_by_id(Therapist, @therapist.id) %>
+
+				<% unless @therapist.nil? %>
+					<%= label_tag "Write anything you want to share with #{@therapist.first_name} here."%>
+				<% end %>
+				<%= text_area(:event, :description, :id => "description", :placeholder => "Optional") %>
 
 			  <%= f.submit "Sign up", :class => "submit_button_white button" %>
 				

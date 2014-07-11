@@ -276,18 +276,8 @@
 			//overflow-y: scroll;
 			padding: 30px 0px;
 			width: 100%;
-			height: 450px;
+			height: auto;
 			background-color: $scouter-blue;
-			
-			//styling spacers
-			.spacer {
-				height: 40px;
-				margin-top: 20px;
-				text-align: center;
-				a {
-					text-align: center;
-				}
-			}
 			
 			.container {
 				text-align: center;
@@ -296,76 +286,59 @@
 					margin: 5px 0px;
 					border-top: 1px dashed rgba(255,255,255,0.5);
 				}
-				
-				.goal-form-container {
+			
+				.form-container {
 					
-					.sixteen {
-						h1 {
-							padding-top: 10px;
-							margin: 5px auto;
-							font-size: 28px;
-							color: #fff;
-							line-height: 28px;
-						}
-					}
-					
-					.examples-container-header {
-						height: 50px;
-					}
-					
-					.examples-container {
+					form {
+						margin-bottom: 0px;
 						text-align: left;
-						padding-bottom: 20px;
-						color: #fff;
 						
-						p {
-							font-size: 18px;
-							margin-bottom: 10px;
+						label {
+							color: #fff;
+							margin-bottom: 5px;
 						}
-					}
-				
-					.form-container {
-						padding: 15px 0px;
 						
-						form {
-							label {
+						.container {
+							
+							p {
+								font-size: 24px;
+								font-weight: 600;
+								padding-right: 10px;
 								color: #fff;
-								margin-bottom: 5px;
+								display: inline-block;
 							}
-							
-							.container {
-								#goal-text-field {
-									width: 100%;
-									max-width: 500px;
-									height: 50px;
-									font-size: 20px;
-								}
-								
-								p {
-									font-size: 24px;
-									font-weight: 600;
-									padding-right: 10px;
-									color: #fff;
-									display: inline-block;
-								}
-							}
-							
-							input {
-								border: none;
-								padding: 0px 15px;
-								margin: 30px auto;
-							}
+						}
 						
-							.submit_button_white {
-								margin-top: 10px;
-								margin-left: 0px;
-								height: 40px;
-								width: 160px;
-								color: $scouter-blue;
-								font-size: 16px;
-								font-weight: 200;
-								background-color: #fff;
+						input {
+							border: none;
+							padding: 0px 15px;
+						}
+						
+						.timezone-container {
+							span {
+								color: #fff;
+								font-size: 12px;
 							}
+							select {
+								padding-left: 10px;
+								height: 40px;
+								-webkit-appearance: none;
+								@extend input;
+							}
+							select:hover {
+								cursor: pointer;
+							}
+						}
+					
+						.submit_button_white {
+							margin-top: 10px;
+							margin-left: 0px;
+							height: 40px;
+							width: 160px;
+							color: $scouter-blue;
+							font-size: 16px;
+							font-weight: 200;
+							background-color: #fff;
 						}
 					}
 				}
@@ -520,7 +493,6 @@
 			}
 			
 			.bottom-panel {
-				height: 500px;
 				
 				.spacer {
 					height: 0px;
@@ -573,9 +545,7 @@
 				}
 			}
 			
-			.bottom-panel {
-				height: 500px;
-				
+			.bottom-panel {				
 				.form-container {
 					form {
 						.container {

@@ -32,6 +32,7 @@ class TherapistsController < ApplicationController
     @emails = EmailBox.create
     @event = Event.new
     @client = Client.create(params[:client])
+    @time_zone = cookies["jstz_time_zone"]
     @therapist = Therapist.all
     if user_signed_in?
       

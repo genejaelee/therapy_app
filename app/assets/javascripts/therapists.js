@@ -102,8 +102,8 @@ function openCloseOnClick(element, min, max) {
 	if (element.hasClass("closed")) {
 		element.removeClass("closed");
 		goToByScroll(element);
-		element.find('.bottom-panel').height(max - $('.top-panel').outerHeight());
-		element.stop().animate({height: max + "px"}, 500, "easeOutCubic", function(){
+		var fullHeight = element.find('.bottom-panel').outerHeight() + element.outerHeight();
+		element.stop().animate({height: fullHeight + "px"}, 500, "easeOutCubic", function(){
 			element.addClass("opened");
 		});
 	}
