@@ -23,17 +23,13 @@
 	<%= render 'layouts/header' %>
 
 	<% @therapist.each_with_index do |therapist, index| %>
-		<% @therapist_id = therapist.id %>
-		<% if @therapist_id == 3 %>
-		<% else %>
-			<div class='image-panel<%= index %> image-panel panel'>
-				<div class="bg-container">
-					<div class="container">
-						<h1></h1>
-					</div>
+		<div class='image-panel<%= index %> image-panel panel'>
+			<div class="bg-container">
+				<div class="container">
+					<h1></h1>
 				</div>
 			</div>
-			<%= render 'layouts/index_profile', :therapist => therapist %>
-		<% end %>
+		</div>
+		<%= render 'layouts/index_profile', :therapist => therapist %>
 	<% end %>
 </body>

@@ -53,7 +53,7 @@ $(".therapists").ready(function() {
 	$('.profile-link-panel .bg-container .top-panel').click(function(){
 		var maxHeight = setProfilePanelHeights();
 		var thisProfile = $(this).parent().parent();
-		openCloseOnClick(thisProfile, $(this).height(), maxHeight);
+		openCloseOnClick(thisProfile, $(this).outerHeight(), maxHeight);
 	});
 	
 });
@@ -102,7 +102,7 @@ function openCloseOnClick(element, min, max) {
 	if (element.hasClass("closed")) {
 		element.removeClass("closed");
 		goToByScroll(element);
-		var fullHeight = element.find('.bottom-panel').outerHeight() + element.outerHeight();
+		var fullHeight = element.find('.bottom-panel').outerHeight() + min;
 		element.stop().animate({height: fullHeight + "px"}, 500, "easeOutCubic", function(){
 			element.addClass("opened");
 		});

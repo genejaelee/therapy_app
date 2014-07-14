@@ -57,8 +57,7 @@ $sidebar-width : 240px;
 	
 	#clock-back {
 		box-shadow: inset 0px 2px 2px rgba(0,0,0,0.1);
-		background-image: image-url('stripe-background6.jpg');
-		background-size: 65px 65px;
+		@include stripe-background-large;
 		height: 90px;
 		width: 90px;
 		bottom: 35px;
@@ -315,9 +314,7 @@ $sidebar-width : 240px;
 	height: 100%;
 	
 	.messages-panel {
-		background-image: url('stripe-background6.jpg');
-		background-size: 65px 65px;
-		background-repeat: repeat;
+		@include stripe-background-large;
 		position: relative;
 		height: 100%;
 		

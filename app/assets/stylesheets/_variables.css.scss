@@ -29,6 +29,18 @@ a {
 	}
 }
 
+@mixin stripe-background-medium {
+	background-image: image-url('stripe-background6.jpg');
+	background-size: 50px;
+	background-repeat: repeat;
+}
+
+@mixin stripe-background-large {
+	background-image: image-url('stripe-background6.jpg');
+	background-size: 65px;
+	background-repeat: repeat;
+}
+
 @mixin orange-hr {
 	border-top: 1px solid $scouter-orange-dark;
 	border-bottom: 1px solid $scouter-orange-light;
@@ -73,6 +85,19 @@ a {
 @mixin red-border {
 	border-color: $scouter-red;
 	color: $scouter-red;
+}
+
+// GRADIENT MIXINS
+@mixin blue-gradient {
+	background: -webkit-linear-gradient(90deg, $scouter-blue-light, $scouter-blue);
+	background: -o-linear-gradient(90deg, $scouter-blue-light, $scouter-blue);
+	background: -moz-linear-gradient(90deg, $scouter-blue-light, $scouter-blue);
+}
+
+@mixin green-gradient {
+	background: -webkit-linear-gradient(90deg, $scouter-green-light, $scouter-green);
+	background: -o-linear-gradient(90deg, $scouter-green-light, $scouter-green);
+	background: -moz-linear-gradient(90deg, $scouter-green-light, $scouter-green);
 }
 
 .submit-button.white {

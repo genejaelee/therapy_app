@@ -327,8 +327,8 @@ p {
 #panel2 {
 	
 	.bg-container {
+		background-position: right center;
 		background-size: $max-width auto;
-		background-position: center;
 	
 		.container {
 			padding-top: 90px;
@@ -353,6 +353,90 @@ p {
 					height: auto;
 				}
 			}
+			
+			.text-container {
+				padding-right: 50px;
+			}
+			
+			.chat-ui-container {
+				max-width: 450px;
+				
+				.messages-panel {
+					padding: 30px;
+					border-radius: 10px;
+					@include stripe-background-medium;
+					#messages {
+						position: relative;
+						overflow-y: scroll;
+						margin: auto;
+						height: 100%;
+		
+						.messages-container {
+			
+							.note {
+								margin-bottom: 0px;
+								margin-top: 15px;
+								color: $scouter-green;
+								strong {
+									color: #727272;
+								}
+							}
+			
+							.message-container {
+								margin-bottom: 10px;
+						
+								.you {
+									.message {
+										@include blue-gradient;
+										color: #fff;
+									}
+								}
+								.them {
+									text-align: right;
+									.message {
+										text-align: left;
+										float: right;
+										@include green-gradient;
+										color: #fff;
+									}
+								}
+			
+								li {
+									margin-bottom: 0px;
+									
+									span {
+										font-size: 13px;
+										color: rgba(0,0,0,0.5);
+									}
+								}
+			
+								.message-wrapper {
+									overflow: auto;
+									width: 100%;
+				
+									.message {
+										max-width: 300px;
+										display: inline-block;
+										min-width: 50px;
+										overflow: auto;
+										font-size: 15px;
+										margin-top: 5px;
+										padding: 12px;
+										border-radius: 8px;
+		
+										p {
+											margin: 0px;
+											color: #fff;
+											display: block;
+										}
+									}
+								}
+							}
+						}
+					}
+				}	
+			}
+			// END CHATROOM CSS .chat-ui-container
 		}
 	}
 }
@@ -662,6 +746,7 @@ p {
 @media only screen and (max-width: 960px) {
 	#panel2 {
 		.bg-container {
+			background-position: right bottom;
 			
 			.container {
 				.columns {
@@ -718,9 +803,8 @@ p {
 		position: relative;
 		
 		.bg-container {
-			background-size: 767px auto;
+			@include stripe-background-medium;
 			background-position: bottom center;
-			height: auto;
 			background-color: #fff;
 			
 			.container {
@@ -732,6 +816,10 @@ p {
 					padding-right: 0;
 				}
 				.columns {
+				}
+				
+				.text-container {
+					padding-right: 0px;
 				}
 				
 				.image-container {
@@ -842,6 +930,14 @@ p {
 		.bg-container {
 			
 			.container {
+				
+				.chat-ui-container {
+					max-width: 450px;
+				
+					.messages-panel {
+						padding: 30px 0px;
+					}
+				}
 			}
 		}
 	}
