@@ -419,7 +419,7 @@ $sidebar-width : 240px;
 			
 			.you {
 				.message {
-					background-color: $scouter-blue;
+					@include blue-gradient;
 					color: #fff;
 				}
 			}
@@ -432,7 +432,7 @@ $sidebar-width : 240px;
 				.message {
 					text-align: left;
 					float: right;
-					background-color: $scouter-green;
+					@include green-gradient;
 					color: #fff;
 				}
 			}
