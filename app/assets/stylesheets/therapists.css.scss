@@ -201,28 +201,7 @@
 				.cta-button-white {
 					margin: auto;
 					text-align: center;
-					
-					.button {
-						margin-bottom: 12px;
-						background-color: #fff;
-						font-family: $light-font;
-						border-radius: 5px;
-						width: 180px;
-						font-weight: 400;
-						padding-left: 30px;
-						padding-right: 30px;
-						padding-top: 10px;
-						padding-bottom: 10px;
-						font-size: 18px;
-						text-align: center;
-						border: 1px solid $scouter-green;
-						text-shadow: none;
-						color: $scouter-green;
-					}
-			
-					.button:hover {
-						background-color: #eee;
-					}
+
 				}
 			}
 	
@@ -252,16 +231,20 @@
 					font-size: 18px;
 					line-height: 20px;
 					color: #aaa;
-					margin-bottom: 10px;
 				}
-		
-				.card-bio {
-					color: #aaa;
-					line-height: 18px;
-					font-size: 14px;
-					max-height: 180px;
-					overflow: hidden;
-					margin-bottom: 0px;
+				
+				.bio-container {
+					margin-top: 5px;
+					height: 140px;
+					overflow-y: scroll;
+					
+					.card-bio {
+						color: #aaa;
+						line-height: 18px;
+						font-size: 14px;
+						max-height: 180px;
+						margin-bottom: 0px;
+					}
 				}
 			}
 		}

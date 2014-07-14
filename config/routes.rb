@@ -59,7 +59,7 @@ TherapyApp::Application.routes.draw do
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
   
-  match '/drop_email_route' => 'applications#drop_email', via: 'patch' 
+  match '/drop_email_route' => 'therapists#drop_email', via: 'post' 
   
   # set up webhooks
   scope '/hooks', :controller => :hooks do

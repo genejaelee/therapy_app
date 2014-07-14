@@ -5,24 +5,13 @@ class ApplicationController < ActionController::Base
   #before_filter { response.headers['P3P'] = %q|CP="HONK"| }
   protect_from_forgery with: :exception
   around_filter :user_time_zone, :if => :current_user
-  helper_method :current_client, :registrations_router
+  helper_method :current_client, :registrations_router, :drop_email
   
   include SessionsHelper
   
   def after_sign_in_path_for(resource)
     session[:registration_state] = "login"
     return registrations_router
-  end
-  
-  def drop_email
-    @emails = EmailBox.create
-    if @client.update_attributes(client_params)
-      redirect_to root_url
-      flash[:success] = "Thanks for reaching out."
-    else
-      redirect_to :controller => 'therapists', :action => 'index'
-      flash[:fail] = "Sorry there was an error processing your entries."
-    end
   end
   
   def registrations_router

@@ -29,13 +29,24 @@ class TherapistsController < ApplicationController
   end
   
   def index
-    @emails = EmailBox.create
+    @emails = EmailBox.new
     @event = Event.new
     @client = Client.create(params[:client])
     @time_zone = cookies["jstz_time_zone"]
     @therapist = Therapist.all
     if user_signed_in?
       
+    end
+  end
+  
+  def drop_email
+    @emails = EmailBox.create
+    if @emails.update_attributes(email: params[:email_box][:email])
+      redirect_to root_url
+      flash[:success] = "Thanks for reaching out. We will contact you"
+    else
+      redirect_to :controller => 'therapists', :action => 'index'
+      flash[:fail] = "Sorry there was an error processing your entries."
     end
   end
   
