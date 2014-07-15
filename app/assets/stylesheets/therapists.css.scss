@@ -438,6 +438,7 @@
 		height: 500px;
 		.bg-container {
 			height: auto;
+			
 			.top-panel {
 				height: 500px;
 				
@@ -477,6 +478,21 @@
 				
 				.spacer {
 					height: 0px;
+				}
+				
+				.container {
+					.form-container {
+						form {
+							.datetime-container {
+								.date-field {
+									width: 150px;
+								}
+								.time-field {
+									width: 150px;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -526,19 +542,23 @@
 				}
 			}
 			
-			.bottom-panel {				
-				.form-container {
-					form {
-						.container {
-							#goal-text-field {
-								width: 100%;
-								max-width: 500px;
-								height: 50px;
-								font-size: 16px !important;
+			.bottom-panel {		
+						
+				.container {
+					.form-container {
+						form {
+							.datetime-container {
+								.date-field {
+									width: 120px;
+								}
+								.time-field {
+									width: 120px;
+								}
 							}
 						}
 					}
 				}
+				
 			}
 		}
 	}
