@@ -74,6 +74,19 @@ function showTimePicker(thisProfile){
 	thisProfile.find('.time-field').timepicker('show');
 }
 
+$(".static_pages.home").ready(function() {
+	
+  $(window).bind('scroll',function(e){
+      //parallaxScroll();
+  });
+ 
+  function parallaxScroll(){
+      var scrolled = $(window).scrollTop();
+      $('.text-container').css('margin-top',(50-(scrolled*.1))+'px');
+			$('.text-container').css('opacity',(-0.5+(scrolled*.003)));
+  }
+});
+
 var ready = function() {
 	$(function() {
 	    FastClick.attach(document.body);

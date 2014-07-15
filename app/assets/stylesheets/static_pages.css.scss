@@ -905,8 +905,12 @@ p {
 			background-size: cover;
 			background-image: image-url("mousehand-mobile.jpg");
 			.container {
+				padding-top: 20px;
+				#logo-banner {
+					padding-bottom: 10px;
+				}
+				
 				#copy-container {
-					margin-top: 10px;
 					h1 {
 					}
 				}
