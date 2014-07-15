@@ -19,10 +19,12 @@ class HooksController < ApplicationController
           end
         when 'member_added'
           puts "Member added: #{event["channel"]}"
+          puts "Member id is #{event["user_id"]}"
           payload = { :event => event["name"], :user_id => event["user_id"], :nickname => ChatUser.find_by(id: event["user_id"]).nickname }
           Pusher[event["channel"]].trigger('presence', payload)
         when 'member_removed'
           puts "Member removed: #{event["channel"]}"
+          puts "Member id is #{event["user_id"]}"
           payload = { :event => event["name"], :user_id => event["user_id"], :nickname => ChatUser.find_by(id: event["user_id"]).nickname }
           Pusher[event["channel"]].trigger('presence', payload)
         end
