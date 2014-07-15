@@ -14,11 +14,16 @@
 <%= render 'layouts/header' %>
 -->
 
+<% if params[:msg] == "none" %>
+	<% msg_mode = "none" %>
+<% end %>
+
 <script type="text/javascript">
 	// Set the globals used by chat.js
 	channel = "<%= @chat.channel %>";
 	chat_id = "<%= @chat.id %>";
 	user_id = "<%= @user.id %>";
+	msg_mode = "<%= msg_mode %>";
 	var PUSHER_KEY = '<%= Pusher.key %>'
 </script>
 

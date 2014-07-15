@@ -1,11 +1,13 @@
 $(".chats.test").ready(function() {
 	
-	$('.message-container').remove();
-	
-	var i;
-	for (i = 0; i < systemMessages.length; ++i) {
-		appendSystemMessage(i);
+	if(msg_mode != "none") {
+		var i;
+		for (i = 0; i < systemMessages.length; ++i) {
+			appendSystemMessage(i);
+		}
 	}
+	
+	$('.message-container').remove();
 	
 	// INIT UI FUNCTIONS
 	

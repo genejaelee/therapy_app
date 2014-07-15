@@ -34,63 +34,61 @@
 		<div class="container">
 			<div class="eight columns text-container">
 				<h2>Try here.</h2>
-				<p>If you've considered talking to a therapist for any reason at all— this is for you. </p>
-				<p>It will take less to start in a chatroom than to sit across from a stranger. </p>
+				<p>If you've considered talking to a therapist for any reason at all— this is for you. It will take less to start in a chatroom than to sit across from a stranger. </p>
 				<p>So see what therapy is like. This is an easy way to try.</p>
 			</div>
-			<div class="eight columns chat-ui-container">
-				<div class="messages-panel">
-					<div id="chat-notification-container">
-						<div id="chat-notification">
+			<div class="sixteen columns image-container">
+				<%= image_tag('laptop-wireframe3.jpg', id: "laptop-chat") %>
+				<div class="chat-ui-container">
+					<div class="messages-panel">
+						<div id="chat-notification-container">
+							<div id="chat-notification">
+							</div>
 						</div>
+						<ul id="messages">
+							<div class="messages-container">
+								<div class="message-container">
+									<li class="you">
+										<span class="nickname-said">You said:</span>
+										<div class="message-wrapper">
+											<div class="message">
+												<p>Hello. This is sample text.</p>
+											</div>
+										</div>
+									</li>
+								</div>
+							
+								<div class="message-container">
+									<li class="them">
+										<span class="nickname-said">Therapist said:</span>
+										<div class="message-wrapper">
+											<div class="message">
+												<p>Hi how's it going, my name is blank and I'm here to talk to you today about your problems.</p>
+											</div>
+										</div>
+									</li>
+								</div>
+							
+								<div class="message-container">
+									<li class="you">
+										<span class="nickname-said">You said:</span>
+										<div class="message-wrapper">
+											<div class="message">
+												<p>If you've considered talking to a therapist for any reason at all— this is for you. It's just an easy way to try.</p>
+											</div>
+										</div>
+									</li>
+								</div>
+							</div>
+							<div id="spinner" class="spinner">
+									<img alt="Loading" height="50px" src="/assets/loading.gif" />
+							</div>
+							<div id="message-overlay"></div>
+						</ul>
 					</div>
-					<ul id="messages">
-						<div class="messages-container">
-							<div class="message-container">
-								<li class="you">
-									<span class="nickname-said">You said:</span>
-									<div class="message-wrapper">
-										<div class="message">
-											<p>Hello. This is sample text.</p>
-										</div>
-									</div>
-								</li>
-							</div>
-							
-							<div class="message-container">
-								<li class="them">
-									<span class="nickname-said">Therapist said:</span>
-									<div class="message-wrapper">
-										<div class="message">
-											<p>Hi how's it going, my name is blank and I'm here to talk to you today about your problems.</p>
-										</div>
-									</div>
-								</li>
-							</div>
-							
-							<div class="message-container">
-								<li class="you">
-									<span class="nickname-said">You said:</span>
-									<div class="message-wrapper">
-										<div class="message">
-											<p>If you've considered talking to a therapist for any reason at all— this is for you. It's just an easy way to try.</p>
-										</div>
-									</div>
-								</li>
-							</div>
-						</div>
-						<div id="spinner" class="spinner">
-								<img alt="Loading" height="50px" src="/assets/loading.gif" />
-						</div>
-						<div id="message-overlay"></div>
-					</ul>
 				</div>
+				
 			</div>
-			<!--
-			<div class="eight columns image-container">
-				<%= image_tag('matt.jpg', id: "matt") %>
-			</div>
-				-->
 		</div>
 	</div>
 </div>
