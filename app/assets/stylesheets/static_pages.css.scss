@@ -208,7 +208,7 @@ p {
 			}
 		
 			#copy-container {
-				margin-top: 40px;
+				margin-top: 0px;
 			
 				h1 {
 					text-align: center;
@@ -327,12 +327,13 @@ p {
 #panel2 {
 	
 	.bg-container {
-		background-position: right center;
-		background-size: $max-width auto;
+		background-image: image-url('laptop-wireframe-coffee-center.jpg');
+		background-position: bottom;
+		background-size: 1100px auto;
 	
 		.container {
 			padding-top: 90px;
-			padding-bottom: 110px;
+			padding-bottom: 450px;
 			
 			.columns {
 				h2 {
@@ -352,13 +353,13 @@ p {
 			.image-container {
 				position: relative;
 				padding: 0px;
-				margin-top: 30px;
+				margin-top: 0px;
 				text-align: center;
 				
 				#laptop-chat {
 					margin: auto;
 					width: 100%;
-					max-width: 750px;
+					max-width: 700px;
 				}
 				
 				.chat-ui-container {
