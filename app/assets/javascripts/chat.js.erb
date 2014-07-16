@@ -23,8 +23,7 @@ $(".chats").ready(function(){
 	var old_nickname = "";
 	$('#nickname').keydown(function(e) {
 		if (e.keyCode == 13) {
-			closePopup('#chat-popup');
-			changeNickname();
+			$('.confirm-button').click();
 		}
 		scrollToBottomOfAndFocusOn('.messages-container', '#message');
 	});
