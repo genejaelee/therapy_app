@@ -2,10 +2,5 @@
 // All this logic will automatically be available in application.js.
 
 $(".sessions.new").ready(function() {
-	$(".hidden-check").prop('checked', true);
-	$(".css-check").click(function() {
-	  if ($(this).is(':checked')) {
-	  	$(".hidden-check").prop('checked', false);
-	  }
-	});
+	initCheckBox();
 });

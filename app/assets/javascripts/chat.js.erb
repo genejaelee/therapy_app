@@ -1,22 +1,77 @@
-$(".chats.view").ready(function() {
+$(".chats").ready(function(){
 	
-	// INIT UI FUNCTIONS
-	
+	//UI STUFF
 	$('.messages-container').bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
     if ( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
       $('.messages-container').stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup'); // This identifies the scroll as a user action, stops the animation, then unbinds the event straight after (optional)
     }
-	});   
-	
-	//UI STUFF
+	}); 
 	
 	disableTwilioButtons('.twilio-button');
 	getSizesAndResize();
-	scrollToBottomOfAndFocusOn('.messages-container', '#message');
 	
 	$(window).resize(function() {
 		getSizesAndResize();
 	})
+	
+	$('#chat-popup').css('top', - $("#chat-popup").height());
+	setTimeout(function(){
+		openPopup('#chat-popup');
+	}, 250)
+	
+	// NICKNAME STUFF
+	var old_nickname = "";
+	$('#nickname').keydown(function(e) {
+		if (e.keyCode == 13) {
+			closePopup('#chat-popup');
+			changeNickname();
+		}
+		scrollToBottomOfAndFocusOn('.messages-container', '#message');
+	});
+	
+	initCheckBox();
+	
+	// When clicking confirm on popup
+	$('.confirm-button').click(function(){
+		if($('#accept').attr('checked')) {
+			closePopup('#chat-popup');
+			changeNickname();
+			// If test chat room, append system messages
+			if(msg_mode != "none" && $('body').hasClass('test')) {
+				var i;
+				for (i = 0; i < systemMessages.length; ++i) {
+					appendSystemMessage(i);
+				}
+			}
+			scrollToBottomOfAndFocusOn('.messages-container', '#message');
+		}
+		else {
+			alert('You must accept the conditions to proceed.');
+		}
+	});
+	
+	// Audio stuff init
+	var audio = document.createElement("audio");
+	var audio_types = ["ogg", "mpeg", "wav"];
+	// Loop through the types I have and break out when the browser says it might be able to play one
+	if (typeof audio.canPlayType == 'function') {
+  	for(type in audio_types) {
+  		var type_name = audio_types[type];
+  		if(audio.canPlayType("audio/" + type_name) == "yes" || audio.canPlayType("audio/" + type_name) == "maybe") {
+  			browser_audio_type = type_name;
+  			break;
+  		}
+  	}
+	}
+	
+	//hide footer
+	$('#footer').css('display', 'none');
+	
+});
+
+/////////////// CHATROOM SPECIFIC ///////////////
+
+$(".chats.view").ready(function() {
 	
 	$('.timer-start-button').click(function(){
 		var time = $('.timer div').data("time");
@@ -72,25 +127,6 @@ $(".chats.view").ready(function() {
 	$.ajaxSetup({
 	  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
 	});
-	
-	//hide footer
-	$('#footer').css('display', 'none');
-	
-	var audio = document.createElement("audio");
-	var audio_types = ["ogg", "mpeg", "wav"];
-	// Loop through the types I have and break out when the browser says it might be able to play one
-	if (typeof audio.canPlayType == 'function') {
-  	for(type in audio_types) {
-  		var type_name = audio_types[type];
-  		if(audio.canPlayType("audio/" + type_name) == "yes" || audio.canPlayType("audio/" + type_name) == "maybe") {
-  			browser_audio_type = type_name;
-  			break;
-  		}
-  	}
-	}
-
-	// Logging - Disable in production
-	// Pusher.log = function() { if (window.console) window.console.log.apply(window.console, arguments); };
 	
 	Pusher.channel_auth_endpoint = '/api/authenticate?user_id=' + user_id;
 	var socket = new Pusher(PUSHER_KEY, {
@@ -232,37 +268,7 @@ $(".chats.view").ready(function() {
 		}
 	});
 	
-	// NICKNAME STUFF
-	var old_nickname = "";
-	$('#editNickname').click(function()
-	{
-		$('#title').fadeOut(200);
-		$('#nickname').fadeIn(200);
-		$('#changeNickname').fadeIn(200);
-		$(this).hide();
-		old_nickname = $('#nickname').val();
-		return false;
-	});
-
-	$('.change-nickname-button').click(function() {
-		//$('#nickname').attr("disabled", "disabled");
-		changeNickname();
-	});
-	
-	$('#nickname').keydown(function(e)
-	{
-		if (e.keyCode == 13) { changeNickname(); }
-	});
-	
 	getServerTimer();
-	
-	// Cross browser placeholder shiz
-	var text = 'Type your message here and hit enter...';
-	$('#message').focus(function() {
-		if($(this).val() == text) { $(this).val(""); }
-	}).blur(function() {
-		if($(this).val() == "") { $(this).val(text); }
-	});
 });
 
 //////////////////////////////////////////////////

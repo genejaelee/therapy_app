@@ -4,7 +4,7 @@
 									 :reverse => false
 	%>
 
-<%= render 'layouts/tutorial_panel' %>
+<%= render 'layouts/tutorial_popup' %>
 
 <%= render 'layouts/navbar' %>
 
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 			</div>
-		<%= render 'layouts/index_profile', :therapist => therapist %>
+		<%= render 'therapists/index_profile', :therapist => therapist %>
 		<% end %>
 	<% end %>
 </body>

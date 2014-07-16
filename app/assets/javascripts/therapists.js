@@ -7,24 +7,15 @@ $(".therapists").ready(function() {
 	
 	// do index stuff for therapist
 	if ($('body').hasClass('index')) {
-		$('.tutorial-panel').css('top', - $(".tutorial-panel").height());
+		$('#tutorial-popup').css('top', - $("#tutorial-popup").height());
 		
 		setTimeout(function(){
-			openTutorial();
+			openPopup('#tutorial-popup');
 		}, 250)
 		
 		$('.confirm-button').click(function(){
-			closeTutorial();
+			closePopup('#tutorial-popup');
 		});
-	}
-	
-	function openTutorial(){
-		$('.tutorial-panel').animate({top: "0px"}, 500, "easeInOutCubic");
-	}
-	
-	function closeTutorial(){
-		var tutorialHeight = $('.tutorial-panel').innerHeight();
-		$('.tutorial-panel').animate({top: "-" + tutorialHeight + "px"}, 500, "easeInOutCubic");
 	}
 	
 	$('.current_therapist_name').css('display', 'none');

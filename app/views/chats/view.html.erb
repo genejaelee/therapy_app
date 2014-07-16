@@ -22,12 +22,7 @@
 	var PUSHER_KEY = '<%= Pusher.key %>'
 </script>
 
-<div class="chat-tutorial-background">
-	<div class="chat-tutorial-panel">
-		<div class="container">
-		</div>
-	</div>
-</div>
+<%= render :partial => 'chats/chat_popup' %>
 
 <div id="chatroom">
 
@@ -112,17 +107,6 @@
 		<hr>
 		<% elsif current_user.role_type == "Client" %>
 		<% end %>
-		<div class="change-nickname-container sidebar-section">
-			<p style="margin-bottom: 5px; color: #fff;">Change Username</p>
-			<div style="display: inline-block">
-				<input type="text" value="<%= @user.nickname %>" id="nickname" />
-			</div>
-			<!--
-			<div class="change-nickname-button" style="display: inline-block">
-				<a href="#" id="changeNickname">Change</a>
-			</div>
-				-->
-		</div>
 	</div>
 	
 	<div class="sidebar-clock">

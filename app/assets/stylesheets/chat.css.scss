@@ -116,45 +116,6 @@ $sidebar-width : 240px;
 	}
 }
 
-.change-nickname-container {
-	#nickname {
-		display: inline-block;
-		margin-bottom: 5px;
-		margin-right: 3px;
-		height: 35px;
-		font-size: 14px;
-		padding-left: 10px;
-		width: 120px;
-		-webkit-appearance: none;
-		box-shadow: none;
-	}
-
-	.change-nickname-button {
-		display: inline-block;
-		height: 35px;
-		width: 80px;
-		margin-bottom: 10px;
-		border: 1px solid $scouter-green;
-		text-align: center;
-		background-color: $scouter-green;
-
-		a {
-			line-height: 32px;
-			font-size: 14px;
-			color: #fff;
-		}
-	}
-
-	.change-nickname-button:hover {
-		opacity: 0.8;
-		cursor: pointer;
-	}
-
-	.change-nickname-button:active {
-		background-color: #ccc;
-	}
-}
-
 #sidebar-cards {
 	width: $sidebar-width;
 	z-index: 0;
@@ -376,7 +337,7 @@ $sidebar-width : 240px;
 					padding: 30px;
 					
 					.note {
-						margin-bottom: 0px;
+						margin-bottom: 10px;
 						margin-top: 15px;
 						color: $scouter-green;
 						strong {

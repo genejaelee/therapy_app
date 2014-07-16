@@ -1,0 +1,136 @@
+@import "variables.css.scss";
+
+.popup {
+	@include stripe-background-medium;
+	width: 100%;
+	background-color: #fff;
+	z-index: 1100;
+	position: fixed;
+	height: 100%;
+	bottom: 100%;
+	overflow-y: scroll;
+	box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
+	
+	#logo-banner {
+		background-color: $scouter-blue;
+		padding-top: 20px;
+		padding-bottom: 5px;
+	}
+	
+	i {
+		font-size: 12px;
+		color: rgba(0,0,0,0.7);
+	}
+	
+	.bg-container {
+		margin: auto;
+		max-width: $max-width;
+		.container {
+			padding: 40px 0px;
+			
+			.header-container {
+				h2 {
+					font-weight: 600;
+					font-size: 30px;
+					margin-bottom: 0px;
+					color: rgba(0,0,0,0.7);
+				}
+			}
+			
+			.content-container {
+				height: 140px;
+				
+				.text-container {
+					padding-left: 20px;
+				}
+			
+				.content {
+				
+					img {
+						width: 100px;
+						height: 100px;
+					}
+				
+					h3 {
+						font-size: 16px;
+						margin-bottom: 0px;
+						font-weight: 600;
+						color: rgba(0,0,0,0.7);
+					}
+			
+					p {
+						font-size: 14px;
+						color: rgba(0,0,0,0.7);
+					}
+				}
+			}
+			
+			.button-container {
+				text-align: left;
+				width: 100%;
+				
+				.confirm-button {
+					@include submit-button-white;
+					height: 40px;
+					width: 180px;
+					font-size: 16px;
+					margin-right: 10px;
+				}
+				
+				.cancel-button {
+					@include submit-button-white;
+					height: 40px;
+					width: 180px;
+					@include red-border;
+				}
+				
+				button:hover {
+					background-color: #eee;
+				}
+			}
+		}
+	}
+}
+
+#chat-popup {
+	.bg-container {
+		.container {
+			label {
+				font-size: 12px;
+				color: #525252;
+				margin-bottom: 0px;
+			}
+			
+			.change-nickname-container {
+				margin-bottom: 20px;
+				#nickname {
+					display: inline-block;
+					margin-bottom: 5px;
+					margin-right: 3px;
+					height: 40px;
+					font-size: 14px;
+					padding-left: 10px;
+					width: 180px;
+					-webkit-appearance: none;
+					box-shadow: none;
+				}
+			}
+			
+			.emergency-confirm {
+				.css-check {
+					vertical-align: middle;
+				}
+				
+				p {
+					a {
+						color: $scouter-green;
+					}
+					
+					a:hover {
+						color: $scouter-green-light;
+					}
+				}
+			}
+		}
+	}
+}

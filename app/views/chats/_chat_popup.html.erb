@@ -1,14 +1,29 @@
-<div id="tutorial-popup" class="popup">
+<div id="chat-popup" class="popup">
 	<div class="bg-container">
 		<div class="container">
 			
 			<div class="header-container">
-				<h2>Welcome to Plain White Couch</h2> 
-				<p>The first 45 minute session is free, so we hope you'll give it a try. Here's how it works.</p>
+				<h2>Welcome to your private Chatroom</h2> 
+				<p>The first 45 minute session is free.</p>
 			</div>
 			
-			<hr style="border-top: 1px dashed #ccc; margin-bottom: 40px;">
+			<hr style="border-top: 1px dashed #ccc;">
 			
+			<div class="change-nickname-container sixteen columns">
+				<label>Your Chatroom Username</label>
+				<div>
+					<input type="text" value="<%= @user.nickname %>" id="nickname" />
+				</div>
+			</div>
+			
+			<div class="emergency-confirm sixteen columns" style="margin-bottom: 30px;">
+				<label>Click the checkbox to accept.</label>
+				<input type="checkbox" class="css-check" id="accept"></input>
+				<p style="display: inline;">"I am over 18 years old, and I am not homicidal, suicidal or abusing anyone. I am not in an emergency situation, and I agree to the Plain White Couch <%= link_to "Terms of Service", terms_path %> and <%= link_to "Privacy Policy", privacy_path %>"</p>
+			</div>
+			
+			<!--
+				
 			<div class="content-container sixteen columns">
 				<div class="image-container content two columns">
 					<%= image_tag("tutorial-therapist-icon2.jpg")%>
@@ -38,16 +53,14 @@
 					<p>Followup sessions cost $40. You can choose to talk again through the chat room, over the phone, or do a video chat. You can also meet in person if the therapist is nearby.</p>
 				</div>
 			</div>
+				
+			-->
 
 			<hr style="border-top: 1px dashed #ccc; margin-bottom: 20px;">
-			
-			<i><span style="font-weight: 600;">Note: The first conversation is free, but we still ask for your credit card.</span> </i>
-			<i>We're subsidizing the first conversation in the hopes you'll want to schedule more, so we want to make sure you're serious if you're trying this. In turn, we ask you to store your credit card information in your account in case you end up wanting to have more conversations. This will make followups easier, and you will only be charged if you actually indicate you want another session.</i>
-
-			<br></br>
 
 			<div class="button-container">
 				<button class="confirm-button">Okay, I understand.</button>
+				<%= button_to "No, take me back", homepage_path, :class => "cancel-button" %>
 			</div>
 		</div>
 	</div>

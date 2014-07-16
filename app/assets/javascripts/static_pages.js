@@ -3,6 +3,17 @@ function is_touch_device() {
       || 'onmsgesturechange' in window; // works on ie10
 };
 
+function initCheckBox() {
+	$(".css-check").click(function() {
+	  if ($(this).is(':checked')) {
+			$(this).attr('checked', 'checked');
+	  }
+		else {
+			$(this).removeAttr('checked', 'checked')
+		}
+	});
+}
+
 // text area functions
 function updateCountdown() {
     // 500 is the max message length
@@ -68,6 +79,16 @@ var fadeThis = function(element) {
 var fadeThisIn = function(element) {
 	$(element).stop().animate({ opacity: 1.0 }, 300, function(){
 	});
+}
+
+// Popup stuff
+function openPopup(popup){
+	$(popup).animate({top: "0px"}, 500, "easeInOutCubic");
+}
+
+function closePopup(popup){
+	var tutorialHeight = $(popup).innerHeight();
+	$(popup).animate({top: "-" + tutorialHeight + "px"}, 500, "easeInOutCubic");
 }
 
 function showTimePicker(thisProfile){
