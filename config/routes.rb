@@ -20,6 +20,7 @@ TherapyApp::Application.routes.draw do
   match "/chatindex" => 'index#index', via: 'get'
   match '/chats/generate' => 'chats#generate', via: 'get'
   match "/testchat" => "chats#test", via: 'get'
+  match "/demochat" => "chats#demo", via: 'get'
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
   match '/this_therapist_events' => 'events#this_therapist_events', via: 'post'

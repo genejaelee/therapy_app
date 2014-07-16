@@ -2,10 +2,10 @@ class ApiController < ApplicationController
   protect_from_forgery :except => :authenticate # stop rails CSRF protection for this action
   
   def update_nickname
-    puts "changing nickname..."
+    @current_user = get_current_user
     if params[:user_id] != nil && params[:nickname] != nil
       chat = Chat.find_by(id: params[:chat_id])
-      user = ChatUser.user(session, current_user, chat)
+      user = ChatUser.user(session, @current_user, chat)
       old_nickname = user.nickname
       user.nickname = params[:nickname]
       if user.save
@@ -21,11 +21,12 @@ class ApiController < ApplicationController
   end
 
   def post_message
+    @current_user = get_current_user
     chat = Chat.find(params[:chat_id])
     message = Message.create
     message.chat_id = chat.id
     
-    user = ChatUser.user(session, current_user, chat)
+    user = ChatUser.user(session, @current_user, chat)
     message.user_id = params[:user_id]
     message.message = params[:message]
     
@@ -133,6 +134,15 @@ class ApiController < ApplicationController
     payload = { :time => @time, :state => @state }
     Pusher["presence-" + chat.channel].trigger('get_timer', payload)
     render :text => @time
+  end
+  
+  def get_current_user
+    if user_signed_in?
+      @current_user = current_user
+    else
+      @current_user = User.find_by(email: 'test@gmail.com')
+    end
+    return @current_user
   end
 
 end

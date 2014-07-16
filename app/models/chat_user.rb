@@ -3,7 +3,7 @@ class ChatUser < ActiveRecord::Base
   belongs_to :chat
   
   def self.user(session, current_user, chat)
-    if chat.channel == "message_channel_test"
+    if chat.channel == "message_channel_test" || chat.channel == "message_channel_demo"
       user = set_test_user(session, current_user, chat)
     elsif chat.chat_users.find_by(user_id: current_user.id).present?
       user = chat.chat_users.find_by(user_id: current_user.id)

@@ -1,11 +1,4 @@
-$(".chats.test").ready(function() {
-	
-	if(msg_mode != "none") {
-		var i;
-		for (i = 0; i < systemMessages.length; ++i) {
-			appendSystemMessage(i);
-		}
-	}
+$(".chats.demo").ready(function() {
 	
 	$('.message-container').remove();
 	
@@ -253,58 +246,3 @@ $(".chats.test").ready(function() {
 
 var is_typing_currently = false;
 var browser_audio_type = "";
-
-var systemMessages = [];
-systemMessages[0] = "Hi! Welcome to the Plain White Couch test chat room. For safety, all messages are deleted upon leaving the chatroom."
-systemMessages[1] = "These chatrooms are meant to be starting points for people to feel more comfortable talking to a therapist. Potential clients can start by instant messaging over text, get more comfortable, and transition to an audio chat in the middle of a session. The ultimate goal is to help people feel more comfortable meeting with the therapist in video chat or in person."
-systemMessages[2] = "To start typing, simply type in the text box at the bottom of the page. There's no one else actually here right now, but you can get a feel for how it works."
-systemMessages[3] = "As a therapist, you have a set of controls on the right hand side. The call button allows you to start an audio chat conversation with the potential client you are messaging with -- the client has the option to toggle this button too. The helplines button is a list of referrals for emergency resources. Finally, there is a timer which you can toggle to track the session time -- simply hover over the timer to see how much time has elapsed. You'll also get notifications as the session starts to wind down."
-systemMessages[4] = "This should give you a sense of how things would work. Let me know if you have questions, feedback or if you would like to do a live test chat!<br> -Matthew Krisiloff (mattkrisiloff@gmail.com)"
-
-var appendSystemMessage = function(index) {
-	var timeIntervals = [0,5000,18000,26000,39000];
-	setTimeout(function(){
-		if (index === 0) {
-			$('.messages-container').append('<span class="nickname-said"><strong>Plain White Couch</strong> said:</span>');
-		}
-		
-		tutorialHighlights(index);
-		
-		$('.messages-container').append(
-			'<div class="message-container" style="display:none;">' +
-			'<li class="system">' +
-			'<div class="message-wrapper"><div class="message">' + 
-			'<p>' + (systemMessages[index]) + '</p>' +
-			'</div></div></li></div>');
-			
-			$('.message-container').last().fadeIn(500);
-			scrollToTheBottomUnlessScrolled($('#messages'));
-		
-			// Programatically create an audio element and pop the user
-			var pop = new Audio('/sounds/pop.wav');
-			pop.load();
-			pop.play();
-	}, timeIntervals[index])
-}
-
-var tutorialHighlights = function(index) {
-	switch(index) {
-		case 0:
-			break;
-		case 1:
-			break;
-		case 2:
-			$('#message').css('border', '5px solid #fff')
-			$('#message').animate({ borderColor : '#a0d071' }, 500, 'easeInOutCubic');
-			break;
-		case 3:
-			$('#message').css('border', 'none');
-			$('.call').css('color', '#a0d071');
-			$('.helplines-button').css('color', '#a0d071');
-			$('.timer-start-button').css('color', '#a0d071');
-			$('.timer-reset-button').css('color', '#a0d071')
-			break;
-		case 4:
-			$('.sidebar').find('button').css('color', '#7fc4d7');
-	}
-}

@@ -1,7 +1,7 @@
 class ChatsController < ApplicationController
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token
-  before_filter :authenticate_user!, :except => [:view, :test]
+  before_filter :authenticate_user!, :except => [:view, :test, :demo]
   
   include SessionsHelper
   
@@ -55,6 +55,32 @@ class ChatsController < ApplicationController
     end
     
     @chat = Chat.find_by(channel: "message_channel_test")
+    @user = ChatUser.user(session, @test_user, @chat)
+    
+    @messages = Message.where("chat_id = ?", @chat.id.to_s).load
+
+    if @user.save
+      session[:chat_user_id] = @user.id
+    else
+      redirect_to homepage_path
+      flash[:error] = "There was an error opening this chatroom."
+    end
+  end
+  
+  def demo
+    reset_session
+    unless User.find_by(email: 'test@gmail.com').present?
+      @test_user = User.create(email: 'test@gmail.com', role_type: "Therapist", password: "password")
+      @test_user.role = Therapist.create
+    else
+      @test_user = User.find_by(email: 'test@gmail.com')
+    end
+    
+    if Chat.find_by(channel: "message_channel_demo").nil?
+      @chat = Chat.create(channel: "message_channel_demo")
+    end
+    
+    @chat = Chat.find_by(channel: "message_channel_demo")
     @user = ChatUser.user(session, @test_user, @chat)
     
     @messages = Message.where("chat_id = ?", @chat.id.to_s).load
