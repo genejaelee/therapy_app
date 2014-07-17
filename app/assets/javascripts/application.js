@@ -11,10 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery-readyselector
 //= require jquery.plugin.min
 //= require jquery.countdown.min
+//= require angular
+//= require angular-resource
+//= require angular/
 //= require_tree .

@@ -27,9 +27,9 @@
 	var PUSHER_KEY = '<%= Pusher.key %>'
 </script>
 
-<%= render :partial => 'chats/chat_popup' %>
+<%#= render :partial => 'chats/chat_popup' %>
 
-<div id="chatroom">
+<div id="chatroom" ng-controller="ViewCtrl as viewCtrl">
 
 <div class="left-panel chat-panel">
 	<div id="chat-navbar">
@@ -86,7 +86,7 @@
 	</div>
 		
 	<div class="chat-input-panel">
-		<textarea id="message" name="message" placeholder="Type your message here and hit enter..."></textarea>
+		<textarea id="message" name="message" placeholder="Type your message here and hit enter..." ng-enter="postMessage()" ng-model="message"></textarea>
 	</div>
 		
 </div>

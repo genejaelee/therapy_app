@@ -41,6 +41,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
+    angularjs-rails (1.2.20)
     ansi (1.4.3)
     arel (4.0.2)
     attr_encryptor (2.0.0)
@@ -270,6 +271,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   attr_encryptor
   aws-sdk
   bootstrap-sass (= 2.3.2.0)

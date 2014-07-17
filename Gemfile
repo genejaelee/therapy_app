@@ -8,7 +8,7 @@ gem 'pg', '0.15.1'
 gem 'figaro'
 gem 'sinatra'
 gem 'retina_rails', '~> 2.0.0'
-
+gem 'angularjs-rails'
 gem 'httparty'
 
 # Use jquery as the JavaScript library

@@ -1,0 +1,77 @@
+var chatsModule = angular.module('chatsModule');
+
+chatsModule.factory('jsonMethods', function(){
+	return {
+		makeJson: function(msg) {
+			var message = {};
+			message.chat_id = chat_id;
+			message.channel = channel;
+			message.user_id = user_id;
+			message.message = msg;
+			console.log(angular.toJson(message));
+			return message;
+		},	
+		
+		postJson: function(json) {
+			//$http({method: 'POST', url: 'https://api.truevault.com/v1/vaults/<%= ENV['TV_A_VAULT_ID'] %>'});
+		}
+	}
+});
+
+chatsModule.controller('ViewCtrl', function($scope, jsonMethods) {
+	$scope.title = chat_id
+	
+	$scope.postMessage = function(){
+		var msg = $scope.message
+		if(msg == null || msg == "") {
+			alert('Please enter a message...');
+		}
+		else {
+			console.log('<%= ENV['TWILIO_ACCOUNT_SID'] %>');
+			var json = jsonMethods.makeJson(msg);
+			jsonMethods.postJson(json);
+		}
+	}
+});
+
+// Post a message to the server to be sent through Pusher
+function ng_send_message() { 
+	
+	// Validate Field
+	if($('#message').val() == '') {
+		alert('Please enter a message...');
+		$('#message').focus();
+		return false;
+	}
+	
+	// Reset the validation stuff
+	$('#message').css({ color: '#000000' });
+	
+	// Set some vars
+	var message = $('#message').val();
+	var username = $('#username').val();
+	
+	// Start the "loading" UI
+	$("#spinner").show();
+	$('#message-overlay').fadeIn(200);
+	$('#message').blur();
+	
+	$.ajaxSetup({
+		beforeSend: 
+		function(xhr){
+			xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+		}
+	})
+	
+	// Post off to the server with the message and some vars!
+	$.post('/api/post_message', { "chat_id": chat_id, "message": message, "user_id": user_id }, function(response) {
+		// When the response comes back, do some stuff to remove the "loading" UI
+		$('#message').val("");
+		$('#message-overlay').fadeOut(150);
+		$('#message').focus();
+		$('#loading').fadeOut();
+		is_typing_currently = false;
+		typing_status(false);
+	});
+	
+}
