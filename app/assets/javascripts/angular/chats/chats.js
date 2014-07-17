@@ -1,5 +1,11 @@
 var chatsModule = angular.module('chatsModule', ['ngResource']);
 
+chatsModule
+  .config(function($httpProvider){
+		$httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+});
+
 chatsModule.directive('ngEnter', function() {
 return function(scope, element, attrs) {
     element.bind("keydown keypress", function(event) {

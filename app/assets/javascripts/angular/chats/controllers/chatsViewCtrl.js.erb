@@ -1,6 +1,6 @@
 var chatsModule = angular.module('chatsModule');
 
-chatsModule.factory('jsonMethods', function(){
+chatsModule.factory('jsonMethods', function($http){
 	return {
 		makeJson: function(msg) {
 			var message = {};
@@ -10,15 +10,30 @@ chatsModule.factory('jsonMethods', function(){
 			message.message = msg;
 			console.log(angular.toJson(message));
 			return message;
-		},	
+		},
+		
+		encodeJson: function(json) {
+			console.log(btoa(JSON.stringify(json)));
+			return btoa(JSON.stringify(json));
+		},
 		
 		postJson: function(json) {
-			//$http({method: 'POST', url: 'https://api.truevault.com/v1/vaults/<%= ENV['TV_A_VAULT_ID'] %>'});
+			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
+			apiKey = '<%= ENV['TV_API_KEY'] %>'
+			console.log(apiKey);
+			$http({
+				method: 'POST', 
+				headers: { 'Authorization' : 'Basic ' + apiKey },
+				withCredentials: true,
+				async: true,
+				url: 'https://api.truevault.com/v1/vaults/' + vaultID + '/documents',
+				data: this.encodeJson(json)
+			});
 		}
 	}
 });
 
-chatsModule.controller('ViewCtrl', function($scope, jsonMethods) {
+chatsModule.controller('ViewCtrl', function($scope, jsonMethods, $http) {
 	$scope.title = chat_id
 	
 	$scope.postMessage = function(){
@@ -27,7 +42,7 @@ chatsModule.controller('ViewCtrl', function($scope, jsonMethods) {
 			alert('Please enter a message...');
 		}
 		else {
-			console.log('<%= ENV['TWILIO_ACCOUNT_SID'] %>');
+			console.log('<%= ENV['TV_A_VAULT_ID'] %>');
 			var json = jsonMethods.makeJson(msg);
 			jsonMethods.postJson(json);
 		}

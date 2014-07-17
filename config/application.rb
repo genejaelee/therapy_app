@@ -12,6 +12,8 @@ module TherapyApp
     config.serve_static_assets = true
     config.autoload_paths += %W[#{config.root}/lib/validators/]
     
+    ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
+    
     if !Rails.env.development?
       config.middleware.use Rack::SslEnforcer, :except_hosts => 'therapy.scouterapp.com', :strict => true
     end
