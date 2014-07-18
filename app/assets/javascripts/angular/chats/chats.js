@@ -2,8 +2,14 @@ var chatsModule = angular.module('chatsModule', ['ngResource']);
 
 chatsModule
   .config(function($httpProvider){
-		$httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+		$httpProvider.defaults.transformRequest = function(data)
+		{
+			if (data === undefined) {
+				return data;
+			}
+			var result = JSON.stringify(data);
+			return result;
+		}
 });
 
 chatsModule.directive('ngEnter', function() {

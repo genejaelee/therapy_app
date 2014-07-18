@@ -43,6 +43,15 @@ class ApiController < ApplicationController
       render :text => "failed"
     end
   end
+  
+  def post_truevault
+    tv = TrueVault::Client.new(ENV['TV_API_KEY'], ENV['TV_ACCOUNT_ID'], 'v1')
+    
+    puts "create a document:"
+    create_document = tv.create_document(ENV['TV_A_VAULT_ID'], {"a" => "b"})
+    
+    render :text => "success" 
+  end
 
   def typing_status
     if params[:chat_id] != nil && params[:status] != nil

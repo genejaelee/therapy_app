@@ -128,10 +128,10 @@ $(".chats.view").ready(function() {
 	});
 	
 	Pusher.channel_auth_endpoint = '/api/authenticate?user_id=' + user_id;
+	
 	var socket = new Pusher(PUSHER_KEY, {
 		encrypted: true
 	});
-	
 	// Global variable "channel" is set in the view
 	var presenceChannel = socket.subscribe('presence-' + channel);
 	

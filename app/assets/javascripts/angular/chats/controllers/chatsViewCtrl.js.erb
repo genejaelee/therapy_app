@@ -1,39 +1,59 @@
 var chatsModule = angular.module('chatsModule');
 
-chatsModule.factory('jsonMethods', function($http){
+chatsModule.factory('jsonMethods', function($http, chatMethods){
 	return {
 		makeJson: function(msg) {
-			var message = {};
-			message.chat_id = chat_id;
-			message.channel = channel;
-			message.user_id = user_id;
-			message.message = msg;
-			console.log(angular.toJson(message));
-			return message;
-		},
-		
-		encodeJson: function(json) {
-			console.log(btoa(JSON.stringify(json)));
-			return btoa(JSON.stringify(json));
+			var messageObject = {
+				"message": {
+					"chat_id": parseInt(chat_id),
+					"channel": channel,
+					"user_id": parseInt(user_id),
+					"message": msg
+				}
+			};
+			return messageObject;
 		},
 		
 		postJson: function(json) {
 			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
 			apiKey = '<%= ENV['TV_API_KEY'] %>'
-			console.log(apiKey);
-			$http({
+			var promise = $http({
 				method: 'POST', 
-				headers: { 'Authorization' : 'Basic ' + apiKey },
-				withCredentials: true,
-				async: true,
+				headers: { 'Authorization' : 'Basic ' + btoa(apiKey + ":") },
 				url: 'https://api.truevault.com/v1/vaults/' + vaultID + '/documents',
-				data: this.encodeJson(json)
+				data: { document : btoa(JSON.stringify(json)) }
+			}).then(function(response){
+				return response.data;
+		  },
+			function(response) {
+				console.log(response);
+			});
+			return promise;
+		}
+		
+	}
+});
+
+chatsModule.factory('chatMethods', function($http){
+	return {
+		getDocByID: function(id) {
+			console.log("id is " + id);
+			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
+			apiKey = '<%= ENV['TV_API_KEY'] %>'
+			$http({
+				method: 'GET',
+				headers: { 'Authorization' : 'Basic ' + btoa(apiKey + ":") },
+				url: 'https://api.truevault.com/v1/vaults/' + vaultID + '/documents/' + id
+			}).success(function(data){
+				console.log(data);
+			}).error(function(data){
+				console.log(data);
 			});
 		}
 	}
 });
 
-chatsModule.controller('ViewCtrl', function($scope, jsonMethods, $http) {
+chatsModule.controller('ViewCtrl', function($scope, jsonMethods, chatMethods, $http) {
 	$scope.title = chat_id
 	
 	$scope.postMessage = function(){
@@ -42,9 +62,12 @@ chatsModule.controller('ViewCtrl', function($scope, jsonMethods, $http) {
 			alert('Please enter a message...');
 		}
 		else {
-			console.log('<%= ENV['TV_A_VAULT_ID'] %>');
 			var json = jsonMethods.makeJson(msg);
-			jsonMethods.postJson(json);
+			jsonMethods.postJson(json).
+				then(function(promise){
+					var id = promise.document_id;
+					chatMethods.getDocByID(id);
+			});
 		}
 	}
 });
