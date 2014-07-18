@@ -23,13 +23,15 @@
 			  <%= f.label :password_confirmation %>
 			  <%= f.password_field :password_confirmation, autocomplete: "off" %>
 				
-				<% @event = get_a_event_for_user %>
-				<% @therapist = get_therapist_for_user %>
+				<% if session[:event_id].present? %>
+					<% @event = get_a_event_for_user %>
+					<% @therapist = get_therapist_for_user %>
+				<% end %>
 
 				<% unless @therapist.nil? %>
 					<%= label_tag "Write anything you want to share with #{@therapist.first_name} here."%>
+					<%= text_area(:event, :description, :id => "description", :placeholder => "Optional") %>
 				<% end %>
-				<%= text_area(:event, :description, :id => "description", :placeholder => "Optional") %>
 
 			  <%= f.submit "Sign up", :class => "submit_button_white button" %>
 			<% end %>

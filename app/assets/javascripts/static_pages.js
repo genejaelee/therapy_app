@@ -125,7 +125,6 @@ var ready = function() {
 	
 	$('.phone-field').mask('(000) 000-0000');
 	$('.date-field').mask('00/00/00');
-	//$('.time-field').mask('00:00AA');
 	
 	var timeZone = jstz.determine();
 	document.cookie = 'jstz_time_zone='+timeZone.name()+';';
@@ -137,8 +136,6 @@ var ready = function() {
   $(function() {
     $( ".date-field" ).datepicker({ dateFormat: 'mm/dd/yy', 
 																							minDate: 0,
-																							onSelect: function(date){
-																							}
 																						});
   });
 	

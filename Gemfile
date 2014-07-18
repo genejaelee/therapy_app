@@ -10,6 +10,8 @@ gem 'sinatra'
 gem 'retina_rails', '~> 2.0.0'
 gem 'angularjs-rails'
 
+gem 'mime-types'
+
 gem 'httparty'
 
 # Use jquery as the JavaScript library
@@ -22,7 +24,7 @@ gem 'rack-timeout'
 group :assets do
   gem 'sass', require: 'sass'
   gem 'sass-rails', '~> 4.0.1'
-  gem 'uglifier', '>= 1.3.0'
+  gem 'uglifier', '>= 2.5.3'
   gem 'coffee-rails', '~> 4.0.0'
   gem 'bootstrap-sass', '2.3.2.0'
 end

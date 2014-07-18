@@ -5,10 +5,13 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     if current_user.role_type == "Client"
       find_event_and_client_or_build
-      if params[:event][:description].nil?
-        session[:description] = "nil"
+      if params[:event].present?
+        if params[:event][:description].nil?
+          session[:description] = "nil"
+        else
+          session[:description] = params[:event][:description]
+        end
       else
-        session[:description] = params[:event][:description]
       end
     elsif current_user.role_type == "Therapist"
       @user = current_user

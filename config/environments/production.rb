@@ -37,7 +37,7 @@ TherapyApp::Application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(mangle: false) if defined? Uglifier
   # config.assets.css_compressor = :sass
 
   # Generate digests for assets URLs.
