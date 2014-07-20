@@ -1,22 +1,28 @@
 var chatsModule = angular.module('chatsModule');
 
-chatsModule.factory('jsonMethods', function($http, chatMethods){
+chatsModule.factory('jsonMethods', function($http){
 	return {
-		makeJson: function(msg) {
-			var messageObject = {
+		makeJson: function(msg, nickname) {
+			var chat_user_id = parseInt(user_id);
+			
+			messageObject = {
 				"message": {
 					"chat_id": parseInt(chat_id),
 					"channel": channel,
-					"user_id": parseInt(user_id),
-					"message": msg
+					"user": {
+						"id" : chat_user_id,
+						"nickname" : nickname
+					},
+					"text": msg
 				}
 			};
 			return messageObject;
 		},
 		
-		postJson: function(json) {
+		postDoc: function(json) {
 			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
 			apiKey = '<%= ENV['TV_API_KEY'] %>'
+			console.log(JSON.stringify(json));
 			var promise = $http({
 				method: 'POST', 
 				headers: { 'Authorization' : 'Basic ' + btoa(apiKey + ":") },
@@ -40,76 +46,143 @@ chatsModule.factory('chatMethods', function($http){
 			console.log("id is " + id);
 			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
 			apiKey = '<%= ENV['TV_API_KEY'] %>'
-			$http({
+			var promise = $http({
 				method: 'GET',
 				headers: { 'Authorization' : 'Basic ' + btoa(apiKey + ":") },
 				url: 'https://api.truevault.com/v1/vaults/' + vaultID + '/documents/' + id
-			}).success(function(data){
-				console.log(data);
-			}).error(function(data){
-				console.log(data);
+			}).then(function(response){
+				return response.data;
+		  },
+			function(response) {
+				console.log(response);
 			});
+			return promise;
+		},
+		
+		triggerSendMessage: function(message, channel, callback) {
+			var triggered = channel.trigger('client-send_message', message);
+			callback(false);
+		},
+		
+		triggerTypingStatus: function(nickname, status, channel) {
+			payload = {
+				"nickname": nickname,
+				"status": status
+			}
+			var triggered = channel.trigger('client-typing_status', payload);
+		},
+		
+		appendMessage: function(scope, message, callback) {
+			scope.messages.push(message);
+			callback(false);
 		}
 	}
 });
 
-chatsModule.controller('ViewCtrl', function($scope, jsonMethods, chatMethods, $http) {
-	$scope.title = chat_id
+chatsModule.controller('ViewCtrl', function($scope, jsonMethods, chatMethods, $http, Pusher, PusherMethods) {
+	$scope.current = { nickname: user_nickname };
+	console.log($scope.current.nickname);
+	$scope.closePopup = function(){
+		return true;
+	}
 	
+	$scope.messageSending = false;
+	$scope.message_text = '';
+	$scope.typing_status = false;
+	
+	PusherMethods.setAuthEndpoint();
+	$scope.pusher = PusherMethods.pusher();
+	$scope.channel = PusherMethods.channel($scope.pusher);
+	
+	$scope.messages = [];
+	$scope.notifications = [];
+	$scope.checkSender = function(id){
+		if (user_id == id){
+			var sender = "you";
+		}
+		else {
+			var sender = "them";
+		}
+		return sender
+	}
+	
+	$scope.$watch('message_text', function(){
+		if ((($scope.message_text + '').length >= 1) && ($scope.typing_status == false)) {
+			console.log('typing');
+			$scope.typing_status = true;
+			chatMethods.triggerTypingStatus($scope.current.nickname, $scope.typing_status, $scope.channel);
+		} else if (($scope.message_text + '').length == 0) {
+			console.log('not typing')
+			$scope.typing_status = false;
+			chatMethods.triggerTypingStatus($scope.current.nickname, $scope.typing_status, $scope.channel);
+		}
+	})
+	
+	$scope.channel.bind('client-send_message', function(message){
+		$scope.messages.push(message);
+		
+		// Programatically create an audio element and pop the user
+		var pop = new Audio('/sounds/pop.wav');
+		pop.load();
+		pop.play();
+		
+		$scope.$apply();
+	});
+	
+	$scope.channel.bind('client-typing_status', function(notification){
+		console.log('typing status triggered');
+		if(notification.status == true) {
+			$scope.notification = notification;
+		}
+		else{
+			$scope.notification = '';
+		}
+		$scope.$apply();
+	});
+	
+	$scope.channel.bind('presence', function(member){
+		console.log('triggered presence!');
+		if (member.event == "member_added") {
+			if (member.user_id == user_id) { }
+			else {
+				member.message = "joined the chatroom."
+			}
+		}
+		else if (member.event == "member_removed") {
+			if (member.user_id == user_id) { }
+			else {
+				member.message = "left the chatroom."
+			}
+		}
+		$scope.notifications.push(member);
+		$scope.$apply();
+	});
+
 	$scope.postMessage = function(){
-		var msg = $scope.message
+		$scope.messageSending = true;
+		var msg = $scope.message_text
 		if(msg == null || msg == "") {
 			alert('Please enter a message...');
 		}
 		else {
-			var json = jsonMethods.makeJson(msg);
-			jsonMethods.postJson(json).
-				then(function(promise){
-					var id = promise.document_id;
-					chatMethods.getDocByID(id);
+			var json = jsonMethods.makeJson(msg, $scope.current.nickname);
+			jsonMethods.postDoc(json).
+			then(function(promise){
+				console.log('promise is ' + JSON.stringify(promise));
+				var id = promise.document_id;
+				return chatMethods.getDocByID(id);
+			}).
+			then(function(promise){
+				decoded = JSON.parse(atob(promise));
+				message = decoded.message;
+				chatMethods.triggerSendMessage(message, $scope.channel, function(bool){
+					$scope.messageSending = bool;
+				});
+				chatMethods.appendMessage($scope, message, function(bool){
+					$scope.messageSending = bool;
+					$scope.message_text = "";
+				});
 			});
 		}
 	}
 });
-
-// Post a message to the server to be sent through Pusher
-function ng_send_message() { 
-	
-	// Validate Field
-	if($('#message').val() == '') {
-		alert('Please enter a message...');
-		$('#message').focus();
-		return false;
-	}
-	
-	// Reset the validation stuff
-	$('#message').css({ color: '#000000' });
-	
-	// Set some vars
-	var message = $('#message').val();
-	var username = $('#username').val();
-	
-	// Start the "loading" UI
-	$("#spinner").show();
-	$('#message-overlay').fadeIn(200);
-	$('#message').blur();
-	
-	$.ajaxSetup({
-		beforeSend: 
-		function(xhr){
-			xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-		}
-	})
-	
-	// Post off to the server with the message and some vars!
-	$.post('/api/post_message', { "chat_id": chat_id, "message": message, "user_id": user_id }, function(response) {
-		// When the response comes back, do some stuff to remove the "loading" UI
-		$('#message').val("");
-		$('#message-overlay').fadeOut(150);
-		$('#message').focus();
-		$('#loading').fadeOut();
-		is_typing_currently = false;
-		typing_status(false);
-	});
-	
-}

@@ -43,51 +43,8 @@ function typing_status(status) {
 	});
 }
 
-// Post a message to the server to be sent through Pusher
-function send_message() { 
-	
-	// Validate Field
-	if($('#message').val() == '') {
-		alert('Please enter a message...');
-		$('#message').focus();
-		return false;
-	}
-	
-	// Reset the validation stuff
-	$('#message').css({ color: '#000000' });
-	
-	// Set some vars
-	var message = $('#message').val();
-	var username = $('#username').val();
-	
-	// Start the "loading" UI
-	$("#spinner").show();
-	$('#message-overlay').fadeIn(200);
-	$('#message').blur();
-	
-	$.ajaxSetup({
-		beforeSend: 
-		function(xhr){
-			xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
-		}
-	})
-	
-	// Post off to the server with the message and some vars!
-	$.post('/api/post_message', { "chat_id": chat_id, "message": message, "user_id": user_id }, function(response) {
-		// When the response comes back, do some stuff to remove the "loading" UI
-		$('#message').val("");
-		$('#message-overlay').fadeOut(150);
-		$('#message').focus();
-		$('#loading').fadeOut();
-		is_typing_currently = false;
-		typing_status(false);
-	});
-	
-}
-
 var changeNickname = function() {
 	if($('#nickname').val().length > 0) {
-		$("#spinner").show();
 		
 		$.post('/api/update_nickname/', { 'chat_id': chat_id, 'user_id': user_id, 'nickname': $('#nickname').val() }, function(response) {
 			if(response != "SAVED") {
@@ -96,7 +53,6 @@ var changeNickname = function() {
 			$('#editNickname').fadeIn(200);
 			$('#title').fadeIn(200);
 			onSuccess: {
-				$("#spinner").hide();
 			}
 		});
 	} else {

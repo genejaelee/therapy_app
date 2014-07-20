@@ -17,5 +17,7 @@
 //= require jquery.countdown.min
 //= require angular
 //= require angular-resource
+//= require angular-pusher
+//= require scrollglue
 //= require angular/
 //= require_tree .

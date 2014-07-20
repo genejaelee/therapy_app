@@ -78,6 +78,7 @@ TherapyApp::Application.routes.draw do
   match '/api/reset_timer' => 'api#reset_timer', via: 'post'
   match '/api/get_timer' => 'api#get_timer', via: 'get'
   match '/api/post_truevault' => 'api#post_truevault', via: 'get'
+  match '/api/chat_user' => 'api#chat_user', via: 'post'
   
   #root :to => 'twilio#index'
   root 'static_pages#home'

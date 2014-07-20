@@ -184,11 +184,45 @@ $sidebar-width : 240px;
 	}
 }
 
+.spinner.ng-hide-remove {
+	display: block;
+	.spinner-container {
+		img {
+			margin: auto;
+			bottom: -120px;
+			height: 0px;
+			opacity: 0;
+			left: 25px;
+		}
+	}
+}
+
 .spinner {
-	display: none;
 	text-align: center;
+	margin: auto;
 	height: 50px;
-	margin-bottom: 15px;
+	width: 100%;
+	
+	.spinner-container {
+		position: relative;
+		display: block;
+		height: 50px;
+		width: 50px;
+		margin: auto;
+		
+		img {
+			position: absolute;
+			bottom: -20px;
+			-webkit-transition: 0.4s ease-out;
+			-moz-transition: 0.4s ease-out;
+			-o-transition: 0.4s ease-out;
+			-webkit-transition-property: height, opacity, margin-bottom, bottom, left;
+			height: 50px;
+			opacity: 1.0;
+			margin-bottom: 0px;
+			left: 0px;
+		}
+	}
 }
 
 .twilio-container {
@@ -307,10 +341,23 @@ $sidebar-width : 240px;
 				width: 100%;
 				z-index: 10;
 				
+				#chat-notification.ng-hide-remove {
+					opacity: 0;
+					margin-left: -35px;
+				}
+				
+				#chat-notification.ng-hide-add-active {
+					margin-left: 0px;
+					opacity: 1.0;
+				}
+				
 				#chat-notification {
+					-webkit-transition: all ease-out 0.15s;
+					-moz-transition: all ease-out 0.15s;
+					-o-transition: all ease-out 0.15s;
 					padding: 5px;
 					max-width: 840px;
-					margin: auto;
+					margin-left: 0px;
 					height: 100%;
 					
 					div {
@@ -343,6 +390,19 @@ $sidebar-width : 240px;
 						strong {
 							color: #727272;
 						}
+					}
+					
+					.message-container.ng-enter {
+						-webkit-transition: all ease-in-out 0.25s;
+						-moz-transition: all ease-in-out 0.25s;
+						-o-transition: all ease-in-out 0.25s;
+						margin-top: -10px;
+						opacity: 0;
+					}
+					
+					.message-container.ng-enter-active {
+						margin-top: 0px;
+						opacity: 1.0;
 					}
 					
 					.message-container {
@@ -386,6 +446,7 @@ $sidebar-width : 240px;
 				.message {
 					@include blue-gradient;
 					color: #fff;
+					float: left;
 				}
 			}
 			.them {

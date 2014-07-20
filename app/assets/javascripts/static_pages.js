@@ -51,14 +51,6 @@ function scrollToTheBottomUnlessScrolled(element) {
 	}
 }
 
-function scrollToBottomOfAndFocusOn(toScroll, toFocusOn){
-	$(toScroll).parent().stop().animate({
-		scrollTop: $(toScroll).height() + $('#spinner').height()},
-		1000, "easeOutCubic", function(){
-			$(toFocusOn).focus();
-		});
-}
-
 //legacy functions to hide and show things
 var hide_element = function(element) {
 	$( element ).stop().animate( {opacity : 0 }, 300, function(){

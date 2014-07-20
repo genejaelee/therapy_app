@@ -12,54 +12,20 @@
 			<div class="change-nickname-container sixteen columns">
 				<label>Your Chatroom Username</label>
 				<div>
-					<input type="text" value="<%= @user.nickname %>" id="nickname" />
+					<input type="text" id="nickname" ng-model="current.nickname" xng-focus='isCheckedN'></input>
 				</div>
 			</div>
 			
 			<div class="emergency-confirm sixteen columns" style="margin-bottom: 30px;">
 				<label>Click the checkbox to accept.</label>
-				<input type="checkbox" class="css-check" id="accept"></input>
+				<input type="checkbox" class="css-check" id="accept" ng-model="isCheckedN"></input>
 				<p style="display: inline;">"I am over 18 years old, and I am not homicidal, suicidal or abusing anyone. I am not in an emergency situation, and I agree to the Plain White Couch <%= link_to "Terms of Service", terms_path %> and <%= link_to "Privacy Policy", privacy_path %>"</p>
 			</div>
-			
-			<!--
-				
-			<div class="content-container sixteen columns">
-				<div class="image-container content two columns">
-					<%= image_tag("tutorial-therapist-icon2.jpg")%>
-				</div>
-				<div class="text-container content twelve columns">
-					<h3>1. Choose a therapist and suggest a time to chat.</h3>
-					<p>The therapist will have 24 hours to confirm or suggest other times.</p>
-				</div>
-			</div>
-			
-			<div class="content-container sixteen columns">
-				<div class="image-container content two columns">
-					<%= image_tag("tutorial-chat-icon2.jpg")%>
-				</div>
-				<div class="text-container content twelve columns">
-					<h3>2. Meet in your chatroom at the scheduled time.</h3>
-					<p>We've built a secure chatroom to make the instant messaging safe; all conversations are permanently deleted as soon as the conversation ends. You and the therapist will both enter your private chatroom at the scheduled time to talk.</p>
-				</div>
-			</div>
-			
-			<div class="content-container sixteen columns">
-				<div class="image-container content two columns">
-					<%= image_tag("tutorial-schedule-icon2.jpg")%>
-				</div>
-				<div class="text-container content twelve columns">
-					<h3>3. If you liked it, schedule a followup session.</h3>
-					<p>Followup sessions cost $40. You can choose to talk again through the chat room, over the phone, or do a video chat. You can also meet in person if the therapist is nearby.</p>
-				</div>
-			</div>
-				
-			-->
 
 			<hr style="border-top: 1px dashed #ccc; margin-bottom: 20px;">
 
 			<div class="button-container">
-				<button class="confirm-button">Okay, I understand.</button>
+				<button class="confirm-button" ng-click="closePopup()">Okay, I understand.</button>
 				<%= button_to "No, take me back", homepage_path, :class => "cancel-button", :method => 'get' %>
 			</div>
 		</div>

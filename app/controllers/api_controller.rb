@@ -153,5 +153,12 @@ class ApiController < ApplicationController
     end
     return @current_user
   end
+  
+  def chat_user
+    @id = params[:id]
+    puts "#{params[:id]}"
+    @chat_user = ChatUser.find_by(id: @id)
+    render :json => @chat_user
+  end
 
 end

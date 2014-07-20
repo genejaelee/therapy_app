@@ -1,4 +1,4 @@
-var chatsModule = angular.module('chatsModule', ['ngResource']);
+var chatsModule = angular.module('chatsModule', ['ngResource', 'ngAnimate', 'doowb.angular-pusher', 'luegg.directives']);
 
 chatsModule
   .config(function($httpProvider){
@@ -12,17 +12,12 @@ chatsModule
 		}
 });
 
-chatsModule.directive('ngEnter', function() {
-return function(scope, element, attrs) {
-    element.bind("keydown keypress", function(event) {
-      if(event.which === 13) {
-				if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
-	        scope.$apply(function(){
-	          scope.$eval(attrs.ngEnter, {'event': event});
-	        });
-	        event.preventDefault();
-				}
-      }
-    });
-  };
-});
+
+chatsModule
+	.config(['PusherServiceProvider',
+	  function(PusherServiceProvider) {
+	    PusherServiceProvider
+	      .setToken(PUSHER_KEY)
+	      .setOptions({ encrypted: true });
+  }
+]);

@@ -25,7 +25,6 @@ $(".chats").ready(function(){
 		if (e.keyCode == 13) {
 			$('.confirm-button').click();
 		}
-		scrollToBottomOfAndFocusOn('.messages-container', '#message');
 	});
 	
 	initCheckBox();
@@ -42,7 +41,6 @@ $(".chats").ready(function(){
 					appendSystemMessage(i);
 				}
 			}
-			scrollToBottomOfAndFocusOn('.messages-container', '#message');
 		}
 		else {
 			alert('You must accept the conditions to proceed.');
@@ -178,45 +176,6 @@ $(".chats.view").ready(function() {
 		else {
 			$('.messages-container').append('<div class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</div>');
 		}
-	});
-
-	// Deal with incoming messages!
-	presenceChannel.bind('send_message', function(message) {
-		$("#spinner").hide();
-		var who = '';
-		
-		if(user_id == message.user.id) {
-			who = 'you';
-			$('#message-overlay').fadeOut(150);
-		} 
-		
-		else {
-			scrollToTheBottomUnlessScrolled($('#messages'));
-			who = 'them';
-			// If they have a typing message, hide it!
-			$('#chat-notification #is_typing_' + message.user.id).hide();
-			
-			// Do some alerting of the user
-			if(!hasFocus) {
-				// TODO: Update the page title
-				document.title = "New Message! - Plain White Couch"
-			}
-		}
-		
-		// Programatically create an audio element and pop the user
-		var pop = new Audio('/sounds/pop.wav');
-		pop.load();
-		pop.play();
-		
-		var header = getMessageHeader(message.user.nickname, who);
-		$('.messages-container').append(
-													'<div class="message-container">' +
-														'<li class="' + who + ' just_added_id_' + message.id + '" style="display:none;">' + header +
-																'<div class="message-wrapper"><div class="message">' + 
-																'<p>' + replaceURLWithHTMLLinks(message.message) + '</p>' +
-																'</div></div></li></div>');
-													
-		$('.messages-container li.just_added_id_' + message.id).fadeIn();
 	});
 	
 	// Typing Messages
