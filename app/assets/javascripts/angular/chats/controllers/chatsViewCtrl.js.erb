@@ -79,11 +79,19 @@ chatsModule.factory('chatMethods', function($http){
 	}
 });
 
-chatsModule.controller('ViewCtrl', function($scope, jsonMethods, chatMethods, $http, Pusher, PusherMethods) {
-	$scope.current = { nickname: user_nickname };
+chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethods, $http, Pusher, PusherMethods) {
+	$scope.current = { nickname : user_nickname };
 	console.log($scope.current.nickname);
+	
+	$scope.popup = { close : false };
 	$scope.closePopup = function(){
-		return true;
+		if ($scope.isCheckedN) {
+			console.log("CLOSING POPUP BITCH")
+			$scope.popup.close = true;
+		}
+		else {
+			alert('You must accept the conditions to proceed.');
+		}
 	}
 	
 	$scope.messageSending = false;
@@ -130,18 +138,16 @@ chatsModule.controller('ViewCtrl', function($scope, jsonMethods, chatMethods, $h
 	});
 	
 	$scope.channel.bind('client-typing_status', function(notification){
-		console.log('typing status triggered');
 		if(notification.status == true) {
 			$scope.notification = notification;
 		}
-		else{
+		else {
 			$scope.notification = '';
 		}
 		$scope.$apply();
 	});
 	
 	$scope.channel.bind('presence', function(member){
-		console.log('triggered presence!');
 		if (member.event == "member_added") {
 			if (member.user_id == user_id) { }
 			else {

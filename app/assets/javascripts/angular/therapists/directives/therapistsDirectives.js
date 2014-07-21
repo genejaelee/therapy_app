@@ -1,0 +1,1 @@
+var therapistsModule = angular.module('therapistsModule');

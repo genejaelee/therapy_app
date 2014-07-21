@@ -28,7 +28,7 @@
 	var PUSHER_KEY = '<%= Pusher.key %>'
 </script>
 
-<div id="chatroom" ng-controller="ViewCtrl as viewCtrl">
+<div id="chatroom" ng-controller="ChatsViewCtrl as viewCtrl">
 	
 <%= render :partial => 'chats/chat_popup' %>
 
@@ -48,38 +48,7 @@
 				</div>
 			</div>
 			<ul scroll-glue id="messages">
-				<div class="messages-container">
-					<% @messages.each_with_index do |message, index| %>
-						<% user = ChatUser.find(message.user_id) %>
-						<div class="message-container">
-							<li <% if user.id == @user.id %> 
-									class="you"
-									<% else %>
-									class="them"
-									<% end %>>
-								
-									<%= puts "#{@messages[index].user_id}" %>
-									<% unless (@messages[index - 1].user_id == message.user_id) && index != 0 %>
-										<br>
-										<span class="nickname-said"><strong class="nickname"><%= user.nickname %>&nbsp</strong>said:</span>
-									<% end %>
-								<!--
-								<span class="timestamps">
-									<% unless message.created_at.nil? %>
-										<%= message.created_at.in_time_zone(user.time_zone).strftime('%a %I:%M %p %Z') %>
-									<% end %>
-								</span>
-								<br>
-									-->
-								<div class="message-wrapper">
-									<div class="message">
-										<p><%= message.message %></p>
-									</div>
-								</div>
-							</li>
-						</div>
-					<% end %>
-				</div>
+				
 				<div class="messages-container">
 					<div class="message-container" ng-repeat="message in messages track by $id(message)">
 						<li ng-class="checkSender(message.user.id)">
@@ -94,9 +63,10 @@
 					
 					<div class="note" ng-repeat="presence in notifications"><strong>{{ presence.nickname }}</strong> {{ presence.message }}</div>
 					
-				<div id="spinner" class="spinner" ng-show="messageSending">
-					<div class="spinner-container">
-						<%= image_tag("loading.gif", :alt => "Loading") %>
+					<div id="spinner" class="spinner" ng-show="messageSending">
+						<div class="spinner-container">
+							<%= image_tag("loading.gif", :alt => "Loading") %>
+						</div>
 					</div>
 				</div>
 			</ul>

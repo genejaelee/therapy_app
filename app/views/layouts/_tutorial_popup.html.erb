@@ -1,4 +1,4 @@
-<div id="tutorial-popup" class="popup">
+<div id="tutorial-popup" class="popup ng-hide" ng-model="popup" ng-hide="popup.close">
 	<div class="bg-container">
 		<div class="container">
 			
@@ -47,7 +47,7 @@
 			<br></br>
 
 			<div class="button-container">
-				<button class="confirm-button">Okay, I understand.</button>
+				<button class="confirm-button" ng-click="closePopup(true)">Okay, I understand.</button>
 			</div>
 		</div>
 	</div>

@@ -4,11 +4,11 @@
 									 :reverse => false
 	%>
 
-<%= render 'layouts/tutorial_popup' %>
-
 <%= render 'layouts/navbar' %>
 
-<body id="therapist-index">
+<body id="therapist-index" ng-controller="TherapistsViewCtrl">
+	<%= render 'layouts/tutorial_popup' %>
+	
 	<% content_for :title do %>
 	  Click a therapist, suggest three times to talk.
 	<% end %>

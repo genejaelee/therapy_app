@@ -1,0 +1,10 @@
+var therapistsModule = angular.module('therapistsModule');
+
+therapistsModule.controller('TherapistsViewCtrl', function($scope, $http){
+	$scope.popup = { close : false };
+	$scope.closePopup = function(bool){
+		$scope.popup.close = bool;
+	}
+	
+	// assign datepicker attribute to datefields
+});

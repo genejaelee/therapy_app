@@ -1,4 +1,4 @@
-<div id="chat-popup" class="popup">
+<div id="chat-popup" class="popup ng-hide" ng-model="popup" ng-hide="popup.close">
 	<div class="bg-container">
 		<div class="container">
 			
@@ -12,7 +12,7 @@
 			<div class="change-nickname-container sixteen columns">
 				<label>Your Chatroom Username</label>
 				<div>
-					<input type="text" id="nickname" ng-model="current.nickname" xng-focus='isCheckedN'></input>
+					<input type="text" id="nickname" ng-model="current.nickname" ng-enter="closePopup()" xng-focus='isCheckedN'></input>
 				</div>
 			</div>
 			

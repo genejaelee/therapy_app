@@ -5,19 +5,6 @@ $(".therapists").ready(function() {
 	//therapist profile stuff
 	//addSubsection()
 	
-	// do index stuff for therapist
-	if ($('body').hasClass('index')) {
-		$('#tutorial-popup').css('top', - $("#tutorial-popup").height());
-		
-		setTimeout(function(){
-			openPopup('#tutorial-popup');
-		}, 250)
-		
-		$('.confirm-button').click(function(){
-			closePopup('#tutorial-popup');
-		});
-	}
-	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){
 		if ($(this).val() == "Yes") {

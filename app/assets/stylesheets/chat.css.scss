@@ -217,6 +217,8 @@ $sidebar-width : 240px;
 			-moz-transition: 0.4s ease-out;
 			-o-transition: 0.4s ease-out;
 			-webkit-transition-property: height, opacity, margin-bottom, bottom, left;
+			-moz-transition-property: height, opacity, margin-bottom, bottom, left;
+			-o-transition-property: height, opacity, margin-bottom, bottom, left;
 			height: 50px;
 			opacity: 1.0;
 			margin-bottom: 0px;

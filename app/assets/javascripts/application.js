@@ -18,6 +18,7 @@
 //= require angular
 //= require angular-resource
 //= require angular-pusher
-//= require scrollglue
+//= require angular-scrollglue
+//= require angular-strap.min
 //= require angular/
 //= require_tree .

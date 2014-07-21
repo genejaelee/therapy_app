@@ -3,17 +3,6 @@ function is_touch_device() {
       || 'onmsgesturechange' in window; // works on ie10
 };
 
-function initCheckBox() {
-	$(".css-check").click(function() {
-	  if ($(this).is(':checked')) {
-			$(this).attr('checked', 'checked');
-	  }
-		else {
-			$(this).removeAttr('checked', 'checked')
-		}
-	});
-}
-
 // text area functions
 function updateCountdown() {
     // 500 is the max message length

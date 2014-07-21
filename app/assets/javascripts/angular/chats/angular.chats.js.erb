@@ -17,7 +17,7 @@ chatsModule
 	.config(['PusherServiceProvider',
 	  function(PusherServiceProvider) {
 	    PusherServiceProvider
-	      .setToken(PUSHER_KEY)
+	      .setToken('<%= ENV["PUSHER_KEY"] %>')
 	      .setOptions({ encrypted: true });
   }
 ]);
