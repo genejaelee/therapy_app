@@ -20,8 +20,8 @@ class Therapist < ActiveRecord::Base
   
   validates_attachment_size :avatar, :less_than => 3.megabytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/jpg']
-  validates_presence_of :first_name, :last_name, :city, :state, :degree, :on => :update
-  validates :zipcode, presence: true, length: { minimum: 5 }, :with => :zipcode_validator, :on => :update
+  #validates_presence_of :first_name, :last_name, :city, :state, :degree, :on => :update
+  #validates :zipcode, presence: true, length: { minimum: 5 }, :with => :zipcode_validator, :on => :update
   
   def convert_slots_to_UTC_0_and_format
     if self.open_slots.empty?
