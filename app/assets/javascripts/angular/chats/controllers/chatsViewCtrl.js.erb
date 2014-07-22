@@ -4,10 +4,11 @@ chatsModule.factory('jsonMethods', function($http){
 	return {
 		makeJson: function(msg, nickname) {
 			var chat_user_id = parseInt(user_id);
+			var chat_id = parseInt(chat_id)
 			
 			messageObject = {
 				"message": {
-					"chat_id": parseInt(chat_id),
+					"chat_id": chat_id,
 					"channel": channel,
 					"user": {
 						"id" : chat_user_id,
@@ -40,7 +41,7 @@ chatsModule.factory('jsonMethods', function($http){
 	}
 });
 
-chatsModule.factory('chatMethods', function($http){
+chatsModule.factory('chatMethods', function($http, $timeout){
 	return {
 		getDocByID: function(id) {
 			console.log("id is " + id);
@@ -75,18 +76,94 @@ chatsModule.factory('chatMethods', function($http){
 		appendMessage: function(scope, message, callback) {
 			scope.messages.push(message);
 			callback(false);
+		},
+		
+		bindPusherEvents: function(scope){
+			// Binding Pusher chat events
+			scope.channel.bind('client-send_message', function(message){
+				scope.messages.push(message);
+		
+				// Programatically create an audio element and pop the user
+				var pop = new Audio('/sounds/pop.wav');
+				pop.load();
+				pop.play();
+		
+				scope.$apply();
+			});
+		
+			scope.channel.bind('client-typing_status', function(notification){
+				if(notification.status == true) {
+					notification.message = "is typing...";
+					scope.notification = notification;
+				}
+				else {
+					notification.message = "";
+					scope.notification.status = false;
+				}
+				scope.$apply();
+			});
+	
+			scope.channel.bind('presence', function(member){
+				if (member.event == "member_added") {
+					member.message = "joined the chatroom."
+				}
+				else if (member.event == "member_removed") {
+					member.message = "left the chatroom."
+				}
+				member.status = true;
+				scope.notification = member;
+				scope.notification.timeout = $timeout(function(){
+					scope.notification.status = false;
+				}, 2000);
+				scope.$apply();
+			});
+		}
+	
+	}
+});
+
+chatsModule.factory('timerMethods', function($http){
+	return {
+		bindTimerEvents: function(scope){
+			scope.channel.bind('client-timer_start', function(payload){
+				scope.timer.start();
+				scope.$apply();
+			});
+			
+			scope.channel.bind('client-timer_stop', function(payload){
+				scope.timer.stop();
+				scope.$apply();
+			});
+			
+			scope.channel.bind('client-timer_resume', function(payload){
+				scope.timer.resume();
+				scope.$apply();
+			});
+		},
+		
+		triggerStartTimer: function(timer, channel, callback) {
+			var triggered = channel.trigger('client-timer_start', payload);
+			callback();
+		},
+		triggerStopTimer: function(timer, channel, callback) {
+			var triggered = channel.trigger('client-timer_stop', payload);
+			callback();
+		},
+		triggerResumeTimer: function(timer, channel, callback) {
+			var triggered = channel.trigger('client-timer_resume', payload);
+			callback();
 		}
 	}
 });
 
-chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethods, $http, Pusher, PusherMethods) {
+chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethods, timerMethods, $http, $timeout, Pusher, PusherMethods) {
 	$scope.current = { nickname : user_nickname };
+	$scope.timer = document.getElementById('timer').getElementsByTagName('timer')[0];
 	console.log($scope.current.nickname);
 	
 	$scope.popup = { close : false };
 	$scope.closePopup = function(){
 		if ($scope.isCheckedN) {
-			console.log("CLOSING POPUP BITCH")
 			$scope.popup.close = true;
 		}
 		else {
@@ -111,57 +188,51 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 		else {
 			var sender = "them";
 		}
-		return sender
+		return sender;
 	}
 	
+	// TIMER API STUFF
+	
+	timerMethods.bindTimerEvents($scope);
+	
+	$scope.stopResumeTimer = function(btn) {
+	  if (btn.innerHTML === 'Start') {
+			timerMethods.triggerStartTimer(timer, $scope.channel, function(){
+				$scope.timer.start();
+			});
+	    btn.innerHTML = 'Stop';
+	  }
+	  else if (btn.innerHTML === 'Stop') {
+			timerMethods.triggerStopTimer(timer, $scope.channel, function(){
+				$scope.timer.stop();
+			});
+	    btn.innerHTML = 'Resume';
+	  }
+	  else {
+			timerMethods.triggerResumeTimer(timer, $scope.channel, function(){
+				$scope.timer.resume();
+			});
+	    btn.innerHTML = 'Stop';
+	  }
+	}
+	
+	// PUSHER API STUFF
+	
+	chatMethods.bindPusherEvents($scope);
+	
 	$scope.$watch('message_text', function(){
-		if ((($scope.message_text + '').length >= 1) && ($scope.typing_status == false)) {
+		var nickname = $scope.current.nickname;
+		var status = $scope.typing_status;
+		var channel = $scope.channel;
+		if ((($scope.message_text + '').length >= 1) && (status == false)) {
 			console.log('typing');
-			$scope.typing_status = true;
-			chatMethods.triggerTypingStatus($scope.current.nickname, $scope.typing_status, $scope.channel);
+			status = true;
+			chatMethods.triggerTypingStatus(nickname, status, channel);
 		} else if (($scope.message_text + '').length == 0) {
 			console.log('not typing')
-			$scope.typing_status = false;
-			chatMethods.triggerTypingStatus($scope.current.nickname, $scope.typing_status, $scope.channel);
+			status = false;
+			chatMethods.triggerTypingStatus(nickname, status, channel);
 		}
-	})
-	
-	$scope.channel.bind('client-send_message', function(message){
-		$scope.messages.push(message);
-		
-		// Programatically create an audio element and pop the user
-		var pop = new Audio('/sounds/pop.wav');
-		pop.load();
-		pop.play();
-		
-		$scope.$apply();
-	});
-	
-	$scope.channel.bind('client-typing_status', function(notification){
-		if(notification.status == true) {
-			$scope.notification = notification;
-		}
-		else {
-			$scope.notification = '';
-		}
-		$scope.$apply();
-	});
-	
-	$scope.channel.bind('presence', function(member){
-		if (member.event == "member_added") {
-			if (member.user_id == user_id) { }
-			else {
-				member.message = "joined the chatroom."
-			}
-		}
-		else if (member.event == "member_removed") {
-			if (member.user_id == user_id) { }
-			else {
-				member.message = "left the chatroom."
-			}
-		}
-		$scope.notifications.push(member);
-		$scope.$apply();
 	});
 
 	$scope.postMessage = function(){

@@ -66,7 +66,7 @@ $sidebar-width : 240px;
 		background-color: #fff;
 		text-align: center;
 		
-		.timer {
+		timer {
 			font-family: $light-font;
 			line-height: 90px;
 			margin: auto;
@@ -330,6 +330,7 @@ $sidebar-width : 240px;
 			}
 			
 			.nickname-said {
+				margin-top: 10px;
 				color: #727272;
 				.nickname {
 					@extend .nickname-said;
@@ -347,10 +348,11 @@ $sidebar-width : 240px;
 					opacity: 0;
 					margin-left: -35px;
 				}
-				
-				#chat-notification.ng-hide-add-active {
-					margin-left: 0px;
-					opacity: 1.0;
+
+				#chat-notification.ng-hide {
+					opacity: 0;
+					margin-left: -35px;
+					display: block !important;
 				}
 				
 				#chat-notification {

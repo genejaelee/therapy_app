@@ -38,6 +38,7 @@ $(".chats").ready(function(){
 
 $(".chats.view").ready(function() {
 	
+	/*
 	$('.timer-start-button').click(function(){
 		var time = $('.timer div').data("time");
 		var state = "notstarted"
@@ -72,6 +73,7 @@ $(".chats.view").ready(function() {
 			}
 		});
 	})
+	*/
 	
 	$('.helplines-button').click(function() {
 		helplinesCard = $('#helplines-card')
@@ -106,24 +108,7 @@ $(".chats.view").ready(function() {
 	presenceChannel.bind('reset_timer', function(member){
 		resetTimer();
 	});
-	
-	presenceChannel.bind('presence', function(member){
-		if (member.event == "member_added") {
-			if(member.user_id == user_id) {
-			}
-			else {
-				$('.messages-container').append('<div class="note"><strong>' + member.nickname + '</strong> entered the chatroom.</div>');
-			}
-		}
-		else if (member.event == "member_removed") {
-			if(member.user_id == user_id) {
-			}
-			else {
-				$('.messages-container').append('<div class="note"><strong>' + member.nickname + '</strong> left the chatroom.</div>');
-			}
-		}
-	});
-	
+
 	// When somebody updates their nickname, tell all the people including yourself
 	presenceChannel.bind('updated_nickname', function(member) {
 		scrollToTheBottomUnlessScrolled($('#messages'));
@@ -135,17 +120,6 @@ $(".chats.view").ready(function() {
 		}
 	});
 	
-	// Typing Messages
-	presenceChannel.bind('typing_status', function(notification) {
-		if(notification.user.id == user_id) return false;
-		if(notification.status == "true") {
-			$('#chat-notification').html('<div id="is_typing_'+ notification.user.id +'"><strong>' + notification.user.nickname + '</strong> is typing...</div>');
-			scrollToTheBottomUnlessScrolled($('#messages'));
-		} 
-		else {
-			$('#chat-notification #is_typing_' + notification.user.id).remove();
-		}
-	});
 	*/
 	
 	// Now pusher is all setup lets let the user go wild!

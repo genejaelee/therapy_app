@@ -35,7 +35,7 @@
 <div class="left-panel chat-panel">
 	<div id="chat-navbar">
 		<p>
-			Test Chatroom. All records are deleted upon leaving.
+			
 		</p>
 	</div>
 	
@@ -43,8 +43,7 @@
 		<div class="container">
 			<div id="chat-notification-container">
 				<div id="chat-notification" ng-show="notification.status" ng-model="notification">
-					<strong>{{ notification.nickname }}</strong>
-					<i>is typing...</i>
+					<strong>{{ notification.nickname }}</strong> <i>{{ notification.message }}</i>
 				</div>
 			</div>
 			<ul scroll-glue id="messages">
@@ -92,8 +91,6 @@
 						</li>
 					</div>
 					
-					<div class="note" ng-repeat="presence in notifications"><strong>{{ presence.nickname }}</strong> {{ presence.message }}</div>
-					
 				<div id="spinner" class="spinner" ng-show="messageSending">
 					<div class="spinner-container">
 						<%= image_tag("loading.gif", :alt => "Loading") %>
@@ -121,12 +118,7 @@
 		</div>
 		<hr>
 		<% if current_user.role_type == "Therapist" %>
-		<div class="timer-button-container sidebar-section">
-			<p style="margin-bottom: 5px; color: #fff;">Timer Controls</p>
-			<button class="timer-start-button">Start</button>
-			<button class="timer-toggle-button" style="display: none;">Pause</button>
-			<button class="timer-reset-button">Reset</button>
-		</div>
+		<%= render :partial => 'chats/timer_controls' %>
 		<hr>
 		<% elsif current_user.role_type == "Client" %>
 		<% end %>
@@ -135,16 +127,7 @@
 		<h1>{{ title }}</h1>
 	</div>
 	
-	<div class="sidebar-clock">
-		<div class="clock-circle" id="clock-back">
-			<span class="timer notstarted">Hello.<div data-time="-0m -0s"></div></span>
-		</div>
-		<div class="clock-circle" id="clock-front">
-			<div class="content clock-circle-concentric">
-				<p>timer</p>
-			</div>
-		</div>
-	</div>
+	<%= render :partial => 'chats/timer' %>
 </div>
 
 <div id="sidebar-cards">

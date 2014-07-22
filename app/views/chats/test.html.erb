@@ -43,11 +43,11 @@
 		<div class="container">
 			<div id="chat-notification-container">
 				<div id="chat-notification" ng-show="notification.status" ng-model="notification">
-					<strong>{{ notification.nickname }}</strong>
-					<i>is typing...</i>
+					<strong>{{ notification.nickname }}</strong> <i>{{ notification.message }}</i>
 				</div>
 			</div>
 			<ul scroll-glue id="messages">
+				
 				<div class="messages-container">
 					<div class="message-container" ng-repeat="message in messages track by $id(message)">
 						<li ng-class="checkSender(message.user.id)">
@@ -58,9 +58,6 @@
 								</div>
 							</div>
 						</li>
-					</div>
-					
-					<div class="note" ng-repeat="presence in notifications"><strong>{{ presence.nickname }}</strong> {{ presence.message }}
 					</div>
 					
 					<div id="spinner" class="spinner" ng-show="messageSending">
@@ -90,25 +87,11 @@
 			<button class="helplines-button">Helplines</button>
 		</div>
 		<hr>
-		<div class="timer-button-container sidebar-section">
-			<p style="margin-bottom: 5px; color: #fff;">Timer Controls</p>
-			<button class="timer-start-button">Start</button>
-			<button class="timer-toggle-button" style="display: none;">Pause</button>
-			<button class="timer-reset-button">Reset</button>
-		</div>
+		<%= render :partial => 'chats/timer_controls' %>
 		<hr>
 	</div>
 	
-	<div class="sidebar-clock">
-		<div class="clock-circle" id="clock-back">
-			<span class="timer notstarted">Hello.<div data-time="-0m -0s"></div></span>
-		</div>
-		<div class="clock-circle" id="clock-front">
-			<div class="content clock-circle-concentric">
-				<p>timer</p>
-			</div>
-		</div>
-	</div>
+	<%= render :partial => 'chats/timer' %>
 </div>
 
 <div id="sidebar-cards">
