@@ -66,10 +66,15 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 			callback(false);
 		},
 		
-		triggerTypingStatus: function(nickname, status, channel) {
+		triggerTypingStatus: function(nickname, status, length, channel) {
+			console.log('triggered typing status');
 			payload = {
 				"nickname": nickname,
-				"status": status
+				"status": status,
+				"message": 'is typing...'
+			}
+			if (length > 100) {
+				payload.message = 'is typing a longer message...'
 			}
 			var triggered = channel.trigger('client-typing_status', payload);
 		},
@@ -94,7 +99,6 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 		
 			scope.channel.bind('client-typing_status', function(notification){
 				if(notification.status == true) {
-					notification.message = "is typing...";
 					scope.notification = notification;
 				}
 				else {
@@ -226,7 +230,9 @@ chatsModule.factory('timerMethods', function($http, updateLocalTimer){
 chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethods, timerMethods, $http, $timeout, Pusher, PusherMethods) {
 	$scope.current = { 
 		'nickname' : user_nickname,
-		'timer' : { },
+		'timer' : {
+			'millis' : 'Hello'
+		},
 		'role' : {
 			'type' : role_type
 		}
@@ -315,16 +321,23 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 		$scope.$on('timer-tick', function(event, args){
 			args.seconds = Math.floor((args.millis / 1000) % 60);
 			args.minutes = Math.floor((args.millis / 60000));
-			$scope.timer.millis;
+			
+			$scope.current.timer = {
+				'millis': args.millis,
+				'seconds': args.seconds,
+				'minutes': args.minutes
+			};
+
+			/*
 			$scope.$watch('args.minutes', function(){
 				// update timers, only run if therapist. only one server call can happen.
-				/*
 				console.log('scope current role type is ' + $scope.current.role.type)
 				timerMethods.updateTimer(args.millis, $scope.channel).then(function(promise){
 					$scope.channel.trigger('client-update_timer', promise);
 				});
-				*/
 			});
+			*/
+		
 		});
 	}
 	
@@ -333,17 +346,17 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 	chatMethods.bindPusherEvents($scope);
 	
 	$scope.$watch('message_text', function(){
+		console.log($scope.typing_status);
 		var nickname = $scope.current.nickname;
-		var status = $scope.typing_status;
 		var channel = $scope.channel;
-		if ((($scope.message_text + '').length >= 1) && (status == false)) {
-			console.log('typing');
-			status = true;
-			chatMethods.triggerTypingStatus(nickname, status, channel);
-		} else if (($scope.message_text + '').length == 0) {
-			console.log('not typing')
-			status = false;
-			chatMethods.triggerTypingStatus(nickname, status, channel);
+		var msgLength = ($scope.message_text + '').length;
+		if ((msgLength >= 1) && ($scope.typing_status == false)) {
+			$scope.typing_status = true;
+			chatMethods.triggerTypingStatus(nickname, $scope.typing_status, msgLength, channel);
+		}
+		else if (msgLength === 0) {
+			$scope.typing_status = false;
+			chatMethods.triggerTypingStatus(nickname, $scope.typing_status, msgLength, channel);
 		}
 	});
 

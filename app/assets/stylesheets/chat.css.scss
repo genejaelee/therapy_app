@@ -543,6 +543,26 @@ $sidebar-width : 240px;
 		right: 0;
 		width: 100%;
 		
+		#chat-navbar {
+			display: none;
+		}
+		
+		.messages-panel {
+			.container {
+				#chat-notification-container {
+					#chat-notification {
+						font-size: 10px;
+					}
+				}
+				#messages {
+					.messages-container {
+						padding-top: 30px;
+						padding: 10px;
+					}
+				}
+			}
+		}
+		
 		.chat-input-panel {
 			height: 100px;
 			
