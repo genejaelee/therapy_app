@@ -122,8 +122,20 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 	}
 });
 
-chatsModule.factory('timerMethods', function($http){
+chatsModule.factory('updateLocalTimer', function(){
 	return {
+		update: function(scope, millis) {
+			console.log('updating local timer');
+			scope.timer.startTime = millis;
+			scope.timer.start();
+			scope.toggleButton.text = "Stop";
+		}
+	}
+})
+
+chatsModule.factory('timerMethods', function($http, updateLocalTimer){
+	return {
+		
 		bindTimerEvents: function(scope){
 			scope.channel.bind('client-timer_start', function(payload){
 				scope.timer.start();
@@ -139,29 +151,72 @@ chatsModule.factory('timerMethods', function($http){
 				scope.timer.resume();
 				scope.$apply();
 			});
+			
+			scope.channel.bind('client-timer_reset', function(payload){
+				scope.timer.start();
+				scope.timer.stop();
+				scope.$apply();
+			});
+			
+			scope.channel.bind('client-update_timer', function(payload){
+				console.log('updating local');
+				console.log(payload.millis);
+				updateLocalTimer.update(scope, payload.millis);
+			});
 		},
 		
-		triggerStartTimer: function(timer, channel, callback) {
+		updateTimer: function(millis, channel){
+			// Update server timer then update local timers
+			var promise = $http({
+				method: 'POST', 
+				url: '/api/update_timer',
+				data: { 'chat_id' : chat_id, 'user_id' : user_id, 'millis' : millis }
+			}).then(function(response){
+				console.log('about to update client timer');
+				return response;
+		  },
+			function(response) {
+				console.log(response);
+			});
+			return promise;
+		},
+		
+		triggerStartTimer: function(channel, callback) {
 			var triggered = channel.trigger('client-timer_start', payload);
 			callback();
 		},
-		triggerStopTimer: function(timer, channel, callback) {
+		triggerStopTimer: function(channel, callback) {
 			var triggered = channel.trigger('client-timer_stop', payload);
 			callback();
 		},
-		triggerResumeTimer: function(timer, channel, callback) {
+		triggerResumeTimer: function(channel, callback) {
 			var triggered = channel.trigger('client-timer_resume', payload);
+			callback();
+		},
+		
+		triggerResetTimer: function(channel, callback) {
+			var triggered = channel.trigger('client-timer_reset', payload);
 			callback();
 		}
 	}
 });
 
 chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethods, timerMethods, $http, $timeout, Pusher, PusherMethods) {
-	$scope.current = { nickname : user_nickname };
+	$scope.current = { 
+		'nickname' : user_nickname,
+		'timer' : { },
+		'role' : {
+			'type' : role_type
+		}
+	};
 	$scope.timer = document.getElementById('timer').getElementsByTagName('timer')[0];
 	console.log($scope.current.nickname);
 	
-	$scope.popup = { close : false };
+	$scope.popup = { 'close' : true };
+	$timeout(function(){
+		$scope.popup.close = false
+	}, 250);
+	
 	$scope.closePopup = function(){
 		if ($scope.isCheckedN) {
 			$scope.popup.close = true;
@@ -194,26 +249,62 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 	// TIMER API STUFF
 	
 	timerMethods.bindTimerEvents($scope);
+	$scope.toggleButton = {
+		'text' : "Start"
+	};
 	
-	$scope.stopResumeTimer = function(btn) {
-	  if (btn.innerHTML === 'Start') {
-			timerMethods.triggerStartTimer(timer, $scope.channel, function(){
-				$scope.timer.start();
+	$scope.stopResumeTimer = function() {
+		var button = $scope.toggleButton
+		var timer = $scope.timer
+	  if (button.text === 'Start') {
+			timerMethods.triggerStartTimer($scope.channel, function(){
+				timer.startTime = '50000';
+				timer.start();
 			});
-	    btn.innerHTML = 'Stop';
+	    button.text = 'Stop';
 	  }
-	  else if (btn.innerHTML === 'Stop') {
-			timerMethods.triggerStopTimer(timer, $scope.channel, function(){
-				$scope.timer.stop();
+	  else if (button.text === 'Stop') {
+			timerMethods.triggerStopTimer($scope.channel, function(){
+				timer.stop();
 			});
-	    btn.innerHTML = 'Resume';
+	    button.text = 'Resume';
 	  }
 	  else {
-			timerMethods.triggerResumeTimer(timer, $scope.channel, function(){
-				$scope.timer.resume();
+			timerMethods.triggerResumeTimer($scope.channel, function(){
+				timer.resume();
 			});
-	    btn.innerHTML = 'Stop';
+	    button.text = 'Stop';
 	  }
+	}
+	
+	$scope.resetTimer = function() {
+		var button = $scope.toggleButton;
+		var timer = $scope.timer;
+		timerMethods.triggerResetTimer($scope.channel, function(){
+			// callback after timer updates client side
+			timer.start();
+			timer.stop();
+			button.text = 'Start';
+		})
+	}
+	
+	if ($scope.current.role.type === "Therapist") {
+		$scope.$on('timer-tick', function(event, args){
+			args.seconds = Math.floor((args.millis / 1000) % 60);
+			args.minutes = Math.floor((args.millis / 60000));
+			$scope.timer.millis;
+			console.log(args.seconds);
+			$scope.$watch('args.minutes', function(){
+				console.log('minute changed');
+				// update timers, only run if therapist. only one server call can happen.
+				/*
+				console.log('scope current role type is ' + $scope.current.role.type)
+				timerMethods.updateTimer(args.millis, $scope.channel).then(function(promise){
+					$scope.channel.trigger('client-update_timer', promise);
+				});
+				*/
+			});
+		});
 	}
 	
 	// PUSHER API STUFF

@@ -23,13 +23,14 @@ class ChatsController < ApplicationController
     if !user_signed_in?
       deny_access
     else
+      @current_user = current_user
       @chat = Chat.find(Tiny::untiny(params[:id]))
       session[:chat_id] = @chat.id
-      if current_user.role.id == @chat.therapist_id || current_user.role.id == @chat.client_id
+      if @current_user.role.id == @chat.therapist_id || @current_user.role.id == @chat.client_id
     
         if(params[:id] != nil)
           @chat = Chat.find(Tiny::untiny(params[:id]))
-          @user = ChatUser.user(session, current_user, @chat)
+          @user = ChatUser.user(session, @current_user, @chat)
           @messages = Message.where("chat_id = ?", @chat.id.to_s).load
         else
           redirect_to :controller => 'index', :action => 'index'
@@ -44,10 +45,10 @@ class ChatsController < ApplicationController
   def test
     reset_session
     unless User.find_by(email: 'test@gmail.com').present?
-      @test_user = User.create(email: 'test@gmail.com', role_type: "Therapist", password: "password")
-      @test_user.role = Therapist.create
+      @current_user = User.create(email: 'test@gmail.com', role_type: "Client", password: "password")
+      @current_user.role = Therapist.create
     else
-      @test_user = User.find_by(email: 'test@gmail.com')
+      @current_user = User.find_by(email: 'test@gmail.com')
     end
     
     if Chat.find_by(channel: "message_channel_test").nil?
@@ -55,7 +56,7 @@ class ChatsController < ApplicationController
     end
     
     @chat = Chat.find_by(channel: "message_channel_test")
-    @user = ChatUser.user(session, @test_user, @chat)
+    @user = ChatUser.user(session, @current_user, @chat)
     
     @messages = Message.where("chat_id = ?", @chat.id.to_s).load
 
@@ -70,10 +71,10 @@ class ChatsController < ApplicationController
   def demo
     reset_session
     unless User.find_by(email: 'test@gmail.com').present?
-      @test_user = User.create(email: 'test@gmail.com', role_type: "Therapist", password: "password")
-      @test_user.role = Therapist.create
+      @current_user = User.create(email: 'test@gmail.com', role_type: "Client", password: "password")
+      @current_user.role = Therapist.create
     else
-      @test_user = User.find_by(email: 'test@gmail.com')
+      @current_user = User.find_by(email: 'test@gmail.com')
     end
     
     if Chat.find_by(channel: "message_channel_demo").nil?
@@ -81,7 +82,7 @@ class ChatsController < ApplicationController
     end
     
     @chat = Chat.find_by(channel: "message_channel_demo")
-    @user = ChatUser.user(session, @test_user, @chat)
+    @user = ChatUser.user(session, @current_user, @chat)
     
     @messages = Message.where("chat_id = ?", @chat.id.to_s).load
 

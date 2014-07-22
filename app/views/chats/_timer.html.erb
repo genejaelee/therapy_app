@@ -1,6 +1,6 @@
 	<div class="sidebar-clock" id="timer">
 		<div class="clock-circle" id="clock-back">
-			<timer autostart="false" ng-model="timer.time">{{minutes}}m {{seconds}}s</timer>
+			<timer autostart="false" interval="1000" seconds={{second}} minutes={{minutes}}>{{minutes}}m {{seconds}}s</timer>
 		</div>
 		<div class="clock-circle" id="clock-front">
 			<div class="content clock-circle-concentric">

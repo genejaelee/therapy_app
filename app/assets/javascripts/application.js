@@ -20,6 +20,6 @@
 //= require angular-pusher
 //= require angular-scrollglue
 //= require angular-strap.min
-//= require angular-timer.min
+//= require angular-timer
 //= require angular/
 //= require_tree .

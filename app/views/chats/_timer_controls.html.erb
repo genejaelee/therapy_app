@@ -1,5 +1,5 @@
 		<div class="timer-button-container sidebar-section">
 			<p style="margin-bottom: 5px; color: #fff;">Timer Controls</p>
-			<button class="timer-start-button" ng-click="stopResumeTimer($event.target)">Start</button>
-			<button class="timer-reset-button" ng-click="resetTimer()">Reset</button>
+			<button class="timer-start-button" ng-model="toggleButton" ng-click="stopResumeTimer($event.target)">{{ toggleButton.text }}</button>
+			<button class="timer-reset-button" ng-click="resetTimer($event.target)">Reset</button>
 		</div>

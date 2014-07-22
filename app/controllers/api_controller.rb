@@ -44,29 +44,6 @@ class ApiController < ApplicationController
     end
   end
   
-  def post_truevault
-    tv = TrueVault::Client.new(ENV['TV_API_KEY'], ENV['TV_ACCOUNT_ID'], 'v1')
-    
-    puts "create a document:"
-    create_document = tv.create_document(ENV['TV_A_VAULT_ID'], {"a" => "b"})
-    
-    render :text => "success" 
-  end
-
-  def typing_status
-    if params[:chat_id] != nil && params[:status] != nil
-      puts "chat id params present"
-      chat = Chat.find_by(id: params[:chat_id])
-      user = ChatUser.find_by(id: params[:user_id])
-      
-      payload = { :user => user.attributes, :status => params[:status] }
-      Pusher["presence-" + chat.channel].trigger('typing_status', payload)
-    else
-      puts "chat id params nil"
-    end
-    render :text => "User is typing.."
-  end
-
   def authenticate
     if params[:user_id]
       user = ChatUser.find(params[:user_id])
@@ -80,38 +57,6 @@ class ApiController < ApplicationController
     end
   end
   
-  def start_timer
-    chat = Chat.find(params[:chat_id])
-    user = ChatUser.user(session, current_user, chat)
-    puts "time from params is #{params[:time]}"
-    if chat.timer_time.nil?
-      @time = params[:time]
-      chat.timer_time = @time
-    else
-      @time = chat.timer_time
-    end
-    
-    if chat.save
-      payload = { :time => @time }
-      Pusher["presence-" + chat.channel].trigger('start_timer', payload)
-      render :text => "STARTED"
-    end
-  end
-  
-  def toggle_timer
-    chat = Chat.find(params[:chat_id])
-    user = ChatUser.user(session, current_user, chat)
-    @state = params[:state]
-    @time = params[:time]
-    chat.update_attributes(:timer_time => @time, :timer_state => @state)
-    
-    if chat.save
-      payload = { :time => @time, :state => @state }
-      Pusher["presence-" + chat.channel].trigger('toggle_timer', payload)
-      render :text => "TOGGLED"
-    end
-  end
-  
   def reset_timer
     chat = Chat.find(params[:chat_id])
     if chat.save
@@ -121,28 +66,31 @@ class ApiController < ApplicationController
     end
   end
   
-  def update_timer_state_and_time
+  def update_timer
+    puts 'updating timer'
     chat = Chat.find(params[:chat_id])
-    chat_user = ChatUser.find_by(id: params[:user_id])
-    if chat_user.user.role_type == "Therapist"
-      @time = params[:time]
-      @state = params[:state]
-      chat.update_attributes(:timer_state => @state, :timer_time => @time)
-      render :text => "UPDATED TIMER STATE AND TIME"
+    chat_user = ChatUser.find(params[:user_id])
+    @millis = params[:millis]
+    if chat_user.user.present?
+      if chat_user.user.role_type == "Therapist"
+        chat.update_attributes(:timer_time => @millis)
+        render :json => { :millis => chat.timer_time }
+      else
+        render :text => "NOT A THERAPIST"
+      end
     else
-      render :text => "NOT A THERAPIST"
+      chat.update_attributes(:timer_time => @millis)
+      render :json => { :millis => chat.timer_time }
     end
   end
   
   def get_timer
     chat = Chat.find(params[:chat_id])
-    user = ChatUser.user(session, current_user, chat)
     @time = chat.timer_time
-    @state = chat.timer_state
     
-    payload = { :time => @time, :state => @state }
+    payload = { :time => @time }
     Pusher["presence-" + chat.channel].trigger('get_timer', payload)
-    render :text => @time
+    render :json => payload
   end
   
   def get_current_user

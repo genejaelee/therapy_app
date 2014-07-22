@@ -7,14 +7,6 @@ $(".chats").ready(function(){
 		getSizesAndResize();
 	})
 	
-	// NICKNAME STUFF
-	var old_nickname = "";
-	$('#nickname').keydown(function(e) {
-		if (e.keyCode == 13) {
-			$('.confirm-button').click();
-		}
-	});
-	
 	// Audio stuff init
 	var audio = document.createElement("audio");
 	var audio_types = ["ogg", "mpeg", "wav"];
@@ -38,43 +30,6 @@ $(".chats").ready(function(){
 
 $(".chats.view").ready(function() {
 	
-	/*
-	$('.timer-start-button').click(function(){
-		var time = $('.timer div').data("time");
-		var state = "notstarted"
-		$.ajax({
-			url: '/api/start_timer',
-			type: 'POST',
-			data: { "chat_id": chat_id, "time": time },
-			success: function(data) {
-			}
-		});
-	});
-	
-	$('.timer-toggle-button').click(function(){
-		var time = $('.timer div').data("time");
-		timer = $('.timer');
-		var state = getTimerState(timer);
-		$.ajax({
-			url: '/api/toggle_timer',
-			type: 'POST',
-			data: { "chat_id": chat_id, "time": time, "state": state },
-			success: function(data) {
-			}
-		});
-	});
-	
-	$('.timer-reset-button').click(function(){
-		$.ajax({
-			url: '/api/reset_timer',
-			type: 'POST',
-			data: { "chat_id": chat_id },
-			success: function(data) {
-			}
-		});
-	})
-	*/
-	
 	$('.helplines-button').click(function() {
 		helplinesCard = $('#helplines-card')
 		if (helplinesCard.hasClass('opened')) {
@@ -90,43 +45,11 @@ $(".chats.view").ready(function() {
 			closeSidebarCard($('.sidebar-card'));
 		}
 	});
-
-	/*
-	presenceChannel.bind('start_timer', function(member){
-		startTimer(member.time);
-	});
-	
-	presenceChannel.bind('toggle_timer', function(member){
-		toggleTimer(member.time, member.state);
-	});
-	
-	presenceChannel.bind('get_timer', function(member){
-		startTimer(member.time, member.state);
-		pauseTimer();
-	});
-	
-	presenceChannel.bind('reset_timer', function(member){
-		resetTimer();
-	});
-
-	// When somebody updates their nickname, tell all the people including yourself
-	presenceChannel.bind('updated_nickname', function(member) {
-		scrollToTheBottomUnlessScrolled($('#messages'));
-		if(member.user_id == user_id) {
-			$('.messages-container').append('<div class="note">You have updated your nickname to <strong>' + member.nickname + '</strong>.</div>');
-		}
-		else {
-			$('.messages-container').append('<div class="note"><strong>' + member.old_nickname + '</strong> updated their nickname to <strong>' + member.nickname + '</strong>.</div>');
-		}
-	});
-	
-	*/
 	
 	// Now pusher is all setup lets let the user go wild!
 	$('#loading').fadeOut();
 	$('#message').removeAttr("disabled");
 
-	getServerTimer();
 });
 
 //////////////////////////////////////////////////

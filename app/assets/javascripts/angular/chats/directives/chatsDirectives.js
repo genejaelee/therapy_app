@@ -27,7 +27,6 @@ chatsModule.directive('ngNickname', function() {
 		},
 		template: '<div class="{{ nicknameClass }}"><strong class="nickname">{{ message.user.nickname }} </strong>said:</div>',
 		link: function(scope, elem, attrs) {
-			console.log(scope.thisId + ' and ' + scope.lastId + attrs.index);
 			if (scope.thisId == scope.lastId){
 				console.log('ids are the same');
 				scope.nicknameClass="ng-hide";
