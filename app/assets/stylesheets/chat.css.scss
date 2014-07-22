@@ -478,6 +478,11 @@ $sidebar-width : 240px;
 		border-top: 1px solid #ccc;
 		background-color: green;
 		
+		textarea:disabled {
+			color: #aaa;
+			@include stripe-background-medium;
+		}
+		
 		textarea {
 			-webkit-appearance: none;
 			box-shadow: none;

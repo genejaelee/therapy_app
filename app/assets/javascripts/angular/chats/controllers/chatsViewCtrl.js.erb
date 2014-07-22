@@ -395,7 +395,7 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 				});
 				chatMethods.appendMessage($scope, message, function(bool){
 					$scope.current.message.sending = bool;
-					$scope.message_text = "";
+					$scope.current.message.text = "";
 				});
 			});
 		}
