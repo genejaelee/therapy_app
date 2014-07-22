@@ -476,7 +476,6 @@ $sidebar-width : 240px;
 		width: 100%;
 		border-radius: 0px;
 		border-top: 1px solid #ccc;
-		background-color: green;
 		
 		textarea:disabled {
 			color: #aaa;
@@ -555,7 +554,7 @@ $sidebar-width : 240px;
 			.container {
 				#chat-notification-container {
 					#chat-notification {
-						font-size: 10px;
+						font-size: 11px;
 					}
 				}
 				#messages {
