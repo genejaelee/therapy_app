@@ -5,9 +5,9 @@ module TwilioHelper
     puts "from id is #{@from}"
     @chat = Chat.find_by(id: session[:chat_id])
     if current_user.role_type == "Therapist"
-      @username = @chat.client.user.chat_user.nickname
+      @username = @chat.client.user.chat_users.find_by(chat_id: @chat.id).nickname
     elsif current_user.role_type == "Client"
-      @username = @chat.therapist.user.chat_user.nickname
+      @username = @chat.therapist.user.chat_users.find_by(chat_id: @chat.id).nickname
     end
     if @username.nil?
       @username = default_client
