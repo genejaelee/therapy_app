@@ -23,7 +23,6 @@ chatsModule.factory('jsonMethods', function($http){
 		postDoc: function(json) {
 			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
 			apiKey = '<%= ENV['TV_API_KEY'] %>'
-			console.log(JSON.stringify(json));
 			var promise = $http({
 				method: 'POST', 
 				headers: { 'Authorization' : 'Basic ' + btoa(apiKey + ":") },
@@ -67,7 +66,6 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 		},
 		
 		triggerTypingStatus: function(nickname, status, length, channel) {
-			console.log('triggered typing status');
 			payload = {
 				"nickname": nickname,
 				"status": status,
@@ -367,7 +365,6 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 	});
 	
 	$scope.$watch('current.message.type', function(){
-		console.log('type changed, triggering status');
 		var msgLength = ($scope.current.message.text + '').length;
 		var channel = $scope.channel;
 		chatMethods.triggerTypingStatus($scope.current.nickname, $scope.current.message.typing, msgLength, channel);
@@ -383,7 +380,6 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 			var json = jsonMethods.makeJson(msg, $scope.current.nickname);
 			jsonMethods.postDoc(json).
 			then(function(promise){
-				console.log('promise is ' + JSON.stringify(promise));
 				var id = promise.document_id;
 				return chatMethods.getDocByID(id);
 			}).
