@@ -480,7 +480,7 @@ $sidebar-width : 240px;
 		
 		textarea:disabled {
 			color: #aaa;
-			@include stripe-background-medium;
+			background-color: #f9f9f9;
 		}
 		
 		textarea {
