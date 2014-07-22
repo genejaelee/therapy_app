@@ -33,7 +33,8 @@ chatsModule.factory('jsonMethods', function($http){
 				return response.data;
 		  },
 			function(response) {
-				console.log(response);
+				// if error?
+				console.log(response)
 			});
 			return promise;
 		}
@@ -44,7 +45,6 @@ chatsModule.factory('jsonMethods', function($http){
 chatsModule.factory('chatMethods', function($http, $timeout){
 	return {
 		getDocByID: function(id) {
-			console.log("id is " + id);
 			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
 			apiKey = '<%= ENV['TV_API_KEY'] %>'
 			var promise = $http({
@@ -55,6 +55,7 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 				return response.data;
 		  },
 			function(response) {
+				// if error?
 				console.log(response);
 			});
 			return promise;
@@ -116,6 +117,27 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 					scope.notification.status = false;
 				}, 2000);
 				scope.$apply();
+			});
+			
+			scope.channel.bind('updated_nickname', function(member){
+				scope.notification = {
+					'nickname': member.old_nickname,
+					'message': 'changed nickname to ' + member.nickname,
+					'status': true
+				};
+				scope.notification.timeout = $timeout(function(){
+					scope.notification.status = false;
+				}, 2000);
+				scope.$apply();
+			});
+		},
+		
+		updateNickname: function(nickname) {
+			$http({
+				method: 'POST',
+				url: '/api/update_nickname',
+				data: { 'chat_id': chat_id, 'user_id': user_id, 'nickname': nickname },
+			}).then(function(response){
 			});
 		}
 	
@@ -220,6 +242,7 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 	$scope.closePopup = function(){
 		if ($scope.isCheckedN) {
 			$scope.popup.close = true;
+			chatMethods.updateNickname($scope.current.nickname);
 		}
 		else {
 			alert('You must accept the conditions to proceed.');
@@ -293,9 +316,7 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 			args.seconds = Math.floor((args.millis / 1000) % 60);
 			args.minutes = Math.floor((args.millis / 60000));
 			$scope.timer.millis;
-			console.log(args.seconds);
 			$scope.$watch('args.minutes', function(){
-				console.log('minute changed');
 				// update timers, only run if therapist. only one server call can happen.
 				/*
 				console.log('scope current role type is ' + $scope.current.role.type)

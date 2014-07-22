@@ -1,29 +1,5 @@
 $(".chats.test, .chats.demo").ready(function() {
 	
-	$('.message-container').remove();
-
-	/*
-	$('.timer-start-button').click(function(){
-		$('.timer-start-button').hide();
-		$('.timer-toggle-button').show();
-		$('.timer').countdown('destroy');
-		$('.timer').countdown( {since: '-0m -0s', onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
-		$('.timer').removeClass('inactive').removeClass('notstarted').addClass('active');
-	});
-	
-	$('.timer-toggle-button').click(function(){
-		var time = $('.timer div').data("time");
-		var state = getTimerState($('.timer'));
-		toggleTimer(time, state);
-	});
-	
-	$('.timer-reset-button').click(function(){
-		resetTimer();
-		$('.timer-toggle-button').html('Pause').hide();
-		$('.timer-start-button').show();
-	})
-	*/
-	
 	$('.helplines-button').click(function() {
 		helplinesCard = $('#helplines-card')
 		if (helplinesCard.hasClass('opened')) {
@@ -43,25 +19,6 @@ $(".chats.test, .chats.demo").ready(function() {
 	$.ajaxSetup({
 	  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
 	});
-
-	/*
-	presenceChannel.bind('start_timer', function(member){
-		startTimer(member.time);
-	});
-	
-	presenceChannel.bind('toggle_timer', function(member){
-		toggleTimer(member.time, member.state);
-	});
-	
-	presenceChannel.bind('get_timer', function(member){
-		startTimer(member.time, member.state);
-		pauseTimer();
-	});
-	
-	presenceChannel.bind('reset_timer', function(member){
-		resetTimer();
-	});
-	*/
 	
 	// Now pusher is all setup lets let the user go wild!
 	$('#loading').fadeOut();

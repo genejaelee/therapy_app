@@ -4,45 +4,6 @@
 var hasFocus = true;
 var people = [];
 
-var getMessageHeader = function(nickname, who) {
-	var messages = $('.messages-container');
-	var lastMessage = messages.find('.message-container').last();
-	console.log(lastMessage.html());
-	if (!messages.find('.message-container') || senderChanged(who) === true) {
-		var header = '<span class="nickname-said"><strong>' + nickname + '</strong> said:</span>'
-	}
-	else {
-		var header = '<span class="nickname-said"></span>'
-	}
-	return header
-}
-
-var senderChanged = function(who) {
-	var messages = $('.messages-container');
-	var lastMessage = messages.find('.message-container').last();
-	if (lastMessage.children().hasClass(who)) {
-		return false;
-	}
-	else {
-		return true;
-	}
-}
-
-// Tutorial pop up stuff
-function showTutorial() {
-}
-
-// Post to the server about the current status of typing
-function typing_status(status) { 
-	// We don't care about the response or even if the sever gets it.. nothing important!
-	$.ajax({
-		url: '/api/typing_status',
-		type: 'POST',
-		beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-		data: { "chat_id": chat_id, "user_id": user_id, "status": status },
-	});
-}
-
 var changeNickname = function() {
 	if($('#nickname').val().length > 0) {
 		
@@ -50,15 +11,11 @@ var changeNickname = function() {
 			if(response != "SAVED") {
 				alert("There was an error updating your nickname, please try again.");
 			}
-			$('#editNickname').fadeIn(200);
-			$('#title').fadeIn(200);
 			onSuccess: {
 			}
 		});
 	} else {
-		$('#nickname').hide();
-		$('#title').fadeIn(200);
-		$('#changeNickname').hide();
+		
 	}
 	
 	return false;
@@ -115,120 +72,4 @@ function watchTimer(periods) {
 			alert('45 minutes passed!');
 	}
 	updateServerTimerStateAndTime();
-}
-
-var destroyTimer = function(){
-	$('.timer').countdown('destroy').removeClass('active').addClass('inactive');
-}
-
-var resetTimer = function(){
-	$('.timer-toggle-button').hide();
-	$('.timer-start-button').show();
-	destroyTimer();
-	$('.timer').html('Hello.<div data-time="-0m -0s"></div>');
-	updateServerTimerStateAndTime();
-}
-
-var startTimer = function(start_time){
-	$('.timer-start-button').hide();
-	$('.timer-toggle-button').show();
-	$('.timer').countdown('destroy');
-	$('.timer').countdown( {since: start_time, onTick: watchTimer, tickInterval: 60, format: 'MS', layout: '{mn}m {sn}s <div data-time="-{mn}m -{sn}s"></div>'} );
-	$('.timer').removeClass('inactive').removeClass('notstarted').addClass('active');
-	updateServerTimerStateAndTime();
-}
-
-var pauseTimer = function() {
-	timer = $('.timer');
-	toggle = $('.timer-toggle-button');
-	timer.countdown('pause');
-	timer.removeClass('active').removeClass('notstarted').addClass('inactive');
-	toggle.html('Start');
-	updateServerTimerStateAndTime();
-}
-
-var toggleTimer = function(start_time, state){
-	timer = $('.timer');
-	toggle = $('.timer-toggle-button');
-	switch(state) {
-		case "active":
-			toggle.html('Start');
-			timer.removeClass('active').addClass('inactive');
-			timer.countdown('pause');
-			if (timer.hasClass('notstarted')) {
-				startTimer(start_time);
-			}
-			break;
-		case "inactive":
-			toggle.html('Pause');
-			startTimer(start_time);
-			break;
-		case "notstarted":
-			startTimer(start_time);
-	}
-}
-
-var getServerTimer = function() {
-	$.ajax({
-		url: '/api/get_timer',
-		type: 'GET',
-		data: { "chat_id": chat_id },
-		success: function(data) {
-			startTimer(data);
-			pauseTimer();
-		}
-	});
-}
-
-var getTimerState = function(timer) {
-	if (timer.hasClass('active')) {
-		var state = "active"
-	}
-	if (timer.hasClass('inactive')) {
-		var state = "inactive"
-	}
-	if (timer.hasClass('notstarted')) {
-		var state = "notstarted"
-	}
-	return state;
-}
-
-var updateServerTimerStateAndTime = function() {
-	timer = $('.timer');
-	state = getTimerState(timer);
-	time = getTime();
-	$.ajax({
-		url: '/api/update_timer_state_and_time',
-		type: 'POST',
-		data: { "chat_id": chat_id, "state": state, "time": time, "user_id": user_id },
-		success: function(data) {
-		}
-	});
-}
-
-var getTime = function() {
-	if ($('.timer div').data("time") == ''){
-		var time = '-0m -0s';
-	}
-	else {
-		var time = $('.timer div').data("time");
-	}
-	return time;
-}
-
-var openClock = function(){
-	var clockY = $('.sidebar-clock').height();
-	var clockX = $('.sidebar-clock').width();
-	var clockFrontY = $('#clock-front').height();
-	var clockFrontX = $('#clock-front').width();
-	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + (clockFrontY / 1.3) + 'px' }, 300, 'easeInOutCubic');
-}
-
-var closeClock = function(){
-	console.log('close clock')
-	var clockY = $('.sidebar-clock').height();
-	var clockX = $('.sidebar-clock').width();
-	var clockFrontY = $('#clock-front').outerHeight();
-	var clockFrontX = $('#clock-front').width();
-	$('#clock-front').stop().animate({'bottom' : (clockY - clockFrontY) / 2 + 'px' }, 650, 'easeOutBounce', function(){});
 }
