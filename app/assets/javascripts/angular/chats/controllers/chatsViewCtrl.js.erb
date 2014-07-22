@@ -73,7 +73,7 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 				"status": status,
 				"message": 'is typing...'
 			}
-			if (length > 100) {
+			if (length >= 200) {
 				payload.message = 'is typing a longer message...'
 			}
 			var triggered = channel.trigger('client-typing_status', payload);
@@ -235,6 +235,12 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 		},
 		'role' : {
 			'type' : role_type
+		},
+		'message' : {
+			'typing' : false,
+			'text' : '',
+			'sending' : false,
+			'length' : ''
 		}
 	};
 	$scope.timer = document.getElementById('timer').getElementsByTagName('timer')[0];
@@ -254,10 +260,6 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 			alert('You must accept the conditions to proceed.');
 		}
 	}
-	
-	$scope.messageSending = false;
-	$scope.message_text = '';
-	$scope.typing_status = false;
 	
 	PusherMethods.setAuthEndpoint();
 	$scope.pusher = PusherMethods.pusher();
@@ -345,24 +347,35 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 	
 	chatMethods.bindPusherEvents($scope);
 	
-	$scope.$watch('message_text', function(){
-		console.log($scope.typing_status);
+	$scope.$watch('current.message.text', function(){
 		var nickname = $scope.current.nickname;
 		var channel = $scope.channel;
-		var msgLength = ($scope.message_text + '').length;
-		if ((msgLength >= 1) && ($scope.typing_status == false)) {
-			$scope.typing_status = true;
-			chatMethods.triggerTypingStatus(nickname, $scope.typing_status, msgLength, channel);
+		var msgLength = ($scope.current.message.text + '').length;
+		if (msgLength >= 1) {
+			$scope.current.message.typing = true;
+		}
+		if (msgLength < 200) {
+			$scope.current.message.type = 'short';
+		}
+		if (msgLength >= 200) {
+			$scope.current.message.type = 'long';
 		}
 		else if (msgLength === 0) {
-			$scope.typing_status = false;
-			chatMethods.triggerTypingStatus(nickname, $scope.typing_status, msgLength, channel);
+			$scope.current.message.typing = false;
+			$scope.current.message.type = 'none';
 		}
+	});
+	
+	$scope.$watch('current.message.type', function(){
+		console.log('type changed, triggering status');
+		var msgLength = ($scope.current.message.text + '').length;
+		var channel = $scope.channel;
+		chatMethods.triggerTypingStatus($scope.current.nickname, $scope.current.message.typing, msgLength, channel);
 	});
 
 	$scope.postMessage = function(){
-		$scope.messageSending = true;
-		var msg = $scope.message_text
+		$scope.current.message.sending = true;
+		var msg = $scope.current.message.text
 		if(msg == null || msg == "") {
 			alert('Please enter a message...');
 		}
@@ -378,10 +391,10 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 				decoded = JSON.parse(atob(promise));
 				message = decoded.message;
 				chatMethods.triggerSendMessage(message, $scope.channel, function(bool){
-					$scope.messageSending = bool;
+					$scope.current.message.sending = bool;
 				});
 				chatMethods.appendMessage($scope, message, function(bool){
-					$scope.messageSending = bool;
+					$scope.current.message.sending = bool;
 					$scope.message_text = "";
 				});
 			});

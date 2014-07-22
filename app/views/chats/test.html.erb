@@ -61,7 +61,7 @@
 						</li>
 					</div>
 					
-					<div id="spinner" class="spinner" ng-show="messageSending">
+					<div id="spinner" class="spinner" ng-show="current.message.sending">
 						<div class="spinner-container">
 							<%= image_tag("loading.gif", :alt => "Loading") %>
 						</div>
@@ -72,7 +72,7 @@
 	</div>
 		
 	<div class="chat-input-panel">
-		<textarea id="message" name="message" placeholder="Type your message here and hit enter..." ng-enter="postMessage()" ng-model="message_text"></textarea>
+		<textarea id="message" name="message" placeholder="Type your message here and hit enter..." ng-enter="postMessage()" ng-model="current.message.text"></textarea>
 	</div>
 		
 </div>
