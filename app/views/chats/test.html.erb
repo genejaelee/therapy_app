@@ -72,7 +72,7 @@
 	</div>
 		
 	<div class="chat-input-panel">
-		<textarea id="message" name="message" placeholder="Type your message here and hit enter..." ng-enter="postMessage()" ng-model="current.message.text" ng-disabled="current.message.sending"></textarea>
+		<textarea id="message" name="message" placeholder="Type your message here and hit enter..." ng-enter="postMessage()" ng-model="current.message.text" ng-disabled="current.message.sending" xng-focus-on="!current.message.sending"></textarea>
 	</div>
 		
 </div>

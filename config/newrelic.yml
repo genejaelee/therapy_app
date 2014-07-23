@@ -42,7 +42,7 @@ common: &default_settings
   #       - Ajax Service
   #       - All Services
   #
-  app_name: My Application
+  app_name: Plain White Couch
 
   # When "true", the agent collects performance data about your
   # application and reports this data to the New Relic service at
@@ -163,7 +163,7 @@ common: &default_settings
     # To stop specific errors from reporting to New Relic, set this property
     # to comma-separated values.  Default is to ignore routing errors,
     # which are how 404's get triggered.
-    ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
+    ignore_errors: "ActionController::RoutingError, Sinatra::NotFound, "
 
   # If you're interested in capturing memcache keys as though they
   # were SQL uncomment this flag. Note that this does increase
