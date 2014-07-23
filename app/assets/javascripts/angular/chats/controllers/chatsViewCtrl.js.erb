@@ -79,6 +79,12 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 		
 		appendMessage: function(scope, message, callback) {
 			scope.messages.push(message);
+			
+			// Programatically create an audio element and pop the user
+			var pop = new Audio('/sounds/pop.wav');
+			pop.load();
+			pop.play();
+			
 			callback(false);
 		},
 		

@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery-readyselector
 //= require jquery.plugin.min
-//= require jquery.countdown.min
 //= require angular
 //= require angular-resource
 //= require angular-pusher

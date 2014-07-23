@@ -5,7 +5,7 @@
 }
 
 .css-check {
-	-webkit-appearance: none !important;
+	-webkit-appearance: none;
 	display: inline-block !important;
 	border: 1px solid #ccc;
 	margin-left: 0px;
@@ -16,6 +16,7 @@
 }
 
 .css-check:checked {
+	-webkit-appearance: checkbox;
 	border-radius: 10px;
 	border: 2px solid $scouter-green-light;
 }
