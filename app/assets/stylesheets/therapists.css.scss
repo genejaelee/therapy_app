@@ -183,6 +183,10 @@
 							padding: 0px 15px;
 						}
 						
+						input:focus {
+							border: 1px solid #ccc;
+						}
+						
 						.timezone-container {
 							span {
 								color: $scouter-teal-fade;
