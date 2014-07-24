@@ -1,0 +1,27 @@
+<div class="ng-hide" id="popup-background" ng-hide="popup.close"></div>
+<div id="paid-popup" class="popup ng-hide" ng-model="popup" ng-hide="popup.close">
+	<div class="bg-container">
+		<div class="container">
+			
+			<div class="header-container">
+				<h2>Thank you</h2> 
+			</div>
+			
+			<hr style="border-top: 1px dashed #ccc;">
+			
+			<div class="content-container" style="margin-bottom: 30px;">
+				<p>We've successfully received your payment! We'll be in touch within 24 hours with the time of your session and chatroom instructions.  If you have any problems or are unsatisfied, just contact us at <a href="mailto:plainwhitecouch@gmail.com">plainwhitecouch@gmail.com</a> to get a refund.</p>
+				
+				<br>
+
+				<p>Best,</p>
+				<p>Matthew and Gene</p>
+				<p>Founders, Plain White Couch</p>
+			</div>
+
+			<div class="button-container">
+				<button class="confirm-button" ng-click="closePopup()">Okay</button>
+			</div>
+		</div>
+	</div>
+</div>

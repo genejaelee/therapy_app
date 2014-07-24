@@ -168,3 +168,24 @@
 		}
 	}
 }
+
+#paid-popup {
+	.bg-container {
+		max-width: 650px;
+		.container {
+			width: auto;
+			p:first-child {
+				font-size: 16px;
+				line-height: 20px;
+				margin-bottom: 20px;
+				color: #525252;
+			}
+			p {
+				font-size: 14px;
+				line-height: 18px;
+				color: #828282;
+				margin-bottom: 0px;
+			}
+		}
+	}
+}

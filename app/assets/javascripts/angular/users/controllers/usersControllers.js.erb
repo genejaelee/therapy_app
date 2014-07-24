@@ -1,0 +1,13 @@
+var usersModule = angular.module('usersModule');
+
+usersModule.controller('UsersViewCtrl', function($scope, $http, $timeout){
+	$scope.popup = { close : true };
+	if (paid === 'true') {
+		$scope.popup.close = false;
+	}
+	
+	$scope.closePopup = function(){
+		$scope.popup.close = true;
+	}
+	
+});

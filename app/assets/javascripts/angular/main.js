@@ -1,4 +1,4 @@
-var mainApp = angular.module('mainApp', ['chatsModule', 'therapistsModule', 'ngResource']);
+var mainApp = angular.module('mainApp', ['chatsModule', 'therapistsModule', 'usersModule', 'ngResource']);
 
 mainApp.config(function($httpProvider) {
   var authToken;

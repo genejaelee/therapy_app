@@ -4,10 +4,10 @@
 									 :reverse => false
 	%>
 
-<%= render 'layouts/navbar' %>
-
 <body id="therapist-index" ng-controller="TherapistsViewCtrl">
-	<%= render 'layouts/tutorial_popup' %>
+	<%= render 'layouts/navbar' %>
+	
+	<%= render 'layouts/popups/tutorial_popup' %>
 	
 	<% content_for :title do %>
 	  Suggest two times to talk. Easy as that.

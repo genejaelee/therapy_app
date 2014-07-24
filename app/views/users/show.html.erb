@@ -7,7 +7,15 @@
 
 <% page_title "Portal" %>
 
-<%= render 'layouts/navbar' %>
+<script type="text/javascript">
+	paid = "<%= flash[:paid] %>";
+</script>
+
+<body ng-controller="UsersViewCtrl">
+	
+<%= render :partial => 'layouts/popups/paid_popup' %>
+
+<%= render :partial => 'layouts/navbar' %>
 
 <% content_for :title do %>
   Your Page
@@ -36,3 +44,5 @@
 		</div>
 	</div>
 </div>
+
+</body>
