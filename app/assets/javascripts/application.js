@@ -16,7 +16,6 @@
 //= require jquery.plugin.min
 //= require angular
 //= require angular-resource
-//= require angular-pusher
 //= require angular-scrollglue
 //= require angular-strap.min
 //= require angular-timer

@@ -1,4 +1,4 @@
-var chatsModule = angular.module('chatsModule', ['ngResource', 'ngAnimate', 'doowb.angular-pusher', 'luegg.directives', 'timer']);
+var chatsModule = angular.module('chatsModule', ['ngResource', 'ngAnimate', 'luegg.directives', 'timer']);
 
 chatsModule
   .config(function($httpProvider){
@@ -11,13 +11,3 @@ chatsModule
 			return result;
 		}
 });
-
-
-chatsModule
-	.config(['PusherServiceProvider',
-	  function(PusherServiceProvider) {
-	    PusherServiceProvider
-	      .setToken('<%= ENV["PUSHER_KEY"] %>')
-	      .setOptions({ encrypted: true });
-  }
-]);

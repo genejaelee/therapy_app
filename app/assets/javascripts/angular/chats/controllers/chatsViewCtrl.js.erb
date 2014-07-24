@@ -4,11 +4,10 @@ chatsModule.factory('jsonMethods', function($http){
 	return {
 		makeJson: function(msg, nickname) {
 			var chat_user_id = parseInt(user_id);
-			var chat_id = parseInt(chat_id)
 			
 			messageObject = {
 				"message": {
-					"chat_id": chat_id,
+					"chat_id": parseInt(chat_id),
 					"channel": channel,
 					"user": {
 						"id" : chat_user_id,
@@ -18,8 +17,13 @@ chatsModule.factory('jsonMethods', function($http){
 				}
 			};
 			return messageObject;
-		},
-		
+		}
+
+	}
+});
+
+chatsModule.factory('trueVaultMethods', function($http){
+	return {
 		postDoc: function(json) {
 			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
 			apiKey = '<%= ENV['TV_API_KEY'] %>'
@@ -36,13 +40,8 @@ chatsModule.factory('jsonMethods', function($http){
 				console.log(response)
 			});
 			return promise;
-		}
+		},
 		
-	}
-});
-
-chatsModule.factory('chatMethods', function($http, $timeout){
-	return {
 		getDocByID: function(id) {
 			vaultID = '<%= ENV['TV_A_VAULT_ID'] %>'
 			apiKey = '<%= ENV['TV_API_KEY'] %>'
@@ -58,7 +57,13 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 				console.log(response);
 			});
 			return promise;
-		},
+		}
+		
+	}
+})
+
+chatsModule.factory('chatMethods', function($http, $timeout, trueVaultMethods){
+	return {
 		
 		triggerSendMessage: function(message, channel, callback) {
 			var triggered = channel.trigger('client-send_message', message);
@@ -77,8 +82,8 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 			var triggered = channel.trigger('client-typing_status', payload);
 		},
 		
-		appendMessage: function(scope, message, callback) {
-			scope.messages.push(message);
+		appendMessage: function(scope, json, callback) {
+			scope.messages.push(json.message);
 			
 			// Programatically create an audio element and pop the user
 			var pop = new Audio('/sounds/pop.wav');
@@ -91,14 +96,15 @@ chatsModule.factory('chatMethods', function($http, $timeout){
 		bindPusherEvents: function(scope){
 			// Binding Pusher chat events
 			scope.channel.bind('client-send_message', function(message){
-				scope.messages.push(message);
-		
-				// Programatically create an audio element and pop the user
-				var pop = new Audio('/sounds/pop.wav');
-				pop.load();
-				pop.play();
-		
-				scope.$apply();
+				trueVaultMethods.getDocByID(message.document_id).then(function(promise){
+					decoded = JSON.parse(atob(promise));
+					scope.messages.push(decoded.message);
+					
+					// Programatically create an audio element and pop the user
+					var pop = new Audio('/sounds/pop.wav');
+					pop.load();
+					pop.play();
+				});
 			});
 		
 			scope.channel.bind('client-typing_status', function(notification){
@@ -231,7 +237,7 @@ chatsModule.factory('timerMethods', function($http, updateLocalTimer){
 	}
 });
 
-chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethods, timerMethods, $http, $timeout, Pusher, PusherMethods) {
+chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethods, trueVaultMethods, timerMethods, $http, $timeout, PusherMethods) {
 	$scope.current = { 
 		'nickname' : user_nickname,
 		'timer' : {
@@ -248,7 +254,6 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 		}
 	};
 	$scope.timer = document.getElementById('timer').getElementsByTagName('timer')[0];
-	console.log($scope.current.nickname);
 	
 	$scope.popup = { 'close' : true };
 	$timeout(function(){
@@ -384,18 +389,11 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 		}
 		else {
 			var json = jsonMethods.makeJson(msg, $scope.current.nickname);
-			jsonMethods.postDoc(json).
+			trueVaultMethods.postDoc(json).
 			then(function(promise){
-				var id = promise.document_id;
-				return chatMethods.getDocByID(id);
-			}).
-			then(function(promise){
-				decoded = JSON.parse(atob(promise));
-				message = decoded.message;
-				chatMethods.triggerSendMessage(message, $scope.channel, function(bool){
-					$scope.current.message.sending = bool;
+				chatMethods.triggerSendMessage(promise, $scope.channel, function(bool){
 				});
-				chatMethods.appendMessage($scope, message, function(bool){
+				chatMethods.appendMessage($scope, json, function(bool){
 					$scope.current.message.sending = bool;
 					$scope.current.message.text = "";
 				});
