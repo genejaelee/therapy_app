@@ -82,6 +82,7 @@
 
 			.four {
 				img {
+					border-radius: 100px;
 					width: 150px;
 					height: 150px;
 				}
@@ -334,8 +335,9 @@
 					text-align: center;
 					img {
 						margin: auto;
-						height: 100px;
-						width: 100px;
+						height: 125px;
+						width: 125px;
+						margin-bottom: 30px;
 					}
 				}
 				.columns {
