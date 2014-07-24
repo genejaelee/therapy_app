@@ -16,12 +16,6 @@ $(".chats.test, .chats.demo").ready(function() {
 		}
 	});
 	
-	$.ajaxSetup({
-	  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
-	});
-	
-	// Now pusher is all setup lets let the user go wild!
-	$('#message').removeAttr("disabled");
 });
 
 //////////////////////////////////////////////////

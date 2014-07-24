@@ -1,6 +1,6 @@
 var therapistsModule = angular.module('therapistsModule');
 
-therapistsModule.controller('TherapistsViewCtrl', function($scope, $http){
+therapistsModule.controller('TherapistsViewCtrl', function($scope, $http, $timeout){
 	$scope.popup = { close : false };
 	$scope.closePopup = function(bool){
 		$scope.popup.close = bool;
