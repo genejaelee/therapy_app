@@ -77,6 +77,11 @@ a {
 	border-color: $scouter-green;
 }
 
+@mixin blue-border {
+	border-color: $scouter-blue;
+	color: $scouter-blue;
+}
+
 @mixin green-border {
 	border-color: $scouter-green;
 	color: $scouter-green;

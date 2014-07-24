@@ -3,6 +3,7 @@ var chatsModule = angular.module('chatsModule');
 chatsModule.factory('PusherMethods', function() {
   return {
 		pusher: function(){
+			console.log('creating Pusher socket');
 			var socket = new Pusher(PUSHER_KEY, {
 				encrypted: true
 			});
@@ -10,6 +11,7 @@ chatsModule.factory('PusherMethods', function() {
 		},
 		
 		channel: function(pusher){
+			console.log('subscribing Pusher socket');
 			var thisChannel = pusher.subscribe('presence-' + channel);
 			return thisChannel;
 		},

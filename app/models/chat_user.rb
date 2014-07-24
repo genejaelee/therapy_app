@@ -27,6 +27,28 @@ class ChatUser < ActiveRecord::Base
     
   end
   
+  def self.get_chat_user(session, user, chat)
+    if chat.chat_users.find_by(user_id: user.id).present?
+      user = chat.chat_users.find_by(user_id: current_user.id)
+      nickname = user.nickname
+      user.time_zone = current_user.time_zone
+      if user.save
+        session[:chat_user_id] = user.id
+      end
+    else
+      user = user.chat_users.create
+      nickname = "user_" + Time.now.to_i.to_s
+      time_zone = user.time_zone
+      chat_id = chat.id
+    
+      if user.update_attributes(:nickname => nickname, :time_zone => time_zone, :chat_id => chat_id)
+        session[:chat_user_id] = user.id
+      end
+    end
+    
+    user
+  end
+  
   def self.set_test_user(session, current_user, chat)
     current_user = User.find_by(email: 'test@gmail.com')
     if session[:chat_user_id].present?

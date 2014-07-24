@@ -26,12 +26,12 @@ $(".therapists").ready(function() {
 		$('.email-dropbox').stop().animate({opacity: 1.0, 'margin-top' : '0px'}, 350, "easeOutCubic")
 	});
 	
-	mouseEnterAnimateIndex();
+	//mouseEnterAnimateIndex();
 	
 	$('.profile-link-panel .bg-container .top-panel').click(function(){
 		var maxHeight = setProfilePanelHeights();
 		var thisProfile = $(this).parent().parent();
-		openCloseOnClick(thisProfile, $(this).outerHeight(), maxHeight);
+		//openCloseOnClick(thisProfile, $(this).outerHeight(), maxHeight);
 	});
 	
 });

@@ -104,6 +104,10 @@ chatsModule.factory('chatMethods', function($http, $timeout, trueVaultMethods){
 					var pop = new Audio('/sounds/pop.wav');
 					pop.load();
 					pop.play();
+
+					if(!scope.$$phase) {
+						scope.$apply();
+					}
 				});
 			});
 		
@@ -115,7 +119,9 @@ chatsModule.factory('chatMethods', function($http, $timeout, trueVaultMethods){
 					notification.message = "";
 					scope.notification.status = false;
 				}
-				scope.$apply();
+				if(!scope.$$phase) {
+					scope.$apply();
+				}
 			});
 	
 			scope.channel.bind('presence', function(member){
@@ -270,6 +276,7 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 		}
 	}
 	
+	console.log('init pusher vars');
 	PusherMethods.setAuthEndpoint();
 	$scope.pusher = PusherMethods.pusher();
 	$scope.channel = PusherMethods.channel($scope.pusher);
@@ -382,12 +389,13 @@ chatsModule.controller('ChatsViewCtrl', function($scope, jsonMethods, chatMethod
 	});
 
 	$scope.postMessage = function(){
-		$scope.current.message.sending = true;
 		var msg = $scope.current.message.text
 		if(msg == null || msg == "") {
+			$scope.current.message.sending = false;
 			alert('Please enter a message...');
 		}
 		else {
+			$scope.current.message.sending = true;
 			var json = jsonMethods.makeJson(msg, $scope.current.nickname);
 			trueVaultMethods.postDoc(json).
 			then(function(promise){

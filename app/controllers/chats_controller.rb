@@ -99,7 +99,11 @@ class ChatsController < ApplicationController
     puts "making new chat"
     chat = @event.build_chat
     chat.update_attributes(:therapist_id => @event.therapist_id, :client_id => @event.client_id)
-    chat.owner = ChatUser.user(session, current_user, chat)
+    @therapist = Therapist.find_by(id: chat.therapist_id)
+    @client = Client.find_by(id: chat.client_id)
+    
+    therapist_chat_user = ChatUser.get_chat_user(session, @therapist.user, chat)
+    client_chat_user = ChatUser.get_chat_user(session, @client.user, chat)
     if chat.save
       chat_tiny = Tiny::tiny(chat.id)
       puts "chat id is #{chat.id}"

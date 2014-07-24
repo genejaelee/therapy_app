@@ -17,8 +17,13 @@ class EventsController < ApplicationController
     if current_user.nil?
       redirect_to new_user_registration_path
     else
-      find_event_and_client_or_build
-      redirect_to new_user_session_path
+      if current_user.role_type == "Therapist"
+        redirect_to homepage_path
+        flash[:error] = "Oops, looks like you are signed in as a therapist."
+      else
+        find_event_and_client_or_build
+        redirect_to new_user_session_path
+      end
     end
   end
   

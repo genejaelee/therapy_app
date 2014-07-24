@@ -124,9 +124,6 @@
 		<% elsif current_user.role_type == "Client" %>
 		<% end %>
 	</div>
-	<div ng-controller="ChatsViewCtrl">
-		<h1>{{ title }}</h1>
-	</div>
 	
 	<%= render :partial => 'chats/timer' %>
 </div>
