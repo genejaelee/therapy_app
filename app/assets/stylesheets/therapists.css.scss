@@ -123,8 +123,7 @@
 				
 				.bio-container {
 					margin-top: 5px;
-					height: 140px;
-					overflow-y: scroll;
+					height: auto;
 					
 					.card-bio {
 						color: #aaa;
@@ -138,11 +137,10 @@
 		}
 		
 		.bottom-panel {
-			
 			max-width: $max-width;
 			z-index: 1;
 			bottom: 0px;
-			padding-top: 0px;
+			padding-top: 10px;
 			padding-bottom: 50px;
 			width: 100%;
 			height: auto;
