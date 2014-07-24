@@ -59,6 +59,7 @@ TherapyApp::Application.routes.draw do
   match '/about' => 'static_pages#about', :as => :about, via: 'get'
   match '/privacy' => 'static_pages#privacy', :as => :privacy, via: 'get'
   match '/terms' => 'static_pages#terms', :as => :terms, via: 'get'
+  match '/emergencies' => 'static_pages#emergencies', :as => :emergencies, via: 'get'
   
   match '/drop_email_route' => 'therapists#drop_email', via: 'post' 
   

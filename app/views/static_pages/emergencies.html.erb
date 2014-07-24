@@ -1,23 +1,16 @@
-	<% set_meta_tags :title => 'Privacy Policy',
+<% set_meta_tags :title => 'Privacy Policy',
 									 :description => "Instant message with a therapist at Plain White Couch. Try talking to a therapist in a no pressure way. If you like it, switch to audio-chat, video-chat, or meet in person.",
 									 :keywords => 'IM, Instant, Message, Chat, Therapist, Affordable, Counseling, Counselor, Find, Therapist, Call, Phone, Video, Confidential, Plain, White, Couch, eTherapy, Teletherapy',
 									 :reverse => false
-	%>
+%>
 
 <% content_for :title do %>
   Our Privacy Policy
 <% end %>
 
 <% content_for :body do %>
-  <p>Last Updated: July 24, 2014</p>
 <% end %>
 
 <%= render 'layouts/header' %>
 
-<%= render 'static_pages/privacy_content' %>
-
-<% content_for :button_content do %>
-  <%= button_to "Get Started", homepage_path, class: "button", method: "get" %>
-<% end %>
-
-<%= render 'layouts/cta_green' %>
+<%= render 'static_pages/emergencies_content' %>

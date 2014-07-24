@@ -15,4 +15,8 @@ class StaticPagesController < ApplicationController
   def terms
     @client = Client.new
   end
+  
+  def emergencies
+    @client = Client.new
+  end
 end
