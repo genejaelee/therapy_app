@@ -27,7 +27,7 @@
 	<%= render 'layouts/header' %>
 
 	<% @therapist.each_with_index do |therapist, index| %>
-		<% unless therapist.last_name == "Krisiloff" || therapist.last_name == "Morrissey" %>
+		<% if therapist.last_name == "Krisiloff" || therapist.last_name == "Morrissey" %>
 			<div class='image-panel<%= index %> image-panel panel'>
 				<div class="bg-container">
 					<div class="container">

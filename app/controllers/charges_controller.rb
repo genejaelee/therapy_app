@@ -21,7 +21,7 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
-      :description => 'Plain White Couch Client',
+      :description => 'Plain White Couch Session',
       :currency    => 'usd'
     )
     
@@ -54,7 +54,7 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
-      :description => 'Plain White Couch Client',
+      :description => 'Plain White Couch Session',
       :currency    => 'usd'
     )
     
