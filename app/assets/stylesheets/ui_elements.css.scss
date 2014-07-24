@@ -176,6 +176,16 @@
 	.ui-dialog-content {
 		font-size: 16px;
 		color: #525252;
+		
+		p {
+			
+			a {
+				color: $scouter-green;
+			}
+			a:hover {
+				opacity: 0.8;
+			}
+		}
 	}
 	
 	.ui-dialog-buttonpane {

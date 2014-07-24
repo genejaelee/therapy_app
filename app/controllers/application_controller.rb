@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
       puts 'user role is client'
       @event = Event.find_by(id: session[:event_id])
       if @event.has_attribute?('therapist_id')
-        if session[:description].present?
+        if session[:description].present? || session[:registration_state] == "signup"
           routed_path = '/event/finish'
         else
           routed_path = '/session_details'

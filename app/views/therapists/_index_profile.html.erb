@@ -25,7 +25,7 @@
 				<div class="sixteen columns form-container">
 					<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
 					
-							<%= label_tag "Suggest three times to talk" %>
+							<%= label_tag "Suggest two times to talk" %>
 
 							<div class="datetime-container">
 								<%= text_field(:suggested_times, :suggested_date1, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY" )  %>
@@ -35,10 +35,12 @@
 								<%= text_field(:suggested_times, :suggested_date2, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY") %>
 								<%= text_field(:suggested_times, :suggested_time2, :class => "time-field", :required => "true", :placeholder => "HH:MMpm") %>
 							</div>
+							<!--
 							<div class="datetime-container">
 								<%= text_field(:suggested_times, :suggested_date3, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY" ) %>
 								<%= text_field(:suggested_times, :suggested_time3, :class => "time-field", :required => "true", :placeholder => "HH:MMpm") %>
 							</div>
+								-->
 					
 							<%= f.hidden_field :therapist_id, :value => therapist.id %>
 							<%= f.hidden_field :client_id, :value => @client.id %>
@@ -47,9 +49,11 @@
 								<span>Change my timezone <span style="font-weight: 600;">(currently <%= @time_zone %>)</span></span>
 								<%= time_zone_select(:user, :time_zone, ActiveSupport::TimeZone.us_zones, default: time_zone_value_to_name(@time_zone) ) %>
 							</div>
-
+							
+							<% string = "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Plain White Couch #{}Terms of Service and Privacy Policy" %>
+							
 							<%= f.submit "Submit", 
-							:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Scouter Terms of Service and Privacy Policy" }, 
+							:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Plain White Couch #{link_to('Terms of Service', '/terms', :target => "_blank")} and #{link_to('Privacy Policy', '/privacy', :target => "_blank")}" }, 
 							:class => "submit_button_white button" %>
 		
 					<% end %>

@@ -12,8 +12,8 @@ class Event < ActiveRecord::Base
     puts "times hash is #{times_hash}"
     datetime1 = "#{self.format_date_to_ISO(times_hash[:suggested_date1])} #{times_hash[:suggested_time1]}"
     datetime2 = "#{self.format_date_to_ISO(times_hash[:suggested_date2])} #{times_hash[:suggested_time2]}"
-    datetime3 = "#{self.format_date_to_ISO(times_hash[:suggested_date3])} #{times_hash[:suggested_time3]}"
-    datetimes.push(datetime1, datetime2, datetime3)
+    #datetime3 = "#{self.format_date_to_ISO(times_hash[:suggested_date3])} #{times_hash[:suggested_time3]}"
+    datetimes.push(datetime1, datetime2)
     
     formatted_datetimes = parse_datetimes_with_timezone(datetimes, time_zone)
     return formatted_datetimes
