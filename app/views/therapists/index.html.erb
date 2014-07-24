@@ -27,7 +27,7 @@
 	<%= render 'layouts/header' %>
 
 	<% @therapist.each_with_index do |therapist, index| %>
-		<% if therapist.last_name == "Cruz" || therapist.last_name == "Patricia" %>
+		<% if therapist.last_name == "Cruz" || therapist.first_name == "Patricia" %>
 			<div class='image-panel<%= index %> image-panel panel'>
 				<div class="bg-container">
 					<div class="container">
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 			</div>
-		<%= render 'therapists/index_profile', :therapist => therapist %>
+			<%= render 'therapists/index_profile', :therapist => therapist %>
 		<% end %>
 	<% end %>
 </body>
