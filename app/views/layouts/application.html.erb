@@ -55,7 +55,25 @@
 		<%= yield %>
 	</main>
 	<footer>
-		<%= render 'layouts/analytics'%>
+		<!-- ANALYTICS / CONVERSION STUFF -->
+		<%= render 'layouts/analytics/analytics'%>
+		
+		<% if session[:browsing] == true %>
+			<%= render 'layouts/analytics/browse_click_conversion' %>
+			<% session[:browsing] = nil %>
+		<% end %>
+		
+		<% if session[:signed_up] == true %>
+			<%= render 'layouts/analytics/signed_up_conversion' %>
+			<% session[:signed_up] = nil %>
+		<% end %>
+		
+		<% if session[:paid] == true %>
+			<%= render 'layouts/analytics/paid_conversion' %>
+			<% session[:paid] = nil %>
+			<% session[:paid_amount] = nil %>
+		<% end %>
+		
 		<%= render 'layouts/footer' %>
 		<%= debug(params) if Rails.env.development? && controller_name != "chats" %>
 	</footer>

@@ -20,6 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
       @user.save
     end
     
+    session[:signed_up] = true
     session[:registration_state] = "signup"
     return registrations_router
   end

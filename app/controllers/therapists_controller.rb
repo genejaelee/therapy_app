@@ -34,6 +34,8 @@ class TherapistsController < ApplicationController
     @client = Client.create(params[:client])
     @time_zone = cookies["jstz_time_zone"]
     @therapist = Therapist.all
+    
+    session[:browsing] = true
     if user_signed_in?
       
     end

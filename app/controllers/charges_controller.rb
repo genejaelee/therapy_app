@@ -34,7 +34,8 @@ class ChargesController < ApplicationController
                               :therapist_id => @event.therapist_id,
                               :stripe_email => @user.email)
                               
-  flash[:paid] = "true"
+  session[:paid] = true
+  session[:paid_amount] = @amount
   redirect_to :action => 'generate', :controller => 'chats'
   
   rescue Stripe::CardError => e
