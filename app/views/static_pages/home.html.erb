@@ -1,6 +1,5 @@
 <% set_meta_tags :title => 'Therapy, Easy, Try for free',
                  :description => "Instant message with a therapist at Plain White Couch. Try talking to a therapist in a no pressure way. If you like it, switch to audio-chat, video-chat, or meet in person.",
-                 :keywords => 'IM, Instant, Message, Chat, Therapist, Affordable, Counseling, Counselor, Find, Therapist, Call, Phone, Video, Confidential, Plain, White, Couch, eTherapy, Teletherapy',
 								 :reverse => false 
 %>
 
@@ -20,7 +19,7 @@
 			<div class="spacer sixteen columns">
 			</div>
 			<div class="sixteen columns" id="cta-form">
-				<%= render 'clients/create' %>
+				<%= render 'layouts/static_pages/browse_button' %>
 				<span id="secure-notice">Confidential. All conversations are deleted.</span>
 			</div>
 		</div>
@@ -35,58 +34,7 @@
 				<p>If you've considered talking to a therapist for any reason at all— this is for you. Writing makes it comfortable and easy to say exactly what's on your mind.</p>
 				<p>So see what it's like to instant message with a therapist. And don't worry, all messages are permanently deleted.</p>
 			</div>
-			<div class="sixteen columns image-container">
-				<!--<%= image_tag('laptop-wireframe3.jpg', id: "laptop-chat") %>-->
-				<div class="chat-ui-container">
-					<div class="messages-panel">
-						<div id="chat-notification-container">
-							<div id="chat-notification">
-							</div>
-						</div>
-						<ul id="messages">
-							<div class="messages-container">
-								<div class="message-container">
-									<li class="you">
-										<span class="nickname-said">You said:</span>
-										<div class="message-wrapper">
-											<div class="message">
-												<p>Hello. This is sample text.</p>
-											</div>
-										</div>
-									</li>
-								</div>
-							
-								<div class="message-container">
-									<li class="them">
-										<span class="nickname-said">Therapist said:</span>
-										<div class="message-wrapper">
-											<div class="message">
-												<p>Hi how's it going, my name is blank and I'm here to talk to you today about your problems.</p>
-											</div>
-										</div>
-									</li>
-								</div>
-							
-								<div class="message-container">
-									<li class="you">
-										<span class="nickname-said">You said:</span>
-										<div class="message-wrapper">
-											<div class="message">
-												<p>If you've considered talking to a therapist for any reason at all— this is for you. It's just an easy way to try.</p>
-											</div>
-										</div>
-									</li>
-								</div>
-							</div>
-							<div id="spinner" class="spinner">
-									<img alt="Loading" height="50px" src="/assets/loading.gif" />
-							</div>
-							<div id="message-overlay"></div>
-						</ul>
-					</div>
-				</div>
-				
-			</div>
+
 		</div>
 	</div>
 </div>

@@ -1,0 +1,28 @@
+<% set_meta_tags :title => 'Online Counseling Sessions',
+                 :description => "Try online counseling in a no pressure way. Chat with a therapist. No worries, it's confidential.",
+								 :noindex => true,
+								 :separator => '-',
+								 :reverse => false 
+%>
+
+<% content_for :header do %>
+	Instant message with a therapist.
+<% end %>
+
+<% content_for :sub_header1 do %>
+	Try talking to a therapist in a no pressure way.
+<% end %>
+
+<% content_for :sub_header2 do %>
+	Sessions last 50 minutes, and they happen online in real-time.
+<% end %>
+
+<%= render 'landing_pages/header' %>
+
+<% content_for :body_html do %>
+				<h2>Try online counseling here.</h2>
+				<p>If you've considered therapy for any reason at all— this is for you. Writing in a chat room makes it comfortable and easy to say exactly what's on your mind.</p>
+				<p>So see what it's like to instant message with a therapist. And don't worry, it's confidential and all messages are permanently deleted.</p>
+<% end %>
+
+<%= render 'landing_pages/body' %>
