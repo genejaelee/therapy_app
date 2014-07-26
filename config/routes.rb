@@ -64,6 +64,8 @@ TherapyApp::Application.routes.draw do
   match '/drop_email_route' => 'therapists#drop_email', via: 'post' 
   
   # landing pages
+  get '/depressed' => 'landing_pages#depressed'
+  get '/depression' => 'landing_pages#depression'
   get '/online_therapy' => 'landing_pages#online_therapy'
   get '/online_counseling' => 'landing_pages#online_counseling'
   get '/therapist' => 'landing_pages#therapist'

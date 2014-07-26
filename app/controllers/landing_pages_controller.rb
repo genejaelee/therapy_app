@@ -15,4 +15,12 @@ class LandingPagesController < ApplicationController
   def depression_counseling
     @client = Client.new
   end
+  
+  def depressed
+    @client = Client.new
+  end
+  
+  def depression
+    @client = Client.new
+  end
 end

@@ -1,0 +1,136 @@
+@import "variables.css.scss";
+
+#panel2-landing {
+	
+	.bg-container {
+		height: 680px;
+		background-image: image-url('phone-hand.jpg');
+		background-size: $max-width auto;
+		background-position: center;
+	
+		.container {
+			padding-top: 110px;
+			padding-bottom: 110px;
+			
+			.columns {
+				h2 {
+					color: #525252;
+					margin-bottom: 35px;
+				}
+				
+				p {
+					color: #525252;
+					font-size: 16px;
+				}
+			}
+			
+			.text-container {
+			}
+			
+			.image-container {
+				position: relative;
+				padding: 0px;
+				margin-top: 0px;
+				text-align: center;
+				
+				#laptop-chat {
+					margin: auto;
+					width: 100%;
+					max-width: 700px;
+				}
+				
+				.chat-ui-container {
+					display: none;
+					top: 6%;
+					left: 12%;
+					width: 100%;
+					max-width: 76%;
+					height: 80%;
+					overflow: scroll;
+					position: absolute;
+					@include stripe-background-medium;
+					border: 2px solid #ddd;
+					box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					-webkit-box-sizing: border-box;
+				
+					.messages-panel {
+						padding: 15px;
+						
+						#messages {
+							position: relative;
+							overflow-y: scroll;
+							margin: auto;
+							height: 100%;
+		
+							.messages-container {
+			
+								.note {
+									margin-bottom: 0px;
+									margin-top: 10px;
+									color: $scouter-green;
+									strong {
+										color: #727272;
+									}
+								}
+			
+								.message-container {
+									margin-bottom: 10px;
+						
+									.you {
+										.message {
+											@include blue-gradient;
+											color: #fff;
+										}
+									}
+									.them {
+										text-align: right;
+										.message {
+											text-align: left;
+											float: right;
+											@include green-gradient;
+											color: #fff;
+										}
+									}
+			
+									li {
+										margin-bottom: 0px;
+									
+										span {
+											font-size: 10px;
+											color: rgba(0,0,0,0.5);
+										}
+									}
+			
+									.message-wrapper {
+										overflow: auto;
+										width: 100%;
+				
+										.message {
+											display: inline-block;
+											min-width: 50px;
+											overflow: auto;
+											margin-top: 3px;
+											padding: 8px;
+											border-radius: 8px;
+		
+											p {
+												max-width: 200px;
+												font-size: 12px;
+												line-height: 14px;
+												margin: 0px;
+												color: #fff;
+												display: block;
+											}
+										}
+									}
+								}
+							}
+						}
+					}	
+				}
+				// END CHATROOM CSS .chat-ui-container
+			}
+		}
+	}
+}
