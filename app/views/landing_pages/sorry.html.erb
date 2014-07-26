@@ -1,0 +1,25 @@
+<% set_meta_tags :title => 'Counseling for Depression',
+                 :description => "If you're dealing with depression try online counseling in a no pressure way. No worries, it's confidential.",
+								 :noindex => true,
+								 :separator => '-',
+								 :reverse => false
+%>
+
+<% content_for :title do %>
+	All therapists are speaking to people.
+<% end %>
+
+<% content_for :body do %>
+				<p>We're really sorry --- we launched this site tonight to test the idea and we got way more people than we expected. If you leave us your email, we can tell you the next we test this again (probably tomorrow).</p>
+				<p>Note, we aren't prepared to handle emergencies. Please call 911.</p>
+				
+				<%= form_for @emails, url: { controller: "therapists", action: "drop_email" } do |f| %>
+					<div class="email-dropbox-landing">
+						<%= f.label :email, "email address"%>
+						<%= f.text_field :email, :placeholder => "john@example.com" %>
+						<%= f.submit "Submit", :class => "submit_button_white button" %>
+					</div>
+				<% end %>
+<% end %>
+
+<%= render 'layouts/header' %>

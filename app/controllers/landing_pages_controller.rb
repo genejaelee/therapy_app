@@ -23,4 +23,8 @@ class LandingPagesController < ApplicationController
   def depression
     @client = Client.new
   end
+  
+  def sorry
+    @emails = EmailBox.new
+  end
 end
