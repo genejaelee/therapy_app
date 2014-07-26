@@ -66,7 +66,7 @@ TherapyApp::Application.routes.draw do
   # landing pages
   get '/depressed' => 'landing_pages#depressed'
   get '/depression' => 'landing_pages#depression'
-  get '/sorry' => 'landing_pages#sorry'
+  get '/therapists_busy' => 'landing_pages#sorry', :as => :landing_sorry
   get '/online_therapy' => 'landing_pages#online_therapy'
   get '/online_counseling' => 'landing_pages#online_counseling'
   get '/therapist' => 'landing_pages#therapist'
