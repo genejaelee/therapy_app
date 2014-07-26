@@ -43,7 +43,7 @@ class TherapistsController < ApplicationController
   
   def drop_email
     @emails = EmailBox.create
-    if @emails.update_attributes(email: params[:email_box][:email])
+    if @emails.update_attributes(email: params[:email_box][:email], landing: params[:email_box][:landing])
       redirect_to root_url
       flash[:success] = "Thanks for reaching out. We will contact you"
     else

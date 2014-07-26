@@ -71,6 +71,7 @@ TherapyApp::Application.routes.draw do
   get '/online_counseling' => 'landing_pages#online_counseling'
   get '/therapist' => 'landing_pages#therapist'
   get '/depression_counseling' => 'landing_pages#depression_counseling'
+  match '/landing_pages/email_drop' => 'landing_pages#drop_email', :as => :landing_email_drop, via: 'post'
   
   # set up webhooks
   scope '/hooks', :controller => :hooks do
