@@ -1,0 +1,22 @@
+<% set_meta_tags :title => 'Payment Information',
+								:noindex => true 
+%>
+
+<% content_for :title do %>
+  Thank you
+<% end %>
+
+<% content_for :body do %>
+  <p>We've successfully received your payment! Sit tight, your therapist, <%= @event.therapist.first_name %>, will give you a call shortly at <%= @client.phone %>. If you have any problems or are unsatisfied, just contact us at 
+		<a href="mailto:plainwhitecouch@gmail.com">plainwhitecouch@gmail.com</a> to get a refund.</p>
+		
+	<p style="margin-bottom: 0px">Best,</p>
+	<p style="margin-bottom: 0px">Matthew and Gene</p>
+	<p style="margin-bottom: 0px">Founders, Plain White Couch</p>
+<% end %>
+
+<% content_for :arrow_down_option do %>
+<% render 'layouts/arrow_down' %>
+<% end %>
+
+<%= render 'layouts/header' %>

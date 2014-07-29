@@ -41,6 +41,15 @@ class TherapistsController < ApplicationController
     end
   end
   
+  def index_instant
+    @emails = EmailBox.new
+    @event = Event.new
+    @client = Client.create(params[:client])
+    @therapist = Therapist.all
+    
+    session[:browsing] = true
+  end
+  
   def drop_email
     @emails = EmailBox.create
     if @emails.update_attributes(email: params[:email_box][:email], landing: params[:email_box][:landing])

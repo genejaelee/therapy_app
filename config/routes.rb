@@ -23,6 +23,7 @@ TherapyApp::Application.routes.draw do
   match "/demochat" => "chats#demo", via: 'get'
   
   match '/schedule' => 'events#create', :as => :create_appointment, via: 'post'
+  match '/create_event_instant' => 'events#create_instant', :as => :events_create_instant_path, via: 'post'
   match '/this_therapist_events' => 'events#this_therapist_events', via: 'post'
   match '/update_session' => 'events#update_session', via: 'patch'
   match '/session_details' => 'events#session_details', via: 'get'
@@ -40,13 +41,17 @@ TherapyApp::Application.routes.draw do
   match '/therapist/create' => 'therapists#create', via: 'post'
   match '/therapist/update' => 'therapists#update', via: 'patch'
   match '/browse' => 'therapists#index', :as => :therapists_index, via: 'get'
+  match '/browse_instant' => 'therapists#index_instant', :as => :therapists_index_instant, via: 'get'
   match '/therapists/:id' => 'therapists#show', :as => :show_therapist, via: 'get'
   
   # user stuff
   match '/profile' => 'users#show_my_profile', :as => :show_my_profile, via: 'get'
   
+  # charges
   match '/paysecure' => 'charges#just_payment', via: 'get'
   match '/process' => 'charges#process_payment', :as => :process_payment, via: 'post'
+  match '/new_instant' => 'charges#new_instant', :as => :charges_new_instant_path, via: 'get'
+  match '/create_instant' => 'charges#create_instant', :as => :charges_create_instant_path, via: 'post'
   
   match '/clients/new' => 'clients#new', via: 'post'
   match '/client_create' => "clients#create", :as => :create_client, via: 'get'

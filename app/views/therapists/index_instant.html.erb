@@ -1,0 +1,83 @@
+	<% set_meta_tags :title => 'Our Therapists',
+									 :description => "Instant message with a therapist at Plain White Couch. Try talking to a therapist in a no pressure way. If you like it, switch to audio-chat, video-chat, or meet in person.",
+									 :reverse => false
+	%>
+
+<body id="therapist-index" ng-controller="TherapistsViewCtrl">
+	<%= render 'layouts/navbar' %>
+	
+	<% content_for :title do %>
+	  Suggest two times to talk. Easy as that.
+	<% end %>
+
+	<% content_for :body do %>
+	  <p>We've just started Plain White Couch, so we only have one therapist to choose from (and she's great!). If you don't wish to speak with her though, we can email you soon with other options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
+		<%= form_for @emails, url: { controller: "therapists", action: "drop_email" } do |f| %>
+			<div class="email-dropbox">
+				<hr class='dashed-hr'>
+				<%= f.text_field :email, :placeholder => "john@example.com" %>
+				<%= f.submit "Submit", :class => "submit_button_white button" %>
+			</div>
+		<% end %>
+	<% end %>	
+
+	<%= render 'layouts/header' %>
+
+	<% @therapist.each_with_index do |therapist, index| %>
+		<% if therapist.last_name == "Cruz" %>
+			<div class='image-panel<%= index %> image-panel panel'>
+				<div class="bg-container">
+					<div class="container">
+						<h1></h1>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel profile-link-panel closed" data-id="<%= therapist.id %>">
+				<div class="bg-container closed">
+		
+					<div class="top-panel">
+						<span class="tap-plus-sign">+</span>
+						<div class="container">
+							<div class="four columns therapist-image-container">
+								<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+							</div>
+							<div class="twelve columns">
+								<div class="profile-link-container">
+									<h3><%= therapist.first_name %> <%= therapist.last_name %>
+										<span> / <%= therapist.title %>, <%= therapist.state %> License No: <%= therapist.license_number %></span></h3>
+									<!--<h3><span><%= therapist.school_name %></span></h3>-->
+									<div class="bio-container">
+										<p class="card-bio">"<%= therapist.bio %>"</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+		
+					<div class="bottom-panel">
+						<div class="container expanded-profile-content">
+							<div class="sixteen columns form-container">
+								<%= form_for @event, url: { controller: "events", action: "create_instant" } do |f| %>
+										<%= label_tag 'Phone number to be called at.' %>
+										<%= text_field(:client, :phone, class: 'phone-field', placeholder: "(213) 493-1588") %>
+										<%= f.hidden_field :therapist_id, :value => therapist.id %>
+										<%= f.hidden_field :client_id, :value => @client.id %>
+
+										<%= f.submit "Talk now", 
+										:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Plain White Couch #{link_to('Terms of Service', '/terms', :target => "_blank")} and #{link_to('Privacy Policy', '/privacy', :target => "_blank")}" }, 
+										:class => "submit_button_white button" %>
+		
+								<% end %>
+	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		<% end %>
+	<% end %>
+	
+	<%= render :partial => 'layouts/analytics/browse_click_conversion' %>
+</body>

@@ -205,13 +205,25 @@
 							}
 						}
 						
+						.phone-field {
+							color: $scouter-teal-fade;
+							font-size: 16px;
+							padding: 10px 10px;
+							height: 45px;
+							width: 200px;
+							-webkit-appearance: none;
+							margin-bottom: 0px;
+						}
+						
 						input {
 							border: 1px solid #eee;
 							padding: 0px 15px;
+							height: 40px;
 						}
 						
 						input:focus {
 							border: 1px solid #ccc;
+							box-shadow: none;
 						}
 						
 						.timezone-container {
@@ -238,7 +250,7 @@
 							width: 160px;
 							font-size: 16px;
 							@include submit-button-white;
-							@include green-border
+							@include green-border-light;
 						}
 						
 						.submit_button_white:hover {

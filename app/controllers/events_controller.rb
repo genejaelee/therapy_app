@@ -11,7 +11,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.create(event_params)
     session[:event_id] = @event.id
-    puts "#{session[:event_id]}"
     @formatted_times = @event.format_suggested_times_with_timezone(params[:suggested_times], params[:user][:time_zone])
     @event.update_attributes(:suggested_times => @formatted_times)
     if current_user.nil?
@@ -25,6 +24,14 @@ class EventsController < ApplicationController
         redirect_to new_user_session_path
       end
     end
+  end
+  
+  def create_instant
+    @event = Event.create(event_params)
+    session[:event_id] = @event.id
+    @client = Client.find_by(id: @event.client_id)
+    @client.update_attributes(:phone => params[:client][:phone])
+    redirect_to :action => "new_instant", :controller => "charges"
   end
   
   def session_details

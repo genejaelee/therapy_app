@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726070912) do
+ActiveRecord::Schema.define(version: 20140729223654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,12 +133,6 @@ ActiveRecord::Schema.define(version: 20140726070912) do
     t.text     "retina_dimensions"
     t.text     "issues"
     t.string   "title"
-    t.text     "approach"
-    t.text     "welcome"
-    t.text     "approach_sub1"
-    t.text     "approach_sub2"
-    t.string   "approach_sub1_title"
-    t.string   "approach_sub2_title"
     t.string   "school_name"
     t.string   "open_slots",          default: [], array: true
     t.integer  "client_id"

@@ -1,0 +1,46 @@
+<% set_meta_tags :title => 'Payment Information',
+								:noindex => true 
+%>
+
+<body id="form-page">
+	<% content_for :title do %>
+	  Last Step - Payment information.
+	<% end %>
+
+	<% content_for :body do %>
+	  <p>If you are unsatisfied with your session, we will refund your payment with no hassle.</p>
+	<% end %>
+	
+	<% content_for :arrow_down_option do %>
+	<% render 'layouts/arrow_down' %>
+	<% end %>
+
+	<%= render 'layouts/header' %>
+
+	<div class="charge-panel panel">
+		<div class="bg-container">
+			<div class="container">
+
+			<%= form_tag({ controller: 'charges', action: 'create_instant' }, method: 'post') do %>
+				<article>
+					<label class="amount">
+						<h2>$<%= @amount/100 %></h2>
+						<h3>Pay securely via Stripe -- We will not receive your card information.</h3>
+					</label>
+				</article>
+	
+				<hr></hr>
+	
+				<div class="payment-errors"></div>
+	
+				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+				          data-description="Payment for session"
+				          data-amount=<%= @amount %>></script>
+	
+			<% end %>
+
+			</div>
+		</div>
+	</div>
+</body>
