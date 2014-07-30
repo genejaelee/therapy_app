@@ -45,7 +45,7 @@ class TherapistsController < ApplicationController
     @emails = EmailBox.new
     @event = Event.new
     @client = Client.create(params[:client])
-    @therapist = Therapist.all
+    @therapist = Therapist.find_by(first_name: "Patricia")
     
     session[:browsing] = true
   end

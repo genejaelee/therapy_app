@@ -29,6 +29,50 @@
 	}	
 }
 
+#new_event {
+	margin-top: 20px;
+	margin-bottom: 20px;
+
+	label {
+		color: #fff;
+		margin-bottom: 5px;
+		opacity: 0.9;
+	}
+
+	.phone-field {
+		text-align: center;
+		color: $scouter-teal-fade;
+		font-size: 16px;
+		padding: 10px 10px;
+		height: 45px;
+		width: 200px;
+		-webkit-appearance: none;
+		margin-bottom: 0px;
+	}
+
+	input {
+		border: 1px solid #eee;
+		padding: 0px 15px;
+		font-size: 16px;
+		height: 40px;
+	}
+
+	input:focus {
+		border: 1px solid #ccc;
+		box-shadow: none;
+	}
+
+	.submit_button_white {
+		margin-top: 10px;
+		@include submit-button-white;
+		@include green-border-light;
+	}
+
+	.submit_button_white:hover {
+		background-color: #eee;
+	}
+}
+
 .email-dropbox-landing {
 	margin-top: 50px;
 	display: block;
@@ -115,53 +159,6 @@
 					width: 150px;
 					height: 150px;
 				}
-				
-				form {
-					margin-top: 20px;
-					margin-bottom: 20px;
-					text-align: center;
-				
-					label {
-						color: $scouter-teal-fade;
-						margin-bottom: 5px;
-						opacity: 0.9;
-					}
-				
-					.phone-field {
-						text-align: center;
-						color: $scouter-teal-fade;
-						font-size: 16px;
-						padding: 10px 10px;
-						height: 45px;
-						width: 200px;
-						-webkit-appearance: none;
-						margin-bottom: 0px;
-					}
-				
-					input {
-						margin: auto;
-						border: 1px solid #eee;
-						padding: 0px 15px;
-						font-size: 16px;
-						height: 40px;
-					}
-				
-					input:focus {
-						border: 1px solid #ccc;
-						box-shadow: none;
-					}
-			
-					.submit_button_white {
-						margin-top: 10px;
-						@include submit-button-white;
-						@include green-border-light;
-					}
-				
-					.submit_button_white:hover {
-						background-color: #eee;
-					}
-				}
-				
 			}
 	
 			.twelve {

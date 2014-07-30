@@ -1,0 +1,29 @@
+<% set_meta_tags :title => 'Parenting Counseling',
+                 :description => "Talk to a parenting counselor right now. There's no wait, and it's easy to do.",
+								 :noindex => true,
+								 :separator => '-',
+								 :reverse => false 
+%>
+
+<% content_for :header do %>
+	Having parenting issues? Get advice now.
+<% end %>
+
+<% content_for :sub_header1 do %>
+	If you're having a parenting problem with a child, a therapist can help.
+<% end %>
+
+<% content_for :sub_header2 do %>
+	Speak over the phone with a licensed therapist who specializes in parenting issues, right now.
+<% end %>
+
+<%= render 'landing_pages/header' %>
+
+<% content_for :body_html do %>
+				<h2>Get help now.</h2>
+				<p>If you want parenting help or advice— this is for you. You'll be connected with a licensed Marriage and Family Therapist over the phone within 15 minutes.</p>
+				<p>Whether you speak just once or choose to talk again in the future, it can really help.</p>
+				<p>Note, we aren't prepared for emergencies involving self-harm or hurting others. Please, call 911 for help if you're in those situations.</p>
+<% end %>
+
+<%= render 'landing_pages/body' %>

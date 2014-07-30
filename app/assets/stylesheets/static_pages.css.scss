@@ -330,13 +330,14 @@ p {
 #panel2 {
 	
 	.bg-container {
-		background-image: image-url('laptop-wireframe-coffee-center.jpg');
-		background-position: bottom;
-		background-size: 1100px auto;
+		background-image: image-url('phone-hand.jpg');
+		//background-image: image-url('laptop-wireframe-coffee-center.jpg');
+		background-position: center right;
+		background-size: 1140px auto;
 	
 		.container {
-			padding-top: 90px;
-			padding-bottom: 450px;
+			padding-top: 140px;
+			padding-bottom: 150px;
 			
 			.columns {
 				h2 {
@@ -739,11 +740,7 @@ p {
 @media only screen and (max-width: 1140px) {
 	#panel2 {
 		.bg-container {
-			height: auto;
-			background-size: 1000px auto;
-			background-position: bottom;
 			.container {
-				padding-bottom: 400px;
 				h2 {
 				}
 			}
@@ -767,7 +764,6 @@ p {
 @media only screen and (max-width: 960px) {
 	#panel2 {
 		.bg-container {
-			background-position: bottom;
 			
 			.container {
 				.columns {
@@ -824,12 +820,11 @@ p {
 		position: relative;
 		
 		.bg-container {
-			background-size: 900px auto;
+			background-image: none;
 			
 			.container {
 				padding-right: 0px;
-				padding-top: 60px;
-				padding-bottom: 350px;
+				padding-bottom: 90px;
 				
 				h2 {
 					padding-right: 0;

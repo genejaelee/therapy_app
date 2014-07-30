@@ -13,15 +13,24 @@ class LandingPagesController < ApplicationController
   end
   
   def depression_counseling
-    @client = Client.new
   end
   
   def depressed
-    @client = Client.new
   end
   
   def depression
-    @client = Client.new
+  end
+  
+  def parenting
+  end
+  
+  def panic_attack
+  end
+  
+  def divorce
+  end
+  
+  def grief
   end
   
   def sorry
