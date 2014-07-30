@@ -41,6 +41,17 @@
 						<div class="container">
 							<div class="four columns therapist-image-container">
 								<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+								<%= form_for @event, url: { controller: "events", action: "create_instant" } do |f| %>
+										<%= label_tag 'Phone number to be called at.' %>
+										<%= text_field(:client, :phone, class: 'phone-field', placeholder: "(213) 493-1588") %>
+										<%= f.hidden_field :therapist_id, :value => therapist.id %>
+										<%= f.hidden_field :client_id, :value => @client.id %>
+
+										<%= f.submit "Talk now", 
+										:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Plain White Couch #{link_to('Terms of Service', '/terms', :target => "_blank")} and #{link_to('Privacy Policy', '/privacy', :target => "_blank")}" }, 
+										:class => "submit_button_white button" %>
+		
+								<% end %>
 							</div>
 							<div class="twelve columns">
 								<div class="profile-link-container">
@@ -67,17 +78,6 @@
 					<div class="bottom-panel">
 						<div class="container expanded-profile-content">
 							<div class="sixteen columns form-container">
-								<%= form_for @event, url: { controller: "events", action: "create_instant" } do |f| %>
-										<%= label_tag 'Phone number to be called at.' %>
-										<%= text_field(:client, :phone, class: 'phone-field', placeholder: "(213) 493-1588") %>
-										<%= f.hidden_field :therapist_id, :value => therapist.id %>
-										<%= f.hidden_field :client_id, :value => @client.id %>
-
-										<%= f.submit "Talk now", 
-										:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Plain White Couch #{link_to('Terms of Service', '/terms', :target => "_blank")} and #{link_to('Privacy Policy', '/privacy', :target => "_blank")}" }, 
-										:class => "submit_button_white button" %>
-		
-								<% end %>
 	
 							</div>
 						</div>
