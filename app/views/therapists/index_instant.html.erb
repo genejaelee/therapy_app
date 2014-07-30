@@ -51,7 +51,12 @@
 										<p class="therapist-bio">"<%= therapist.bio %>"</p>
 									</div>
 									<div class="issues-container">
-										<p class="therapist-issues">
+										<p class="therapist-issues">Areas of Specialty:</p>
+										<ul>
+											<% therapist.issues.each do |issue| %>
+												<li><%= issue %></li>
+											<% end %>
+										</ul>
 									</div>
 								</div>
 							</div>

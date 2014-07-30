@@ -149,6 +149,22 @@
 					color: #aaa;
 				}
 				
+				.issues-container {
+					p {
+						font-size: 14px;
+						font-weight: 600;
+						color: #ccc;
+						margin-bottom: 0px;
+					}
+					
+					ul {
+						padding-top: 5px;
+						li {
+							margin-bottom: 5px;
+						}
+					}
+				}
+				
 				.bio-container {
 					margin-top: 5px;
 					height: auto;
