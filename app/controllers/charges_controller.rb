@@ -44,11 +44,11 @@ class ChargesController < ApplicationController
   end
   
   def new_instant
-    @amount = 8000
+    @amount = 3000
   end
   
   def create_instant
-    @amount = 8000
+    @amount = 3000
     @event = Event.find_by(id: session[:event_id])
     @client = @event.client
     
