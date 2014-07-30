@@ -119,81 +119,6 @@
 					text-align: center;
 
 				}
-				
-				form {
-					margin-top: 20px;
-					margin-bottom: 0px;
-					text-align: left;
-					
-					label {
-						color: $scouter-teal-fade;
-						margin-bottom: 5px;
-						opacity: 0.9;
-					}
-					
-					.container {
-						
-						p {
-							font-size: 24px;
-							font-weight: 600;
-							padding-right: 10px;
-							color: #fff;
-							display: inline-block;
-						}
-					}
-					
-					.phone-field {
-						color: $scouter-teal-fade;
-						font-size: 16px;
-						padding: 10px 10px;
-						height: 45px;
-						width: 200px;
-						-webkit-appearance: none;
-						margin-bottom: 0px;
-					}
-					
-					input {
-						border: 1px solid #eee;
-						padding: 0px 15px;
-						height: 40px;
-					}
-					
-					input:focus {
-						border: 1px solid #ccc;
-						box-shadow: none;
-					}
-					
-					.timezone-container {
-						span {
-							color: $scouter-teal-fade;
-							font-size: 12px;
-							opacity: 0.9;
-						}
-						select {
-							padding-left: 10px;
-							height: 40px;
-							-webkit-appearance: none;
-							@extend input;
-						}
-						select:hover {
-							cursor: pointer;
-						}
-					}
-				
-					.submit_button_white {
-						margin-top: 10px;
-						margin-left: 0px;
-						height: 40px;
-						width: 160px;
-						font-size: 16px;
-						@include submit-button-white;
-						@include green-border-light;
-					}
-					
-					.submit_button_white:hover {
-						background-color: #eee;
-					}
-				}
 			}
 	
 			.twelve {
@@ -277,7 +202,80 @@
 				}
 			
 				.form-container {
+					form {
+						margin-top: 20px;
+						margin-bottom: 0px;
+						text-align: left;
 					
+						label {
+							color: $scouter-teal-fade;
+							margin-bottom: 5px;
+							opacity: 0.9;
+						}
+					
+						.container {
+						
+							p {
+								font-size: 24px;
+								font-weight: 600;
+								padding-right: 10px;
+								color: #fff;
+								display: inline-block;
+							}
+						}
+					
+						.phone-field {
+							color: $scouter-teal-fade;
+							font-size: 16px;
+							padding: 10px 10px;
+							height: 45px;
+							width: 200px;
+							-webkit-appearance: none;
+							margin-bottom: 0px;
+						}
+					
+						input {
+							border: 1px solid #eee;
+							padding: 0px 15px;
+							height: 40px;
+						}
+					
+						input:focus {
+							border: 1px solid #ccc;
+							box-shadow: none;
+						}
+					
+						.timezone-container {
+							span {
+								color: $scouter-teal-fade;
+								font-size: 12px;
+								opacity: 0.9;
+							}
+							select {
+								padding-left: 10px;
+								height: 40px;
+								-webkit-appearance: none;
+								@extend input;
+							}
+							select:hover {
+								cursor: pointer;
+							}
+						}
+				
+						.submit_button_white {
+							margin-top: 10px;
+							margin-left: 0px;
+							height: 40px;
+							width: 160px;
+							font-size: 16px;
+							@include submit-button-white;
+							@include green-border-light;
+						}
+					
+						.submit_button_white:hover {
+							background-color: #eee;
+						}
+					}
 					
 				}
 			}
