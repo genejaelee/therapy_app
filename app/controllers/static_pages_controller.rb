@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_filter :get_amount
   
   def home
     @client = Client.new
