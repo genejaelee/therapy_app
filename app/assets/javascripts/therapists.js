@@ -34,6 +34,26 @@ $(".therapists").ready(function() {
 		//openCloseOnClick(thisProfile, $(this).outerHeight(), maxHeight);
 	});
 	
+	$('.enabled').hover(function(){
+		var timeClass = $(this).attr('data-time');
+		var dayClass = $(this).attr('data-day');
+		$('.'+$.trim(timeClass)).css({'background-color' : '#fff', 'color' : '#424242'});
+		$('.'+$.trim(dayClass)).css({'background-color' : '#fff', 'color' : '#424242'});
+	});
+	
+	$('.enabled').on('mouseleave', function(){
+		var timeClass = $(this).attr('data-time');
+		var dayClass = $(this).attr('data-day');
+		$('.'+$.trim(timeClass)).css({'background' : 'none', 'color' : '#fff'});
+		$('.'+$.trim(dayClass)).css({'background' : 'none', 'color' : '#fff'});
+	});
+	
+	$('.enabled').click(function(){
+		$('.enabled').removeClass('selected');
+		$(this).addClass('selected');
+		$('#event_suggested_time').val($(this).attr('data-datetime'));
+	});
+	
 });
 
 function mouseEnterAnimateIndex() {

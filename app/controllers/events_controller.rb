@@ -12,8 +12,8 @@ class EventsController < ApplicationController
     @event = Event.create(event_params)
     session[:event_id] = @event.id
     puts "#{session[:event_id]}"
-    @formatted_times = @event.format_suggested_times_with_timezone(params[:suggested_times], params[:user][:time_zone])
-    @event.update_attributes(:suggested_times => @formatted_times)
+    #@formatted_times = @event.format_suggested_times_with_timezone(params[:suggested_times], params[:user][:time_zone])
+    #@event.update_attributes(:suggested_times => @formatted_times)
     if current_user.nil?
       redirect_to new_user_registration_path
     else
@@ -80,6 +80,6 @@ class EventsController < ApplicationController
   private
   
   def event_params
-    params.require(:event).permit(:id, :therapist_id, :client_id, :title, :description, :suggested_times)
+    params.require(:event).permit(:id, :therapist_id, :client_id, :title, :description, :suggested_times, :suggested_time)
   end
 end

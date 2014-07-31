@@ -25,7 +25,7 @@
 			  <%= f.password_field :password_confirmation, autocomplete: "off" %>
 				
 				<div class="timezone-container">
-					<span>Change my timezone (currently <%= @time_zone %>)</span>
+					<label>Change my timezone (currently <%= @time_zone %>)</label>
 					<%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, default: time_zone_value_to_name(@time_zone) ) %>
 				</div>
 

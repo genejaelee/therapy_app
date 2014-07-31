@@ -33,4 +33,162 @@
 		font-size: 16px;
 		font-weight: 200;
 	}
+
+}
+
+$cell-height: 30px;
+
+#time-table {
+	position: relative;
+	margin: 20px 0px;
+	width: 100%;
+	max-width: 750px;
+
+	tbody {
+	
+		tr {
+			padding: 0px;
+		
+			th {
+				text-align: center;
+				height: $cell-height;
+				line-height: $cell-height;
+				color: #fff;
+				font-weight: 600;
+				font-size: 12px;
+			}
+		
+			.times-column {
+				width: 60px;
+				padding-top: 0px;
+				margin-top: 0px;
+				height: auto;
+				overflow: hidden;
+				text-align: center;
+			
+				.time-cell {
+					height: $cell-height;
+					font-weight: 600;
+					font-size: 12px;
+					line-height: $cell-height;
+					color: #fff;
+				}
+			}
+		
+			.select-column:hover {
+			
+				.select-cell:hover {
+					background-color: #424242;
+					cursor: pointer;
+				
+					span {
+						opacity: 1.0;
+					}
+				}
+			
+				.disabled:hover {
+					background-color: rgba(255,255,255,0.5);
+				}
+			
+				.enabled:hover {
+					border: none;
+				}
+			
+				.selected:hover {
+					background-color: $scouter-green-light;
+				}
+			}
+		
+			.select-column {
+				border-right: 1px solid #e1e1e1;
+				border-collapse: collapse;
+			
+				.select-cell {
+					text-align: center;
+					font-size: 12px;
+					height: $cell-height;
+					border-bottom: 1px solid #e1e1e1;
+					border-collapse: collapse;
+				
+					span {
+						opacity: 0;
+						color: #fff;
+						line-height: $cell-height;
+					}
+				}
+			
+				.enabled {
+					background-color: rgba(255,255,255,1.0);
+				}
+			
+				.disabled {
+					background-color: rgba(255,255,255,0.5);
+				}
+			
+				.today {
+					background-color: rgba(255,255,255,1.0);
+					border-top: 3px solid $scouter-red;
+				}
+			
+				.selected {
+					background-color: $scouter-green-light;
+					span {
+						opacity: 1.0;
+					}
+				}
+			
+			}
+		}
+	}
+}
+
+#legend-container {
+	padding-left: 30px;
+}
+
+.legend {
+	height: 20px;
+	width: 20px;
+	margin-bottom: 5px;
+	
+	span {
+		margin-left: 25px;
+		color: #fff;
+		font-size: 12px;
+	}
+}
+
+.legend-enabled {
+	background-color: rgba(255,255,255,1.0);
+}
+
+.legend-disabled {
+	background-color: rgba(255,255,255,0.5);
+}
+
+.legend-today {
+	position: relative;
+	background-color: rgba(255,255,255,1.0);
+	
+	div {
+		position: absolute;
+		top: 0px;
+		background-color: $scouter-red;
+		height: 3px;
+		width: 100%;
+	}
+}
+
+.timezone-container {
+	margin-top: 40px;
+	
+	select {
+		padding-left: 10px;
+		height: 40px;
+		-webkit-appearance: none;
+		@extend input;
+	}
+	select:hover {
+		cursor: pointer;
+	}
 }
