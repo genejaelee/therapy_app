@@ -29,7 +29,7 @@ class TherapistsController < ApplicationController
   end
   
   def index
-    get_amount
+    @amount = get_amount
     
     @emails = EmailBox.new
     @event = Event.new
