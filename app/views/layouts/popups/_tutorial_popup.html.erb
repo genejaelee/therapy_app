@@ -5,7 +5,7 @@
 			
 			<div class="header-container">
 				<h2>Here's the process</h2> 
-				<p style="font-size: 18px; font-weight: 600; color: #90bc64;">Price: $<%= @amount/100 %> for a 30-minute session, refund if not satisfied.</p>
+				<p style="font-size: 18px; font-weight: 600; color: #90bc64;">Price: $<%= @amount/100 %> for a 30-minute session, full refund if not satisfied.</p>
 			</div>
 			
 			<hr style="border-top: 1px dashed #ccc; margin-bottom: 40px;">
@@ -15,23 +15,15 @@
 				<div class="content-container sixteen columns">
 
 					<div class="text-container content twelve columns">
-						<h3>1. Sign up and a suggest time to chat</h3>
-						<p>Minimal information required.</p>
+						<h3>1. Sign up and pick a time</h3>
+						<p>We don't collect your name, just email and payment.</p>
 					</div>
 				</div>
 			
 				<div class="content-container sixteen columns">
 
 					<div class="text-container content twelve columns">
-						<h3>2. Receive time confirmation via email within 24 hours</h3>
-						<p>If your suggested times won't work, the therapist will suggest alternates.</p>
-					</div>
-				</div>
-			
-				<div class="content-container sixteen columns">
-
-					<div class="text-container content twelve columns">
-						<h3>3. Meet in your chatroom at the scheduled time</h3>
+						<h3>2. Meet in your chatroom at the scheduled time</h3>
 						<p>The chatroom is a unique, secure webpage with a required login.</p>
 						<p>We'll email you beforehand with detailed instructions.</p>
 						<p>You can see a sample chatroom at <%= link_to "plainwhitecouch.com/testchat", '/testchat', :target => "_blank" %></span></p>

@@ -9,11 +9,11 @@
 	<%= render 'layouts/popups/tutorial_popup' %>
 	
 	<% content_for :title do %>
-	  Choose a time. Easy as that.
+	  Choose a time to instant message with Patricia.
 	<% end %>
 
 	<% content_for :body do %>
-	  <p>We've just started Plain White Couch, so we only have one therapist to choose from (and she's great!). If you don't wish to speak with her though, we can email you soon with other options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
+	  <p>We've just started Plain White Couch, so we currently have just one therapist to choose from. If you prefer to speak with someone else, we can email you soon with other options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
 		<%= form_for @emails, url: { controller: "therapists", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>

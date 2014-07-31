@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_filter :get_application_amount
   
   def home
     @client = Client.new
@@ -18,5 +19,9 @@ class StaticPagesController < ApplicationController
   
   def emergencies
     @client = Client.new
+  end
+  
+  def get_application_amount
+    @amount = get_amount
   end
 end

@@ -48,6 +48,29 @@ $(".therapists").ready(function() {
 		$('.'+$.trim(dayClass)).css({'background' : 'none', 'color' : '#fff'});
 	});
 	
+	var disabledArray = {
+		1 : [ '1pm', '2pm', '4pm' ],
+		2 : [ '11am', '2pm', '4pm' ],
+		3 : [ '3pm', '4pm', '5pm' ],
+		4 : [ '8am', '9am' ],
+		5 : [ '1pm', '2pm', '3pm' ],
+		6 : [ '10am', '11am', '6pm' ]
+	}
+	
+	$.each(disabledArray, function (day, times) {
+		$('.select-cell[data-day=' + day + ']').each(function(){
+			console.log($(this).html());
+			var thisTimeSlot = $(this).attr('data-time');
+			var thisSlot = $(this);
+			$.each(times, function(i, time){
+				console.log(thisTimeSlot + " " + time);
+				if($.trim(thisTimeSlot) == time){
+					thisSlot.removeClass('enabled').addClass('disabled');
+				}
+			});
+		});
+	});
+	
 	$('.enabled').click(function(){
 		$('.enabled').removeClass('selected');
 		$(this).addClass('selected');

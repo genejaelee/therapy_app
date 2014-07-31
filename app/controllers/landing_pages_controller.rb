@@ -1,5 +1,5 @@
 class LandingPagesController < ApplicationController
-  before_filter :check_amount
+  before_filter :set_amount
   
   def online_therapy
     @client = Client.new
@@ -42,13 +42,7 @@ class LandingPagesController < ApplicationController
     end
   end
   
-  def check_amount
-    if session[:amount].nil?
-      if params[:ba4] == 'z1m'
-        session[:amount] = 4500
-      else
-        session[:amount] = 3000
-      end
-    end
+  def set_amount
+    session[:amount] = 4500
   end
 end
