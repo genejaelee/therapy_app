@@ -65,6 +65,7 @@ $(".therapists").ready(function() {
 			$.each(times, function(i, time){
 				console.log(thisTimeSlot + " " + time);
 				if($.trim(thisTimeSlot) == time){
+					console.log('match');
 					thisSlot.removeClass('enabled').addClass('disabled');
 				}
 			});
