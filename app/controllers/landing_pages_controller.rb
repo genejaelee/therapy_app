@@ -1,4 +1,5 @@
 class LandingPagesController < ApplicationController
+  before_filter :check_amount
   
   def online_therapy
     @client = Client.new
@@ -38,6 +39,16 @@ class LandingPagesController < ApplicationController
     else
       redirect_to root_url
       flash[:fail] = "Sorry there was an error processing your entries."
+    end
+  end
+  
+  def check_amount
+    if session[:amount].nil?
+      if params[:ba4] == 'z1m'
+        session[:amount] = 4500
+      else
+        session[:amount] = 3000
+      end
     end
   end
 end

@@ -2,7 +2,7 @@ class ChargesController < ApplicationController
   layout "application"
   
   def new
-    @amount = 4000
+    @amount = get_amount
     
     @user = current_user
     @client = @user.role
@@ -10,7 +10,7 @@ class ChargesController < ApplicationController
   end
 
   def create
-    @amount = 4000
+    @amount = get_amount
     @user = current_user
     @client = @user.role
 

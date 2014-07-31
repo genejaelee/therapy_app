@@ -134,6 +134,15 @@ class ApplicationController < ActionController::Base
       @_current_client ||= session[:current_client_id] &&
         Client.find_by(id: session[:current_client_id])
   end
+  
+  def get_amount
+    if session[:amount].present?
+      amount = session[:amount]
+    else
+      amount = 3000
+    end
+    return amount
+  end
 
   def user_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
