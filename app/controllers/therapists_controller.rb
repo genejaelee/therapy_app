@@ -29,6 +29,8 @@ class TherapistsController < ApplicationController
   end
   
   def index
+    get_amount
+    
     @emails = EmailBox.new
     @event = Event.new
     @client = Client.create(params[:client])
