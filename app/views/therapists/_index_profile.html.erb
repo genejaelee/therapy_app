@@ -80,6 +80,7 @@
 												<div class="select-cells">
 													<% (8..22).each do |h| %>
 														<% @hour = (Time.now.beginning_of_day + h.hours).strftime('%l%P') %>
+														<%= puts (Time.now) %>
 													
 														<% if i == 0 %>
 															<% if h < (Time.now + 3.hours).hour %>

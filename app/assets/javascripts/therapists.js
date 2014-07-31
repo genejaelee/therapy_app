@@ -55,7 +55,7 @@ $(".therapists").ready(function() {
 		4 : [ '8am', '9am' ],
 		5 : [ '1pm', '2pm', '3pm' ],
 		6 : [ '10am', '11am', '6pm' ]
-	}
+	};
 	
 	$.each(disabledArray, function (day, times) {
 		$('.select-cell[data-day=' + day + ']').each(function(){
