@@ -34,20 +34,6 @@ $(".therapists").ready(function() {
 		//openCloseOnClick(thisProfile, $(this).outerHeight(), maxHeight);
 	});
 	
-	$('.enabled').hover(function(){
-		var timeClass = $(this).attr('data-time');
-		var dayClass = $(this).attr('data-day');
-		$('.'+$.trim(timeClass)).css({'background-color' : '#fff', 'color' : '#424242'});
-		$('.'+$.trim(dayClass)).css({'background-color' : '#fff', 'color' : '#424242'});
-	});
-	
-	$('.enabled').on('mouseleave', function(){
-		var timeClass = $(this).attr('data-time');
-		var dayClass = $(this).attr('data-day');
-		$('.'+$.trim(timeClass)).css({'background' : 'none', 'color' : '#fff'});
-		$('.'+$.trim(dayClass)).css({'background' : 'none', 'color' : '#fff'});
-	});
-	
 	var disabledArray = {
 		1 : [ '1pm', '2pm', '4pm' ],
 		2 : [ '11am', '2pm', '4pm' ],
@@ -70,6 +56,20 @@ $(".therapists").ready(function() {
 				}
 			});
 		});
+	});
+	
+	$('.enabled').hover(function(){
+		var timeClass = $(this).attr('data-time');
+		var dayClass = $(this).attr('data-day');
+		$('.'+$.trim(timeClass)).css({'background-color' : '#fff', 'color' : '#424242'});
+		$('.'+$.trim(dayClass)).css({'background-color' : '#fff', 'color' : '#424242'});
+	});
+	
+	$('.enabled').on('mouseleave', function(){
+		var timeClass = $(this).attr('data-time');
+		var dayClass = $(this).attr('data-day');
+		$('.'+$.trim(timeClass)).css({'background' : 'none', 'color' : '#fff'});
+		$('.'+$.trim(dayClass)).css({'background' : 'none', 'color' : '#fff'});
 	});
 	
 	$('.enabled').click(function(){
