@@ -83,9 +83,9 @@
 														<%= puts (Time.now) %>
 													
 														<% if i == 0 %>
-															<% if h < (Time.now + 3.hours).hour %>
+															<% if h < (Time.now.in_time_zone(@time_zone) + 3.hours).hour %>
 																<% @class = "disabled" %>
-															<% elsif h == (Time.now + 3.hours).hour %>
+															<% elsif h == (Time.now.in_time_zone(@time_zone) + 3.hours).hour %>
 																<% @class = "today" %>
 															<% else %>
 																<% @class = "enabled" %>
