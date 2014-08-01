@@ -3,6 +3,8 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :get_return_to, :get_time_zone, :get_roles
   
   def after_sign_up_path_for(resource)
+    get_time_zone
+    current_user.update_attributes(:time_zone => @time_zone)
     if current_user.role_type == "Client"
       find_event_and_client_or_build
       if params[:event].present?
