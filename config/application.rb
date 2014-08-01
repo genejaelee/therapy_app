@@ -18,7 +18,7 @@ module TherapyApp
       config.middleware.use Rack::SslEnforcer, :except_hosts => 'therapy.scouterapp.com', :strict => true
     end
     
-    config.time_zone = 'Eastern Time (US & Canada)'
+    config.time_zone = 'Pacific Time (US & Canada)'
     config.active_record.default_timezone = :local
     
     # Settings in config/environments/* take precedence over those specified here.
