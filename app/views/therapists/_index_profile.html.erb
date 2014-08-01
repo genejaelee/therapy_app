@@ -49,13 +49,16 @@
 						<div class="table-container">
 							<table border="0" cellpadding="0" cellspacing="0" id="time-table">
 								<tbody>
-								
+									
+									<!-- INIT TIME VARIABLES -->
+									<% @adjusted_time = Time.now.in_time_zone(@time_zone) %>
+																	
 									<!-- HEADER DATES -->
 									<tr>
 										<td class="blank-cell"><!-- BLANK CELL FOR CORNER --></td>
 										<% (0..6).each do |i| %>
-											<% @date = (Time.now + i.days).strftime('%a, %b %d') %>
-											<% @day = (Time.now + i.days).day %>
+											<% @date = (@adjusted_time + i.days).strftime('%a, %b %d') %>
+											<% @day = (@adjusted_time + i.days).day %>
 											<th class="<%= @day %>"><%= @date %></th>
 										<% end %>
 									</tr>
@@ -64,7 +67,7 @@
 									<tr>
 										<td class="times-column">
 											<% (8..22).each do |i| %>
-												<% @hour = (Time.now.beginning_of_day + i.hours).strftime('%l%P') %>
+												<% @hour = (@adjusted_time.beginning_of_day + i.hours).strftime('%l%P') %>
 												<div data-datetime="<%= @hour %>" class="time-cell <%= @hour %>">
 													<%= @hour %>
 												</div>
@@ -72,20 +75,19 @@
 										</td>
 									
 										<% (0..6).each do |i| %>
-											<% @date = (Time.now + i.days).strftime('%a, %b %d') %>
-											<% @short_date = (Time.now + i.days).strftime('%a') %>
-											<% @day = (Time.now + i.days).day %>
+											<% @date = (@adjusted_time + i.days).strftime('%a, %b %d') %>
+											<% @short_date = (@adjusted_time + i.days).strftime('%a') %>
+											<% @day = (@adjusted_time + i.days).day %>
 							
 											<td class="select-column">
 												<div class="select-cells">
 													<% (8..22).each do |h| %>
-														<% @hour = (Time.now.beginning_of_day + h.hours).strftime('%l%P') %>
-														<%= puts (Time.now) %>
+														<% @hour = (@adjusted_time.beginning_of_day + h.hours).strftime('%l%P') %>
 													
 														<% if i == 0 %>
-															<% if h < (Time.now.in_time_zone(@time_zone) + 3.hours).hour %>
+															<% if h < (@adjusted_time + 3.hours).hour %>
 																<% @class = "disabled" %>
-															<% elsif h == (Time.now.in_time_zone(@time_zone) + 3.hours).hour %>
+															<% elsif h == (@adjusted_time + 3.hours).hour %>
 																<% @class = "today" %>
 															<% else %>
 																<% @class = "enabled" %>
