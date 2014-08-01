@@ -20,6 +20,16 @@ module TherapyApp
     
     config.time_zone = 'Pacific Time (US & Canada)'
     
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port    => 587,
+      :enable_starttls_auto => true,
+      :user_name => "plainwhitecouch@gmail.com",
+      :password  => "Clinton91",
+      :authentication => :plain
+    }
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

@@ -15,6 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
         end
       else
       end
+      UserMailer.registration_notification(current_user).deliver
     elsif current_user.role_type == "Therapist"
       @user = current_user
       @therapist = Therapist.create
