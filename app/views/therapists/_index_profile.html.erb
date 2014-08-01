@@ -51,7 +51,14 @@
 								<tbody>
 									
 									<!-- INIT TIME VARIABLES -->
+									<% Time.zone = therapist.user.time_zone %>
 									<% @adjusted_time = Time.now.in_time_zone(@time_zone) %>
+									<%= puts (@adjusted_time) %>
+									<% @start_time = '8am' %>
+									<% @end_time = '10pm' %>
+									
+									<% @adjusted_start = Time.parse(@start_time).in_time_zone(@time_zone).hour %>
+									<% @adjusted_end = Time.parse(@end_time).in_time_zone(@time_zone).hour %>
 																	
 									<!-- HEADER DATES -->
 									<tr>
@@ -66,7 +73,7 @@
 									<!-- BODY -->
 									<tr>
 										<td class="times-column">
-											<% (8..22).each do |i| %>
+											<% (@adjusted_start..@adjusted_end).each do |i| %>
 												<% @hour = (@adjusted_time.beginning_of_day + i.hours).strftime('%l%P') %>
 												<div data-datetime="<%= @hour %>" class="time-cell <%= @hour %>">
 													<%= @hour %>
@@ -81,17 +88,20 @@
 							
 											<td class="select-column">
 												<div class="select-cells">
-													<% (8..22).each do |h| %>
+													<% (@adjusted_start..@adjusted_end).each do |h| %>
 														<% @hour = (@adjusted_time.beginning_of_day + h.hours).strftime('%l%P') %>
 													
 														<% if i == 0 %>
-															<% if h < (@adjusted_time + 3.hours).hour %>
+															<% if h < (@adjusted_time + 3.hours).hour || (@adjusted_time + 3.hours).day != @day %>
+																<%= puts 'disabled' %>
 																<% @class = "disabled" %>
 															<% elsif h == (@adjusted_time + 3.hours).hour %>
 																<% @class = "today" %>
 															<% else %>
 																<% @class = "enabled" %>
 															<% end %>
+														<% else %>
+															<% @class = "enabled" %>
 														<% end %>
 													
 														<div data-day="<%= @day %>" data-time="<%= @hour %>" data-datetime="<%= @date + " " + @hour %>" class="select-cell <%= @class %>">
