@@ -36,6 +36,7 @@ class ChargesController < ApplicationController
                               
   session[:paid] = true
   session[:paid_amount] = @amount
+  UserMailer.charge_notification(current_user, @amount).deliver
   redirect_to :action => 'generate', :controller => 'chats'
   
   rescue Stripe::CardError => e
