@@ -1,0 +1,55 @@
+<% set_meta_tags :title => 'Request a Match',
+									 :description => "Instant message with a therapist at Plain White Couch. Try talking to a therapist in a no pressure way. If you like it, switch to audio-chat, video-chat, or meet in person.",
+									 :reverse => false
+	%>
+
+<body id="therapist-index" ng-controller="TherapistsViewCtrl">
+	<%#= render 'layouts/navbar' %>
+	
+	<%#= render 'layouts/popups/tutorial_popup' %>
+	
+	<% content_for :title do %>
+	  Choose a time to video chat with Patricia.
+	<% end %>
+
+	<% content_for :body do %>
+	  <p>We've just started Plain White Couch, so we currently have just one therapist to choose from. If you prefer to speak with someone else, we can email you soon with other options.</p>
+		
+	<% end %>	
+
+	<%= render 'layouts/header' %>
+	
+	<div class="panel signup-panel">
+		<div class="bg-container">
+			<div class="container">
+				<%= form_for @request, url: { controller: "requests", action: "post" } do |f| %>
+				
+					<%= label_tag :first_name, "What's your name?"%>
+					<%= f.text_field :first_name, :autofocus => "true", :placeholder => "First name" %>
+				
+					<%= label_tag :gender_preference, "Gender preference?" %>
+					<%= f.select(:gender_preference, [['Male', 'Male'], ['Female', 'Female'], ['No preference', 'None']]) %>
+				
+					<%= label_tag :age_preference, "Age preference?" %>
+					<%= f.select(:age_preference, [['Younger', 'Younger'], ['Older', 'Older'], ['No preference', 'None']]) %>
+				
+					<%= label_tag :insurance, "Select your insurance provider." %>
+					<%= f.select(:insurance, [['APS Healthcare', 'APS Healthcare'], ['Aetna', 'Aetna'], ['American Behavioral', 'American Behavioral'], ['Anthem', 'Anthem'], ['Behavioral Health Systems', 'Behavioral Health Systems'], ['BlueCross and BlueShield', 'BlueCross and BlueShield'], ['Cenpatico', 'Cenpatico'], ['Ceridian', 'Ceridian'], ['Cigna', 'Cigna'], ['ComPsych', 'ComPsych'], ['Corphealth', 'Corphealth'], ['Guardian', 'Guardian'], ['HFN', 'HFN'], ['Health Net', 'Health Net'], ['Humana', 'Humana'], ['LifeSynch', 'LifeSynch'], ['MHN', 'MHN'], ['Medicaid', 'Medicaid'], ['Medicare', 'Medicare'], ['Multiplan', 'Multiplan'], ['Oxford', 'Oxford'], ['PHCS', 'PHCS'], ['TRICARE', 'TRICARE'], ['Tufts', 'Tufts'], ['UniCare', 'UniCare'], ['United', 'United'], ['ValueOptions', 'ValueOptions'], ['WellCare', 'WellCare'], ['WellPoint', 'Wellpoint']]) %>
+					
+					<%= label_tag :email, "Provide an email we can send your schedule." %>
+					<%= f.text_field(:email, :placeholder => "john@example.com")%>
+					
+					<%= label_tag :comments, "Anything you want to share?" %>
+					<%= f.text_area :comments, :placeholder => "(Optional)" %>
+				
+					<%= render 'shared/error_messages' %>
+				
+					<%= f.submit "Submit", :class => "submit_button_white button sixteen columns" %>
+				<% end %>
+				
+
+			</div>	
+		</div>
+	</div>
+
+</body>

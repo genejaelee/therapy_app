@@ -36,6 +36,10 @@ TherapyApp::Application.routes.draw do
     match '/' => 'therapists#home', :as => :therapist_home, via: 'get'
   end
   
+  match '/requests/new' => 'requests#new', :as => :new_request, via: 'post'
+  match '/requests/create' => 'requests#create', :as => :create_request, via: 'post'
+  match '/requests/post' => 'requests#post', :as => :post_request, via: 'post'
+  
   match '/therapist/update' => 'therapists#signup', :as => :update_therapist, via: 'get'
   match '/therapist/create' => 'therapists#create', via: 'post'
   match '/therapist/update' => 'therapists#update', via: 'patch'

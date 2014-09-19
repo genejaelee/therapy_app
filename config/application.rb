@@ -11,6 +11,7 @@ module TherapyApp
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.serve_static_assets = true
     config.autoload_paths += %W[#{config.root}/lib/validators/]
+    config.autoload_paths += %W(#{config.root}/lib)
     
     ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
     
