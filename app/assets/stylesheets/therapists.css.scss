@@ -97,14 +97,7 @@
 			width: 100%;
 			max-width: $max-width;
 			
-			.tap-plus-sign {
-				display: none;
-				position: absolute;
-				font-size: 36px;
-				color: #ddd;
-				right: 10px;
-				bottom: 15px;
-			}
+			
 
 			.four {
 				text-align: center;
@@ -225,18 +218,6 @@
 							border: 1px solid #ccc;
 						}
 					
-						.submit_button_white {
-							margin-top: 0px;
-							margin-left: 0px;
-							height: 40px;
-							font-size: 16px;
-							@include submit-button-white;
-							@include blue-border;
-						}
-						
-						.submit_button_white:hover {
-							background-color: #eee;
-						}
 					}
 				}
 			}
