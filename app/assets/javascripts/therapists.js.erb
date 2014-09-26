@@ -31,14 +31,34 @@ function pauseAllVideos() {
 	});
 }
 
+function videoMenuOpen(element) {
+	console.log('opening menu' + element);
+	console.log(element);
+	element.show().css('opacity', '0').animate({ opacity: 0.8 }, 200, 'easeInOutCubic', function(){
+	});
+	element.children('.video-button:first-child').css('marginTop', '-50px').animate({ marginTop: '10px' }, 200, 'easeInOutCubic');
+}
+
+function videoMenuClose(element) {
+	element.css('opacity', '0.8').animate({ opacity: 0 }, 200, 'easeInOutCubic', function(){
+		element.hide();
+	});
+	element.children('.video-button:first-child').css('marginTop', '10px').animate({ marginTop: '-50px' }, 200, 'easeInOutCubic');
+}
+
 function playPause(id) { 
 	var video = document.getElementById(id);
     if (video.paused){
 			pauseAllVideos();
       video.play(); 
 		}
-    else { 
+    else {
+			console.log('pausing');
+			console.log(id); 
+			var ctrlPanel = $('#' + id).next('.video-control-panel');
+			videoMenuOpen(ctrlPanel);
       video.pause();
+			
 		} 
 }
 
@@ -69,19 +89,29 @@ $(".therapists").ready(function() {
 	$('.video-control-panel').hide();
 	$('.video').bind('ended', function(){
 		console.log('ended');
-		$(this).siblings('.video-control-panel').show().css('opacity', '0').animate({ opacity: 0.8 }, 400, function(){
-		});
+		var ctrlPanel = $(this).siblings('.video-control-panel');
+		videoMenuOpen(ctrlPanel);
 	});
 	
 	$('.video-button').click(function(){
-		var controlPanel = $(this).parent('.video-control-panel');
-		controlPanel.animate({ opacity: 0.0}, 400).hide();
-		var name = controlPanel.data("name");
+		var ctrlPanel = $(this).parent('.video-control-panel');
+		videoMenuClose(ctrlPanel);
+		var name = ctrlPanel.data("name");
 		var type = $(this).data("type");
 		pauseAllVideos();
 		loadVideo(type, name);
 	});
 	
+	$('.video-menu-ui').click(function(){
+		console.log('clicked');
+		var ctrlPanel = $(this).parent('.video-control-panel');
+		var video = document.getElementById("" + ctrlPanel.data("name") + "-video");
+		var type = $(this).data("type");
+		if(type == "play") {
+			video.play();
+			videoMenuClose(ctrlPanel);
+		}
+	});
 	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){

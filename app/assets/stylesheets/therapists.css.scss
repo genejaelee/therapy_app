@@ -78,48 +78,6 @@
 	}
 }
 
-.video-container {
-	position: relative;
-	margin: auto;
-	
-	.video {
-		margin-top: 30px;
-		
-	}
-	
-	.video-control-panel {
-		position: absolute;
-		top: 30px;
-		float: left;
-		width: 320px;
-		height: 240px;
-		background-color: #000;
-		z-index: 10;
-		opacity: 0.8;
-		
-		div {
-			
-			margin: auto;
-			margin-top: 10px;
-			border: 1px solid white;
-			border-radius: 4px;
-			width: 100px;
-			height: 35px;
-			line-height: 35px;
-			text-align: center;
-			color: white;
-		}
-		
-		div:hover {
-			cursor: pointer;
-			background-color: #fff;
-			color: #525252;
-			font-weight: 600;
-			
-		}
-	}
-}
-
 .profile-link-panel {
 	height: auto;
 	position: relative;
@@ -225,6 +183,60 @@
 						font-size: 16px;
 						max-height: 180px;
 						margin-bottom: 0px;
+					}
+				}
+				
+				.video-container {
+					position: relative;
+					margin: auto;
+	
+					.video {
+						margin-top: 30px;
+		
+					}
+	
+					.video-control-panel {
+						position: absolute;
+						top: 30px;
+						float: left;
+						width: 320px;
+						height: 240px;
+						background-color: #000;
+						z-index: 10;
+						opacity: 0.8;
+						
+						.video-menu-ui.play {
+							background-image: image-url('video-menu-ui-play.png');
+							position: absolute;
+							background-size: 100% 85%;
+							background-repeat: no-repeat;
+							left: 15px;
+							bottom: 10px;
+							width: 20px;
+							height: 20px;
+							opacity: 0.8;
+						}
+		
+						.video-button {
+			
+							margin: auto;
+							margin-top: 10px;
+							border: 1px solid white;
+							border-radius: 4px;
+							width: 100px;
+							height: 35px;
+							line-height: 35px;
+							text-align: center;
+							color: white;
+						}
+		
+						.video-button:hover {
+							cursor: pointer;
+							background-color: #fff;
+							color: #525252;
+							font-weight: 600;
+			
+						}
 					}
 				}
 			}
