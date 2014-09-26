@@ -24,6 +24,8 @@
 	<% end %>	
 
 	<%= render 'layouts/header' %>
+	
+	<% define_video_path_root %>
 
 			<div class='image-panel panel'>
 				<div class="bg-container">
@@ -58,7 +60,7 @@
 									<br>
 						
 									<div class="video-container">
-										<%= video_tag "matthew-krisiloff/intro.mp4", :size => "320x240", :id => "matthew-krisiloff-video", :class => "video" %>
+										<%= video_tag @root + "matthew-krisiloff/intro.mp4", :size => "320x240", :id => "matthew-krisiloff-video", :class => "video" %>
 										<div class="video-control-panel" data-name="matthew-krisiloff">
 											<div class="video-button" data-type="anxiety">Anxiety</div>
 											<div class="video-button" data-type="depression">Depression</div>

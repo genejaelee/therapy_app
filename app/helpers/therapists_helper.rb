@@ -28,4 +28,12 @@ module TherapistsHelper
       @subdomain = 'www'
     end
   end
+  
+  def define_video_path_root
+    if Rails.env.development?
+      @root = ""
+    elsif Rails.env.production?
+      @root = "http://s3.amazonaws.com/scouterapp-therapist-assets/videos/"
+    end
+  end
 end
