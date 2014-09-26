@@ -44,7 +44,11 @@ function playPause(id) {
 
 function loadVideo(video_name, name){
 	var video = document.getElementById(name + '-video');
-	video.src = "/assets/" + name + "/" + video_name + ".mp4";
+	<% if Rails.env.development? %>
+		video.src = "/assets/" + name + "/" + video_name + ".mp4";
+	<% elsif Rails.env.production? %>
+		video.src = "https://s3.amazonaws.com/scouterapp-therapist-assets/videos/" + name + "/" + video_name + ".mp4"
+	<% end %>
 	video.load();
 	video.play();
 }
