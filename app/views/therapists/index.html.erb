@@ -39,7 +39,7 @@
 						<div class="container">
 							<div class="four columns therapist-image-container">
 								<%#= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
-								<%= image_tag "matthew-krisiloff/picture2.jpg" %>
+								<%= image_tag @root + "matthew-krisiloff/picture2.jpg" %>
 								<div class="contact-header">Contact</div>
 								<hr class="dashed-hr" style="border-color: #ccc;">
 								<div class="info-container">
@@ -90,7 +90,7 @@
 					<div class="top-panel">
 						<div class="container">
 							<div class="four columns therapist-image-container">
-								<%= image_tag "gene-lee/picture.jpg" %>
+								<%= image_tag @root + "gene-lee/picture.jpg" %>
 								<div class="contact-header">Contact</div>
 								<hr class="dashed-hr" style="border-color: #ccc;">
 								<div class="info-container">
@@ -112,7 +112,7 @@
 									<br>
 						
 									<div class="video-container">
-										<%= video_tag "gene-lee/intro.mp4", :size => "320x240", :id => "gene-lee-video", :class => "video" %>
+										<%= video_tag @root + "gene-lee/intro.mp4", :size => "320x240", :id => "gene-lee-video", :class => "video" %>
 										<div class="video-control-panel" data-name="gene-lee">
 											<div class="video-button" data-type="anxiety">Anxiety</div>
 											<div class="video-button" data-type="depression">Depression</div>

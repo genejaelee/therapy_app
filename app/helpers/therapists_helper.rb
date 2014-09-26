@@ -33,7 +33,7 @@ module TherapistsHelper
     if Rails.env.development?
       @root = ""
     elsif Rails.env.production?
-      @root = "http://s3.amazonaws.com/scouterapp-therapist-assets/videos/"
+      @root = "https://s3.amazonaws.com/scouterapp-therapist-assets/videos/"
     end
   end
 end
