@@ -26,3 +26,6 @@
 # Ignore scraper and data
 /app/lib/scrapers/*.rb
 /data-hold
+
+# Ignore video files
+/app/assets/videos
