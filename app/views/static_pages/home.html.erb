@@ -12,15 +12,14 @@
 		<div class="container">
 			<%= render 'layouts/logo' %>
 			<div class="sixteen columns" id="copy-container">
-				<h1>Instant message with a therapist.</h1>
-				<h3>Get advice from a therapist in a no pressure way.</h3>
-				<h3>A chat lasts 30 minutes, and it happens in a secure chatroom.</h3>
+				<h1>Find a therapist you'll like.</h1>
+				<h3>Your time is precious. We've made this easier.</h3>
 			</div>
 			<div class="spacer sixteen columns">
 			</div>
 			<div class="sixteen columns" id="cta-form">
 				<%= render 'layouts/static_pages/browse_button' %>
-				<span id="secure-notice">Confidential. All conversations are deleted.</span>
+				<span id="secure-notice">Currently in the Bay Area.</span>
 			</div>
 		</div>
 	</div>
@@ -30,9 +29,13 @@
 	<div class="bg-container">
 		<div class="container">
 			<div class="eight columns text-container">
-				<h2>Get help here.</h2>
-				<p>If you're struggling, this is for you. Instant messaging makes it comfortable and easy to say exactly what's on your mind. And even if you don't need formal therapy, a knowledgable therapist still has advice that can help.</p>
-				<p>It's $<%= @amount/100 %> for a 30 minute chat. And don't worry, all messages are permanently deleted.</p>
+				<h2>Not just a directory.</h2>
+				<p>We only present you with information that you will find useful. Each therapist showcases a number of short video clips on key topics so you can get a better sense of who they are and how they can help.</p>
+				<p>All the contact information is there for you. No sign ups. No credit cards. We want this to be simple.</p>
+			</div>
+			<div class="eight columns image-container">
+				<%= image_tag "sample_video_image_menu.png" %>
+				<%= image_tag "sample_video_image.jpg" %>
 			</div>
 
 		</div>

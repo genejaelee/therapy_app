@@ -1,9 +1,83 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+function isScrolledIntoView(elem){
+ var docViewTop = $(window).scrollTop();
+ var docViewBottom = docViewTop + $(window).height();
+
+ var elemTop = $(elem).offset().top;
+ var elemBottom = elemTop + $(elem).height();
+
+ return ((elemBottom >= docViewTop) && (elemTop <= docViewBottom)
+   && (elemBottom <= docViewBottom) &&  (elemTop >= docViewTop) );
+}
+ 
+function checkIfVideoInView(){
+	videos = $('.video');
+	$.each(videos, function(index){
+		var video = videos[index]
+	  if(isScrolledIntoView(video) && video.currentTime == 0){
+			console.log('scrolled into view');
+			pauseAllVideos();
+			video.play();
+	  }
+	});
+}
+
+function pauseAllVideos() {
+	var videos = $('.video');
+	$.each(videos, function(index){
+		videos[index].pause();
+	});
+}
+
+function playPause(id) { 
+	var video = document.getElementById(id);
+    if (video.paused){
+			pauseAllVideos();
+      video.play(); 
+		}
+    else { 
+      video.pause();
+		} 
+}
+
+function loadVideo(video_name, name){
+	var video = document.getElementById(name + '-video');
+	video.src = "/assets/" + name + "/" + video_name + ".mp4";
+	video.load();
+	video.play();
+}
+
 $(".therapists").ready(function() {
 	//therapist profile stuff
 	//addSubsection()
+	
+	$(window).on('scroll', function(){
+		checkIfVideoInView();	
+	});
+	
+	$('.video').bind('click', function(){
+		var videoId = $(this).attr('id');
+		playPause(videoId);
+	})
+	
+	$('.video-control-panel').hide();
+	$('.video').bind('ended', function(){
+		console.log('ended');
+		$(this).siblings('.video-control-panel').show().css('opacity', '0').animate({ opacity: 0.8 }, 400, function(){
+		});
+	});
+	
+	$('.video-button').click(function(){
+		var controlPanel = $(this).parent('.video-control-panel');
+		controlPanel.animate({ opacity: 0.0}, 400).hide();
+		var name = controlPanel.data("name");
+		var type = $(this).data("type");
+		pauseAllVideos();
+		loadVideo(type, name);
+	});
+	
 	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){
