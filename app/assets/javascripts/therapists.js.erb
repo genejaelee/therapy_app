@@ -18,22 +18,23 @@ function checkIfVideoInView(){
 		var video = videos[index]
 	  if(isScrolledIntoView(video) && video.currentTime == 0){
 			console.log('scrolled into view');
-			pauseAllVideos();
+			pauseAllVideos(index);
 			video.play();
 	  }
 	});
 }
 
-function pauseAllVideos() {
+function pauseAllVideos(exceptThisIndex) {
 	var videos = $('.video');
 	$.each(videos, function(index){
-		videos[index].pause();
+		if (exceptThisIndex != index) {
+			videos[index].pause();
+		}
 	});
 }
 
 function videoMenuOpen(element) {
 	console.log('opening menu' + element);
-	console.log(element);
 	element.show().css('opacity', '0').animate({ opacity: 0.8 }, 200, 'easeInOutCubic', function(){
 	});
 	element.children('.video-button:first-child').css('marginTop', '-50px').animate({ marginTop: '10px' }, 200, 'easeInOutCubic');
