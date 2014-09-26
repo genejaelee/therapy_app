@@ -78,6 +78,48 @@
 	}
 }
 
+.video-container {
+	position: relative;
+	margin: auto;
+	
+	.video {
+		margin-top: 30px;
+		
+	}
+	
+	.video-control-panel {
+		position: absolute;
+		top: 30px;
+		float: left;
+		width: 320px;
+		height: 240px;
+		background-color: #000;
+		z-index: 10;
+		opacity: 0.8;
+		
+		div {
+			
+			margin: auto;
+			margin-top: 10px;
+			border: 1px solid white;
+			border-radius: 4px;
+			width: 100px;
+			height: 35px;
+			line-height: 35px;
+			text-align: center;
+			color: white;
+		}
+		
+		div:hover {
+			cursor: pointer;
+			background-color: #fff;
+			color: #525252;
+			font-weight: 600;
+			
+		}
+	}
+}
+
 .profile-link-panel {
 	height: auto;
 	position: relative;
@@ -103,6 +145,7 @@
 				text-align: center;
 				
 				img {
+					float: left;
 					border-radius: 100px;
 					border: 1px solid #eee;
 					width: 150px;
@@ -113,6 +156,33 @@
 					margin: auto;
 					text-align: center;
 
+				}
+				
+				hr {
+					width: 150px;
+					float: left;
+				}
+				
+				.contact-header {
+					margin-left: 35px;
+					float: left;
+					font-size: 20px;
+					margin-top: 20px;
+					color: $scouter-green;
+					font-weight: 600;
+					opacity: 0.8;
+				}
+				
+				.info-container {
+					float: left;
+					text-align: left;
+					margin-top: 0px;
+					
+					div {
+						color: #aaa;
+						font-size: 16px;
+						line-height: 24px;
+					}
 				}
 			}
 	
@@ -151,8 +221,8 @@
 					
 					.card-bio {
 						color: #626262;
-						line-height: 18px;
-						font-size: 14px;
+						line-height: 22px;
+						font-size: 16px;
 						max-height: 180px;
 						margin-bottom: 0px;
 					}

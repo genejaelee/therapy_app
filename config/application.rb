@@ -13,6 +13,9 @@ module TherapyApp
     config.autoload_paths += %W[#{config.root}/lib/validators/]
     config.autoload_paths += %W(#{config.root}/lib)
     
+    config.assets.enabled = true
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
+    
     ENV.update YAML.load_file('config/application.yml')[Rails.env] rescue {}
     
     if !Rails.env.development?

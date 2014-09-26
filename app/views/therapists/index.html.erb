@@ -6,14 +6,14 @@
 <body id="therapist-index" ng-controller="TherapistsViewCtrl">
 	<%= render 'layouts/navbar' %>
 	
-	<%= render 'layouts/popups/tutorial_popup' %>
+	<%#= render 'layouts/popups/tutorial_popup' %>
 	
 	<% content_for :title do %>
-	  Choose a time to video chat with Patricia.
+	  Browse Therapists
 	<% end %>
 
 	<% content_for :body do %>
-	  <p>We've just started Plain White Couch, so we currently have just one therapist to choose from. If you prefer to speak with someone else, we can email you soon with other options. <span style="font-weight: 600;"><a id="open-email-dropbox">Click here</a></span>.</p>
+	  <p>We've just started PsychDate, and this is just a test page. The listings below are samples and not representative of licensed clinicians. <span style="font-weight: 600">As you start scrolling, video and audio will play.</span></p>
 		<%= form_for @emails, url: { controller: "therapists", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>
@@ -25,18 +25,108 @@
 
 	<%= render 'layouts/header' %>
 
-	<% @therapist.each_with_index do |therapist, index| %>
-		<% if therapist.last_name == "Cruz" %>
-			<div class='image-panel<%= index %> image-panel panel'>
+			<div class='image-panel panel'>
 				<div class="bg-container">
-					<div class="container">
-						<h1></h1>
-					</div>
 				</div>
 			</div>
-			<%= render 'therapists/index_profile', :therapist => therapist %>
-		<% end %>
-	<% end %>
+			
+			<div class="panel profile-link-panel closed">
+				<div class="bg-container closed">
+		
+					<div class="top-panel">
+						<div class="container">
+							<div class="four columns therapist-image-container">
+								<%#= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+								<%= image_tag "matthew-krisiloff/picture2.jpg" %>
+								<div class="contact-header">Contact</div>
+								<hr class="dashed-hr" style="border-color: #ccc;">
+								<div class="info-container">
+									<div>213.493.1586</div>
+									<div>mattkrisiloff@gmail.com</div>
+									<div>401 Twin Oaks Lane</div>
+									<div>Walnut Creek, CA 94546</div>
+								</div>
+							</div>
+							<div class="twelve columns">
+								<div class="profile-link-container">
+									<h3>Matthew Krisiloff
+										<span> / Marriage and Family Therapist, 4 years</span>
+									</h3>
+									<div class="bio-container">
+										<p class="card-bio">The scroll event is sent to an element when the user scrolls to a different place in the element. It applies to window objects, but also to scrollable frames and elements with the overflow CSS property set to scroll (or auto when the element's explicit height or width is less than the height or width of its contents).</p>
+									</div>
+									<br>
+						
+									<div class="video-container">
+										<%= video_tag "matthew-krisiloff/intro.mp4", :size => "320x240", :id => "matthew-krisiloff-video", :class => "video" %>
+										<div class="video-control-panel" data-name="matthew-krisiloff">
+											<div class="video-button" data-type="anxiety">Anxiety</div>
+											<div class="video-button" data-type="depression">Depression</div>
+											<div class="video-button" data-type="startups">Start Ups</div>
+											<div class="video-button" data-type="couples">Couples</div>
+											<div class="video-button" data-type="lgbt">LGBT</div>
+										</div>
+									</div>
+					
+								</div>
+							</div>
+						</div>
+					</div>
+		
+				</div>
+			</div>
+			
+			
+			<div class='image-panel panel'>
+				<div class="bg-container">
+				</div>
+			</div>
+			
+			<div class="panel profile-link-panel closed">
+				<div class="bg-container closed">
+		
+					<div class="top-panel">
+						<div class="container">
+							<div class="four columns therapist-image-container">
+								<%= image_tag "gene-lee/picture.jpg" %>
+								<div class="contact-header">Contact</div>
+								<hr class="dashed-hr" style="border-color: #ccc;">
+								<div class="info-container">
+									<div>213.493.1586</div>
+									<div>genejaelee@gmail.com</div>
+									<div>401 Twin Oaks Lane</div>
+									<div>Walnut Creek, CA 94546</div>
+								</div>
+								<%#= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+							</div>
+							<div class="twelve columns">
+								<div class="profile-link-container">
+									<h3>Gene Lee
+										<span> / Licensed Clinical Social Worker, 6 years</span>
+									</h3>
+									<div class="bio-container">
+										<p class="card-bio">The scroll event is sent to an element when the user scrolls to a different place in the element. It applies to window objects, but also to scrollable frames and elements with the overflow CSS property set to scroll (or auto when the element's explicit height or width is less than the height or width of its contents).</p>
+									</div>
+									<br>
+						
+									<div class="video-container">
+										<%= video_tag "gene-lee/intro.mp4", :size => "320x240", :id => "gene-lee-video", :class => "video" %>
+										<div class="video-control-panel" data-name="gene-lee">
+											<div class="video-button" data-type="anxiety">Anxiety</div>
+											<div class="video-button" data-type="depression">Depression</div>
+											<div class="video-button" data-type="startups">Start Ups</div>
+											<div class="video-button" data-type="creatives">Artists</div>
+											<div class="video-button" data-type="multicultural">Multicultural</div>
+										</div>
+									</div>
+					
+								</div>
+							</div>
+						</div>
+					</div>
+		
+				</div>
+			</div>
 	
 	<%= render :partial => 'layouts/analytics/browse_click_conversion' %>
 </body>

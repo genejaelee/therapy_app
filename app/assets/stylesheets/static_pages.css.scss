@@ -330,13 +330,13 @@ p {
 #panel2 {
 	
 	.bg-container {
-		background-image: image-url('laptop-wireframe-coffee-center.jpg');
+		//background-image: image-url('laptop-wireframe-coffee-center.jpg');
 		background-position: bottom;
 		background-size: 1100px auto;
 	
 		.container {
 			padding-top: 90px;
-			padding-bottom: 450px;
+			padding-bottom: 90px;
 			
 			.columns {
 				h2 {
@@ -358,6 +358,12 @@ p {
 				padding: 0px;
 				margin-top: 0px;
 				text-align: center;
+				
+				img {
+					width: 320px;
+					height: auto;
+					margin-bottom: 20px;
+				}
 				
 				#laptop-chat {
 					margin: auto;
