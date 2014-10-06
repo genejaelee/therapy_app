@@ -29,3 +29,6 @@
 
 # Ignore video files
 /app/assets/videos
+
+# Ignore SSL keys
+/SSL_keys
