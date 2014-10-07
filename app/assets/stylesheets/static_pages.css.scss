@@ -934,11 +934,13 @@ p {
 			.container {
 				padding-bottom: 250px;
 				
-				.chat-ui-container {
-				
-					.messages-panel {
+				.image-container {
+					img {
+						width: 100%;
+						height: auto;
 					}
 				}
+
 			}
 		}
 	}

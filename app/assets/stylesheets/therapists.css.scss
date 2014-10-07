@@ -100,6 +100,8 @@
 			
 
 			.four {
+				float: left;
+				clear: left;
 				text-align: center;
 				
 				img {
@@ -145,6 +147,8 @@
 			}
 	
 			.twelve {
+				clear: none;
+				
 				h3 {
 					margin-bottom: 5px;
 					font-size: 24px;
@@ -335,7 +339,7 @@
 				.tap-plus-sign {
 				}
 				
-				.therapist-image-container {
+				.therapist-info-column {
 					text-align: center;
 					img {
 						margin: auto;
@@ -415,12 +419,12 @@
 			
 			.top-panel {
 				
-				.tap-plus-sign {
-				}
-				
-				.therapist-image-container {
+				.therapist-info-column {
+					width: 100%;
 					text-align: center;
+					
 					img {
+						float: center;
 						margin: auto;
 						height: 125px;
 						width: 125px;
@@ -444,25 +448,15 @@
 						}
 					}
 				}
-			}
-			
-			.bottom-panel {
 				
-				.spacer {
-					height: 0px;
+				.therapist-contact-container {
+					display: none;
 				}
 				
-				.container {
-					.form-container {
-						form {
-							.datetime-container {
-								.date-field {
-									width: 150px;
-								}
-								.time-field {
-									width: 150px;
-								}
-							}
+				.twelve {
+					.profile-link-container {
+						.video-container {
+							
 						}
 					}
 				}
@@ -479,7 +473,7 @@
 			height: auto;
 			.top-panel {
 				
-				.therapist-image-container {
+				.therapist-info-column {
 					text-align: center;
 					img {
 						margin: auto;
@@ -504,32 +498,23 @@
 					p {
 						margin-top: 5px;
 					}
-					
-					.profile-link-container {
-						.card-bio {
-							max-height: none;
-						}
-					}
 				}
-			}
-			
-			.bottom-panel {		
-						
-				.container {
-					.form-container {
-						form {
-							.datetime-container {
-								.date-field {
-									width: 120px;
-								}
-								.time-field {
-									width: 120px;
-								}
+				
+				.twelve {
+					.profile-link-container {
+						.video-container {
+							width: 100%;
+							
+							.video-control-panel {
+								width: 100%;
+							}
+							
+							video {
+								width: 100%;
 							}
 						}
 					}
 				}
-				
 			}
 		}
 	}

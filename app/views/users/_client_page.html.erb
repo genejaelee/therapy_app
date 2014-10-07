@@ -4,7 +4,7 @@
 	<% @chat = Chat.find_by(event_id: event.id) %>
 		<% therapist = event.therapist %>
 		<div class="appointment">
-			<div class="four columns therapist-image-container">
+			<div class="four columns therapist-info-column">
 				<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
 			</div>
 			<div class="eight columns therapist-info-container">
