@@ -112,6 +112,11 @@ $(".therapists").ready(function() {
 		videoMenuOpen(ctrlPanel);
 	});
 	
+	$('.video').bind('webkitendfullscreen', function(){
+		var ctrlPanel = $(this).parent('.video-container').siblings('.video-control-panel');
+		videoMenuOpen(ctrlPanel);
+	});
+	
 	$('.video-button').click(function(){
 		var ctrlPanel = $(this).parent('.video-control-panel');
 		videoMenuClose(ctrlPanel);
