@@ -191,6 +191,7 @@
 				}
 				
 				.video-player-container {
+					margin-top: 30px;
 					position: relative;
 					margin: auto;
 	
@@ -198,11 +199,9 @@
 						margin: auto;
 						
 						.video {
-							margin-top: 30px;
 						}
 						
 						.gif-container {
-							display: none;
 							
 							.gif-subtitles {
 								position: absolute;
@@ -492,8 +491,15 @@
 				.twelve {
 					.profile-link-container {
 						.video-player-container {
-							video {
+							height: auto;
+							
+							.video-container {
+								height: auto;
+								
+								video {
+								}
 							}
+
 							
 							.video-control-panel {
 							}
@@ -544,6 +550,10 @@
 					.profile-link-container {
 						.video-player-container {
 							
+							.gif-container {
+								margin-top: 10px;
+							}
+							
 							.video-control-panel {
 								top: 0px;
 								width: 100%;
@@ -559,10 +569,6 @@
 
 							video {
 								width: 100%;
-							}
-							
-							.gif-container {
-								display: block;
 							}
 						}
 					}
