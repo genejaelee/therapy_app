@@ -62,8 +62,22 @@
 									</div>
 									<br>
 						
-									<div class="video-container">
-										<%= video_tag @root + "matthew-krisiloff/intro.mp4", :size => "320x240", :id => "matthew-krisiloff-video", :class => "video" %>
+									<div class="video-player-container">
+										<div class="video-container">
+											<%= video_tag @root + "matthew-krisiloff/intro.mp4", :size => "320x240", :id => "matthew-krisiloff-video", :class => "video" %>
+											<div class="gif-container">
+												<%= image_tag @root + "matthew-krisiloff/intro-gif.gif", :id => "matthew-krisiloff-gif", :class => "intro-gif" %>
+												<div class="gif-subtitles">
+													"Hi, my name's Matthew Krisiloff and I'm a Marriage and Family Therapist."
+												</div>
+												
+												<div class="gif-menu-button">
+													<div class="gif-menu-line"></div>
+													<div class="gif-menu-line"></div>
+													<div class="gif-menu-line"></div>
+												</div>
+											</div>
+										</div>
 										<div class="video-control-panel" data-name="matthew-krisiloff">
 											<div class="video-button" data-type="startups">Start Ups</div>
 											<div class="video-button" data-type="anxiety">Anxiety</div>
@@ -119,8 +133,21 @@
 									</div>
 									<br>
 						
-									<div class="video-container">
-										<%= video_tag @root + "gene-lee/intro.mp4", :size => "320x240", :id => "gene-lee-video", :class => "video" %>
+									<div class="video-player-container">
+										<div class="video-container">
+											<%= video_tag @root + "gene-lee/intro.mp4", :size => "320x240", :id => "gene-lee-video", :class => "video" %>
+											<div class="gif-container">
+												<%= image_tag @root + "gene-lee/intro-gif.gif", :id => "gene-lee-gif", :class => "intro-gif" %>
+												<div class="gif-menu-button">
+													<div class="gif-menu-line"></div>
+													<div class="gif-menu-line"></div>
+													<div class="gif-menu-line"></div>
+												</div>
+												<div class="gif-subtitles">
+													"Hi, my name's Gene Lee and I'm a Licensed Clinical Social Worker."
+												</div>
+											</div>
+										</div>
 										<div class="video-control-panel" data-name="gene-lee">
 											<div class="video-button" data-type="startups">Start Ups</div>
 											<div class="video-button" data-type="anxiety">Anxiety</div>

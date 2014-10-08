@@ -745,11 +745,9 @@ p {
 @media only screen and (max-width: 1140px) {
 	#panel2 {
 		.bg-container {
-			height: auto;
-			background-size: 1000px auto;
-			background-position: bottom;
+
 			.container {
-				padding-bottom: 400px;
+				
 				h2 {
 				}
 			}
@@ -830,12 +828,8 @@ p {
 		position: relative;
 		
 		.bg-container {
-			background-size: 900px auto;
 			
 			.container {
-				padding-right: 0px;
-				padding-top: 60px;
-				padding-bottom: 350px;
 				
 				h2 {
 					padding-right: 0;

@@ -16,7 +16,7 @@ function checkIfVideoInView(){
 	videos = $('.video');
 	$.each(videos, function(index){
 		var video = videos[index]
-	  if(isScrolledIntoView(video) && video.currentTime == 0){
+	  if(isScrolledIntoView(video) && video.currentTime == 0 && $(window).width() > 480 ){
 			console.log('scrolled into view');
 			pauseAllVideos(index);
 			video.play();
@@ -56,7 +56,7 @@ function playPause(id) {
     else {
 			console.log('pausing');
 			console.log(id); 
-			var ctrlPanel = $('#' + id).next('.video-control-panel');
+			var ctrlPanel = $('#' + id).parent('.video-container').next('.video-control-panel');
 			videoMenuOpen(ctrlPanel);
       video.pause();
 			
@@ -78,6 +78,21 @@ $(".therapists").ready(function() {
 	//therapist profile stuff
 	//addSubsection()
 	
+	if (window.mobilecheck() == true) {
+		console.log('mobile!');
+		var videos = $('.video');
+		$.each(videos, function(index){
+			if (videos[index].length) {
+				videos[index].remove();
+			}
+		});
+		
+		var gifs = $('.intro-gif');
+		$.each(gifs, function(index){
+			gifs[index].show();
+		});
+	}
+	
 	$(window).on('scroll', function(){
 		checkIfVideoInView();	
 	});
@@ -88,9 +103,10 @@ $(".therapists").ready(function() {
 	})
 	
 	$('.video-control-panel').hide();
+	
 	$('.video').bind('ended', function(){
 		console.log('ended');
-		var ctrlPanel = $(this).siblings('.video-control-panel');
+		var ctrlPanel = $(this).parent('.video-container').siblings('.video-control-panel');
 		videoMenuOpen(ctrlPanel);
 	});
 	
@@ -112,6 +128,13 @@ $(".therapists").ready(function() {
 			video.play();
 			videoMenuClose(ctrlPanel);
 		}
+	});
+	
+	$('.gif-menu-button').click(function(){
+		console.log('clicked menu');
+		var ctrlPanel = $(this).parent().parent('.video-container').siblings('.video-control-panel');
+		videoMenuOpen(ctrlPanel);
+		$(this).hide();
 	});
 	
 	$('.current_therapist_name').css('display', 'none');
