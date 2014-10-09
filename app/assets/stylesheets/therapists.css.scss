@@ -130,6 +130,33 @@
 	position: relative;
 	overflow: hidden;
 	
+	h3 {
+		margin-bottom: 5px;
+		font-size: 24px;
+		font-weight: 600;
+		color: $scouter-teal-fade;
+		opacity: 0.8;
+		line-height: 24px;
+		font-family: $medium-font;
+	}
+	
+	h4 {
+		font-size: 20px;
+		color: $scouter-green;
+		font-weight: 600;
+		opacity: 0.8;
+	}
+	
+	h5 {
+		list-style: none;
+		font-family: $medium-font;
+		font-weight: 400;
+		font-size: 17px;
+		line-height: 20px;
+		color: #aaa;
+		margin-bottom: 5px;
+	}
+	
 	.bg-container {
 		overflow: hidden;
 		padding: 0px;
@@ -165,21 +192,22 @@
 
 				}
 				
-				hr {
-					width: 150px;
+				.therapist-contact-container {
+					clear: both;
 					float: left;
 				}
 				
 				.contact-header {
-					margin-left: 35px;
-					float: left;
-					font-size: 20px;
+					text-align: left;
 					margin-top: 20px;
-					color: $scouter-green;
-					font-weight: 600;
-					opacity: 0.8;
+					margin-left: 35px;
 				}
 				
+				hr {
+					width: 150px;
+					float: left;
+				}
+
 				.info-container {
 					float: left;
 					text-align: left;
@@ -195,27 +223,7 @@
 	
 			.twelve {
 				clear: none;
-				
-				h3 {
-					margin-bottom: 5px;
-					font-size: 24px;
-					font-weight: 600;
-					color: $scouter-teal-fade;
-					opacity: 0.8;
-					line-height: 24px;
-					font-family: $medium-font;
-					
-					span {
-						list-style: none;
-						font-family: $medium-font;
-						font-weight: 400;
-						font-size: 18px;
-						line-height: 20px;
-						color: #aaa;
-						margin-bottom: 5px;
-					}
-				}
-		
+
 				li {
 					list-style: none;
 					font-size: 14px;
@@ -233,6 +241,29 @@
 						line-height: 22px;
 						font-size: 16px;
 						margin-bottom: 0px;
+					}
+				}
+				
+				.finances-container {
+					overflow: hidden;
+					
+					li {
+						color: #626262;
+						line-height: 22px;
+						font-size: 16px;
+						margin-bottom: 0px;
+					}
+					
+					p {
+						@extend li;
+					}
+					
+					.column {
+						margin-left: 0px;
+					}
+					
+					.finances-section {
+						margin-bottom: 20px;
 					}
 				}
 				

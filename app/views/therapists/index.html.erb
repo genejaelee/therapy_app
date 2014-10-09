@@ -53,7 +53,7 @@
 						<div class="four columns therapist-info-column">
 							<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
 							<div class="therapist-contact-container">
-								<div class="contact-header">Contact</div>
+								<h4 class="contact-header">Contact</h4>
 								<hr class="dashed-hr" style="border-color: #ccc;">
 								<div class="info-container">
 									<div><%= therapist.phone.to_s %></div>
@@ -66,11 +66,35 @@
 						
 						<div class="twelve columns">
 							<div class="profile-link-container">
-								<h3><%= therapist.first_name %> <%= therapist.last_name %>
-									<span> / <%= therapist.title %>, <%= therapist.years %> years</span>
-								</h3>
+								<h3><%= therapist.first_name %> <%= therapist.last_name %></h3>
+								<h5> / <%= therapist.title %>, <%= therapist.years %> years</h5>
 								<div class="bio-container">
 									<p class="card-bio"><%= therapist.bio %></p>
+								</div>
+								<br>
+								
+								<div class="finances-container">
+									<h4>Financial Information</h4>
+									<div class="one-third column insurance column">
+										<div class="finances-section">
+											<h5>Insurance accepted:</h5>
+											<ul>
+												<li>Aetna</li>
+												<li>Anthem BlueCross BlueShield</li>
+												<li>Out of network</li>
+											</ul>
+										</div>
+									</div>
+									<div class="one-third column payments column">
+										<div class="finances-section">
+											<h5>Average cost:</h5>
+											<p>$80-$120</p>
+										</div>
+										<div class="finances-section">
+											<h5>Payment methods accepted:</h5>
+											<p>Paypal, Bank Transfer, Venmo</p>
+										</div>
+									</div>
 								</div>
 								<br>
 					
