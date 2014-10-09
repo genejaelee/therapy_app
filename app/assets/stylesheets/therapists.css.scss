@@ -606,12 +606,20 @@
 				.columns {
 					
 					h3 {
-						font-size: 22px;
-						span {
-							display: block;
-							font-size: 18px;
-							width: 100%;
-						}
+						font-size: 20px;
+					}
+					
+					h4 {
+						font-size: 16px;
+					}
+					
+					h5 {
+						font-size: 14px;
+					}
+					
+					p {
+						font-size: 12px !important;
+						line-height: 16px !important;
 					}
 					
 					.profile-link-container {
@@ -623,6 +631,17 @@
 				
 				.therapist-contact-container {
 					display: none;
+				}
+				
+				.finances-container {
+					.column {
+						ul {
+							li {
+								font-size: 12px;
+								line-height: 16px;
+							}
+						}
+					}
 				}
 				
 				.twelve {
@@ -671,25 +690,6 @@
 					}
 				}
 				.columns {
-					
-					h3 {
-						text-align: center;
-						margin-bottom: 0px;
-						font-size: 20px;
-					}
-					
-					h5 {
-						text-align: center;
-						display: block;
-						font-size: 16px;
-						color: #828282;
-						width: 100%;
-						margin-bottom: 0px;
-					}
-					
-					p {
-						margin-top: 5px;
-					}
 				}
 				
 				.twelve {
