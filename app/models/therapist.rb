@@ -14,7 +14,7 @@ class Therapist < ActiveRecord::Base
          
   has_attached_file :avatar, 
   :styles => { :thumb => "100x100#", :small => "200x200#", :medium => "300x300#", :large => "500>" },
-  :default_url => "/images/:style/missing.png",
+  :default_url => ":s3_domain_url/:class/:attachment/:style/missing.png",
   :retina => { :quality => 70 },
   :s3_protocol => 'https'
   
