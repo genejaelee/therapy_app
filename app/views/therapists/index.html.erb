@@ -51,11 +51,16 @@
 				<div class="top-panel">
 					<div class="container">
 						<div class="four columns therapist-info-column">
-							<div class="image-container">
+							<div class="image-container info-section">
 								<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
 							</div>
+							<div class="title-container info-section">
+								<h3><%= therapist.first_name %> <%= therapist.last_name %></h3>
+								<h5> <%= therapist.title %>, <%= therapist.years %> years</h5>
+							</div>
+							
 							<hr class="dashed-hr" style="border-color: #ccc;">
-							<div class="therapist-contact-container">
+							<div class="therapist-contact-container info-section">
 								<h4 class="contact-header">Contact</h4>
 								<div class="info-container">
 									<div><%= therapist.phone.to_s %></div>
@@ -66,13 +71,13 @@
 								</div>
 								<hr class="dashed-hr" style="border-color: #ccc;">
 							</div>
-							<div class="cta-button-container">
+							<div class="cta-button-container info-section">
 								<div class="cta-button chat-button"></div>
 								<div class="button-header">
 									Instantly send a secure message to <%= therapist.first_name %>
 								</div>
 							</div>
-							<div class="cta-button-container">
+							<div class="cta-button-container info-section">
 
 								<div class="cta-button schedule-button"></div>
 								<div class="button-header">
@@ -83,8 +88,6 @@
 						
 						<div class="twelve columns">
 							<div class="profile-link-container">
-								<h3><%= therapist.first_name %> <%= therapist.last_name %></h3>
-								<h5> / <%= therapist.title %>, <%= therapist.years %> years</h5>
 								<div class="bio-container">
 									<p class="card-bio"><%= therapist.bio %></p>
 								</div>
