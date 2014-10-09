@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921023629) do
+ActiveRecord::Schema.define(version: 20141009004438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,9 @@ ActiveRecord::Schema.define(version: 20140921023629) do
     t.integer  "client_id"
     t.integer  "years"
     t.string   "issues",              default: [], array: true
+    t.string   "topics",              default: [], array: true
+    t.text     "intro_gif_subtitles"
+    t.string   "address"
   end
 
   create_table "users", force: true do |t|
@@ -174,5 +177,15 @@ ActiveRecord::Schema.define(version: 20140921023629) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["role_id", "role_type"], name: "index_users_on_role_id_and_role_type", using: :btree
+
+  create_table "video_galleries", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "videos", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

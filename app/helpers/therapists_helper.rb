@@ -31,9 +31,9 @@ module TherapistsHelper
   
   def define_video_path_root
     if Rails.env.development?
-      @root = ""
+      @root = "/assets/therapists/"
     elsif Rails.env.production?
-      @root = "https://s3.amazonaws.com/scouterapp-therapist-assets/videos/"
+      @root = "https://s3.amazonaws.com/scouterapp-therapist-assets/therapists/"
     end
   end
 end

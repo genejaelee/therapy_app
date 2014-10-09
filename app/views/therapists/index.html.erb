@@ -77,11 +77,11 @@
 								<div class="video-player-container">
 									<div class="video-container">
 										<% @name = therapist.first_name + "-" + therapist.last_name %>
-										<%= video_tag @root + "therapists/videos/#{therapist.id}/intro.mp4", :size => "320x240", :id => "#{@name}-video", :class => "video", :data => {:name => @name, :id => therapist.id} %>
+										<%= video_tag @root + "videos/#{therapist.id}/intro.mp4", :size => "320x240", :id => "#{@name}-video", :class => "video", :data => {:name => @name, :id => therapist.id} %>
 										<div class="gif-container">
-											<%= image_tag @root + "therapists/videos/#{therapist.id}/intro-gif.gif", :id => "#{@name}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
+											<%= image_tag @root + "videos/#{therapist.id}/intro-gif.gif", :id => "#{@name}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
 											<div class="gif-subtitles">
-												"<%= therapist.intro_gif_subtitle %>"
+												"<%= therapist.intro_gif_subtitles %>"
 											</div>
 											
 											<div class="gif-menu-button">
@@ -92,7 +92,7 @@
 										</div>
 									</div>
 									<div class="video-control-panel" data-id="<%= therapist.id %>" data-name="matthew-krisiloff">
-										<% therapist.topics.all.each do |topic| %>
+										<% therapist.topics.each do |topic| %>
 											<div class="video-button" data-type="<%= topic %>"><%= topic.titleize %></div>
 										<% end %>
 										<div class="video-menu-ui play" data-type="play"></div>

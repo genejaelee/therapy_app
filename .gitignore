@@ -16,6 +16,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+/public
 
 # Ignore Stripe key file
 /config/initializers/stripe.rb
