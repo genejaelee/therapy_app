@@ -58,8 +58,8 @@
 								<div class="info-container">
 									<div><%= therapist.phone.to_s %></div>
 									<div><%= therapist.user.email %></div>
-									<div>401 Twin Oaks Lane</div>
-									<div>Walnut Creek, CA 94546</div>
+									<div><%= therapist.address %></div>
+									<div><%= therapist.city %>, <%= therapist.state %> <%= therapist.zipcode %></div>
 								</div>
 							</div>
 						</div>
