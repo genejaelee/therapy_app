@@ -54,7 +54,7 @@
 							<div class="image-container info-section">
 								<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
 							</div>
-							<div class="title-container info-section">
+							<div class="mobile title-container info-section">
 								<h3><%= therapist.first_name %> <%= therapist.last_name %></h3>
 								<h5> <%= therapist.title %>, <%= therapist.years %> years</h5>
 							</div>
@@ -88,8 +88,12 @@
 						
 						<div class="twelve columns">
 							<div class="profile-link-container">
+								<div class="desktop title-container info-section">
+									<h3><%= therapist.first_name %> <%= therapist.last_name %></h3>
+									<h5> <%= therapist.title %>, <%= therapist.years %> years</h5>
+								</div>
 								<div class="bio-container">
-									<h4>About</h4>
+									<h4 class="mobile">About</h4>
 									<p class="card-bio"><%= therapist.bio %></p>
 								</div>
 								

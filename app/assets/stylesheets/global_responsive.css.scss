@@ -1,0 +1,28 @@
+@import "variables.css.scss";
+
+.mobile {
+	display: none;
+}
+
+@media only screen and (min-width: 1320px) {
+}
+
+//ipad specific
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 960px) {
+}
+
+@media only screen and (max-width: 767px) {
+	.mobile {
+		display: block;
+	}
+	
+	.desktop {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+}
