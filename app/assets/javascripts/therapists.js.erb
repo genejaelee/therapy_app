@@ -90,6 +90,8 @@ $(".therapists").ready(function() {
 		$('.video').css('display', 'none');
 		
 		$('.gif-container').css('display', 'block');
+		
+		$('.audio-control-panel').hide();
 	}
 	else {
 		$('.gif-container').css('display', 'none');
@@ -146,6 +148,23 @@ $(".therapists").ready(function() {
 		videoMenuOpen(ctrlPanel);
 	});
 	
+	var audioBackgroundColor = $('.audio-button').css('background-color');
+	$('.audio-button').click(function(){
+		if ($(this).hasClass('unmuted')) {
+			$("video").prop('muted', true);
+			$(this).removeClass('unmuted').addClass('muted');
+			$(this).css('background-color', '#ddd');
+			$(this).css('background-image', 'url("/assets/audio-button-play.png")');
+			$('.audio-button-label').text('unmute');
+		} else {
+			$("video").prop('muted', false);
+			$(this).removeClass('muted').addClass('unmuted');
+			$(this).css('background-color', audioBackgroundColor);
+			$(this).css('background-image', 'url("/assets/audio-button-mute.png")');
+			$('.audio-button-label').text('mute');
+		}
+	});
+	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){
 		if ($(this).val() == "Yes") {
@@ -160,6 +179,10 @@ $(".therapists").ready(function() {
 	});
 	
 	//therapist index stuff
+	$('.alert-bar').css('height', '0px').animate({'height' : '40px'}, 500, 'easeInOutCubic', function(){
+		$('.audio-control-panel').css('bottom', '-60px').animate({'bottom' : '10px'}, 500, 'easeInOutCubic');
+	});
+	
 	$('#open-email-dropbox').click(function(){
 		$('.email-dropbox').css({'display' : 'block',
 														'margin-top' : '-151px',

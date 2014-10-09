@@ -55,6 +55,53 @@
 	}	
 }
 
+.alert-bar-panel {
+	
+	.alert-bar {
+		width: $max-width;
+		margin: auto;
+		background-color: $scouter-red;
+		color: #fff;
+		height: auto;
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 40px;
+		text-align: center;
+	}
+}
+
+.audio-control-panel {
+	z-index: 1000;
+	position: fixed;
+	bottom: -60px;
+	right: 20px;
+	text-align: center;
+	
+	.audio-button-label {
+		color: #ccc;
+	}
+	
+	.audio-button {
+		background-image: image-url('audio-button-mute.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		cursor: pointer;
+		line-height: 40px;
+		text-align: center;
+		font-size: 14px;
+		width: 40px;
+		height: 40px;
+		border: 1px solid #ddd;
+		border-radius: 20px;
+		background-color: $scouter-blue;
+		color: #fff;
+	}
+	
+	.audio-button:hover {
+		opacity: 0.8;
+	}
+}
+
 .image-panel {
 	.bg-container {
 		background-color: #eee;
@@ -185,7 +232,6 @@
 						color: #626262;
 						line-height: 22px;
 						font-size: 16px;
-						max-height: 180px;
 						margin-bottom: 0px;
 					}
 				}

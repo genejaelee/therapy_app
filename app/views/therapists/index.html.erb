@@ -9,7 +9,7 @@
 	<%#= render 'layouts/popups/tutorial_popup' %>
 	
 	<% content_for :title do %>
-	  Browse Therapists
+	  Browse San Francisco Therapists
 	<% end %>
 
 	<% content_for :body do %>
@@ -25,7 +25,89 @@
 
 	<%= render 'layouts/header' %>
 	
+	<div class="alert-bar-panel panel">
+		<div class="alert-bar">
+			vvv--- As you start scrolling, video and audio will play. Mute videos by clicking the sound icon at the bottom right. ---vvv
+		</div>
+	</div>
+	
+	<div class="audio-control-panel">
+		<small class="audio-button-label">mute</small>
+		<div class="audio-button unmuted"></div>
+	</div>
+	
 	<% define_video_path_root %>
+	
+	<% @therapist.each do |therapist, index| %>
+	
+		<div class='image-panel panel'>
+			<div class="bg-container">
+			</div>
+		</div>
+
+		<div class="panel profile-link-panel">
+			<div class="bg-container closed">
+	
+				<div class="top-panel">
+					<div class="container">
+						<div class="four columns therapist-info-column">
+							<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+							<div class="therapist-contact-container">
+								<div class="contact-header">Contact</div>
+								<hr class="dashed-hr" style="border-color: #ccc;">
+								<div class="info-container">
+									<div><%= therapist.phone.to_s %></div>
+									<div><%= therapist.user.email %></div>
+									<div>401 Twin Oaks Lane</div>
+									<div>Walnut Creek, CA 94546</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="twelve columns">
+							<div class="profile-link-container">
+								<h3><%= therapist.first_name %> <%= therapist.last_name %>
+									<span> / <%= therapist.title %>, <%= therapist.years %> years</span>
+								</h3>
+								<div class="bio-container">
+									<p class="card-bio"><%= therapist.bio %></p>
+								</div>
+								<br>
+					
+								<div class="video-player-container">
+									<div class="video-container">
+										<% @name = therapist.first_name + "-" + therapist.last_name %>
+										<%= video_tag @root + "therapists/videos/#{therapist.id}/intro.mp4", :size => "320x240", :id => "#{@name}-video", :class => "video", :data => {:name => @name, :id => therapist.id} %>
+										<div class="gif-container">
+											<%= image_tag @root + "therapists/videos/#{therapist.id}/intro-gif.gif", :id => "#{@name}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
+											<div class="gif-subtitles">
+												"<%= therapist.intro_gif_subtitle %>"
+											</div>
+											
+											<div class="gif-menu-button">
+												<div class="gif-menu-line"></div>
+												<div class="gif-menu-line"></div>
+												<div class="gif-menu-line"></div>
+											</div>
+										</div>
+									</div>
+									<div class="video-control-panel" data-id="<%= therapist.id %>" data-name="matthew-krisiloff">
+										<% therapist.topics.all.each do |topic| %>
+											<div class="video-button" data-type="<%= topic %>"><%= topic.titleize %></div>
+										<% end %>
+										<div class="video-menu-ui play" data-type="play"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+	
+			</div>
+		</div>
+		
+	<% end %>
 
 			<div class='image-panel panel'>
 				<div class="bg-container">
