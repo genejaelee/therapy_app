@@ -51,15 +51,32 @@
 				<div class="top-panel">
 					<div class="container">
 						<div class="four columns therapist-info-column">
-							<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+							<div class="image-container">
+								<%= retina_image_tag(therapist, :avatar, :small, :default => [200,200]) %>
+							</div>
+							<hr class="dashed-hr" style="border-color: #ccc;">
 							<div class="therapist-contact-container">
 								<h4 class="contact-header">Contact</h4>
-								<hr class="dashed-hr" style="border-color: #ccc;">
 								<div class="info-container">
 									<div><%= therapist.phone.to_s %></div>
 									<div><%= therapist.user.email %></div>
 									<div><%= therapist.address %></div>
 									<div><%= therapist.city %>, <%= therapist.state %> <%= therapist.zipcode %></div>
+
+								</div>
+								<hr class="dashed-hr" style="border-color: #ccc;">
+							</div>
+							<div class="cta-button-container">
+								<div class="cta-button chat-button"></div>
+								<div class="button-header">
+									Instantly send a secure message to <%= therapist.first_name %>
+								</div>
+							</div>
+							<div class="cta-button-container">
+
+								<div class="cta-button schedule-button"></div>
+								<div class="button-header">
+									Schedule a time to talk with <%= therapist.first_name %>
 								</div>
 							</div>
 						</div>
@@ -71,8 +88,8 @@
 								<div class="bio-container">
 									<p class="card-bio"><%= therapist.bio %></p>
 								</div>
-								<br>
 								
+								<hr class="dashed-hr" style="border-color: #ccc;">
 								<div class="finances-container">
 									<h4>Financial Information</h4>
 									<div class="one-third column insurance column">
@@ -96,6 +113,7 @@
 										</div>
 									</div>
 								</div>
+								<hr class="dashed-hr" style="border-color: #ccc;">
 								<br>
 					
 								<div class="video-player-container">

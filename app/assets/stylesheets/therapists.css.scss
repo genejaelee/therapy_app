@@ -178,33 +178,70 @@
 				clear: left;
 				text-align: center;
 				
-				img {
+				.image-container {
 					float: left;
-					border-radius: 100px;
-					border: 1px solid #eee;
-					width: 150px;
-					height: 150px;
-				}
-				
-				.cta-button-white {
-					margin: auto;
+					width: 200px;
 					text-align: center;
-
+					img {
+						border-radius: 100px;
+						border: 1px solid #eee;
+						width: 150px;
+						height: 150px;
+					}
 				}
-				
+
 				.therapist-contact-container {
+					width: 200px;
 					clear: both;
 					float: left;
+					
+					.contact-header {
+						text-align: left;
+					}
 				}
 				
-				.contact-header {
-					text-align: left;
-					margin-top: 20px;
-					margin-left: 35px;
+				.cta-button-container {
+					width: 200px;
+					float: left;
+					margin: 10px 0px;
+					
+					.button-header {
+						text-align: left;
+						display: inline-block;
+						width: 120px;
+						height: 50px;
+						font-size: 12px;
+						color: #aaa;
+						font-weight: 200;
+						line-height: 14px;
+						margin-bottom: 10px;
+					}
+					
+					.cta-button {
+						float: left;
+						width: 50px;
+						height: 50px;
+						background-size: cover;
+						border-radius: 40px;
+						border: 1px solid #ddd;
+					}
+					
+					.cta-button:hover {
+						cursor: pointer;
+						opacity: 0.8;
+					}
+					
+					.chat-button {
+						background-image: image-url('contact-cta-chat.png');
+					}
+					
+					.schedule-button {
+						background-image: image-url('contact-cta-schedule.png');
+					}
 				}
 				
 				hr {
-					width: 150px;
+					width: 200px;
 					float: left;
 				}
 
