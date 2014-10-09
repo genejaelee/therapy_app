@@ -54,28 +54,28 @@ function videoMenuClose(element) {
 }
 
 function playPause(id) { 
-	var video = document.getElementById(id);
+	var video = document.getElementById(id + "-video");
     if (video.paused){
 			pauseAllVideos();
       video.play(); 
 		}
     else {
 			console.log('pausing');
-			console.log(id); 
-			var ctrlPanel = $('#' + id).parent('.video-container').next('.video-control-panel');
+			console.log(id);
+			var ctrlPanel = $('.video-control-panel[data-id=' + id + ']');
 			videoMenuOpen(ctrlPanel);
       video.pause();
 			
 		} 
 }
 
-function loadVideo(video_name, name){
-	var video = document.getElementById(name + '-video');
-	$("#" + name + "-video").css('display', 'block');
+function loadVideo(video_name, id){
+	var video = document.getElementById(id + '-video');
+	$("#" + id + "-video").css('display', 'block');
 	<% if Rails.env.development? %>
-		video.src = "/assets/" + name + "/" + video_name + ".mp4";
+		video.src = "/assets/therapists/" + id + "/" + video_name + ".mp4";
 	<% elsif Rails.env.production? %>
-		video.src = "https://s3.amazonaws.com/scouterapp-therapist-assets/videos/" + name + "/" + video_name + ".mp4"
+		video.src = "https://s3.amazonaws.com/scouterapp-therapist-assets/therapists/videos/" + id + "/" + video_name + ".mp4"
 	<% end %>
 	video.load();
 	video.play();
@@ -102,7 +102,7 @@ $(".therapists").ready(function() {
 	});
 	
 	$('.video').bind('click', function(){
-		var videoId = $(this).attr('id');
+		var videoId = $(this).data('id');
 		playPause(videoId);
 	})
 	
@@ -121,11 +121,11 @@ $(".therapists").ready(function() {
 	
 	$('.video-button').click(function(){
 		var ctrlPanel = $(this).parent('.video-control-panel');
+		var id = $(this).data("id");
 		videoMenuClose(ctrlPanel);
-		var name = ctrlPanel.data("name");
 		var type = $(this).data("type");
 		pauseAllVideos();
-		loadVideo(type, name);
+		loadVideo(type, id);
 		
 		ctrlPanel.siblings('.video-container').find('.gif-container').hide();
 	});
@@ -133,7 +133,7 @@ $(".therapists").ready(function() {
 	$('.video-menu-ui').click(function(){
 		console.log('clicked');
 		var ctrlPanel = $(this).parent('.video-control-panel');
-		var id = "" + ctrlPanel.data("name") + "-video"
+		var id = ctrlPanel.data("id") + "-video"
 		var video = document.getElementById(id);
 		var type = $(this).data("type");
 		if(type == "play") {
