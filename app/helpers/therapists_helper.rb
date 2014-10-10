@@ -36,4 +36,12 @@ module TherapistsHelper
       @root = "https://s3.amazonaws.com/scouterapp-therapist-assets/therapists/"
     end
   end
+  
+  def define_time_variables(i)
+    @adjusted_time = (Time.now + 1.day).in_time_zone(@time_zone)
+		@time = (@adjusted_time.beginning_of_day + (0.5*i).hours).strftime('%l:%M%P').strip
+		@h = (@adjusted_time.beginning_of_day + (0.5*i).hours).strftime('%l').strip
+		@m = (@adjusted_time.beginning_of_day + (0.5*i).hours).strftime('%M').strip
+		@i = (@adjusted_time.beginning_of_day + (0.5*i).hours).strftime('%P').strip
+  end
 end

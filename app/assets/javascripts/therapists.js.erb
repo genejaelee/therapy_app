@@ -198,16 +198,17 @@ $(".therapists").ready(function() {
 		//openCloseOnClick(thisProfile, $(this).outerHeight(), maxHeight);
 	});
 	
-	var disabledArray = {
-		1 : [ '1pm', '2pm', '4pm' ],
-		2 : [ '11am', '2pm', '4pm' ],
-		3 : [ '3pm', '4pm', '5pm' ],
-		4 : [ '8am', '9am' ],
-		5 : [ '1pm', '2pm', '3pm' ],
-		6 : [ '10am', '11am', '6pm' ]
+	var enabledArray = {
+		11 : [ '900am', '930am', '1000am', '1030am', '1100am', '1130am', '1200pm', '1230pm', '100pm', '130pm', '200pm', '230pm', '300pm', '330pm', '400pm', '430pm', '500pm' ],
+		12 : [ '900am', '930am', '1000am', '1030am', '1100am', '1130am', '1200pm', '1230pm', '100pm', '130pm', '200pm', '230pm', '300pm', '330pm', '400pm', '430pm', '500pm' ],
+		13 : [ '900am', '930am', '1000am', '1030am', '1100am', '1130am', '1200pm' ],
+		14 : [ '900am', '930am', '1000am', '1030am', '1100am', '1130am', '1200pm' ],
+		15 : [ '900am', '930am', '1000am', '100pm', '130pm', '200pm' ],
+		16 : [ '930am', '1000am', '1030am' ],
+		17 : [ '930am', '1000am', '430pm', '500pm', '530pm', '600pm' ]
 	};
 	
-	$.each(disabledArray, function (day, times) {
+	$.each(enabledArray, function (day, times) {
 		$('.select-cell[data-day=' + day + ']').each(function(){
 			console.log($(this).html());
 			var thisTimeSlot = $(this).attr('data-time');
@@ -216,15 +217,15 @@ $(".therapists").ready(function() {
 				console.log(thisTimeSlot + " " + time);
 				if($.trim(thisTimeSlot) == time){
 					console.log('match');
-					thisSlot.removeClass('enabled').addClass('disabled');
+					thisSlot.removeClass('disabled').addClass('enabled');
 				}
 			});
 		});
 	});
 	
 	$('.enabled').hover(function(){
-		var timeClass = $(this).attr('data-time');
-		var dayClass = $(this).attr('data-day');
+		var timeClass = $(this).data('time');
+		var dayClass = $(this).data('day');
 		$('.'+$.trim(timeClass)).css({'background-color' : '#fff', 'color' : '#424242'});
 		$('.'+$.trim(dayClass)).css({'background-color' : '#fff', 'color' : '#424242'});
 	});
