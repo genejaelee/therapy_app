@@ -9,11 +9,11 @@
 	<%#= render 'layouts/popups/tutorial_popup' %>
 	
 	<% content_for :title do %>
-	  Browse San Francisco Therapists
+	  Therapists for Startup Founders
 	<% end %>
 
 	<% content_for :body do %>
-	  <p>We've just started PsychDate, and this is just a test page. The listings below are samples and not representative of licensed clinicians. <span style="font-weight: 600">As you start scrolling, video and audio will play.</span></p>
+	  <p>Find a San Francisco therapist that specializes in working with founders. We're testing this concept, and Dr. Milam Freitag is our pilot partner.</p>
 		<%= form_for @emails, url: { controller: "therapists", action: "drop_email" } do |f| %>
 			<div class="email-dropbox">
 				<hr class='dashed-hr'>
@@ -176,7 +176,7 @@
 				<div class="bottom-panel">
 					<div class="container expanded-profile-content">
 						<div class="sixteen columns form-container">
-							<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
+							<%= form_for @event, url: { controller: "events", action: "initial_talk" } do |f| %>
 			
 							<!--
 									<%= label_tag "Suggest two times to talk" %>
@@ -191,7 +191,9 @@
 									</div>
 								-->
 				
-								<h3>Select a time to talk with <%= therapist.first_name %></h3>
+								<h3 style="margin-bottom: 10px;">Select a time to talk with <%= therapist.first_name %></h3>
+								
+								<p style="color: #fff; font-size: 16px;">Speak for 15 minutes to see if he could be a good fit. It's free, and there's no further obligation.</p>
 				
 								<div class="table-container">
 									<table border="0" cellpadding="0" cellspacing="0" id="time-table">
@@ -265,6 +267,12 @@
 									</table>
 					
 								</div>
+									
+									<%= f.label :email, "Provide your email to confirm your appointment." %>
+									<%= f.text_field :email, :placeholder => 'john@example.com', :class => "email-field" %>
+									
+									<%= f.label :phone, "(Optional) Provide your phone number and Milam will call you at the selected time." %>
+									<%= f.text_field :phone, :placeholder => '213-493-1588', :class => "phone-field" %>
 					
 									<%= f.hidden_field :suggested_time %>
 									<%= f.hidden_field :therapist_id, :value => therapist.id %>

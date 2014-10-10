@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009004438) do
+ActiveRecord::Schema.define(version: 20141010192007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20141009004438) do
     t.string   "suggested_times", default: [], array: true
     t.integer  "user_id"
     t.string   "suggested_time"
+    t.string   "email"
+    t.string   "phone"
   end
 
   create_table "messages", force: true do |t|

@@ -28,6 +28,7 @@ TherapyApp::Application.routes.draw do
   match '/session_details' => 'events#session_details', via: 'get'
   match '/event/finish' => 'events#finish', via: 'get'
   match '/events' => 'events#index', via: 'patch'
+  match '/initial' => 'events#initial_talk', via: 'post'
   
   constraints(:subdomain => 'therapy') do
     match '/about' => 'therapists#about', :as => :therapist_about, via: 'get'

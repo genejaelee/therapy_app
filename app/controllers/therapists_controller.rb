@@ -67,6 +67,9 @@ class TherapistsController < ApplicationController
   def new
   end
   
+  def schedule
+  end
+  
   private
   
   def therapist_params

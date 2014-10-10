@@ -27,6 +27,10 @@ class EventsController < ApplicationController
     end
   end
   
+  def initial_talk
+    @event = Event.create(event_params)
+  end
+  
   def session_details
     @user = current_user
     find_event_and_client_or_build
@@ -80,6 +84,6 @@ class EventsController < ApplicationController
   private
   
   def event_params
-    params.require(:event).permit(:id, :therapist_id, :client_id, :title, :description, :suggested_times, :suggested_time)
+    params.require(:event).permit(:id, :therapist_id, :client_id, :title, :description, :email, :phone, :suggested_times, :suggested_time)
   end
 end
