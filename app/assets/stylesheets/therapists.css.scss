@@ -626,6 +626,23 @@
 						width: 100%;
 						text-align: center;
 					}
+					
+					.therapist-contact-container {
+						width: 100%;
+						text-align: center;
+						display: block;
+						
+						.contact-header {
+						}
+					
+						.info-container {
+							float: left;
+							text-align: left;
+							div {
+								font-size: 14px;
+							}
+						}
+					}
 				}
 				
 				.columns {
@@ -657,11 +674,7 @@
 						}
 					}
 				}
-				
-				.therapist-contact-container {
-					display: none;
-				}
-				
+
 				.finances-container {
 					.column {
 						ul {
@@ -690,6 +703,14 @@
 							}
 						}
 					}
+				}
+			}
+			
+			.bottom-panel {
+				h3 {
+					font-size: 20px !important;
+					line-height: 24px;
+					margin-bottom: 3px;
 				}
 			}
 		}
