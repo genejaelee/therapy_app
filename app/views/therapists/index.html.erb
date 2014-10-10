@@ -74,6 +74,7 @@
 								</div>
 								<hr class="dashed-hr" style="border-color: #ccc;">
 							</div>
+							<!--
 							<div class="cta-button-container info-section">
 								<div class="cta-button chat-button"></div>
 								<div class="button-header">
@@ -87,12 +88,14 @@
 									Schedule a time to talk with <%= therapist.first_name %>
 								</div>
 							</div>
+								-->
+								
 						</div>
 						
 						<div class="twelve columns">
 							<div class="profile-link-container">
 								<div class="desktop title-container info-section">
-									<h3><%= therapist.first_name %> <%= therapist.last_name %></h3>
+									<h3><%= therapist.first_name %> <%= therapist.last_name %>, <%= therapist.degree %></h3>
 									<h5> <%= therapist.title %>, <%= therapist.years %> years</h5>
 								</div>
 								<div class="bio-container">
