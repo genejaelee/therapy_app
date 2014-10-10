@@ -172,12 +172,118 @@
 						
 					</div>
 				</div>
+				
+				<div class="bottom-panel">
+					<div class="container expanded-profile-content">
+						<div class="sixteen columns form-container">
+							<%= form_for @event, url: { controller: "events", action: "create" } do |f| %>
+			
+							<!--
+									<%= label_tag "Suggest two times to talk" %>
+
+									<div class="datetime-container">
+										<%= text_field(:suggested_times, :suggested_date1, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY" )  %>
+										<%= text_field(:suggested_times, :suggested_time1, :class => "time-field", :required => "true", :placeholder => "HH:MMpm") %>
+									</div>
+									<div class="datetime-container">
+										<%= text_field(:suggested_times, :suggested_date2, :class => "date-field", :required => "true", :placeholder => "MM/DD/YYYY") %>
+										<%= text_field(:suggested_times, :suggested_time2, :class => "time-field", :required => "true", :placeholder => "HH:MMpm") %>
+									</div>
+								-->
+				
+								<h3>Select a time to talk with <%= therapist.first_name %></h3>
+				
+								<div class="table-container">
+									<table border="0" cellpadding="0" cellspacing="0" id="time-table">
+										<tbody>
+							
+											<!-- INIT TIME VARIABLES -->
+											<% @adjusted_time = Time.now.in_time_zone(@time_zone) %>
+															
+											<!-- HEADER DATES -->
+											<tr>
+												<td class="blank-cell"><!-- BLANK CELL FOR CORNER --></td>
+												<% (0..6).each do |i| %>
+													<% @date = (@adjusted_time + i.days).strftime('%a, %b %d') %>
+													<% @day = (@adjusted_time + i.days).day %>
+													<th class="<%= @day %>"><%= @date %></th>
+												<% end %>
+											</tr>
+						
+											<!-- BODY -->
+											<tr>
+												<td class="times-column">
+													<% (8..22).each do |i| %>
+														<% @hour = (@adjusted_time.beginning_of_day + i.hours).strftime('%l%P') %>
+														<div data-datetime="<%= @hour %>" class="time-cell <%= @hour %>">
+															<%= @hour %>
+														</div>
+													<% end %>
+												</td>
+							
+												<% (0..6).each do |i| %>
+													<% @date = (@adjusted_time + i.days).strftime('%a, %b %d') %>
+													<% @short_date = (@adjusted_time + i.days).strftime('%a') %>
+													<% @day = (@adjusted_time + i.days).day %>
+					
+													<td class="select-column">
+														<div class="select-cells">
+															<% (8..22).each do |h| %>
+																<% @hour = (@adjusted_time.beginning_of_day + h.hours).strftime('%l%P') %>
+											
+																<% if i == 0 %>
+																	<% if h < (@adjusted_time + 3.hours).hour %>
+																		<% @class = "disabled" %>
+																	<% elsif h == (@adjusted_time + 3.hours).hour %>
+																		<% @class = "today" %>
+																	<% else %>
+																		<% @class = "enabled" %>
+																	<% end %>
+																<% end %>
+											
+																<div data-day="<%= @day %>" data-time="<%= @hour %>" data-datetime="<%= @date + " " + @hour %>" class="select-cell <%= @class %>">
+																	<span><%= @short_date + " " + @hour %></span>
+																</div>
+															<% end %>
+														</div>
+													</td>
+						
+												<% end %>
+								
+													<td>
+														<div id="legend-container">
+															<div class="legend legend-enabled"><span class="legend-label">Available</span></div>
+															<div class="legend legend-disabled"><span class="legend-label">Unavailable</span></div>
+															<div class="legend legend-today"><div></div><span class="legend-label">Today</span></div>
+														</div>
+													</td>
+										
+											</tr>
+						
+										</tbody>
+									</table>
+					
+								</div>
+					
+									<%= f.hidden_field :suggested_time %>
+									<%= f.hidden_field :therapist_id, :value => therapist.id %>
+					
+									<%= f.submit "Submit", 
+									:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Plain White Couch #{link_to('Terms of Service', '/terms', :target => "_blank")} and #{link_to('Privacy Policy', '/privacy', :target => "_blank")}" }, 
+									:class => "submit-button white button" %>
+
+							<% end %>
+
+						</div>
+					</div>
+				</div>
 	
 			</div>
 		</div>
 		
-	<% end %>
 		
+		
+	<% end %>
 	<% end %>
 
 </body>
