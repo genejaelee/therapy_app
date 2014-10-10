@@ -461,6 +461,9 @@
 						}
 						
 						input {
+							height: 35px;
+							width: 80px;
+							font-size: 14px;
 							border: 1px solid #eee;
 							padding: 0px 15px;
 						}
@@ -715,7 +718,7 @@
 							.video-control-panel {
 								top: 0px;
 								width: 100%;
-								height: 200px;
+								height: 180px;
 								
 								.video-button {
 									height: 28px;
