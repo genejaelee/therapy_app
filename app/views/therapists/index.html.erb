@@ -134,15 +134,18 @@
 										<% @name = therapist.first_name + "-" + therapist.last_name %>
 										<%= video_tag @root + "videos/#{therapist.id}/intro.mp4", :size => "320x180", :id => "#{therapist.id}-video", :class => "video", :data => {:name => @name, :id => therapist.id} %>
 										<div class="gif-container">
-											<%= image_tag @root + "videos/#{therapist.id}/intro-gif.gif", :id => "#{@name}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
-											<div class="gif-subtitles">
-												"<%= therapist.intro_gif_subtitles %>"
-											</div>
+											<%= label_tag "Click button at upper left corner to watch short videos" %>
+											<div class="gif-image-container">
+												<%= image_tag @root + "videos/#{therapist.id}/intro-gif.gif", :id => "#{@name}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
+												<div class="gif-subtitles">
+													"<%= therapist.intro_gif_subtitles %>"
+												</div>
 											
-											<div class="gif-menu-button">
-												<div class="gif-menu-line"></div>
-												<div class="gif-menu-line"></div>
-												<div class="gif-menu-line"></div>
+												<div class="gif-menu-button">
+													<div class="gif-menu-line"></div>
+													<div class="gif-menu-line"></div>
+													<div class="gif-menu-line"></div>
+												</div>
 											</div>
 										</div>
 									</div>

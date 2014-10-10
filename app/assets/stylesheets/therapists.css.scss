@@ -325,37 +325,40 @@
 						
 						.gif-container {
 							
-							img {
-								width: 100%;
-								height: auto;
-							}
-							
-							.gif-subtitles {
-								position: absolute;
-								bottom: 5px;
-								padding: 10px;
-								font-size: 12px;
-								line-height: 15px;
-								background-color: rgba(0,0,0,0.2);
-								font-weight: 600;
-								color: #fff;
-							}
-							
-							.gif-menu-button {
-								position: absolute;
-								top: 5px;
-								left: 5px;
-								padding: 5px;
-								width: 30px;
-								height: 25px;
-								background-color: rgba(0,0,0,0.2);
-								
-								.gif-menu-line {
+							.gif-image-container {
+								position: relative;
+								img {
 									width: 100%;
-									height: 3px;
-									margin-bottom: 3px;
-									background-color: #fff;
+									height: auto;
+								}
+							
+								.gif-subtitles {
+									position: absolute;
+									bottom: 5px;
+									padding: 10px;
+									font-size: 12px;
+									line-height: 15px;
+									background-color: rgba(0,0,0,0.2);
+									font-weight: 600;
+									color: #fff;
+								}
+							
+								.gif-menu-button {
+									position: absolute;
+									top: 5px;
+									left: 5px;
+									padding: 5px;
+									width: 30px;
+									height: 25px;
+									background-color: rgba(0,0,0,0.2);
+								
+									.gif-menu-line {
+										width: 100%;
+										height: 3px;
+										margin-bottom: 3px;
+										background-color: #fff;
 									
+									}
 								}
 							}
 						}
