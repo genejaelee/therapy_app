@@ -291,15 +291,18 @@
 				
 				.finances-container {
 					overflow: hidden;
-					
-					li {
-						color: #626262;
-						line-height: 22px;
-						font-size: 16px;
-						margin-bottom: 0px;
+
+					ul {
+						li {
+							color: #626262;
+							line-height: 22px;
+							font-size: 16px;
+							margin-bottom: 0px;
+						}
 					}
-					
+
 					p {
+						font-size: 16px;
 						@extend li;
 					}
 					
@@ -308,7 +311,14 @@
 					}
 					
 					.finances-section {
+						position: relative;
 						margin-bottom: 20px;
+						
+						.definable:hover {
+							cursor: pointer;
+							font-weight: 600;
+							color: $scouter-teal-fade;
+						}
 					}
 				}
 				
@@ -410,6 +420,22 @@
 			
 						}
 					}
+				}
+				
+				.explanation-container {
+					display: none;
+					z-index: 1000;
+					position: fixed;
+					top: 30px;
+					right: 30px;
+					color: #fff;
+					background-color: $scouter-green-light;
+					padding: 15px;
+					border-radius: 10px;
+					max-width: 220px;
+					font-weight: 600;
+					opacity: 0.9;
+					border: 2px solid #eee;
 				}
 			}
 		}

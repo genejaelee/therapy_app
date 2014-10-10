@@ -165,6 +165,25 @@ $(".therapists").ready(function() {
 		}
 	});
 	
+	//pop up definitions
+	$('.out-of-network').on('mouseenter', function(){
+		var explainer = $('.out-of-network.explanation-container');
+		explainer.css('opacity', '0.0').css('top', '50px').show()
+		.stop().animate({ 'opacity' : '1.0', 'top' : '30px' }, 400, 'easeInOutCubic');
+	});
+	
+	$('.sliding-scale').on('mouseenter', function(){
+		var explainer = $('.sliding-scale.explanation-container');
+		explainer.css('opacity', '0.0').css('top', '50px').show()
+		.stop().animate({ 'opacity' : '1.0', 'top' : '30px' }, 400, 'easeInOutCubic');
+	});
+	
+	$('.definable').on('mouseleave', function(){
+		$('.explanation-container').stop().animate({ 'opacity' : '0.0', 'top' : '50px' }, 400, 'easeInOutCubic', function(){
+			$(this).hide();
+		})
+	});
+	
 	$('.current_therapist_name').css('display', 'none');
 	$('#user_current_therapist').change(function(){
 		if ($(this).val() == "Yes") {

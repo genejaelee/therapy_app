@@ -110,7 +110,7 @@
 										<div class="finances-section">
 											<h5>Insurance accepted:</h5>
 											<ul>
-												<li>Out of network</li>
+												<li class="out-of-network definable">Out of network</li>
 											</ul>
 										</div>
 									</div>
@@ -118,7 +118,7 @@
 										<div class="finances-section">
 											<h5>Average cost:</h5>
 											<p>$150</p>
-											<p>Sliding Scale: yes</p>
+											<p class="sliding-scale definable">Sliding Scale: yes</p>
 										</div>
 										<div class="finances-section">
 											<h5>Payment methods accepted:</h5>
@@ -128,6 +128,13 @@
 								</div>
 								<hr class="dashed-hr" style="border-color: #ccc;">
 								<br>
+								
+								<div class="explanation-container out-of-network">
+									"Out-of-network" means <% therapist.first_name %> is not part of any insurance networks but will work with you to get fees reimbursed through your insurance plan.
+								</div>
+								<div class="explanation-container sliding-scale">
+									Sliding scale means <% therapist.first_name %> may adjust his fees based on information he gathers from you and your circumstances.
+								</div>
 					
 								<div class="video-player-container">
 									<div class="video-container">
