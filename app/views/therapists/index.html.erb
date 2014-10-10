@@ -41,17 +41,14 @@
 	<% @therapist.each do |therapist, index| %>
 	
 	<!-- Temporary code to hide sample therapists -->
-	<% @display = 'block' %>
-	<% if therapist.first_name == "Gene" || therapist.first_name == "Matthew" %>
-		<% @display = 'none' %>
-	<% end %>
+	<% unless therapist.first_name == "Gene" || therapist.first_name == "Matthew" %>
 	
-		<div class='image-panel panel' style="display: <%= @display %>;">
+		<div class='image-panel panel'>
 			<div class="bg-container">
 			</div>
 		</div>
 
-		<div class="panel profile-link-panel" style="display: <%= @display %>;">
+		<div class="panel profile-link-panel">
 			<div class="bg-container closed">
 	
 				<div class="top-panel">
@@ -175,6 +172,8 @@
 	
 			</div>
 		</div>
+		
+	<% end %>
 		
 	<% end %>
 
