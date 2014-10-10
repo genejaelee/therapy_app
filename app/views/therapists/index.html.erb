@@ -190,7 +190,8 @@
 									</div>
 								-->
 				
-								<h3 style="margin-bottom: 10px;">Talk with <%= therapist.first_name %> for free.</h3>
+								<h3 style="margin-bottom: 10px;">See if <%= therapist.first_name %> can help you.</h3>
+								<h3 style="margin-bottom: 20px;">Speak for 15 minutes for free with no obligation.</h3>
 				
 								<div class="table-container" style="display: none;">
 									<table border="0" cellpadding="0" cellspacing="0" id="time-table">
@@ -265,14 +266,13 @@
 					
 								</div>
 									
-									<%= f.label :email, "Provide your email and Milam will get in touch with you." %>
+									<%= f.label :email, "Leave your email and Milam will get in touch with you." %>
 									<%= f.text_field :email, :placeholder => 'john@example.com', :class => "email-field" %>
 					
 									<%= f.hidden_field :suggested_time %>
 									<%= f.hidden_field :therapist_id, :value => therapist.id %>
 					
 									<%= f.submit "Submit", 
-									:data => { confirm: "By clicking OK, you are confirming that you are not homicidal, suicidal, or abusing anyone and	agree to the Plain White Couch #{link_to('Terms of Service', '/terms', :target => "_blank")} and #{link_to('Privacy Policy', '/privacy', :target => "_blank")}" }, 
 									:class => "submit-button white button" %>
 
 							<% end %>
