@@ -40,12 +40,18 @@
 	
 	<% @therapist.each do |therapist, index| %>
 	
-		<div class='image-panel panel'>
+	<!-- Temporary code to hide sample therapists -->
+	<% @display = 'block' %>
+	<% if therapist.first_name == "Gene" || therapist.first_name == "Matthew" %>
+		<% @display = 'none' %>
+	<% end %>
+	
+		<div class='image-panel panel' style="display: <%= @display %>;">
 			<div class="bg-container">
 			</div>
 		</div>
 
-		<div class="panel profile-link-panel">
+		<div class="panel profile-link-panel" style="display: <%= @display %>;">
 			<div class="bg-container closed">
 	
 				<div class="top-panel">
@@ -127,7 +133,7 @@
 								<div class="video-player-container">
 									<div class="video-container">
 										<% @name = therapist.first_name + "-" + therapist.last_name %>
-										<%= video_tag @root + "videos/#{therapist.id}/intro.mp4", :size => "320x240", :id => "#{therapist.id}-video", :class => "video", :data => {:name => @name, :id => therapist.id} %>
+										<%= video_tag @root + "videos/#{therapist.id}/intro.mp4", :size => "320x180", :id => "#{therapist.id}-video", :class => "video", :data => {:name => @name, :id => therapist.id} %>
 										<div class="gif-container">
 											<%= image_tag @root + "videos/#{therapist.id}/intro-gif.gif", :id => "#{@name}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
 											<div class="gif-subtitles">
@@ -142,8 +148,21 @@
 										</div>
 									</div>
 									<div class="video-control-panel" data-id="<%= therapist.id %>" data-name="matthew-krisiloff">
+										<h5 style="color: #fff; font-size: 12px;">Start Ups</h5>
+										<div class="video-button" data-type="<%= therapist.topics[0] %>" data-id="<%= therapist.id %>"><%= therapist.topics[0].titleize %></div>
+										<div class="video-button" data-type="<%= therapist.topics[1] %>" data-id="<%= therapist.id %>"><%= therapist.topics[1].titleize %></div>
+										
+										<h5 style="color: #fff; font-size: 12px;">Other interests</h5>
+										<div class="video-button" data-type="<%= therapist.topics[2] %>" data-id="<%= therapist.id %>"><%= therapist.topics[2].titleize %></div>
+										<div class="video-button" data-type="<%= therapist.topics[3] %>" data-id="<%= therapist.id %>"><%= therapist.topics[3].titleize %></div>
+										<div class="video-button" data-type="<%= therapist.topics[4] %>" data-id="<%= therapist.id %>"><%= therapist.topics[4].titleize %></div>
+										
+										
 										<% therapist.topics.each do |topic| %>
+
+										<!--
 											<div class="video-button" data-type="<%= topic %>" data-id="<%= therapist.id %>"><%= topic.titleize %></div>
+											-->
 										<% end %>
 										<div class="video-menu-ui play" data-type="play"></div>
 									</div>
