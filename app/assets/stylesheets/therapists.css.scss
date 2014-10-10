@@ -314,10 +314,16 @@
 						position: relative;
 						margin-bottom: 20px;
 						
-						.definable:hover {
-							cursor: pointer;
+						.definable {
+							width: auto;
+							color: #7ea8cf;
 							font-weight: 600;
-							color: $scouter-teal-fade;
+							text-decoration: underline;
+						}
+						
+						.definable:hover {
+							opacity: 0.7;
+							cursor: pointer;
 						}
 					}
 				}
@@ -427,14 +433,14 @@
 					z-index: 1000;
 					position: fixed;
 					top: 30px;
-					right: 30px;
+					right: 40px;
 					color: #fff;
-					background-color: $scouter-green-light;
+					background-color: #505d69;
 					padding: 15px;
 					border-radius: 10px;
 					max-width: 220px;
 					font-weight: 600;
-					opacity: 0.9;
+					opacity: 0.8;
 					border: 2px solid #eee;
 				}
 			}
