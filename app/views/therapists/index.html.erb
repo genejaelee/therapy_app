@@ -110,7 +110,7 @@
 										<div class="finances-section">
 											<h5>Insurance accepted:</h5>
 											<ul>
-												<li class="out-of-network definable">Out of network</li>
+												<li class="out-of-network definable">Out-of-network</li>
 											</ul>
 										</div>
 									</div>
@@ -130,10 +130,10 @@
 								<br>
 								
 								<div class="explanation-container out-of-network">
-									"Out-of-network" means <% therapist.first_name %> is not part of any insurance networks but will work with you to get fees reimbursed through your insurance plan.
+									"Out-of-network" means <%= therapist.first_name %> is not part of any insurance networks but will work with you to get fees reimbursed through your insurance plan.
 								</div>
 								<div class="explanation-container sliding-scale">
-									Sliding scale means <% therapist.first_name %> may adjust his fees based on information he gathers from you and your circumstances.
+									Sliding scale means <%= therapist.first_name %> may adjust his fees based on information he gathers from you and your circumstances.
 								</div>
 					
 								<div class="video-player-container">
@@ -157,7 +157,7 @@
 										</div>
 									</div>
 									<div class="video-control-panel" data-id="<%= therapist.id %>" data-name="matthew-krisiloff">
-										<h5 style="color: #fff; font-size: 12px;">Start Ups</h5>
+										<h5 style="color: #fff; font-size: 12px;">Startups</h5>
 										<div class="video-button" data-type="<%= therapist.topics[0] %>" data-id="<%= therapist.id %>"><%= therapist.topics[0].titleize %></div>
 										<div class="video-button" data-type="<%= therapist.topics[1] %>" data-id="<%= therapist.id %>"><%= therapist.topics[1].titleize %></div>
 										
