@@ -64,10 +64,12 @@
 							
 							<hr class="dashed-hr" style="border-color: #ccc;">
 							<div class="therapist-contact-container info-section">
-								<h4 class="contact-header">Contact</h4>
+								<h4 class="contact-header">Location</h4>
 								<div class="info-container">
+									<!--
 									<div><%= therapist.phone.to_s %></div>
 									<div><%= therapist.user.email %></div>
+										-->
 									<div><%= therapist.address %></div>
 									<div><%= therapist.city %>, <%= therapist.state %> <%= therapist.zipcode %></div>
 
@@ -116,8 +118,8 @@
 									</div>
 									<div class="one-third column payments column">
 										<div class="finances-section">
-											<h5>Average cost:</h5>
-											<p>$150</p>
+											<h5>Cost per session:</h5>
+											<p>$170</p>
 											<p class="sliding-scale definable">Sliding Scale: yes</p>
 										</div>
 										<div class="finances-section">
