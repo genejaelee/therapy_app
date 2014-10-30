@@ -33,7 +33,7 @@ class TherapistsController < ApplicationController
     
     @emails = EmailBox.new
     @event = Event.new
-    @client = Client.create(params[:client])
+    #@client = Client.create(params[:client])
     @time_zone = cookies["jstz_time_zone"]
     @client.update_attributes(:time_zone => @time_zone)
     @therapist = Therapist.all
