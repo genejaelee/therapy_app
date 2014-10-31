@@ -145,7 +145,7 @@
 										<div class="gif-container">
 											<%= label_tag "Click button at upper left corner to watch short videos" %>
 											<div class="gif-image-container">
-												<%= image_tag @root + "videos/#{therapist.id}/intro-gif.gif", :id => "#{@name}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
+												<%= image_tag @root + "videos/#{therapist.id}/intro-gif-short.gif", :id => "#{therapist.id}-gif", :class => "intro-gif", :data => {:name => @name, :id => therapist.id} %>
 												<div class="gif-subtitles">
 													"<%= therapist.intro_gif_subtitles %>"
 												</div>
@@ -158,13 +158,13 @@
 											</div>
 										</div>
 									</div>
-									<div class="video-control-panel" data-id="<%= therapist.id %>" data-name="matthew-krisiloff">
+									<div class="video-control-panel" data-id="<%= therapist.id %>" data-name="<%= @name %>">
 										<h5 style="color: #fff; font-size: 12px;">Startups</h5>
 										<div class="video-button" data-type="<%= therapist.topics[0] %>" data-id="<%= therapist.id %>"><%= therapist.topics[0].titleize %></div>
 										<div class="video-button" data-type="<%= therapist.topics[1] %>" data-id="<%= therapist.id %>"><%= therapist.topics[1].titleize %></div>
 										
 										<h5 style="color: #fff; font-size: 12px;">Other interests</h5>
-										<div class="video-button" data-type="<%= therapist.topics[2] %>" data-id="<%= therapist.id %>"><%= therapist.topics[2].upcase %></div>
+										<div class="video-button" data-type="<%= therapist.topics[2] %>" data-id="<%= therapist.id %>"><%= therapist.topics[2].titleize %></div>
 										<div class="video-button" data-type="<%= therapist.topics[3] %>" data-id="<%= therapist.id %>"><%= therapist.topics[3].titleize %></div>
 										<div class="video-button" data-type="<%= therapist.topics[4] %>" data-id="<%= therapist.id %>"><%= therapist.topics[4].titleize %></div>
 										

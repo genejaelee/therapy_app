@@ -26,6 +26,10 @@ function checkIfVideoInView(){
 			console.log('scrolled into view');
 			pauseAllVideos(index);
 			video.play();
+			setTimeout(
+				function(){
+					video.pause();
+				}, 5000);
 	  }
 	});
 }
@@ -73,12 +77,33 @@ function loadVideo(video_name, id){
 	var video = document.getElementById(id + '-video');
 	$("#" + id + "-video").css('display', 'block');
 	<% if Rails.env.development? %>
-		video.src = "/assets/therapists/" + id + "/" + video_name + ".mp4";
+		video.src = "/assets/therapists/videos/" + id + "/" + video_name + ".mp4";
 	<% elsif Rails.env.production? %>
 		video.src = "https://s3.amazonaws.com/scouterapp-therapist-assets/therapists/videos/" + id + "/" + video_name + ".mp4"
 	<% end %>
 	video.load();
 	video.play();
+}
+
+function loadGif(gif_name, id){
+	var gif = new Image();
+	var audio = new Audio();
+	<% if Rails.env.development? %>
+		gif.src = "/assets/therapists/videos/" + id + "/" + gif_name + ".gif";
+		audio.src = "/assets/therapists/videos/" + id + "/" + gif_name + ".aac";
+	<% elsif Rails.env.production? %>
+		gif.src = "https://s3.amazonaws.com/scouterapp-therapist-assets/therapists/videos/" + id + "/" + gif_name + ".gif"
+		audio.src = "https://s3.amazonaws.com/scouterapp-therapist-assets/therapists/videos/" + id + "/" + gif_name + ".mp3"
+	<% end %>
+	
+	function handleCanPlay(id){
+		console.log('audio can play');
+		document.getElementById(id + '-gif').src = gif.src;
+		audio.load();
+		audio.play();
+	}
+	audio.play(); 
+	audio.addEventListener("canplay", handleCanPlay(id), false);
 }
 
 $(".therapists").ready(function() {
@@ -87,11 +112,18 @@ $(".therapists").ready(function() {
 	
 	if (window.mobilecheck() == true) {
 		console.log('mobile!');
-		$('.video').css('display', 'none');
+		$('video').css('display', 'none');
+		$('video').empty().remove();
 		
 		$('.gif-container').css('display', 'block');
 		$('.audio-alert-bar-panel').css('display', 'none');
 		$('.audio-control-panel').hide();
+		
+		$('.intro-gif').on('click' ,function(){
+			console.log('clicked gif');
+			var id = $(this).data('id');
+			loadGif("intro-gif", id);
+		});
 	}
 	else {
 		$('.gif-container').css('display', 'none');

@@ -1,5 +1,19 @@
 @import "variables.css.scss";
 
+@-webkit-keyframes WIGGLE {
+  0%   { -webkit-transform: translate(0px, 0px); }
+  100%   { -webkit-transform: translate(0px, 0px); }
+}
+keyframes WIGGLE {
+  0%   { -webkit-transform: translate(0px, 0px); }
+  100%   { -webkit-transform: translate(0px, 0px); }
+}
+
+.intro-gif {
+  -webkit-animation: WIGGLE 1ms; 
+          animation: WIGGLE 1ms;
+}
+
 .spacer {
 	display: block;
 	width: 100%;

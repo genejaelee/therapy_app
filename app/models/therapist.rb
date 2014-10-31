@@ -23,6 +23,25 @@ class Therapist < ActiveRecord::Base
   #validates_presence_of :first_name, :last_name, :city, :state, :degree, :on => :update
   #validates :zipcode, presence: true, length: { minimum: 5 }, :with => :zipcode_validator, :on => :update
   
+  def self.dummy_create(name)
+    @first_name = name.split(" ")[0]
+    @last_name = name.split(" ")[1]
+    self.create(first_name: @first_name, last_name: @last_name, topics: ['topic1', 'topic2', 'topic3', 'topic4', 'topic5'], bio: "I am a doctorate-level psychologist experienced in helping people with anxiety, stress, and depression. I specialize in working with highly-ambitious adults to improve their emotional well-being and strengthen their interpersonal relationships. My office is located in San Francisco's Financial District and is conveniently within a block of the Montgomery BART/ Muni stops.")
+  end
+  
+  def self.dummy_user_create
+    @therapists = Therapist.all
+    @therapists.each do |therapist|
+      unless therapist.user.present?
+        @user = User.create(email: "test" + therapist.id.to_s + "@test.com", password: "password")
+        @user.role_id = therapist.id
+        @user.role_type = "Therapist"
+        @user.save
+        therapist.user = @user
+      end
+    end
+  end
+  
   def convert_slots_to_UTC_0_and_format
     if self.open_slots.empty?
     else
